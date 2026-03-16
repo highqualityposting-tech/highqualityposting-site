@@ -33,7 +33,6 @@
       --muted:#b8c3d9;
       --gold:#c5a86a;
       --ice:#8ad4ff;
-      --ice-soft:rgba(138,212,255,.18);
       --max:1180px;
       --shadow:0 20px 60px rgba(0,0,0,.35);
       --radius:24px;
@@ -447,7 +446,7 @@
 
     .price-grid{
       display:grid;
-      grid-template-columns:repeat(2,minmax(0,1fr));
+      grid-template-columns:repeat(3,minmax(0,1fr));
       gap:20px;
     }
 
@@ -663,26 +662,26 @@
     "mainEntity":[
       {
         "@type":"Question",
-        "name":"どのような建物への配布に強いですか？",
+        "name":"ポスティング単価はいくらですか？",
         "acceptedAnswer":{
           "@type":"Answer",
-          "text":"HIGH QUALITY POSTINGはマンション特化の配布を強みとし、分譲マンション・賃貸マンション・ミックス配布のご相談に対応しています。"
+          "text":"ポスティング単価の目安は1枚4円です。詳細はエリアや条件に応じて個別見積りとなります。"
         }
       },
       {
         "@type":"Question",
-        "name":"対応エリアはどこですか？",
+        "name":"マッピング料金はどのように決まりますか？",
         "acceptedAnswer":{
           "@type":"Answer",
-          "text":"現在、福岡市・北九州市・熊本市・古賀市・福津市を中心に対応しています。"
+          "text":"マッピング料金は分譲マンションの世帯数を基準に換算します。分譲のみは1世帯5円、賃貸分譲ミックスは分譲世帯ベースで1世帯6円です。"
         }
       },
       {
         "@type":"Question",
-        "name":"マッピングデータの販売はありますか？",
+        "name":"マッピングデータだけの購入も可能ですか？",
         "acceptedAnswer":{
           "@type":"Answer",
-          "text":"はい。BASEにてマッピングデータの販売も行っています。分譲・賃貸のリストや参考画像をもとに比較検討いただけます。"
+          "text":"可能です。BASEにてマッピングデータの販売も行っています。"
         }
       }
     ]
@@ -732,8 +731,8 @@
             <a class="btn btn-primary" href="https://docs.google.com/forms/d/e/1FAIpQLSdzo8jbToiiif2oPkjOyi8aSiLxAwg5Sdrera3GPpOSqJmPLw/viewform?usp=header" target="_blank" rel="noopener noreferrer">
               配布を相談する
             </a>
-            <a class="btn btn-secondary" href="https://docs.google.com/forms/d/e/1FAIpQLSfHKF3C6v9AuvbfeuddTygh5cux7XOlW2ctgVHGYfB5X7bPOw/viewform?usp=publish-editor" target="_blank" rel="noopener noreferrer">
-              無料サンプルを受け取る
+            <a class="btn btn-secondary" href="https://docs.google.com/forms/d/e/1FAIpQLSfhybFMmCDdqvy1jDdbZREFfG3e5ls1QfhbdcDlkv9aKZC_tA/viewform?usp=header" target="_blank" rel="noopener noreferrer">
+              カスタムオーダー
             </a>
           </div>
 
@@ -750,8 +749,8 @@
           <div class="visual-overlay">
             <h3>狙うべき建物を、可視化する。</h3>
             <p>
-              ダークで高級感のある世界観の中に、実際のマッピング運用の信頼感を重ね、
-              クリエイティブと実務性の両方が伝わる構成にしています。
+              配布戦略の土台となるマッピング設計を可視化し、
+              現場で使いやすいデータと反響につながる設計を両立します。
             </p>
           </div>
         </div>
@@ -808,8 +807,8 @@
               感覚ではなくデータを活用した配布設計を行います。
             </p>
             <ul class="list">
-              <li>分譲マンション1,000世帯の無料サンプル対応</li>
-              <li>指定エリア中心に賃貸もマッピング可能</li>
+              <li>分譲マンション世帯数ベースで換算</li>
+              <li>賃貸分譲ミックスにも対応</li>
               <li>配布戦略の事前可視化</li>
             </ul>
           </article>
@@ -875,39 +874,84 @@
         <div class="section-head">
           <div>
             <p class="eyebrow">PRICING</p>
-            <h2>料金目安</h2>
+            <h2>料金案内</h2>
           </div>
           <p>
-            料金の分かりやすさは問い合わせ率に直結するため、
-            基本的な目安を掲載しています。詳細はエリア・条件に応じて個別見積り対応です。
+            ポスティング単価と、分譲ベースで換算するマッピング料金を分けて掲載しています。
+            相談前に大枠を把握しやすい構成です。
           </p>
         </div>
 
         <div class="price-grid">
           <article class="price-box">
             <h3>ポスティング料金</h3>
-            <div class="price">1枚 5円〜 <small>（税別目安）</small></div>
+            <div class="price">1枚 4円 <small>（基本単価）</small></div>
             <ul class="list">
               <li>マンション特化配布</li>
-              <li>配布条件に応じて個別見積り</li>
+              <li>エリアや条件に応じて個別調整</li>
               <li>分譲・賃貸・ミックス配布に対応</li>
             </ul>
             <p class="note">
-              ※ エリア、建物条件、枚数、配布方法により変動します。
+              ※ 詳細はエリア、建物条件、枚数、配布方法により変動します。
             </p>
           </article>
 
           <article class="price-box">
-            <h3>カスタムマッピング料金</h3>
-            <div class="price">要見積り <small>内容別に個別対応</small></div>
+            <h3>分譲マンションのみ</h3>
+            <div class="price">1世帯 5円 <small>（世帯ベース換算）</small></div>
             <ul class="list">
-              <li>指定エリアのマンションマッピング</li>
-              <li>分譲・賃貸の仕分け対応</li>
-              <li>世帯数・築年数・建物情報整理に対応</li>
+              <li>分譲マンションの世帯数を基準に枚数を算出</li>
+              <li>配布・管理・分析に使いやすい王道設計</li>
+              <li>納品：Excel ＋ Google My Maps URL</li>
+              <li>1,000世帯 → 5,000円</li>
+              <li>2,000世帯 → 10,000円</li>
             </ul>
             <p class="note">
-              ※ ご希望エリア・納品形式・データ粒度に応じて見積りいたします。まずはご相談ください。
+              ※ 分譲は世帯数が明確なため、長期運用・改善前提の配布に最適です。
             </p>
+          </article>
+
+          <article class="price-box">
+            <h3>賃貸分譲ミックス</h3>
+            <div class="price">1世帯 6円 <small>（ミックス専用単価）</small></div>
+            <ul class="list">
+              <li>必ず分譲マンション世帯数を基準に換算</li>
+              <li>賃貸のみの単価設定はありません</li>
+              <li>分譲で配布枚数を担保し、賃貸は使える範囲を最大化</li>
+              <li>指定エリアを中心に放射状に確認できる物件をマッピング</li>
+              <li>賃貸は世帯数でカウントせず、実務で使える範囲を重視</li>
+            </ul>
+            <p class="note">
+              例：1000枚の賃貸分譲ミックスでは、分譲マンション1000世帯を必ず担保し、
+              その上で指定エリア中心に確認できる賃貸物件をすべてマッピングします。
+            </p>
+          </article>
+        </div>
+
+        <div class="grid-2" style="margin-top:20px;">
+          <article class="card">
+            <h3>ミックスオーダーの考え方</h3>
+            <p>
+              ミックスオーダーでは、分譲マンションの世帯数で配布枚数を必ず担保します。
+              その上で、賃貸マンションは指定エリアを中心に、放射状に確認できる物件をすべてマッピングします。
+            </p>
+            <ul class="list">
+              <li>まず分譲で配布枚数を確保</li>
+              <li>賃貸は無駄なく、現場で使える範囲を最大化</li>
+              <li>現場実務と営業効率の両立を重視</li>
+            </ul>
+          </article>
+
+          <article class="card">
+            <h3>カスタムオーダー</h3>
+            <p>
+              ご希望エリア、必要枚数、分譲のみかミックスか、納品形式などに応じて個別対応します。
+            </p>
+            <div class="hero-actions">
+              <a class="btn btn-primary" href="https://docs.google.com/forms/d/e/1FAIpQLSfhybFMmCDdqvy1jDdbZREFfG3e5ls1QfhbdcDlkv9aKZC_tA/viewform?usp=header" target="_blank" rel="noopener noreferrer">
+                カスタムオーダーを依頼する
+              </a>
+            </div>
           </article>
         </div>
       </div>
@@ -922,7 +966,7 @@
           </div>
           <p>
             実際のマッピング運用イメージと、分譲・賃貸のリスト参考画像です。
-            住所など公開すべきでない情報は伏せたうえで、データ品質のイメージが伝わる構成にしています。
+            公開すべきでない情報は伏せたうえで、データ品質のイメージが伝わる構成にしています。
           </p>
         </div>
 
@@ -960,12 +1004,12 @@
           <article class="card">
             <h3>マッピング無料サンプルにも対応</h3>
             <p>
-              分譲マンション1,000世帯を担保し、指定エリアを中心に賃貸マンションもマッピング。
-              導入前にデータ品質や使い勝手を確認しやすい無料サンプルも用意しています。
+              分譲マンション世帯数ベースの設計と、指定エリア中心の賃貸分譲ミックスの考え方をもとに、
+              導入前にデータ品質や使い勝手を確認しやすい導線を用意しています。
             </p>
             <div class="hero-actions">
-              <a class="btn btn-primary" href="https://docs.google.com/forms/d/e/1FAIpQLSfHKF3C6v9AuvbfeuddTygh5cux7XOlW2ctgVHGYfB5X7bPOw/viewform?usp=publish-editor" target="_blank" rel="noopener noreferrer">
-                無料サンプルを申し込む
+              <a class="btn btn-primary" href="https://docs.google.com/forms/d/e/1FAIpQLSfhybFMmCDdqvy1jDdbZREFfG3e5ls1QfhbdcDlkv9aKZC_tA/viewform?usp=header" target="_blank" rel="noopener noreferrer">
+                カスタムオーダー
               </a>
               <a class="btn btn-secondary" href="https://advertising.base.shop/" target="_blank" rel="noopener noreferrer">
                 BASEを見る
@@ -1022,8 +1066,8 @@
             <span>重点対応エリア</span>
           </div>
           <div class="stat">
-            <strong>無料サンプル</strong>
-            <span>マッピング対応</span>
+            <strong>4円</strong>
+            <span>ポスティング基本単価</span>
           </div>
           <div class="stat">
             <strong>BASE販売</strong>
@@ -1045,8 +1089,8 @@
             <a class="btn btn-primary" href="https://docs.google.com/forms/d/e/1FAIpQLSdzo8jbToiiif2oPkjOyi8aSiLxAwg5Sdrera3GPpOSqJmPLw/viewform?usp=header" target="_blank" rel="noopener noreferrer">
               配布を相談する
             </a>
-            <a class="btn btn-secondary" href="https://advertising.base.shop/" target="_blank" rel="noopener noreferrer">
-              マッピングデータを見る
+            <a class="btn btn-secondary" href="https://docs.google.com/forms/d/e/1FAIpQLSfhybFMmCDdqvy1jDdbZREFfG3e5ls1QfhbdcDlkv9aKZC_tA/viewform?usp=header" target="_blank" rel="noopener noreferrer">
+              カスタムオーダー
             </a>
           </div>
         </div>
@@ -1099,24 +1143,25 @@
         </div>
 
         <details open>
-          <summary>どのような配布に強いですか？</summary>
+          <summary>ポスティング単価はいくらですか？</summary>
           <p>
-            マンション特化配布を軸に、分譲マンションのみ、賃貸マンションのみ、
-            分譲・賃貸ミックスなど目的に応じて対応しています。
+            基本単価は1枚4円です。詳細はエリア、建物条件、枚数、配布方法により調整となります。
           </p>
         </details>
 
         <details>
-          <summary>対応エリアはどこですか？</summary>
+          <summary>分譲マンションのみのマッピング料金は？</summary>
           <p>
-            現在は福岡市・北九州市・熊本市・古賀市・福津市を重点対応エリアとしています。
+            分譲マンションのみの場合は、分譲世帯数ベースで1世帯5円です。
+            1,000世帯なら5,000円、2,000世帯なら10,000円が目安です。
           </p>
         </details>
 
         <details>
-          <summary>見積りだけでも大丈夫ですか？</summary>
+          <summary>賃貸分譲ミックスの料金は？</summary>
           <p>
-            問題ありません。無料見積り・相談から対応しています。
+            賃貸分譲ミックスは、分譲マンション世帯数を基準に1世帯6円です。
+            まず分譲で配布枚数を担保し、そのうえで指定エリア中心に確認できる賃貸物件をマッピングします。
           </p>
         </details>
 
@@ -1150,6 +1195,9 @@
             <div class="hero-actions">
               <a class="btn btn-primary" href="https://docs.google.com/forms/d/e/1FAIpQLSdzo8jbToiiif2oPkjOyi8aSiLxAwg5Sdrera3GPpOSqJmPLw/viewform?usp=header" target="_blank" rel="noopener noreferrer">
                 配布を相談する
+              </a>
+              <a class="btn btn-secondary" href="https://docs.google.com/forms/d/e/1FAIpQLSfhybFMmCDdqvy1jDdbZREFfG3e5ls1QfhbdcDlkv9aKZC_tA/viewform?usp=header" target="_blank" rel="noopener noreferrer">
+                カスタムオーダー
               </a>
             </div>
           </article>
