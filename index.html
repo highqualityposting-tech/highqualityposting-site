@@ -2,14 +2,14 @@
 <html lang="ja">
 <head>
   <!-- Google tag (gtag.js) -->
-<script async src="https://www.googletagmanager.com/gtag/js?id=G-QN91EZMQR8"></script>
-<script>
-  window.dataLayer = window.dataLayer || [];
-  function gtag(){dataLayer.push(arguments);}
-  gtag('js', new Date());
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-QN91EZMQR8"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('js', new Date());
 
-  gtag('config', 'G-QN91EZMQR8');
-</script>
+    gtag('config', 'G-QN91EZMQR8');
+  </script>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>HIGH QUALITY POSTING | マンション特化ポスティング | 福岡市・北九州市・熊本市・古賀市・福津市</title>
@@ -299,61 +299,67 @@
         linear-gradient(180deg, rgba(6,9,14,.28), rgba(5,7,10,.78)),
         radial-gradient(circle at 75% 18%, rgba(138,212,255,.14), transparent 24%),
         radial-gradient(circle at 20% 12%, rgba(197,168,106,.12), transparent 22%);
+      pointer-events:none;
+      z-index:1;
     }
-.slider-card {
-  position: relative;
-  overflow: hidden;
-}
 
-.slider-track {
-  position: relative;
-  width: 100%;
-  height: 100%;
-}
+    .slider-card {
+      position: relative;
+      overflow: hidden;
+    }
 
-.slider-card .slide {
-  position: absolute;
-  inset: 0;
-  width: 100%;
-  height: 100%;
-  object-fit: cover;
-  opacity: 0;
-  transition: opacity 1s ease;
-}
+    .slider-track {
+      position: absolute;
+      inset: 0;
+      width: 100%;
+      height: 100%;
+    }
 
-.slider-card .slide.active {
-  opacity: 1;
-  z-index: 1;
-}
+    .slider-card .slide {
+      position: absolute;
+      inset: 0;
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      opacity: 0;
+      transition: opacity 1s ease;
+      z-index: 0;
+    }
 
-.slider-card .visual-overlay {
-  position: absolute;
-  z-index: 3;
-}
+    .slider-card .slide.active {
+      opacity: 1;
+      z-index: 0;
+    }
 
-.slider-dots {
-  position: absolute;
-  left: 50%;
-  bottom: 18px;
-  transform: translateX(-50%);
-  display: flex;
-  gap: 8px;
-  z-index: 4;
-}
+    .slider-card .visual-overlay {
+      position: absolute;
+      z-index: 2;
+    }
 
-.slider-dots .dot {
-  width: 10px;
-  height: 10px;
-  border-radius: 999px;
-  border: none;
-  background: rgba(255, 255, 255, 0.45);
-  cursor: pointer;
-  padding: 0;
-}
+    .slider-dots {
+      position: absolute;
+      left: 50%;
+      bottom: 18px;
+      transform: translateX(-50%);
+      display: flex;
+      gap: 8px;
+      z-index: 3;
+    }
 
-.slider-dots .dot.active {
-  background: rgba(255, 255, 255, 0.95);
-}
+    .slider-dots .dot {
+      width: 10px;
+      height: 10px;
+      border-radius: 999px;
+      border: none;
+      background: rgba(255, 255, 255, 0.45);
+      cursor: pointer;
+      padding: 0;
+    }
+
+    .slider-dots .dot.active {
+      background: rgba(255, 255, 255, 0.95);
+    }
+
     .visual-overlay{
       position:absolute;
       left:24px;
@@ -381,9 +387,9 @@
 
     section{padding:92px 0}
     .section-head{
-  margin-bottom:34px;
-  display:block;
-}
+      margin-bottom:34px;
+      display:block;
+    }
 
     .section-head h2{
       margin:0;
@@ -746,39 +752,6 @@
   }
   </script>
 </head>
-  <script>
-  (function () {
-    const slider = document.querySelector('.slider-card');
-    if (!slider) return;
-
-    const slides = slider.querySelectorAll('.slide');
-    const dots = slider.querySelectorAll('.dot');
-    let current = 0;
-
-    function showSlide(index) {
-      slides.forEach((slide, i) => {
-        slide.classList.toggle('active', i === index);
-      });
-
-      dots.forEach((dot, i) => {
-        dot.classList.toggle('active', i === index);
-      });
-
-      current = index;
-    }
-
-    dots.forEach((dot, index) => {
-      dot.addEventListener('click', () => {
-        showSlide(index);
-      });
-    });
-
-    setInterval(() => {
-      const next = (current + 1) % slides.length;
-      showSlide(next);
-    }, 3500);
-  })();
-</script>
 <body>
   <header class="topbar">
     <div class="container nav">
@@ -791,7 +764,6 @@
       </a>
 
       <nav class="nav-links" aria-label="グローバルナビゲーション">
-      
         <a href="#service">サービス</a>
         <a href="#areas">対応エリア</a>
         <a href="#pricing">料金</a>
@@ -838,26 +810,26 @@
         </div>
 
         <div class="visual-card slider-card" aria-label="マッピングビジュアル">
-  <div class="slider-track">
-    <img src="map-overview.jpg" alt="マンションマッピング参考画像" class="visual-image slide active">
-    <img src="北九州市マッピング.jpg" alt="北九州市のマッピング画像" class="visual-image slide">
-    <img src="福岡市南区マッピング.jpg" alt="福岡市南区のマッピング画像" class="visual-image slide">
-  </div>
+          <div class="slider-track">
+            <img src="map-overview.jpg" alt="マンションマッピング参考画像" class="visual-image slide active">
+            <img src="北九州市マッピング.jpg" alt="北九州市のマッピング画像" class="visual-image slide">
+            <img src="福岡市南区マッピング.jpg" alt="福岡市南区のマッピング画像" class="visual-image slide">
+          </div>
 
-  <div class="visual-overlay">
-    <h3>狙うべき建物を、可視化する。</h3>
-    <p>
-      配布戦略の土台となるマッピング設計を可視化し、
-      現場で使いやすいデータと反響につながる設計を両立します。
-    </p>
-  </div>
+          <div class="visual-overlay">
+            <h3>狙うべき建物を、可視化する。</h3>
+            <p>
+              配布戦略の土台となるマッピング設計を可視化し、
+              現場で使いやすいデータと反響につながる設計を両立します。
+            </p>
+          </div>
 
-  <div class="slider-dots" aria-label="スライド切り替え">
-    <button class="dot active" type="button" aria-label="1枚目"></button>
-    <button class="dot" type="button" aria-label="2枚目"></button>
-    <button class="dot" type="button" aria-label="3枚目"></button>
-  </div>
-</div>
+          <div class="slider-dots" aria-label="スライド切り替え">
+            <button class="dot active" type="button" aria-label="1枚目"></button>
+            <button class="dot" type="button" aria-label="2枚目"></button>
+            <button class="dot" type="button" aria-label="3枚目"></button>
+          </div>
+        </div>
       </div>
     </section>
 
@@ -923,24 +895,24 @@
     <section id="areas" class="anchor-offset">
       <div class="container">
         <div class="section-head">
-  <div>
-    <p class="eyebrow">AREA SEO</p>
-    <h2>重点対応エリア</h2>
-  </div>
+          <div>
+            <p class="eyebrow">AREA SEO</p>
+            <h2>重点対応エリア</h2>
+          </div>
 
-  <div>
-    <p>
-      ご要望のエリアがありましたら、お問い合わせフォームから
-      お問い合わせください。
-    </p>
+          <div>
+            <p>
+              ご要望のエリアがありましたら、お問い合わせフォームから
+              お問い合わせください。
+            </p>
 
-    <div class="hero-actions" style="margin-top:20px; margin-bottom:0;">
-      <a class="btn btn-primary" href="https://docs.google.com/forms/d/e/1FAIpQLSfUvYfvGruPG_JeAz0ZkIg1mqJDM1xJ1FbSiyq0o8xR9tFK-A/viewform?usp=header" target="_blank" rel="noopener noreferrer">
-        お問い合わせフォームへ
-      </a>
-    </div>
-  </div>
-</div>
+            <div class="hero-actions" style="margin-top:20px; margin-bottom:0;">
+              <a class="btn btn-primary" href="https://docs.google.com/forms/d/e/1FAIpQLSfUvYfvGruPG_JeAz0ZkIg1mqJDM1xJ1FbSiyq0o8xR9tFK-A/viewform?usp=header" target="_blank" rel="noopener noreferrer">
+                お問い合わせフォームへ
+              </a>
+            </div>
+          </div>
+        </div>
 
         <div class="grid-3">
           <article class="card area-card">
@@ -991,11 +963,8 @@
           </div>
           <p>
             ポスティング単価、マッピング料金【分譲・賃貸・分譲賃貸ミックス】マッピングは全国対応です。
-            
           </p>
         </div>
-
-    
 
         <div class="price-grid">
           <article class="price-box">
@@ -1032,7 +1001,7 @@
             <h3>マッピング料金<br>
               【賃貸分譲ミックス】
             </h3>
-              
+
             <div class="price">1世帯 6円 <br>
               <small>（ミックス専用単価）</small></div>
             <ul class="list">
@@ -1087,7 +1056,6 @@
           </div>
           <p>
             実際のマッピング運用イメージと、分譲・賃貸のリスト参考画像です。
-            
           </p>
         </div>
 
@@ -1149,7 +1117,6 @@
             <h2>“配って終わり”ではなく、成果につながる配布設計へ。</h2>
           </div>
           <p>
-            
           </p>
         </div>
 
@@ -1226,7 +1193,6 @@
             <h2>ご依頼の流れ</h2>
           </div>
           <p>
-            
           </p>
         </div>
 
@@ -1250,51 +1216,53 @@
         </div>
       </div>
     </section>
-<section id="profile" class="anchor-offset">
-  <div class="container">
-    <div class="section-head">
-      <div>
-        <p class="eyebrow">PROFILE</p>
-        <h2>代表紹介</h2>
-      </div>
-    </div>
 
-    <div class="card">
-      <h3>内堀 瑚白（うちぼり こはく）</h3>
-      <p>
-        はじめまして。HIGH QUALITY POSTING（ハイクオリティポスティング）代表の内堀 瑚白（うちぼり こはく）です。
-      </p>
-      <p style="margin-top:16px;">
-        北九州市出身。不動産営業を経て、マンション特化のポスティング事業を立ち上げました。
-      </p>
-      <p style="margin-top:16px;">
-        不動産の現場で強く感じたのは、
-      </p>
-      <p style="margin-top:16px; color:#eef4ff;">
-        「配ったのに反響が読めない」「どこまで配布できたかが見えない」
-      </p>
-      <p style="margin-top:16px;">
-        という課題です。
-      </p>
-      <p style="margin-top:16px;">
-        そこで当店は、“配って終わり”ではなく、成果につながる配布設計にこだわっています。
-      </p>
-      <p style="margin-top:16px;">
-        HIGH QUALITY POSTINGは、マンション特化配布を軸に、
-        GPSログ管理とマッピングデータの活用によって、配布品質と透明性を担保します。
-      </p>
-      <p style="margin-top:16px; color:#fff1c7; font-weight:700;">
-        （年間100万枚以上の配布実績）
-      </p>
-      <p style="margin-top:16px;">
-        狙うべきマンションに、狙うべき順番で、確実に届ける。
-      </p>
-      <p style="margin-top:16px;">
-        その積み重ねが、反響をつくると考えています。
-      </p>
-    </div>
-  </div>
-</section>
+    <section id="profile" class="anchor-offset">
+      <div class="container">
+        <div class="section-head">
+          <div>
+            <p class="eyebrow">PROFILE</p>
+            <h2>代表紹介</h2>
+          </div>
+        </div>
+
+        <div class="card">
+          <h3>内堀 瑚白（うちぼり こはく）</h3>
+          <p>
+            はじめまして。HIGH QUALITY POSTING（ハイクオリティポスティング）代表の内堀 瑚白（うちぼり こはく）です。
+          </p>
+          <p style="margin-top:16px;">
+            北九州市出身。不動産営業を経て、マンション特化のポスティング事業を立ち上げました。
+          </p>
+          <p style="margin-top:16px;">
+            不動産の現場で強く感じたのは、
+          </p>
+          <p style="margin-top:16px; color:#eef4ff;">
+            「配ったのに反響が読めない」「どこまで配布できたかが見えない」
+          </p>
+          <p style="margin-top:16px;">
+            という課題です。
+          </p>
+          <p style="margin-top:16px;">
+            そこで当店は、“配って終わり”ではなく、成果につながる配布設計にこだわっています。
+          </p>
+          <p style="margin-top:16px;">
+            HIGH QUALITY POSTINGは、マンション特化配布を軸に、
+            GPSログ管理とマッピングデータの活用によって、配布品質と透明性を担保します。
+          </p>
+          <p style="margin-top:16px; color:#fff1c7; font-weight:700;">
+            （年間100万枚以上の配布実績）
+          </p>
+          <p style="margin-top:16px;">
+            狙うべきマンションに、狙うべき順番で、確実に届ける。
+          </p>
+          <p style="margin-top:16px;">
+            その積み重ねが、反響をつくると考えています。
+          </p>
+        </div>
+      </div>
+    </section>
+
     <section id="faq" class="anchor-offset">
       <div class="container">
         <div class="section-head">
@@ -1303,7 +1271,6 @@
             <h2>よくあるご質問</h2>
           </div>
           <p>
-            
           </p>
         </div>
 
@@ -1363,7 +1330,7 @@
               </a>
               <a class="btn btn-secondary" href="https://docs.google.com/forms/d/e/1FAIpQLSfhybFMmCDdqvy1jDdbZREFfG3e5ls1QfhbdcDlkv9aKZC_tA/viewform?usp=header" target="_blank" rel="noopener noreferrer">
                 マッピングオーダー
-              </a>  
+              </a>
               <a class="btn btn-thirdary" href="https://docs.google.com/forms/d/e/1FAIpQLSfUvYfvGruPG_JeAz0ZkIg1mqJDM1xJ1FbSiyq0o8xR9tFK-A/viewform?usp=header" target="_blank" rel="noopener noreferrer">
         　　　　 お問い合わせフォームへ
               </a>
@@ -1416,6 +1383,58 @@
 
   <script>
     document.getElementById('year').textContent = new Date().getFullYear();
+  </script>
+
+  <script>
+    document.addEventListener('DOMContentLoaded', function () {
+      const slider = document.querySelector('.slider-card');
+      if (!slider) return;
+
+      const slides = slider.querySelectorAll('.slide');
+      const dots = slider.querySelectorAll('.dot');
+
+      if (!slides.length) return;
+
+      let current = 0;
+      let timer = null;
+
+      function showSlide(index) {
+        slides.forEach((slide, i) => {
+          slide.classList.toggle('active', i === index);
+        });
+
+        dots.forEach((dot, i) => {
+          dot.classList.toggle('active', i === index);
+        });
+
+        current = index;
+      }
+
+      function startAutoSlide() {
+        stopAutoSlide();
+        timer = setInterval(function () {
+          const next = (current + 1) % slides.length;
+          showSlide(next);
+        }, 3500);
+      }
+
+      function stopAutoSlide() {
+        if (timer) {
+          clearInterval(timer);
+          timer = null;
+        }
+      }
+
+      dots.forEach((dot, index) => {
+        dot.addEventListener('click', function () {
+          showSlide(index);
+          startAutoSlide();
+        });
+      });
+
+      showSlide(0);
+      startAutoSlide();
+    });
   </script>
 </body>
 </html>
