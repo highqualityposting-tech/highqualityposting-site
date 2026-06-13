@@ -7,28 +7,28 @@
     window.dataLayer = window.dataLayer || [];
     function gtag(){dataLayer.push(arguments);}
     gtag('js', new Date());
-
     gtag('config', 'G-QN91EZMQR8');
   </script>
+
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>HIGH QUALITY POSTING（ハイクオリティポスティング）｜北九州・福岡・熊本のマンション特化ポスティング</title>
-  <meta name="description" content="HIGH QUALITY POSTINGは、マンション特化配布・GPSログ管理・マッピング分析で反響を最大化するポスティングサービスです。福岡市・北九州市・熊本市・古賀市・福津市対応。マッピングデータ販売にも対応。" />
-  <meta name="keywords" content="HIGHQUALITYPOSTING,ハイクオリティポスティング,マンションポスティング,ポスティング 福岡市,ポスティング 北九州市,ポスティング 熊本市,ポスティング 古賀市,ポスティング 福津市,マッピングデータ,マンションリスト,GPSログ管理,枚数管理,チラシ配布" />
+  <title>HIGH QUALITY POSTING｜HQPアプリで管理するマンション特化ポスティング</title>
+  <meta name="description" content="HIGH QUALITY POSTINGは、HQPアプリを活用してマンション特化ポスティングを実施。投函マップ、GPSログ、日報PDF、投函タイムライン、マンション別枚数管理により、配布品質を見える化します。北九州市・福岡市・熊本市・古賀市・福津市対応。基本単価1枚4円。" />
+  <meta name="keywords" content="HIGHQUALITYPOSTING,ハイクオリティポスティング,HQPアプリ,マンションポスティング,ポスティング 北九州,ポスティング 福岡,ポスティング 熊本,GPSログ,日報PDF,投函タイムライン,指定マンション配布,チラシ配布" />
   <meta name="robots" content="index,follow" />
   <meta name="theme-color" content="#090b10" />
   <link rel="canonical" href="https://highqualityposting.jp/" />
 
   <meta property="og:type" content="website" />
   <meta property="og:site_name" content="HIGH QUALITY POSTING" />
-  <meta property="og:title" content="HIGH QUALITY POSTING | マンション特化ポスティング" />
-  <meta property="og:description" content="福岡市・北九州市・熊本市・古賀市・福津市対応。マンション特化配布・GPSログ管理・マッピング分析・マッピングデータ販売。" />
+  <meta property="og:title" content="HIGH QUALITY POSTING｜HQPアプリで管理するマンション特化ポスティング" />
+  <meta property="og:description" content="HQPアプリで投函マップ・GPSログ・日報PDF・投函タイムラインまで可視化。マンション特化のポスティングを1枚4円から対応。" />
   <meta property="og:url" content="https://highqualityposting.jp/" />
   <meta property="og:image" content="https://highqualityposting.jp/logo.jpg" />
 
   <meta name="twitter:card" content="summary_large_image" />
-  <meta name="twitter:title" content="HIGH QUALITY POSTING | マンション特化ポスティング" />
-  <meta name="twitter:description" content="福岡市・北九州市・熊本市・古賀市・福津市対応。マンション特化配布・GPSログ管理・マッピング分析・マッピングデータ販売。" />
+  <meta name="twitter:title" content="HIGH QUALITY POSTING｜HQPアプリで管理するマンション特化ポスティング" />
+  <meta name="twitter:description" content="投函マップ・GPSログ・日報PDF・投函タイムラインで、配布品質を見える化するマンション特化ポスティング。" />
   <meta name="twitter:image" content="https://highqualityposting.jp/logo.jpg" />
 
   <style>
@@ -41,7 +41,10 @@
       --text:#eef4ff;
       --muted:#b8c3d9;
       --gold:#c5a86a;
+      --gold2:#fff0c8;
       --ice:#8ad4ff;
+      --mint:#44f0d0;
+      --pink:#ff4aa0;
       --max:1180px;
       --shadow:0 20px 60px rgba(0,0,0,.35);
       --radius:24px;
@@ -59,19 +62,21 @@
         linear-gradient(180deg, #05070b 0%, #0a0d13 45%, #07090d 100%);
       line-height:1.8;
       letter-spacing:.02em;
+      overflow-x:hidden;
     }
 
     a{color:inherit;text-decoration:none}
     img{max-width:100%;display:block}
-
+    button,input,textarea,select{font:inherit}
     .container{width:min(var(--max), calc(100% - 32px)); margin-inline:auto}
+    .anchor-offset{scroll-margin-top:96px}
 
     .topbar{
       position:sticky;
       top:0;
       z-index:1000;
       backdrop-filter:blur(16px);
-      background:rgba(7,9,13,.7);
+      background:rgba(7,9,13,.72);
       border-bottom:1px solid rgba(255,255,255,.08);
     }
 
@@ -87,8 +92,9 @@
       display:flex;
       align-items:center;
       gap:14px;
-      font-weight:800;
+      font-weight:900;
       letter-spacing:.08em;
+      min-width:0;
     }
 
     .brand-logo{
@@ -99,14 +105,17 @@
       border:1px solid rgba(255,255,255,.12);
       background:#000;
       box-shadow:0 10px 24px rgba(0,0,0,.35);
+      flex:0 0 auto;
     }
 
+    .brand-text{line-height:1.2; white-space:nowrap; overflow:hidden; text-overflow:ellipsis}
     .brand small{
       display:block;
       color:var(--gold);
       font-size:11px;
       letter-spacing:.18em;
-      margin-top:-2px;
+      margin-top:4px;
+      white-space:nowrap;
     }
 
     .nav-links{
@@ -114,92 +123,55 @@
       gap:18px;
       flex-wrap:wrap;
       align-items:center;
+      justify-content:flex-end;
     }
 
     .nav-links a{
       color:var(--muted);
       font-size:14px;
       transition:.25s ease;
+      white-space:nowrap;
     }
 
     .nav-links a:hover{color:var(--text)}
 
-   .btn {
-  display: inline-flex;
-  align-items: center;
-  justify-content: center;
-  text-align: center;
-  padding: 18px 32px;
-  min-height: 64px;
-  border-radius: 999px;
-  text-decoration: none;
-  font-weight: 700;
-  line-height: 1;
-  box-sizing: border-box;
-}
+    .btn{
+      display:inline-flex;
+      align-items:center;
+      justify-content:center;
+      text-align:center;
+      padding:18px 30px;
+      min-height:62px;
+      border-radius:999px;
+      text-decoration:none;
+      font-weight:900;
+      line-height:1.15;
+      border:1px solid transparent;
+      box-sizing:border-box;
+      transition:.25s ease;
+      cursor:pointer;
+    }
 
     .btn-primary{
       color:#0a0d13;
       background:linear-gradient(135deg, #d8bd85 0%, #fff0c8 35%, #8ad4ff 100%);
+      box-shadow:0 16px 36px rgba(138,212,255,.16);
     }
 
-    .btn-primary:hover{
-      transform:translateY(-2px);
-      filter:brightness(1.05);
-    }
-
+    .btn-primary:hover{transform:translateY(-2px); filter:brightness(1.05)}
     .btn-secondary{
       background:rgba(255,255,255,.04);
       border-color:rgba(255,255,255,.12);
       color:var(--text);
     }
+    .btn-secondary:hover{transform:translateY(-2px); background:rgba(255,255,255,.08)}
 
-    .btn-secondary:hover{
-      transform:translateY(-2px);
-      background:rgba(255,255,255,.08);
-    }
-
-    .hero{
-      position:relative;
-      overflow:hidden;
-      padding:92px 0 72px;
-      isolation:isolate;
-    }
-
-    .hero::before{
-      content:"";
-      position:absolute;
-      inset:-10% -5% auto -5%;
-      height:760px;
-      z-index:-2;
-      background:
-        radial-gradient(circle at 15% 15%, rgba(138,212,255,.18), transparent 24%),
-        radial-gradient(circle at 78% 18%, rgba(197,168,106,.12), transparent 18%),
-        linear-gradient(180deg, rgba(255,255,255,.05), transparent 26%),
-        linear-gradient(135deg, #0e1521 0%, #080b10 48%, #10141f 100%);
-      border-bottom:1px solid rgba(255,255,255,.06);
-    }
-
-    .hero::after{
-      content:"";
-      position:absolute;
-      left:0; right:0; bottom:40px;
-      height:220px;
-      z-index:-1;
-      background:
-        linear-gradient(180deg, transparent, rgba(138,212,255,.08)),
-        repeating-linear-gradient(90deg, rgba(255,255,255,.02) 0 12px, transparent 12px 40px);
-      filter:blur(16px);
-      opacity:.55;
-      transform:perspective(1000px) rotateX(72deg);
-      transform-origin:center bottom;
-    }
-
-    .hero-grid{
-      display:grid;
-      grid-template-columns:1.08fr .92fr;
-      gap:34px;
+    .hero-actions{
+      display:flex;
+      flex-wrap:wrap;
+      gap:12px;
       align-items:center;
+      margin-top:28px;
     }
 
     .eyebrow{
@@ -213,23 +185,65 @@
       color:#d7e6ff;
       font-size:13px;
       backdrop-filter:blur(10px);
+      width:max-content;
+      max-width:100%;
     }
-
     .eyebrow::before{
       content:"";
       width:8px;height:8px;border-radius:999px;
       background:linear-gradient(135deg, var(--gold), var(--ice));
       box-shadow:0 0 20px rgba(138,212,255,.7);
+      flex:0 0 auto;
+    }
+
+    .hero{
+      position:relative;
+      overflow:hidden;
+      padding:92px 0 72px;
+      isolation:isolate;
+    }
+    .hero::before{
+      content:"";
+      position:absolute;
+      inset:-10% -5% auto -5%;
+      height:830px;
+      z-index:-2;
+      background:
+        radial-gradient(circle at 15% 15%, rgba(138,212,255,.18), transparent 24%),
+        radial-gradient(circle at 78% 18%, rgba(197,168,106,.12), transparent 18%),
+        linear-gradient(180deg, rgba(255,255,255,.05), transparent 26%),
+        linear-gradient(135deg, #0e1521 0%, #080b10 48%, #10141f 100%);
+      border-bottom:1px solid rgba(255,255,255,.06);
+    }
+    .hero::after{
+      content:"";
+      position:absolute;
+      left:0; right:0; bottom:38px;
+      height:230px;
+      z-index:-1;
+      background:
+        linear-gradient(180deg, transparent, rgba(138,212,255,.08)),
+        repeating-linear-gradient(90deg, rgba(255,255,255,.02) 0 12px, transparent 12px 40px);
+      filter:blur(16px);
+      opacity:.55;
+      transform:perspective(1000px) rotateX(72deg);
+      transform-origin:center bottom;
+    }
+
+    .hero-grid{
+      display:grid;
+      grid-template-columns:1.02fr .98fr;
+      gap:34px;
+      align-items:center;
     }
 
     h1{
       margin:18px 0 18px;
-      font-size:clamp(38px, 6vw, 74px);
+      font-size:clamp(40px, 6vw, 76px);
       line-height:1.04;
-      letter-spacing:.03em;
-      font-weight:900;
+      letter-spacing:.025em;
+      font-weight:950;
     }
-
     .headline-accent{
       display:block;
       background:linear-gradient(135deg, #f7edd8 0%, #cdb07a 30%, #d7ecff 72%, #8ad4ff 100%);
@@ -238,19 +252,12 @@
       background-clip:text;
       text-shadow:0 0 40px rgba(138,212,255,.1);
     }
-
     .hero-copy{
       color:var(--muted);
       font-size:17px;
       max-width:720px;
     }
-
-    .hero-actions .btn {
-  display: inline-flex;
-  align-items: center;
-  justify-content: center;
-  text-align: center;
-}
+    .hero-copy strong{color:#fff1c7}
 
     .hero-points{
       display:grid;
@@ -258,7 +265,6 @@
       gap:14px;
       margin-top:28px;
     }
-
     .chip{
       padding:14px 16px;
       border-radius:18px;
@@ -268,163 +274,109 @@
       font-size:14px;
     }
 
-    .visual-card{
+    .hero-visual{
       position:relative;
-      min-height:560px;
-      border-radius:32px;
-      border:1px solid rgba(255,255,255,.1);
+      min-height:640px;
+      border-radius:34px;
+      border:1px solid rgba(255,255,255,.10);
       background:
-        linear-gradient(180deg, rgba(255,255,255,.04), rgba(255,255,255,.02)),
-        linear-gradient(180deg, #0e1420 0%, #0a0d13 55%, #07090d 100%);
+        radial-gradient(circle at 20% 8%, rgba(138,212,255,.18), transparent 30%),
+        linear-gradient(180deg, rgba(255,255,255,.06), rgba(255,255,255,.025));
       box-shadow:var(--shadow);
       overflow:hidden;
+      padding:24px;
     }
-
-    .visual-image{
-      position:absolute;
-      inset:0;
-      width:100%;
-      height:100%;
-      object-fit:cover;
-      filter:brightness(.55) contrast(1.06) saturate(.95);
-      transform:scale(1.03);
-    }
-
-    .visual-card::after{
+    .hero-visual::before{
       content:"";
       position:absolute;
       inset:0;
       background:
-        linear-gradient(180deg, rgba(6,9,14,.28), rgba(5,7,10,.78)),
-        radial-gradient(circle at 75% 18%, rgba(138,212,255,.14), transparent 24%),
-        radial-gradient(circle at 20% 12%, rgba(197,168,106,.12), transparent 22%);
+        linear-gradient(90deg, rgba(138,212,255,.08) 1px, transparent 1px),
+        linear-gradient(0deg, rgba(255,255,255,.05) 1px, transparent 1px);
+      background-size:44px 44px;
+      mask-image:linear-gradient(180deg, rgba(0,0,0,.6), transparent 72%);
       pointer-events:none;
-      z-index:1;
     }
-
-    .slider-card {
-      position: relative;
-      overflow: hidden;
+    .device-stack{
+      position:relative;
+      height:100%;
+      min-height:592px;
     }
-
-    .slider-track {
-      position: absolute;
-      inset: 0;
-      width: 100%;
-      height: 100%;
-    }
-
-    .slider-card .slide {
-      position: absolute;
-      inset: 0;
-      width: 100%;
-      height: 100%;
-      object-fit: cover;
-      opacity: 0;
-      transition: opacity 1s ease;
-      z-index: 0;
-    }
-
-    .slider-card .slide.active {
-      opacity: 1;
-      z-index: 0;
-    }
-
-    .slider-card .visual-overlay {
-      position: absolute;
-      z-index: 2;
-    }
-
-    .slider-dots {
-      position: absolute;
-      left: 50%;
-      bottom: 18px;
-      transform: translateX(-50%);
-      display: flex;
-      gap: 8px;
-      z-index: 3;
-    }
-
-    .slider-dots .dot {
-      width: 10px;
-      height: 10px;
-      border-radius: 999px;
-      border: none;
-      background: rgba(255, 255, 255, 0.45);
-      cursor: pointer;
-      padding: 0;
-    }
-
-    .slider-dots .dot.active {
-      background: rgba(255, 255, 255, 0.95);
-    }
-
-    .visual-overlay{
+    .device{
       position:absolute;
-      left:24px;
-      right:24px;
-      bottom:24px;
-      z-index:2;
-      padding:20px;
-      border-radius:24px;
-      background:rgba(6,8,12,.58);
+      width:52%;
+      min-width:245px;
+      border-radius:34px;
+      padding:10px;
+      background:linear-gradient(180deg, rgba(255,255,255,.16), rgba(255,255,255,.035));
+      border:1px solid rgba(255,255,255,.14);
+      box-shadow:0 30px 70px rgba(0,0,0,.42);
+      overflow:hidden;
+      backdrop-filter:blur(10px);
+    }
+    .device img{
+      width:100%;
+      aspect-ratio:9/18;
+      object-fit:cover;
+      object-position:top center;
+      border-radius:26px;
       border:1px solid rgba(255,255,255,.08);
+    }
+    .device-main{right:0; top:0; z-index:3}
+    .device-sub{left:0; bottom:38px; z-index:2; transform:rotate(-4deg)}
+    .device-sub img{filter:saturate(1.05) contrast(1.02)}
+    .floating-proof{
+      position:absolute;
+      left:18px;
+      right:18px;
+      bottom:18px;
+      z-index:4;
+      display:grid;
+      grid-template-columns:repeat(3,minmax(0,1fr));
+      gap:10px;
+    }
+    .proof-item{
+      padding:13px 12px;
+      border-radius:18px;
+      background:rgba(6,8,12,.68);
+      border:1px solid rgba(255,255,255,.10);
       backdrop-filter:blur(14px);
     }
-
-    .visual-overlay h3{
-      margin:0 0 8px;
-      font-size:24px;
-      line-height:1.3;
-    }
-
-    .visual-overlay p{
-      margin:0;
-      color:var(--muted);
-      font-size:14px;
-    }
+    .proof-item strong{display:block;color:#fff1c7;font-size:17px;line-height:1.2}
+    .proof-item span{display:block;color:var(--muted);font-size:12px;line-height:1.45;margin-top:4px}
 
     section{padding:92px 0}
     .section-head{
       margin-bottom:34px;
-      display:block;
+      display:flex;
+      align-items:end;
+      justify-content:space-between;
+      gap:28px;
     }
-
     .section-head h2{
-      margin:0;
+      margin:14px 0 0;
       font-size:clamp(28px, 4vw, 46px);
       line-height:1.12;
     }
-
     .section-head p{
       margin:0;
       max-width:720px;
       color:var(--muted);
     }
 
-    .grid-3{
-      display:grid;
-      grid-template-columns:repeat(3,minmax(0,1fr));
-      gap:20px;
-    }
-
-    .grid-2{
-      display:grid;
-      grid-template-columns:repeat(2,minmax(0,1fr));
-      gap:20px;
-    }
+    .grid-3{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:20px}
+    .grid-2{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:20px}
+    .grid-4{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:16px}
 
     .card{
       position:relative;
       padding:28px;
       border-radius:24px;
-      background:
-        linear-gradient(180deg, rgba(255,255,255,.06), rgba(255,255,255,.03));
+      background:linear-gradient(180deg, rgba(255,255,255,.06), rgba(255,255,255,.03));
       border:1px solid rgba(255,255,255,.12);
       box-shadow:var(--shadow);
       overflow:hidden;
     }
-
     .card::before{
       content:"";
       position:absolute;
@@ -434,7 +386,7 @@
         linear-gradient(315deg, rgba(197,168,106,.06), transparent 34%);
       pointer-events:none;
     }
-
+    .card > *{position:relative;z-index:1}
     .icon{
       width:52px;height:52px;border-radius:16px;
       display:grid;place-items:center;
@@ -443,25 +395,10 @@
       margin-bottom:16px;
       font-size:22px;
     }
-
-    .card h3{
-      margin:0 0 10px;
-      font-size:24px;
-      line-height:1.3;
-    }
-
-    .card p{
-      margin:0;
-      color:var(--muted);
-      font-size:15px;
-    }
-
-    .list{
-      margin:16px 0 0;
-      padding:0;
-      list-style:none;
-    }
-
+    .card h3{margin:0 0 10px;font-size:24px;line-height:1.3}
+    .card p{margin:0;color:var(--muted);font-size:15px}
+    .card p + p{margin-top:14px}
+    .list{margin:16px 0 0;padding:0;list-style:none}
     .list li{
       position:relative;
       padding-left:18px;
@@ -469,7 +406,6 @@
       margin-top:10px;
       font-size:15px;
     }
-
     .list li::before{
       content:"";
       position:absolute;
@@ -479,13 +415,84 @@
       transform:translateY(-50%);
     }
 
+    .app-shot-grid{
+      display:grid;
+      grid-template-columns:1.05fr .95fr;
+      gap:20px;
+      align-items:stretch;
+    }
+    .shot-feature{
+      min-height:620px;
+    }
+    .shot-card{
+      border-radius:28px;
+      overflow:hidden;
+      border:1px solid rgba(255,255,255,.12);
+      background:rgba(255,255,255,.04);
+      box-shadow:var(--shadow);
+      position:relative;
+    }
+    .shot-card img{
+      width:100%;
+      height:100%;
+      max-height:680px;
+      object-fit:cover;
+      object-position:top center;
+      filter:saturate(1.03) contrast(1.02);
+    }
+    .shot-feature img{min-height:620px}
+    .shot-caption{
+      position:absolute;
+      left:16px;
+      right:16px;
+      bottom:16px;
+      padding:18px;
+      border-radius:20px;
+      background:rgba(5,7,10,.72);
+      border:1px solid rgba(255,255,255,.1);
+      backdrop-filter:blur(14px);
+    }
+    .shot-caption strong{display:block;font-size:21px;line-height:1.35;color:#fff1c7;margin-bottom:6px}
+    .shot-caption span{display:block;color:var(--muted);font-size:13px;line-height:1.55}
+    .shot-mini-grid{display:grid;grid-template-columns:1fr 1fr;gap:20px}
+    .shot-mini-grid .shot-card{min-height:300px}
+    .shot-mini-grid .shot-card img{height:300px}
+
+    .process-line{
+      display:grid;
+      grid-template-columns:repeat(5,minmax(0,1fr));
+      gap:14px;
+      counter-reset:process;
+    }
+    .process-step{
+      position:relative;
+      padding:24px 20px 22px;
+      border-radius:22px;
+      background:rgba(255,255,255,.04);
+      border:1px solid rgba(255,255,255,.10);
+      min-height:178px;
+      overflow:hidden;
+    }
+    .process-step::before{
+      counter-increment:process;
+      content:counter(process);
+      display:grid;
+      place-items:center;
+      width:34px;height:34px;border-radius:999px;
+      color:#0a0d13;
+      font-weight:950;
+      background:linear-gradient(135deg, #fff2cc, #8ad4ff);
+      margin-bottom:14px;
+    }
+    .process-step h3{margin:0 0 8px;font-size:20px;line-height:1.35}
+    .process-step p{margin:0;color:var(--muted);font-size:14px;line-height:1.65}
+
     .stats{
       display:grid;
       grid-template-columns:repeat(4,minmax(0,1fr));
       gap:16px;
       margin-top:22px;
     }
-
     .stat{
       padding:22px 18px;
       border-radius:20px;
@@ -493,87 +500,44 @@
       background:rgba(255,255,255,.04);
       border:1px solid rgba(255,255,255,.08);
     }
-
-    .stat strong{
-      display:block;
-      font-size:30px;
-      line-height:1.1;
-      margin-bottom:6px;
-      color:#fff3d0;
-    }
-
-    .stat span{
-      color:var(--muted);
-      font-size:13px;
-    }
+    .stat strong{display:block;font-size:30px;line-height:1.1;margin-bottom:6px;color:#fff3d0}
+    .stat span{color:var(--muted);font-size:13px}
 
     .price-grid{
       display:grid;
-      grid-template-columns:repeat(3,minmax(0,1fr));
+      grid-template-columns:1.1fr .9fr;
       gap:20px;
+      align-items:stretch;
     }
-
     .price-box{
-      padding:26px;
-      border-radius:24px;
+      padding:30px;
+      border-radius:26px;
       border:1px solid rgba(255,255,255,.12);
       background:rgba(255,255,255,.04);
       box-shadow:var(--shadow);
-    }
-
-    .price-box h3{
-      margin:0 0 8px;
-      font-size:26px;
-    }
-
-    .price{
-      font-size:38px;
-      line-height:1.1;
-      font-weight:900;
-      color:#fff1c7;
-      margin:10px 0 12px;
-    }
-
-    .price small{
-      font-size:16px;
-      color:var(--muted);
-      font-weight:600;
-    }
-
-    .note{
-      margin-top:14px;
-      font-size:13px;
-      color:var(--muted);
-    }
-
-    .media-frame{
-      border-radius:24px;
+      position:relative;
       overflow:hidden;
-      border:1px solid rgba(255,255,255,.1);
-      background:rgba(255,255,255,.03);
-      box-shadow:var(--shadow);
     }
-
-    .media-frame img{
-      width:100%;
-      height:auto;
-      display:block;
+    .price-box::before{
+      content:"";
+      position:absolute;
+      inset:0;
+      background:radial-gradient(circle at 18% 0%, rgba(197,168,106,.12), transparent 38%);
+      pointer-events:none;
     }
-
-    .caption{
-      padding:14px 16px;
-      font-size:13px;
-      color:var(--muted);
-      background:rgba(255,255,255,.03);
-      border-top:1px solid rgba(255,255,255,.08);
+    .price-box > *{position:relative;z-index:1}
+    .price-box h3{margin:0 0 8px;font-size:28px;line-height:1.3}
+    .price{
+      font-size:44px;
+      line-height:1.1;
+      font-weight:950;
+      color:#fff1c7;
+      margin:10px 0 14px;
     }
+    .price small{font-size:16px;color:var(--muted);font-weight:700}
+    .note{margin-top:14px;font-size:13px;color:var(--muted)}
 
-    .area-card{
-      display:flex;
-      flex-direction:column;
-      min-height:100%;
-    }
-
+    .area-card{display:flex;flex-direction:column;min-height:100%}
     .area-card .tag{
       display:inline-flex;
       align-items:center;
@@ -590,33 +554,28 @@
       text-transform:uppercase;
     }
 
-    .comparison{
-      display:grid;
-      grid-template-columns:repeat(2,minmax(0,1fr));
-      gap:20px;
-    }
-
     .cta-band{
-      padding:36px;
+      padding:38px;
       border-radius:32px;
       background:
         linear-gradient(135deg, rgba(197,168,106,.12), rgba(138,212,255,.12)),
         rgba(255,255,255,.04);
       border:1px solid rgba(255,255,255,.1);
       box-shadow:var(--shadow);
+      overflow:hidden;
+      position:relative;
     }
-
-    .cta-band h2{
-      margin:0 0 10px;
-      font-size:clamp(28px, 4vw, 44px);
-      line-height:1.15;
+    .cta-band::after{
+      content:"";
+      position:absolute;
+      width:320px;height:320px;border-radius:999px;
+      right:-120px;top:-150px;
+      background:radial-gradient(circle, rgba(138,212,255,.22), transparent 70%);
+      pointer-events:none;
     }
-
-    .cta-band p{
-      margin:0;
-      color:var(--muted);
-      max-width:760px;
-    }
+    .cta-band h2{margin:0 0 10px;font-size:clamp(28px, 4vw, 44px);line-height:1.15;position:relative;z-index:1}
+    .cta-band p{margin:0;color:var(--muted);max-width:820px;position:relative;z-index:1}
+    .cta-band .hero-actions{position:relative;z-index:1}
 
     .flow{
       counter-reset:flow;
@@ -624,11 +583,7 @@
       grid-template-columns:repeat(4,minmax(0,1fr));
       gap:18px;
     }
-
-    .flow .card{
-      padding-top:64px;
-    }
-
+    .flow .card{padding-top:64px}
     .flow .card::after{
       counter-increment:flow;
       content:counter(flow);
@@ -637,8 +592,26 @@
       width:34px; height:34px; border-radius:999px;
       display:grid;place-items:center;
       color:#0a0d13;
-      font-weight:900;
+      font-weight:950;
       background:linear-gradient(135deg, #fff2cc, #8ad4ff);
+    }
+
+    .mapping-lite{
+      padding:28px;
+      border-radius:28px;
+      border:1px solid rgba(255,255,255,.10);
+      background:rgba(255,255,255,.035);
+      display:grid;
+      grid-template-columns:1.15fr .85fr;
+      gap:20px;
+      align-items:center;
+    }
+    .mapping-lite img{
+      width:100%;
+      max-height:360px;
+      object-fit:cover;
+      border-radius:22px;
+      border:1px solid rgba(255,255,255,.10);
     }
 
     details{
@@ -647,234 +620,65 @@
       border:1px solid rgba(255,255,255,.08);
       padding:20px 22px;
     }
-
     details + details{margin-top:14px}
-    summary{
-      cursor:pointer;
-      list-style:none;
-      font-weight:700;
-      font-size:17px;
-    }
+    summary{cursor:pointer;list-style:none;font-weight:800;font-size:17px}
     summary::-webkit-details-marker{display:none}
-    details p{
-      color:var(--muted);
-      margin:14px 0 0;
-    }
+    details p{color:var(--muted);margin:14px 0 0}
 
-    footer{
-      padding:30px 0 60px;
-      color:var(--muted);
-    }
-
+    footer{padding:30px 0 60px;color:var(--muted)}
     .footer-grid{
       display:grid;
       grid-template-columns:1.2fr .8fr;
       gap:24px;
       align-items:start;
     }
-
-    .small{
-      font-size:13px;
-      color:var(--muted);
-    }
-
-    .anchor-offset{scroll-margin-top:96px}
+    .small{font-size:13px;color:var(--muted)}
 
     @media (max-width:1080px){
-      .hero-grid,.grid-3,.grid-2,.comparison,.footer-grid,.flow,.stats,.price-grid{
-        grid-template-columns:1fr 1fr;
-      }
-      .hero-grid{grid-template-columns:1fr}
-      .visual-card{min-height:480px}
+      .hero-grid,.section-head,.app-shot-grid,.price-grid,.mapping-lite,.footer-grid{grid-template-columns:1fr}
+      .section-head{display:grid;align-items:start}
+      .grid-3,.grid-4,.process-line,.flow,.stats{grid-template-columns:1fr 1fr}
+      .hero-visual{min-height:620px}
+      .shot-feature{min-height:520px}
+      .shot-feature img{min-height:520px}
     }
 
     @media (max-width:720px){
-      .nav{padding:12px 0}
+      .container{width:min(100% - 24px, var(--max))}
+      .nav{padding:12px 0;min-height:70px}
       .nav-links{display:none}
-      .hero{padding-top:72px}
-      .hero-points,.grid-3,.grid-2,.comparison,.footer-grid,.flow,.stats,.price-grid{
-        grid-template-columns:1fr;
-      }
-      .card,.cta-band,.price-box{padding:24px}
-      .visual-card{min-height:400px}
-      h1{font-size:clamp(34px, 12vw, 52px)}
       .brand-logo{width:46px;height:46px}
+      .brand-text{font-size:14px;max-width:calc(100vw - 96px)}
+      .brand small{font-size:9px;letter-spacing:.12em}
+      .hero{padding:62px 0 58px}
+      h1{font-size:clamp(34px, 11.5vw, 52px)}
+      .hero-copy{font-size:15px}
+      .hero-actions{display:grid;grid-template-columns:1fr;gap:10px}
+      .hero-actions .btn{width:100%;padding-inline:18px}
+      .hero-points,.grid-2,.grid-3,.grid-4,.process-line,.flow,.stats,.shot-mini-grid{grid-template-columns:1fr}
+      section{padding:66px 0}
+      .card,.cta-band,.price-box,.mapping-lite{padding:22px;border-radius:22px}
+      .hero-visual{min-height:560px;padding:16px;border-radius:26px}
+      .device-stack{min-height:528px}
+      .device{width:62%;min-width:0;border-radius:28px;padding:8px}
+      .device img{border-radius:21px}
+      .device-main{right:0;top:0}
+      .device-sub{left:0;bottom:86px}
+      .floating-proof{grid-template-columns:1fr;left:12px;right:12px;bottom:12px;gap:8px}
+      .proof-item{padding:10px 12px;border-radius:14px}
+      .proof-item strong{font-size:15px}
+      .proof-item span{font-size:11px}
+      .shot-feature{min-height:430px}
+      .shot-feature img{min-height:430px;max-height:520px}
+      .shot-card img{max-height:520px}
+      .shot-mini-grid .shot-card{min-height:360px}
+      .shot-mini-grid .shot-card img{height:360px}
+      .shot-caption{left:10px;right:10px;bottom:10px;padding:14px;border-radius:16px}
+      .shot-caption strong{font-size:17px}
+      .price{font-size:38px}
+      .stat strong{font-size:28px}
+      .eyebrow{font-size:12px;line-height:1.5;white-space:normal;width:auto}
     }
-
-
-    /* HQP APP ADDITION - existing design kept, added only app teaser/page styles */
-    .app-teaser{
-      margin-top:26px;
-      padding:18px;
-      border-radius:24px;
-      border:1px solid rgba(138,212,255,.18);
-      background:
-        linear-gradient(135deg, rgba(138,212,255,.13), rgba(197,168,106,.10)),
-        rgba(255,255,255,.045);
-      box-shadow:0 18px 50px rgba(0,0,0,.28);
-      display:grid;
-      grid-template-columns:1fr auto;
-      gap:16px;
-      align-items:center;
-      backdrop-filter:blur(14px);
-    }
-    .app-teaser-label{
-      display:inline-flex;
-      width:max-content;
-      margin-bottom:8px;
-      padding:6px 10px;
-      border-radius:999px;
-      color:#0a0d13;
-      background:linear-gradient(135deg, #fff2cc, #8ad4ff);
-      font-size:11px;
-      font-weight:900;
-      letter-spacing:.12em;
-    }
-    .app-teaser h2{
-      margin:0;
-      font-size:clamp(20px, 3vw, 30px);
-      line-height:1.25;
-    }
-    .app-teaser p{
-      margin:6px 0 0;
-      color:var(--muted);
-      font-size:14px;
-      line-height:1.7;
-    }
-    .app-page-hero{
-      padding:82px 0 64px;
-      position:relative;
-      overflow:hidden;
-      isolation:isolate;
-    }
-    .app-page-hero::before{
-      content:"";
-      position:absolute;
-      inset:0;
-      z-index:-1;
-      background:
-        radial-gradient(circle at 18% 8%, rgba(138,212,255,.18), transparent 28%),
-        radial-gradient(circle at 84% 12%, rgba(197,168,106,.13), transparent 24%),
-        linear-gradient(180deg, rgba(255,255,255,.045), transparent 56%);
-    }
-    .app-hero-grid{
-      display:grid;
-      grid-template-columns:1.04fr .96fr;
-      gap:34px;
-      align-items:center;
-    }
-    .app-device-wrap{
-      display:grid;
-      grid-template-columns:repeat(2,minmax(0,1fr));
-      gap:18px;
-      align-items:center;
-    }
-    .phone-mock{
-      border-radius:34px;
-      padding:14px;
-      border:1px solid rgba(255,255,255,.14);
-      background:linear-gradient(180deg, rgba(255,255,255,.10), rgba(255,255,255,.025));
-      box-shadow:var(--shadow);
-      min-height:460px;
-    }
-    .phone-screen{
-      height:100%;
-      min-height:430px;
-      border-radius:26px;
-      overflow:hidden;
-      background:
-        radial-gradient(circle at 20% 10%, rgba(138,212,255,.22), transparent 25%),
-        linear-gradient(180deg, #101827, #07090d 62%);
-      border:1px solid rgba(255,255,255,.10);
-      position:relative;
-      padding:18px;
-    }
-    .phone-bar{
-      width:78px;
-      height:6px;
-      border-radius:999px;
-      background:rgba(255,255,255,.28);
-      margin:0 auto 18px;
-    }
-    .map-panel{
-      height:210px;
-      border-radius:22px;
-      background:
-        linear-gradient(90deg, rgba(138,212,255,.13) 1px, transparent 1px),
-        linear-gradient(0deg, rgba(255,255,255,.08) 1px, transparent 1px),
-        linear-gradient(135deg, rgba(138,212,255,.18), rgba(197,168,106,.08));
-      background-size:32px 32px,32px 32px,auto;
-      border:1px solid rgba(255,255,255,.10);
-      position:relative;
-      overflow:hidden;
-    }
-    .map-pin{
-      position:absolute;
-      width:14px;height:14px;border-radius:999px;
-      background:#8ad4ff;
-      box-shadow:0 0 0 5px rgba(138,212,255,.18), 0 0 24px rgba(138,212,255,.6);
-    }
-    .map-pin:nth-child(1){left:22%;top:34%}
-    .map-pin:nth-child(2){left:62%;top:26%;background:#ff8ec8;box-shadow:0 0 0 5px rgba(255,142,200,.18),0 0 24px rgba(255,142,200,.5)}
-    .map-pin:nth-child(3){left:48%;top:68%;background:#31d17c;box-shadow:0 0 0 5px rgba(49,209,124,.18),0 0 24px rgba(49,209,124,.5)}
-    .app-mini-card{
-      margin-top:14px;
-      padding:14px;
-      border-radius:18px;
-      background:rgba(255,255,255,.055);
-      border:1px solid rgba(255,255,255,.09);
-    }
-    .app-mini-card strong{display:block;color:#fff1c7;margin-bottom:4px}
-    .app-mini-card span{display:block;color:var(--muted);font-size:13px;line-height:1.6}
-    .feature-row{
-      display:grid;
-      grid-template-columns:repeat(4,minmax(0,1fr));
-      gap:16px;
-    }
-    .app-plan-grid{
-      display:grid;
-      grid-template-columns:repeat(4,minmax(0,1fr));
-      gap:16px;
-    }
-    .app-plan{
-      padding:22px;
-      border-radius:24px;
-      background:rgba(255,255,255,.04);
-      border:1px solid rgba(255,255,255,.10);
-      box-shadow:var(--shadow);
-    }
-    .app-plan h3{margin:0 0 8px;font-size:22px}
-    .app-plan p{margin:0;color:var(--muted);font-size:14px;line-height:1.7}
-    .video-box{
-      border-radius:28px;
-      overflow:hidden;
-      border:1px solid rgba(255,255,255,.12);
-      background:rgba(255,255,255,.04);
-      box-shadow:var(--shadow);
-    }
-    .video-placeholder{
-      min-height:360px;
-      display:grid;
-      place-items:center;
-      text-align:center;
-      padding:28px;
-      background:
-        radial-gradient(circle at 20% 20%, rgba(138,212,255,.18), transparent 28%),
-        linear-gradient(135deg, rgba(197,168,106,.12), rgba(255,255,255,.035));
-    }
-    .video-placeholder h3{margin:0 0 8px;font-size:28px}
-    .video-placeholder p{margin:0;color:var(--muted)}
-    @media (max-width:1080px){
-      .app-hero-grid,.feature-row,.app-plan-grid{grid-template-columns:1fr 1fr;}
-    }
-    @media (max-width:720px){
-      .app-teaser{grid-template-columns:1fr;}
-      .app-teaser .btn{width:100%;}
-      .app-hero-grid,.app-device-wrap,.feature-row,.app-plan-grid{grid-template-columns:1fr;}
-      .phone-mock{min-height:390px;}
-      .phone-screen{min-height:360px;}
-    }
-
   </style>
 
   <script type="application/ld+json">
@@ -883,7 +687,7 @@
     "@type":"ProfessionalService",
     "name":"HIGH QUALITY POSTING",
     "url":"https://highqualityposting.jp/",
-    "description":"マンション特化ポスティング、GPSログ管理、マッピング分析、マッピングデータ販売に対応するポスティングサービス。",
+    "description":"HQPアプリを活用し、投函マップ、GPSログ、日報PDF、投函タイムラインで配布品質を見える化するマンション特化ポスティングサービス。",
     "areaServed":["福岡市","北九州市","熊本市","古賀市","福津市"],
     "sameAs":[
       "https://www.instagram.com/highquality.posting?igsh=dGZuZDF0djJ5dndr&utm_source=qr",
@@ -901,26 +705,22 @@
       {
         "@type":"Question",
         "name":"ポスティング単価はいくらですか？",
-        "acceptedAnswer":{
-          "@type":"Answer",
-          "text":"ポスティング単価の目安は1枚4円です。詳細はエリアや条件に応じて個別見積りとなります。"
-        }
+        "acceptedAnswer":{"@type":"Answer","text":"基本単価は1枚4円です。エリア、配布枚数、建物条件、配布方法により個別見積りとなります。"}
       },
       {
         "@type":"Question",
-        "name":"マッピング料金はどのように決まりますか？",
-        "acceptedAnswer":{
-          "@type":"Answer",
-          "text":"マッピング料金は分譲マンションの世帯数を基準に換算します。分譲のみは1世帯5円、賃貸分譲ミックスは分譲世帯ベースで1世帯6円です。"
-        }
+        "name":"配布後の報告はありますか？",
+        "acceptedAnswer":{"@type":"Answer","text":"HQPアプリで作成した日報PDF、投函タイムライン、投函地点の位置情報、投函時刻、マンション別の枚数管理を共有できます。"}
       },
       {
         "@type":"Question",
-        "name":"マッピングデータだけの購入も可能ですか？",
-        "acceptedAnswer":{
-          "@type":"Answer",
-          "text":"可能です。BASEにてマッピングデータの販売も行っています。"
-        }
+        "name":"指定マンションへの配布はできますか？",
+        "acceptedAnswer":{"@type":"Answer","text":"可能です。指定マンション、指定エリア、優先して配布したい建物をもとに配布ルートを組み、アプリ上で投函状況を管理します。"}
+      },
+      {
+        "@type":"Question",
+        "name":"マッピングデータだけの相談はできますか？",
+        "acceptedAnswer":{"@type":"Answer","text":"可能です。ただしホームページ上ではポスティング業務を中心に案内しており、マッピングデータや個別オーダーはページ下部から相談できます。"}
       }
     ]
   }
@@ -931,20 +731,19 @@
     <div class="container nav">
       <a href="#top" class="brand" aria-label="HIGH QUALITY POSTING ホームへ">
         <img src="logo.jpg" alt="HIGH QUALITY POSTING ロゴ" class="brand-logo">
-        <span>
+        <span class="brand-text">
           HIGH QUALITY POSTING
-          <small>MANSION FOCUSED POSTING</small>
+          <small>APP DRIVEN POSTING</small>
         </span>
       </a>
 
       <nav class="nav-links" aria-label="グローバルナビゲーション">
-        <a href="#service">サービス</a>
-        <a href="#areas">対応エリア</a>
+        <a href="#app">HQPアプリ</a>
+        <a href="#quality">配布品質</a>
+        <a href="#target">指定マンション</a>
         <a href="#pricing">料金</a>
-        <a href="#mapping">マッピング</a>
-        <a href="#strength">選ばれる理由</a>
+        <a href="#areas">対応エリア</a>
         <a href="#flow">ご依頼の流れ</a>
-        <a href="#profile">代表紹介</a>
         <a href="#contact">お問い合わせ</a>
       </nav>
     </div>
@@ -954,187 +753,237 @@
     <section class="hero">
       <div class="container hero-grid">
         <div>
-          <div class="eyebrow">年間100万枚以上の配布実績 × GPSログ管理 × 日別・マンション別の投函枚数管理</div>
+          <div class="eyebrow">年間100万枚以上の配布実績 × HQPアプリ運用 × マンション特化</div>
           <h1>
-            反響を最大化する
-            <span class="headline-accent">マンション特化ポスティング。</span>
+            配った証拠まで見える
+            <span class="headline-accent">次世代のポスティング。</span>
           </h1>
           <p class="hero-copy">
-            HIGH QUALITY POSTINGは、ただ配るだけでは終わらせません。<br>
-            マンション特化の配布設計、GPSログ管理、マッピング分析を軸に、
-            どこに・どの順番で・どの密度で届けるべきかまで設計し、
-            反響につながるポスティングを提供します。
+            HIGH QUALITY POSTINGは、マンション特化のポスティングを<strong>HQPアプリ</strong>で管理します。<br>
+            投函マップ、投函枚数、投函時刻、GPSログ、日報PDF、共有タイムラインまで可視化し、
+            「どこに配ったか分からない」「報告が曖昧」という従来の不安を減らします。
           </p>
 
           <div class="hero-actions">
             <a class="btn btn-primary" href="https://docs.google.com/forms/d/e/1FAIpQLSdzo8jbToiiif2oPkjOyi8aSiLxAwg5Sdrera3GPpOSqJmPLw/viewform?usp=header" target="_blank" rel="noopener noreferrer">
               配布を相談する
             </a>
-            <a class="btn btn-secondary" href="https://docs.google.com/forms/d/e/1FAIpQLSfhybFMmCDdqvy1jDdbZREFfG3e5ls1QfhbdcDlkv9aKZC_tA/viewform?usp=header" target="_blank" rel="noopener noreferrer">
-              マッピングオーダー
+            <a class="btn btn-secondary" href="#app">
+              アプリ運用を見る
             </a>
           </div>
 
-          <div class="app-teaser" aria-label="ポスティング管理アプリ紹介">
-            <div>
-              <span class="app-teaser-label">HQP APP</span>
-              <h2>ポスティング管理アプリ、まもなく公開。</h2>
-              <p>
-                マップ管理・お気に入りルート・投函入力・日報共有・スタッフ管理まで、
-                配布品質を会社単位で見える化する専用アプリです。
-              </p>
-            </div>
-            <a class="btn btn-primary" href="hqp-app.html">アプリを詳しく見る</a>
-          </div>
-
           <div class="hero-points">
-            <div class="chip">✔ マンション特化配布</div>
-            <div class="chip">✔ GPSログ管理</div>
-            <div class="chip">✔ マッピングデータ運用</div>
-            <div class="chip">✔ 反響重視の設計提案</div>
+            <div class="chip">✔ 投函地点・時刻をアプリで記録</div>
+            <div class="chip">✔ マンション別の投函枚数を管理</div>
+            <div class="chip">✔ 日報PDF・タイムライン共有に対応</div>
+            <div class="chip">✔ 指定マンションへの配布も可能</div>
           </div>
         </div>
 
-        <div class="visual-card slider-card" aria-label="マッピングビジュアル">
-          <div class="slider-track">
-            <img src="map-overview.jpg" alt="マンションマッピング参考画像" class="visual-image slide active">
-            <img src="北九州市マッピング.jpg" alt="北九州市のマッピング画像" class="visual-image slide">
-            <img src="福岡市南区マッピング.jpg" alt="福岡市南区のマッピング画像" class="visual-image slide">
-          </div>
-
-          <div class="visual-overlay">
-            <h3>狙うべき建物を、可視化する。</h3>
-            <p>
-              配布戦略の土台となるマッピング設計を可視化し、
-              現場で使いやすいデータと反響につながる設計を両立します。
-            </p>
-          </div>
-
-          <div class="slider-dots" aria-label="スライド切り替え">
-            <button class="dot active" type="button" aria-label="1枚目"></button>
-            <button class="dot" type="button" aria-label="2枚目"></button>
-            <button class="dot" type="button" aria-label="3枚目"></button>
+        <div class="hero-visual" aria-label="HQPアプリ運用イメージ">
+          <div class="device-stack">
+            <div class="device device-main">
+              <img src="app-screen-active-posting.png" alt="HQPアプリ 投函中マップ画面">
+            </div>
+            <div class="device device-sub">
+              <img src="app-screen-daily-report-detail.png" alt="HQPアプリ 日報ページ画面">
+            </div>
+            <div class="floating-proof">
+              <div class="proof-item">
+                <strong>投函枚数</strong>
+                <span>マンションごとに記録</span>
+              </div>
+              <div class="proof-item">
+                <strong>投函時刻</strong>
+                <span>入力地点の時間を共有</span>
+              </div>
+              <div class="proof-item">
+                <strong>GPSログ</strong>
+                <span>配布ルートを可視化</span>
+              </div>
+            </div>
           </div>
         </div>
       </div>
     </section>
 
-    <section id="service" class="anchor-offset">
+    <section id="quality" class="anchor-offset">
       <div class="container">
         <div class="section-head">
           <div>
-            <p class="eyebrow">SERVICE</p>
-            <h2>反響につながる、3つの中核サービス</h2>
+            <p class="eyebrow">QUALITY CONTROL</p>
+            <h2>ポスティングの価値は、配った後の見え方で変わる。</h2>
           </div>
           <p>
-            マンション特化配布、GPSログ管理、マッピング分析を軸に、
-            配布品質と効率を両立させる設計を行います。
+            ただ「配布しました」と伝えるだけではなく、配布状況を見える形で共有します。
+            クライアントが確認しやすい報告体制まで含めて、ポスティング品質と考えています。
+          </p>
+        </div>
+
+        <div class="grid-3">
+          <article class="card">
+            <div class="icon">📍</div>
+            <h3>投函マップ</h3>
+            <p>
+              配布ルート内のマンションピンを表示し、現場でどの建物へ投函するかを管理します。
+              配布先の抜け漏れを減らし、現場判断に依存しすぎない配布を行います。
+            </p>
+          </article>
+
+          <article class="card">
+            <div class="icon">🧾</div>
+            <h3>日報PDF</h3>
+            <p>
+              投函した枚数、投函時刻、建物ごとの配布内容を日報として整理。
+              後から確認しやすい形で、配布結果を共有できます。
+            </p>
+          </article>
+
+          <article class="card">
+            <div class="icon">🕒</div>
+            <h3>投函タイムライン</h3>
+            <p>
+              投函入力を行った地点、時刻、マンション情報を時系列で確認できます。
+              配布の流れを見える化し、報告の透明性を高めます。
+            </p>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <section id="app" class="anchor-offset">
+      <div class="container">
+        <div class="section-head">
+          <div>
+            <p class="eyebrow">HQP APP OPERATION</p>
+            <h2>HQPアプリを利用した配布管理</h2>
+          </div>
+          <p>
+            現場配布、日報、タイムライン、ルート管理まで一気通貫。
+            アプリで配布品質を記録することで、クライアントへの報告精度を上げます。
+          </p>
+        </div>
+
+        <div class="app-shot-grid">
+          <div class="shot-card shot-feature">
+            <img src="app-screen-overall-mapping.png" alt="HQPアプリ 全体マッピング画面">
+            <div class="shot-caption">
+              <strong>配布対象を地図上で管理</strong>
+              <span>建物名・住所・地名で検索し、配布先やルート設計に活用します。</span>
+            </div>
+          </div>
+
+          <div class="shot-mini-grid">
+            <div class="shot-card">
+              <img src="app-screen-posting-map.png" alt="HQPアプリ 投函マップ画面">
+              <div class="shot-caption">
+                <strong>投函マップ</strong>
+                <span>配布対象マンションを地図上で確認。</span>
+              </div>
+            </div>
+
+            <div class="shot-card">
+              <img src="app-screen-timeline-detail.png" alt="HQPアプリ 投函タイムライン画面">
+              <div class="shot-caption">
+                <strong>タイムライン</strong>
+                <span>投函地点と時刻を時系列で共有。</span>
+              </div>
+            </div>
+
+            <div class="shot-card">
+              <img src="app-screen-active-posting.png" alt="HQPアプリ 投函中の進捗管理画面">
+              <div class="shot-caption">
+                <strong>進捗管理</strong>
+                <span>配布中の進捗と投函枚数を記録。</span>
+              </div>
+            </div>
+
+            <div class="shot-card">
+              <img src="app-screen-daily-report-detail.png" alt="HQPアプリ 日報ページ詳細画面">
+              <div class="shot-caption">
+                <strong>日報ページ</strong>
+                <span>配布枚数・時刻・建物別内訳を確認。</span>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="stats">
+          <div class="stat">
+            <strong>100万枚+</strong>
+            <span>年間配布実績</span>
+          </div>
+          <div class="stat">
+            <strong>4円</strong>
+            <span>基本単価</span>
+          </div>
+          <div class="stat">
+            <strong>GPS</strong>
+            <span>ログ管理対応</span>
+          </div>
+          <div class="stat">
+            <strong>PDF</strong>
+            <span>日報共有対応</span>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section id="target" class="anchor-offset">
+      <div class="container">
+        <div class="section-head">
+          <div>
+            <p class="eyebrow">TARGETED POSTING</p>
+            <h2>指定マンションへの配布も可能です。</h2>
+          </div>
+          <p>
+            「このマンションに届けたい」「このエリアの集合住宅だけ狙いたい」など、
+            建物単位・エリア単位の配布設計に対応します。
           </p>
         </div>
 
         <div class="grid-3">
           <article class="card">
             <div class="icon">🏢</div>
-            <h3>マンション特化配布</h3>
+            <h3>指定マンション配布</h3>
             <p>
-              分譲マンション、賃貸マンション、ミックス配布まで、商材や目的に応じて
-              効率的な配布戦略を構築します。
+              事前に指定されたマンションをもとに配布ルートを作成し、
+              HQPアプリ上で対象建物を確認しながら配布します。
             </p>
             <ul class="list">
-              <li>投函日、マンション毎の徹底した枚数管理</li>
-              <li>賃貸を含めたエリア最適化</li>
-              <li>集合住宅密度を活かした効率配布</li>
+              <li>売却・査定・賃貸募集など不動産商材に相性が良い配布</li>
+              <li>商圏内の優先マンションへ絞った配布</li>
+              <li>配布後の日報・タイムライン共有に対応</li>
             </ul>
           </article>
 
           <article class="card">
-            <div class="icon">📍</div>
-            <h3>GPSログ管理</h3>
+            <div class="icon">🎯</div>
+            <h3>狙う順番まで設計</h3>
             <p>
-              配布ルートを可視化し、品質と透明性を担保。
-              報告の分かりやすさまで重視した運用を行います。
+              ただ近い順に配るのではなく、建物密度、配布効率、商材との相性を踏まえて
+              優先順位を組みます。
             </p>
             <ul class="list">
-              <li>ルートの見える化</li>
-              <li>配布品質の確認精度向上</li>
-              <li>報告の透明性を強化</li>
+              <li>分譲マンション中心の配布</li>
+              <li>賃貸マンションを含めたミックス配布</li>
+              <li>指定エリア内の集合住宅配布</li>
             </ul>
           </article>
 
           <article class="card">
-            <div class="icon">🧊</div>
-            <h3>マッピング分析</h3>
+            <div class="icon">🔎</div>
+            <h3>配布前に対象を確認</h3>
             <p>
-              世帯数や建物情報を踏まえ、どのエリアへどう配布するかを分析。
-              感覚ではなくデータを活用した配布設計を行います。
+              必要に応じて、配布対象の考え方やエリアの組み方を事前に整理します。
+              反響を狙うために、配布前の設計段階から精度を高めます。
             </p>
             <ul class="list">
-              <li>分譲マンション世帯数ベースで換算</li>
-              <li>賃貸分譲ミックスにも対応</li>
-              <li>配布戦略の事前可視化</li>
+              <li>対象マンションの整理</li>
+              <li>配布枚数の見込み確認</li>
+              <li>実施後の改善材料として活用</li>
             </ul>
-          </article>
-        </div>
-      </div>
-    </section>
-
-    <section id="areas" class="anchor-offset">
-      <div class="container">
-        <div class="section-head">
-          <div>
-            <p class="eyebrow">AREA SEO</p>
-            <h2>重点対応エリア</h2>
-          </div>
-
-          <div>
-            <p>
-              ご要望のエリアがありましたら、お問い合わせフォームから
-              お問い合わせください。
-            </p>
-
-            <div class="hero-actions" style="margin-top:20px; margin-bottom:0;">
-              <a class="btn btn-primary" href="https://docs.google.com/forms/d/e/1FAIpQLSfUvYfvGruPG_JeAz0ZkIg1mqJDM1xJ1FbSiyq0o8xR9tFK-A/viewform?usp=header" target="_blank" rel="noopener noreferrer">
-                お問い合わせフォームへ
-              </a>
-            </div>
-          </div>
-        </div>
-
-        <div class="grid-3">
-          <article class="card area-card">
-            <span class="tag">FUKUOKA CITY</span>
-            <h3>福岡市のポスティング</h3>
-            <p>福岡市でマンションポスティングをご検討の法人向けに、集合住宅密度とエリア特性を踏まえた配布設計に対応します。</p>
-          </article>
-
-          <article class="card area-card">
-            <span class="tag">KITAKYUSHU CITY</span>
-            <h3>北九州市のポスティング</h3>
-            <p>北九州市での集合住宅配布に対応。マンション特化の考え方を活かし、反響につながる配布戦略を提案します。</p>
-          </article>
-
-          <article class="card area-card">
-            <span class="tag">KUMAMOTO CITY</span>
-            <h3>熊本市のポスティング</h3>
-            <p>熊本市での配布相談に対応。マッピング分析を活かし、優先度の高い建物群を可視化したうえでご提案します。</p>
-          </article>
-
-          <article class="card area-card">
-            <span class="tag">KOGA CITY</span>
-            <h3>古賀市のポスティング</h3>
-            <p>古賀市で配布先の質を重視したい案件にも対応。建物情報を踏まえた戦略的な配布導線を構築します。</p>
-          </article>
-
-          <article class="card area-card">
-            <span class="tag">FUKUTSU CITY</span>
-            <h3>福津市のポスティング</h3>
-            <p>福津市で効率よく集合住宅へ届けたい案件に対応。エリア設計と配布品質の両立を重視しています。</p>
-          </article>
-
-          <article class="card area-card">
-            <span class="tag">DATA SALES</span>
-            <h3>マッピングデータ販売にも対応</h3>
-            <p>配布だけでなく、BASEにてマッピングデータの販売も実施。営業資料や配布戦略の検討素材として活用できます。</p>
           </article>
         </div>
       </div>
@@ -1148,85 +997,41 @@
             <h2>料金案内</h2>
           </div>
           <p>
-            ポスティング単価、マッピング料金【分譲・賃貸・分譲賃貸ミックス】<br>
-            マッピングは全国対応です。
+            基本単価は現状維持の1枚4円。案件内容、エリア、建物条件、配布枚数により個別に調整します。
           </p>
         </div>
 
         <div class="price-grid">
           <article class="price-box">
-            <h3>ポスティング料金</h3>
+            <h3>マンション特化ポスティング</h3>
             <div class="price">1枚 4円 <small>（基本単価）</small></div>
             <ul class="list">
-              <li>マンション特化配布</li>
-              <li>エリアや条件に応じて個別調整</li>
-              <li>分譲・賃貸・ミックス配布に対応</li>
+              <li>HQPアプリを利用した配布管理</li>
+              <li>マンション別の投函枚数管理</li>
+              <li>投函時刻・投函地点の共有</li>
+              <li>日報PDF・投函タイムラインに対応</li>
+              <li>指定マンション配布にも対応</li>
             </ul>
             <p class="note">
-              ※ 詳細はエリア、建物条件、枚数、配布方法により変動します。
+              ※ 詳細はエリア、建物条件、枚数、配布方法により変動します。まずは配布予定エリアと枚数をご相談ください。
             </p>
           </article>
 
           <article class="price-box">
-            <h3>マッピング料金<br>
-              【分譲マンションのみ】
-            </h3>
-            <div class="price">1世帯 5円 <small>（世帯ベース換算）</small></div>
-            <ul class="list">
-              <li>分譲マンションの世帯数を基準に枚数を算出</li>
-              <li>配布・管理・分析に使いやすい王道設計</li>
-              <li>納品：Excelマンションリスト ＋ Google My Maps URL</li>
-              <li>1,000世帯 → 5,000円</li>
-              <li>2,000世帯 → 10,000円</li>
-            </ul>
-            <p class="note">
-              ※ 分譲は世帯数が明確なため、長期運用・改善前提の配布に最適です。
-            </p>
-          </article>
-
-          <article class="price-box">
-            <h3>マッピング料金<br>
-              【賃貸分譲ミックス】
-            </h3>
-
-            <div class="price">1世帯 6円 <br>
-              <small>（ミックス専用単価）</small></div>
-            <ul class="list">
-              <li>必ず分譲マンション世帯数を基準に換算</li>
-              <li>賃貸のみの単価設定はありません</li>
-              <li>分譲で世帯数を担保し、賃貸は使える範囲を最大化</li>
-              <li>指定エリアを中心に放射状に確認できる物件をマッピング</li>
-              <li>賃貸は世帯数でカウントせず、実務で使える範囲を重視</li>
-            </ul>
-            <p class="note">
-              例：1000枚の賃貸分譲ミックスでは、分譲マンション1000世帯を必ず担保し、
-              その上で指定エリア中心に確認できる賃貸物件をすべてマッピングします。
-            </p>
-          </article>
-        </div>
-
-        <div class="grid-2" style="margin-top:20px;">
-          <article class="card">
-            <h3>ミックスオーダーの考え方</h3>
+            <h3>おすすめの相談内容</h3>
             <p>
-              ミックスオーダーでは、分譲マンションの世帯数でご希望世帯数を必ず担保します。
-              その上で、賃貸マンションは指定エリアを中心に、放射状に確認できる物件をすべてマッピングします。
+              具体的な配布先が決まっていなくても相談可能です。
+              目的に合わせて、配布対象と優先順位を整理します。
             </p>
             <ul class="list">
-              <li>まず分譲で世帯数を確保</li>
-              <li>賃貸は無駄なく、現場で使える範囲を最大化</li>
-              <li>現場実務と営業効率の両立を重視</li>
+              <li>不動産売却・査定チラシ</li>
+              <li>店舗・サービスの認知拡大</li>
+              <li>指定マンションへの集中配布</li>
+              <li>集合住宅密度の高いエリア配布</li>
             </ul>
-          </article>
-
-          <article class="card">
-            <h3>マッピングオーダー</h3>
-            <p>
-              ご希望エリア、必要世帯数、分譲のみかミックスか、納品形式などに応じて個別対応します。
-            </p>
             <div class="hero-actions">
-              <a class="btn btn-primary" href="https://docs.google.com/forms/d/e/1FAIpQLSfhybFMmCDdqvy1jDdbZREFfG3e5ls1QfhbdcDlkv9aKZC_tA/viewform?usp=header" target="_blank" rel="noopener noreferrer">
-                マッピングオーダーを依頼する
+              <a class="btn btn-primary" href="https://docs.google.com/forms/d/e/1FAIpQLSdzo8jbToiiif2oPkjOyi8aSiLxAwg5Sdrera3GPpOSqJmPLw/viewform?usp=header" target="_blank" rel="noopener noreferrer">
+                見積もりを相談する
               </a>
             </div>
           </article>
@@ -1234,121 +1039,55 @@
       </div>
     </section>
 
-    <section id="mapping" class="anchor-offset">
+    <section id="areas" class="anchor-offset">
       <div class="container">
         <div class="section-head">
           <div>
-            <p class="eyebrow">MAPPING DATA</p>
-            <h2>マッピング参考画像・リスト参考画像</h2>
+            <p class="eyebrow">AREA</p>
+            <h2>重点対応エリア</h2>
           </div>
           <p>
-            実際のマッピング運用イメージと、分譲・賃貸のリスト参考画像です。
+            下記以外のエリアも、枚数・時期・条件によって相談可能です。
+            マンション密度と配布目的を見ながら、実施可否を判断します。
           </p>
         </div>
 
         <div class="grid-3">
-          <div class="media-frame">
-            <img src="map-overview.jpg" alt="マッピング参考画像">
-            <div class="caption">マッピング参考画像</div>
-          </div>
-
-          <div class="media-frame">
-            <img src="map-bunjo.jpg" alt="分譲マンションリスト参考画像">
-            <div class="caption">分譲マンションリスト参考画像</div>
-          </div>
-
-          <div class="media-frame">
-            <img src="map-chintai.jpg" alt="賃貸マンションリスト参考画像">
-            <div class="caption">賃貸マンションリスト参考画像</div>
-          </div>
-        </div>
-
-        <div class="grid-2" style="margin-top:20px;">
-          <article class="card">
-            <h3>BASEでマッピングデータ販売中</h3>
-            <p>
-              HIGH QUALITY POSTINGでは、配布業務だけでなく、マッピングデータそのものの販売にも対応しています。
-              配布戦略の立案、営業資料の補強、対象エリアの比較検討などに活用しやすいデータをBASEで展開しています。
-            </p>
-            <ul class="list">
-              <li>エリアごとのマンションデータ販売</li>
-              <li>分譲・賃貸の判別資料として活用可能</li>
-              <li>営業・配布設計・市場把握に活用しやすい構成</li>
-            </ul>
+          <article class="card area-card">
+            <span class="tag">KITAKYUSHU CITY</span>
+            <h3>北九州市のポスティング</h3>
+            <p>小倉北区・八幡西区・八幡東区など、集合住宅を中心とした配布設計に対応します。</p>
           </article>
 
-          <article class="card">
-            <h3>マッピング無料サンプルにも対応</h3>
-            <p>
-             導入前にデータ品質や使い勝手を確認しやすい導線を用意しています。
-             無料で分譲マンション1000世帯を担保し、指定エリアを中心に賃貸マンションもマッピングします。
-            </p>
-            <div class="hero-actions">
-              <a class="btn btn-primary" href="https://docs.google.com/forms/d/e/1FAIpQLSfHKF3C6v9AuvbfeuddTygh5cux7XOlW2ctgVHGYfB5X7bPOw/viewform?usp=header" target="_blank" rel="noopener noreferrer">
-                無料マッピング
-              </a>
-              <a class="btn btn-secondary" href="https://advertising.base.shop/" target="_blank" rel="noopener noreferrer">
-                BASEを見る
-              </a>
-            </div>
-          </article>
-        </div>
-      </div>
-    </section>
-
-    <section id="strength" class="anchor-offset">
-      <div class="container">
-        <div class="section-head">
-          <div>
-            <p class="eyebrow">WHY HQP</p>
-            <h2>“配って終わり”ではなく、成果につながる配布設計へ。</h2>
-          </div>
-          <p>
-          </p>
-        </div>
-
-        <div class="comparison">
-          <article class="card">
-            <h3>HIGH QUALITY POSTING</h3>
-            <ul class="list">
-              <li>マンション特化</li>
-              <li>GPSログ管理</li>
-              <li>データ分析配布</li>
-              <li>反響重視の配布設計</li>
-              <li>品質の見える化<br>
-                【マッピング・日別・マンション毎の投函枚数管理】</li>
-            </ul>
+          <article class="card area-card">
+            <span class="tag">FUKUOKA CITY</span>
+            <h3>福岡市のポスティング</h3>
+            <p>マンション密度の高いエリアを中心に、商材や目的に合わせた配布を行います。</p>
           </article>
 
-          <article class="card">
-            <h3>一般的な配布との違い</h3>
-            <ul class="list">
-              <li>戸建てと混在しやすい配布より効率設計しやすい</li>
-              <li>配布管理の透明性を高めやすい</li>
-              <li>経験だけでなくデータも活用できる</li>
-              <li>枚数重視ではなく反響重視で設計できる</li>
-              <li>報告の分かりやすさを確保しやすい</li>
-            </ul>
+          <article class="card area-card">
+            <span class="tag">KUMAMOTO CITY</span>
+            <h3>熊本市のポスティング</h3>
+            <p>分譲・賃貸マンションの配布対象を整理し、反響を狙った導線を組みます。</p>
           </article>
-        </div>
 
-        <div class="stats">
-          <div class="stat">
-            <strong>100万枚+</strong>
-            <span>年間配布実績</span>
-          </div>
-          <div class="stat">
-            <strong>5エリア</strong>
-            <span>重点対応エリア</span>
-          </div>
-          <div class="stat">
-            <strong>4円</strong>
-            <span>ポスティング基本単価</span>
-          </div>
-          <div class="stat">
-            <strong>BASE販売</strong>
-            <span>データ提供対応</span>
-          </div>
+          <article class="card area-card">
+            <span class="tag">KOGA CITY</span>
+            <h3>古賀市のポスティング</h3>
+            <p>集合住宅への配布を中心に、無駄を抑えた配布計画を提案します。</p>
+          </article>
+
+          <article class="card area-card">
+            <span class="tag">FUKUTSU CITY</span>
+            <h3>福津市のポスティング</h3>
+            <p>指定エリアや指定マンションを軸にした配布相談にも対応します。</p>
+          </article>
+
+          <article class="card area-card">
+            <span class="tag">OTHER AREA</span>
+            <h3>その他エリア</h3>
+            <p>配布枚数、配布時期、建物条件により個別に対応可否を確認します。</p>
+          </article>
         </div>
       </div>
     </section>
@@ -1356,17 +1095,17 @@
     <section>
       <div class="container">
         <div class="cta-band">
-          <h2>狙うべき建物を、先に把握する。</h2>
+          <h2>ポスティングを“見える仕事”に。</h2>
           <p>
-            ポスティング依頼、マッピング作成、データ購入まで一気通貫で対応。
-            配布戦略の精度を高めたい案件に向けた導線を集約しています。
+            配布結果を曖昧にしない。HQPアプリで投函状況を記録し、クライアントが確認しやすい形で報告します。
+            まずはエリア・枚数・目的をお知らせください。
           </p>
           <div class="hero-actions">
-            <a class="btn btn-primary" href=" https://docs.google.com/forms/d/e/1FAIpQLSdzo8jbToiiif2oPkjOyi8aSiLxAwg5Sdrera3GPpOSqJmPLw/viewform?usp=header" target="_blank" rel="noopener noreferrer">
+            <a class="btn btn-primary" href="https://docs.google.com/forms/d/e/1FAIpQLSdzo8jbToiiif2oPkjOyi8aSiLxAwg5Sdrera3GPpOSqJmPLw/viewform?usp=header" target="_blank" rel="noopener noreferrer">
               配布を相談する
             </a>
-            <a class="btn btn-secondary" href="https://docs.google.com/forms/d/e/1FAIpQLSfhybFMmCDdqvy1jDdbZREFfG3e5ls1QfhbdcDlkv9aKZC_tA/viewform?usp=header" target="_blank" rel="noopener noreferrer">
-            　マッピングオーダー
+            <a class="btn btn-secondary" href="https://lin.ee/vsdXP7a" target="_blank" rel="noopener noreferrer">
+              公式LINEで相談
             </a>
           </div>
         </div>
@@ -1381,25 +1120,26 @@
             <h2>ご依頼の流れ</h2>
           </div>
           <p>
+            配布前の設計から、配布後の報告共有までスムーズに進めます。
           </p>
         </div>
 
         <div class="flow">
           <article class="card">
             <h3>お問い合わせ</h3>
-            <p>エリア・枚数・希望時期だけでも相談可能です。</p>
+            <p>エリア・枚数・配布希望時期・商材内容をお知らせください。</p>
           </article>
           <article class="card">
-            <h3>条件確認</h3>
-            <p>配布対象、建物条件、データ要件を整理します。</p>
+            <h3>配布設計</h3>
+            <p>マンション特化、指定マンション、エリア配布など目的に合わせて設計します。</p>
           </article>
           <article class="card">
-            <h3>プラン提案</h3>
-            <p>配布・マッピング・データ販売を含め最適な内容をご提案します。</p>
+            <h3>アプリで配布</h3>
+            <p>HQPアプリで投函マップ、投函枚数、投函時刻を記録しながら配布します。</p>
           </article>
           <article class="card">
-            <h3>実施・納品</h3>
-            <p>配布またはデータ納品を行い、次施策につながる形へ整えます。</p>
+            <h3>報告共有</h3>
+            <p>日報PDF・投函タイムライン・必要に応じた共有データをお渡しします。</p>
           </article>
         </div>
       </div>
@@ -1417,36 +1157,62 @@
         <div class="card">
           <h3>内堀 瑚白（うちぼり こはく）</h3>
           <p>
-            はじめまして。HIGH QUALITY POSTING（ハイクオリティポスティング）代表の内堀 瑚白（うちぼり こはく）です。
+            はじめまして。HIGH QUALITY POSTING（ハイクオリティポスティング）代表の内堀 瑚白です。
           </p>
-          <p style="margin-top:16px;">
+          <p>
             北九州市出身。不動産営業を経て、マンション特化のポスティング事業を立ち上げました。
           </p>
-          <p style="margin-top:16px;">
-            不動産の現場で強く感じたのは、
+          <p>
+            不動産の現場で強く感じたのは、「配ったのに反響が読めない」「どこまで配布できたかが見えない」という課題です。
           </p>
-          <p style="margin-top:16px; color:#eef4ff;">
-            「配ったのに反響が読めない」「どこまで配布できたかが見えない」
+          <p>
+            そこで当店は、“配って終わり”ではなく、配布前の設計、配布中の記録、配布後の報告までを一つの品質として考えています。
           </p>
-          <p style="margin-top:16px;">
-            という課題です。
-          </p>
-          <p style="margin-top:16px;">
-            そこで当店は、“配って終わり”ではなく、成果につながる配布設計にこだわっています。
-          </p>
-          <p style="margin-top:16px;">
-            HIGH QUALITY POSTINGは、マンション特化配布を軸に、
-            GPSログ管理とマッピングデータの活用によって、配布品質と透明性を担保します。
-          </p>
-          <p style="margin-top:16px; color:#fff1c7; font-weight:700;">
-            （年間100万枚以上の配布実績）
-          </p>
-          <p style="margin-top:16px;">
+          <p style="color:#fff1c7;font-weight:800;">
             狙うべきマンションに、狙うべき順番で、確実に届ける。
           </p>
-          <p style="margin-top:16px;">
-            その積み重ねが、反響をつくると考えています。
+          <p>
+            HQPアプリを活用し、現場の感覚だけに頼らない、見えるポスティングを提供します。
           </p>
+        </div>
+      </div>
+    </section>
+
+    <section id="mapping" class="anchor-offset">
+      <div class="container">
+        <div class="section-head">
+          <div>
+            <p class="eyebrow">MAPPING / DATA</p>
+            <h2>マッピング販売・個別オーダーについて</h2>
+          </div>
+          <p>
+            メインはHQPアプリを利用したポスティング業務です。
+            マッピングデータ販売や個別オーダーは、必要な方のみページ下部から相談できます。
+          </p>
+        </div>
+
+        <div class="mapping-lite">
+          <div>
+            <h3>配布設計用のマッピング相談にも対応</h3>
+            <p style="color:var(--muted);margin:0;">
+              指定エリアのマンション整理、分譲マンション中心のリスト作成、配布ルート設計用のデータ整備など、
+              配布に必要な範囲でマッピング相談が可能です。データ単体の購入はBASEから確認できます。
+            </p>
+            <ul class="list">
+              <li>分譲マンション中心のデータ整理</li>
+              <li>配布対象エリアの事前把握</li>
+              <li>BASEでのマッピングデータ販売</li>
+            </ul>
+            <div class="hero-actions">
+              <a class="btn btn-secondary" href="https://docs.google.com/forms/d/e/1FAIpQLSfhybFMmCDdqvy1jDdbZREFfG3e5ls1QfhbdcDlkv9aKZC_tA/viewform?usp=header" target="_blank" rel="noopener noreferrer">
+                マッピングオーダー
+              </a>
+              <a class="btn btn-secondary" href="https://advertising.base.shop/" target="_blank" rel="noopener noreferrer">
+                BASEを見る
+              </a>
+            </div>
+          </div>
+          <img src="map-overview.jpg" alt="マッピング参考画像">
         </div>
       </div>
     </section>
@@ -1458,37 +1224,41 @@
             <p class="eyebrow">FAQ</p>
             <h2>よくあるご質問</h2>
           </div>
-          <p>
-          </p>
         </div>
 
         <details open>
           <summary>ポスティング単価はいくらですか？</summary>
           <p>
-            基本単価は1枚4円です。詳細はエリア、建物条件、枚数、配布方法により調整となります。
+            基本単価は1枚4円です。エリア、配布枚数、建物条件、配布方法により個別にお見積りします。
           </p>
         </details>
 
         <details>
-          <summary>分譲マンションのみのマッピング料金は？</summary>
+          <summary>HQPアプリでは何を確認できますか？</summary>
           <p>
-            分譲マンションのみの場合は、分譲世帯数ベースで1世帯5円です。
-            1,000世帯なら5,000円、2,000世帯なら10,000円が目安です。
+            投函マップ、投函枚数、投函時刻、日報PDF、投函タイムラインなどを確認できます。
+            配布後に、どこで何枚投函したのかを分かりやすく共有します。
           </p>
         </details>
 
         <details>
-          <summary>賃貸分譲ミックスの料金は？</summary>
+          <summary>指定マンションへの配布はできますか？</summary>
           <p>
-            賃貸分譲ミックスは、分譲マンション世帯数を基準に1世帯6円です。
-            まず分譲で配布枚数を担保し、そのうえで指定エリア中心に確認できる賃貸物件をマッピングします。
+            可能です。指定されたマンション、指定エリア、優先して配布したい建物をもとに配布ルートを組み、HQPアプリで投函状況を管理します。
           </p>
         </details>
 
         <details>
-          <summary>マッピングデータだけの購入も可能ですか？</summary>
+          <summary>分譲マンションだけ、または賃貸マンションも含めた配布はできますか？</summary>
           <p>
-            可能です。BASEにてマッピングデータの販売も行っています。
+            可能です。分譲中心、賃貸を含めたミックス配布、指定マンション配布など、目的に合わせて調整します。
+          </p>
+        </details>
+
+        <details>
+          <summary>マッピングデータだけの相談も可能ですか？</summary>
+          <p>
+            可能です。ページ下部のマッピングオーダー、またはBASEからご確認ください。
           </p>
         </details>
       </div>
@@ -1499,10 +1269,11 @@
         <div class="section-head">
           <div>
             <p class="eyebrow">CONTACT</p>
-            <h2>配布依頼・データ相談はこちら</h2>
+            <h2>配布依頼・ご相談はこちら</h2>
           </div>
           <p>
-            エリア・枚数・配布希望時期・データ要件をお気軽にご相談ください。
+            エリア・枚数・配布希望時期・指定マンションの有無をお知らせください。
+            まだ内容が固まっていない段階でも相談可能です。
           </p>
         </div>
 
@@ -1510,14 +1281,11 @@
           <article class="card">
             <h3>お問い合わせフォーム</h3>
             <p>
-              無料お見積り・配布相談・データ相談に対応しています。
+              無料お見積り、配布相談、指定マンション配布、マッピング相談に対応しています。
             </p>
             <div class="hero-actions">
               <a class="btn btn-primary" href="https://docs.google.com/forms/d/e/1FAIpQLSdzo8jbToiiif2oPkjOyi8aSiLxAwg5Sdrera3GPpOSqJmPLw/viewform?usp=header" target="_blank" rel="noopener noreferrer">
                 配布を相談する
-              </a>
-              <a class="btn btn-secondary" href="https://docs.google.com/forms/d/e/1FAIpQLSfhybFMmCDdqvy1jDdbZREFfG3e5ls1QfhbdcDlkv9aKZC_tA/viewform?usp=header" target="_blank" rel="noopener noreferrer">
-                マッピングオーダー
               </a>
               <a class="btn btn-secondary" href="https://docs.google.com/forms/d/e/1FAIpQLSfUvYfvGruPG_JeAz0ZkIg1mqJDM1xJ1FbSiyq0o8xR9tFK-A/viewform?usp=header" target="_blank" rel="noopener noreferrer">
                 質問・相談
@@ -1552,18 +1320,19 @@
       <div>
         <div class="brand" style="margin-bottom:12px;">
           <img src="logo.jpg" alt="HIGH QUALITY POSTING ロゴ" class="brand-logo">
-          <span>
+          <span class="brand-text">
             HIGH QUALITY POSTING
-            <small>MANSION FOCUSED POSTING</small>
+            <small>APP DRIVEN POSTING</small>
           </span>
         </div>
         <p class="small">
-          マンション特化配布・GPSログ管理・マッピング分析・マッピングデータ販売に対応。
+          HQPアプリを利用したマンション特化配布・GPSログ管理・日報PDF・投函タイムライン共有に対応。
         </p>
       </div>
 
       <div class="small">
         <div>重点対応エリア：福岡市 / 北九州市 / 熊本市 / 古賀市 / 福津市</div>
+        <div style="margin-top:8px;">ポスティング基本単価：1枚4円</div>
         <div id="yearLine" style="margin-top:8px;">© <span id="year"></span> HIGH QUALITY POSTING</div>
       </div>
     </div>
@@ -1571,58 +1340,6 @@
 
   <script>
     document.getElementById('year').textContent = new Date().getFullYear();
-  </script>
-
-  <script>
-    document.addEventListener('DOMContentLoaded', function () {
-      const slider = document.querySelector('.slider-card');
-      if (!slider) return;
-
-      const slides = slider.querySelectorAll('.slide');
-      const dots = slider.querySelectorAll('.dot');
-
-      if (!slides.length) return;
-
-      let current = 0;
-      let timer = null;
-
-      function showSlide(index) {
-        slides.forEach((slide, i) => {
-          slide.classList.toggle('active', i === index);
-        });
-
-        dots.forEach((dot, i) => {
-          dot.classList.toggle('active', i === index);
-        });
-
-        current = index;
-      }
-
-      function startAutoSlide() {
-        stopAutoSlide();
-        timer = setInterval(function () {
-          const next = (current + 1) % slides.length;
-          showSlide(next);
-        }, 3500);
-      }
-
-      function stopAutoSlide() {
-        if (timer) {
-          clearInterval(timer);
-          timer = null;
-        }
-      }
-
-      dots.forEach((dot, index) => {
-        dot.addEventListener('click', function () {
-          showSlide(index);
-          startAutoSlide();
-        });
-      });
-
-      showSlide(0);
-      startAutoSlide();
-    });
   </script>
 </body>
 </html>
