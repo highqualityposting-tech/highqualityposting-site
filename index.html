@@ -135,6 +135,77 @@
 
     .nav-links a:hover{color:var(--text)}
 
+    .nav-actions{
+      display:flex;
+      align-items:center;
+      justify-content:flex-end;
+      gap:16px;
+      min-width:0;
+    }
+
+    .nav-app-button{
+      display:inline-flex;
+      align-items:center;
+      justify-content:center;
+      min-height:44px;
+      padding:11px 18px;
+      border-radius:999px;
+      color:#0a0d13;
+      background:linear-gradient(135deg, #d8bd85 0%, #fff0c8 38%, #8ad4ff 100%);
+      border:1px solid rgba(255,255,255,.14);
+      box-shadow:0 12px 28px rgba(138,212,255,.14);
+      font-size:13px;
+      font-weight:950;
+      line-height:1;
+      white-space:nowrap;
+      transition:.25s ease;
+    }
+
+    .nav-app-button:hover{
+      transform:translateY(-2px);
+      filter:brightness(1.05);
+    }
+
+    .app-detail-cta{
+      margin:-10px 0 28px;
+      padding:20px;
+      border-radius:24px;
+      display:grid;
+      grid-template-columns:1fr auto;
+      gap:18px;
+      align-items:center;
+      background:
+        linear-gradient(135deg, rgba(197,168,106,.12), rgba(138,212,255,.12)),
+        rgba(255,255,255,.04);
+      border:1px solid rgba(255,255,255,.11);
+      box-shadow:var(--shadow);
+      overflow:hidden;
+      position:relative;
+    }
+
+    .app-detail-cta::before{
+      content:"";
+      position:absolute;
+      inset:0;
+      background:radial-gradient(circle at 12% 0%, rgba(138,212,255,.14), transparent 34%);
+      pointer-events:none;
+    }
+
+    .app-detail-cta > *{position:relative; z-index:1;}
+    .app-detail-cta strong{
+      display:block;
+      font-size:20px;
+      line-height:1.35;
+      color:#fff1c7;
+      margin-bottom:4px;
+    }
+    .app-detail-cta span{
+      display:block;
+      color:var(--muted);
+      font-size:14px;
+      line-height:1.7;
+    }
+
     .btn{
       display:inline-flex;
       align-items:center;
@@ -648,14 +719,18 @@
       .container{width:min(100% - 24px, var(--max))}
       .nav{padding:12px 0;min-height:70px}
       .nav-links{display:none}
+      .nav-actions{gap:0; flex:0 0 auto;}
+      .nav-app-button{min-height:40px; padding:10px 13px; font-size:12px;}
       .brand-logo{width:46px;height:46px}
-      .brand-text{font-size:14px;max-width:calc(100vw - 96px)}
+      .brand-text{font-size:14px;max-width:calc(100vw - 150px)}
       .brand small{font-size:9px;letter-spacing:.12em}
       .hero{padding:62px 0 58px}
       h1{font-size:clamp(34px, 11.5vw, 52px)}
       .hero-copy{font-size:15px}
       .hero-actions{display:grid;grid-template-columns:1fr;gap:10px}
       .hero-actions .btn{width:100%;padding-inline:18px}
+      .app-detail-cta{grid-template-columns:1fr; padding:18px; margin:0 0 22px;}
+      .app-detail-cta .btn{width:100%;}
       .hero-points,.grid-2,.grid-3,.grid-4,.process-line,.flow,.stats,.shot-mini-grid{grid-template-columns:1fr}
       section{padding:66px 0}
       .card,.cta-band,.price-box,.mapping-lite{padding:22px;border-radius:22px}
@@ -738,15 +813,18 @@
         </span>
       </a>
 
-      <nav class="nav-links" aria-label="グローバルナビゲーション">
-        <a href="#app">HQPアプリ</a>
-        <a href="#quality">配布品質</a>
-        <a href="#target">指定マンション</a>
-        <a href="#pricing">料金</a>
-        <a href="#areas">対応エリア</a>
-        <a href="#flow">ご依頼の流れ</a>
-        <a href="#contact">お問い合わせ</a>
-      </nav>
+      <div class="nav-actions">
+        <nav class="nav-links" aria-label="グローバルナビゲーション">
+          <a href="#app">HQPアプリ</a>
+          <a href="#quality">配布品質</a>
+          <a href="#target">指定マンション</a>
+          <a href="#pricing">料金</a>
+          <a href="#areas">対応エリア</a>
+          <a href="#flow">ご依頼の流れ</a>
+          <a href="#contact">お問い合わせ</a>
+        </nav>
+        <a class="nav-app-button" href="hqp-app.html" aria-label="HQPアプリ紹介ページへ移動">HQPアプリ</a>
+      </div>
     </div>
   </header>
 
@@ -771,6 +849,9 @@
             </a>
             <a class="btn btn-secondary" href="#app">
               アプリ運用を見る
+            </a>
+            <a class="btn btn-secondary" href="hqp-app.html">
+              アプリ詳細ページへ
             </a>
           </div>
 
@@ -864,6 +945,14 @@
             現場配布、日報、タイムライン、ルート管理まで一気通貫。
             アプリで配布品質を記録することで、クライアントへの報告精度を上げます。
           </p>
+        </div>
+
+        <div class="app-detail-cta" aria-label="HQPアプリ詳細ページへの導線">
+          <div>
+            <strong>アプリの機能・画面・運用イメージを詳しく確認できます。</strong>
+            <span>全体マッピング、投函入力、日報、タイムライン、共有URL、スタッフ管理まで、HQPアプリの詳細ページで確認できます。</span>
+          </div>
+          <a class="btn btn-primary" href="hqp-app.html">HQPアプリ詳細を見る</a>
         </div>
 
         <div class="app-shot-grid">
