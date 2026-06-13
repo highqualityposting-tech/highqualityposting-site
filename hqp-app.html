@@ -114,6 +114,37 @@
 
     .nav-links a:hover{color:#fff}
 
+    .nav-actions{
+      display:flex;
+      align-items:center;
+      justify-content:flex-end;
+      gap:16px;
+      min-width:0;
+    }
+
+    .nav-home-button{
+      display:inline-flex;
+      align-items:center;
+      justify-content:center;
+      min-height:44px;
+      padding:11px 18px;
+      border-radius:999px;
+      color:#0a0d13;
+      background:linear-gradient(135deg, #d8bd85 0%, #fff0c8 38%, #8ad4ff 100%);
+      border:1px solid rgba(255,255,255,.14);
+      box-shadow:0 12px 28px rgba(138,212,255,.14);
+      font-size:13px;
+      font-weight:950;
+      line-height:1;
+      white-space:nowrap;
+      transition:transform .18s ease, filter .18s ease;
+    }
+
+    .nav-home-button:hover{
+      transform:translateY(-2px);
+      filter:brightness(1.05);
+    }
+
     .btn{
       display:inline-flex;
       align-items:center;
@@ -643,7 +674,9 @@
       .container{width:min(var(--max), calc(100% - 24px))}
       .nav{min-height:68px}
       .nav-links{display:none}
-      .brand{font-size:13px;letter-spacing:.04em}
+      .nav-actions{gap:0; flex:0 0 auto;}
+      .nav-home-button{min-height:40px; padding:10px 13px; font-size:12px;}
+      .brand{font-size:13px;letter-spacing:.04em;max-width:calc(100vw - 150px)}
       .brand small{font-size:9px;letter-spacing:.12em}
       .brand-logo{width:46px;height:46px;border-radius:13px}
       .hero{padding:62px 0 56px}
@@ -672,14 +705,17 @@
         </span>
       </a>
 
-      <nav class="nav-links" aria-label="ページ内ナビゲーション">
-        <a href="#overview">概要</a>
-        <a href="#screens">画面</a>
-        <a href="#operation">運用の流れ</a>
-        <a href="#free">無料機能</a>
-        <a href="#paid">有料機能</a>
-        <a href="#features">全機能</a>
-      </nav>
+      <div class="nav-actions">
+        <nav class="nav-links" aria-label="ページ内ナビゲーション">
+          <a href="#overview">概要</a>
+          <a href="#screens">画面</a>
+          <a href="#operation">運用の流れ</a>
+          <a href="#free">無料機能</a>
+          <a href="#paid">有料機能</a>
+          <a href="#features">全機能</a>
+        </nav>
+        <a class="nav-home-button" href="index.html" aria-label="HIGH QUALITY POSTINGホームページへ戻る">配布HPへ</a>
+      </div>
     </div>
   </header>
 
