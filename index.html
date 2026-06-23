@@ -759,6 +759,142 @@
       .stat strong{font-size:28px}
       .eyebrow{font-size:12px;line-height:1.5;white-space:normal;width:auto}
     }
+
+    /* ===== Mobile first-view width fix: content unchanged, layout only ===== */
+    @media (max-width:720px){
+      body{
+        overflow-x:hidden;
+      }
+
+      .topbar,
+      main,
+      section,
+      footer,
+      .hero,
+      .container{
+        max-width:100%;
+      }
+
+      .container{
+        width:calc(100% - 24px);
+      }
+
+      .nav{
+        gap:10px;
+        width:100%;
+        min-width:0;
+      }
+
+      .brand{
+        flex:1 1 auto;
+        min-width:0;
+        overflow:hidden;
+        gap:10px;
+      }
+
+      .brand-text{
+        min-width:0;
+        max-width:none;
+        overflow:hidden;
+        text-overflow:ellipsis;
+      }
+
+      .nav-actions{
+        flex:0 0 auto;
+      }
+
+      .nav-app-button{
+        max-width:96px;
+        padding-inline:12px;
+      }
+
+      .hero-grid,
+      .hero-grid > div,
+      .section-head,
+      .section-head > div,
+      .app-detail-cta,
+      .card,
+      .cta-band,
+      .price-box{
+        min-width:0;
+      }
+
+      h1{
+        font-size:clamp(31px, 9.2vw, 42px);
+        line-height:1.18;
+        letter-spacing:.006em;
+        max-width:100%;
+        overflow-wrap:break-word;
+        word-break:keep-all;
+        text-wrap:balance;
+      }
+
+      .headline-main{
+        white-space:normal;
+      }
+
+      .headline-accent{
+        display:block;
+        max-width:100%;
+        overflow-wrap:break-word;
+        word-break:keep-all;
+        text-wrap:balance;
+      }
+
+      .eyebrow{
+        display:flex;
+        width:100%;
+        max-width:100%;
+        min-width:0;
+        align-items:flex-start;
+        overflow-wrap:anywhere;
+        word-break:break-word;
+      }
+
+      .eyebrow::before{
+        margin-top:.62em;
+      }
+
+      .hero-copy,
+      .chip,
+      .card p,
+      .section-head p,
+      .app-detail-cta span{
+        max-width:100%;
+        overflow-wrap:break-word;
+        word-break:normal;
+      }
+
+      .btn{
+        max-width:100%;
+        white-space:normal;
+      }
+    }
+
+    @media (max-width:420px){
+      h1{
+        font-size:clamp(29px, 8.9vw, 36px);
+        line-height:1.2;
+      }
+
+      .hero{
+        padding-top:52px;
+      }
+
+      .brand-logo{
+        width:42px;
+        height:42px;
+      }
+
+      .brand-text{
+        font-size:13px;
+      }
+
+      .brand small{
+        font-size:8px;
+      }
+    }
+
   </style>
 
   <script type="application/ld+json">
