@@ -1443,6 +1443,164 @@
       .hero-proof strong{font-size:22px}
     }
 
+
+
+    /* ===== First-view app image clarity fix =====
+       冒頭のアプリ画像がトリミングされないよう、スマホ画面を全体表示に変更。 */
+    .hero-visual{
+      min-height:auto;
+    }
+
+    .device-stack{
+      height:auto;
+      min-height:0;
+      display:grid;
+      grid-template-columns:minmax(0,1fr) minmax(0,1fr);
+      grid-template-areas:
+        "live live"
+        "main sub"
+        "proof proof";
+      gap:14px;
+      align-items:start;
+    }
+
+    .live-panel{
+      position:relative;
+      left:auto;
+      right:auto;
+      top:auto;
+      grid-area:live;
+      z-index:5;
+      margin-bottom:2px;
+    }
+
+    .route-hud{
+      display:none;
+    }
+
+    .device{
+      position:relative;
+      width:100%;
+      max-width:292px;
+      min-width:0;
+      inset:auto;
+      margin-inline:auto;
+    }
+
+    .device-main{
+      grid-area:main;
+      right:auto;
+      top:auto;
+      z-index:3;
+    }
+
+    .device-sub{
+      grid-area:sub;
+      left:auto;
+      bottom:auto;
+      transform:none;
+      z-index:2;
+    }
+
+    .device:hover{
+      transform:translateY(-6px);
+    }
+
+    .device img{
+      aspect-ratio:9 / 19.5;
+      object-fit:contain;
+      object-position:center center;
+      background:
+        radial-gradient(circle at 50% 0%, rgba(138,212,255,.08), transparent 38%),
+        #05070b;
+    }
+
+    .device-sub img{
+      object-position:center center;
+    }
+
+    .floating-proof{
+      position:relative;
+      left:auto;
+      right:auto;
+      bottom:auto;
+      grid-area:proof;
+      z-index:4;
+      grid-template-columns:repeat(3,minmax(0,1fr));
+      margin-top:2px;
+    }
+
+    @media (max-width:720px){
+      .hero-visual{
+        min-height:auto;
+        padding:16px;
+      }
+
+      .device-stack{
+        min-height:0;
+        grid-template-columns:1fr;
+        grid-template-areas:
+          "live"
+          "main"
+          "proof";
+        gap:13px;
+      }
+
+      .live-panel{
+        position:relative;
+        left:auto;
+        right:auto;
+        top:auto;
+      }
+
+      .device{
+        position:relative;
+        width:min(285px, 100%);
+        max-width:285px;
+        min-width:0;
+        margin-inline:auto;
+        border-radius:28px;
+        padding:8px;
+      }
+
+      .device-main{
+        right:auto;
+        top:auto;
+      }
+
+      .device-sub{
+        display:none;
+      }
+
+      .device:hover{
+        transform:none;
+      }
+
+      .device img{
+        border-radius:21px;
+      }
+
+      .floating-proof{
+        position:relative;
+        left:auto;
+        right:auto;
+        bottom:auto;
+        grid-template-columns:repeat(3,minmax(0,1fr));
+        gap:8px;
+      }
+    }
+
+    @media (max-width:420px){
+      .device{
+        width:min(252px, 100%);
+        max-width:252px;
+      }
+
+      .floating-proof{
+        grid-template-columns:1fr;
+      }
+    }
+
     @media (prefers-reduced-motion:reduce){
       *,
       *::before,
