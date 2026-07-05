@@ -1,20 +1,46 @@
 <!DOCTYPE html>
 <html lang="ja">
 <head>
+  <!-- Google tag (gtag.js) -->
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-QN91EZMQR8"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('js', new Date());
+    gtag('config', 'G-QN91EZMQR8');
+  </script>
+
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 
-  <title>HIGH QUALITY POSTING アプリ｜ポスティング業務管理アプリ</title>
-  <meta name="description" content="HIGH QUALITY POSTINGアプリの機能紹介ページ。マンション特化の全体マッピング、ルート作成、投函入力、未完了ルート管理、配布カレンダー、日報、タイムライン、PDF・Excel出力、共有URL、スタッフ・スポット招待、複数管理者運用、サブスク機能を紹介。" />
+  <title>HQPアプリ｜ポスティング業務管理アプリ｜HIGH QUALITY POSTING</title>
+  <meta name="description" content="HIGH QUALITY POSTINGアプリの詳細ページ。マンション特化の全体マッピング、ルート作成、投函入力、未完了ルート管理、配布カレンダー、日報、タイムライン、PDF・Excel出力、共有URL、スタッフ・スポット招待、複数管理者運用までを一元管理するポスティング業務管理アプリです。" />
+  <meta name="keywords" content="HQPアプリ,HIGH QUALITY POSTINGアプリ,ポスティング管理アプリ,ポスティング業務管理,投函管理アプリ,配布管理アプリ,マンションマッピング,投函入力,日報PDF,投函タイムライン,共有URL,スタッフ管理,スポット管理,未完了ルート管理,配布カレンダー" />
+  <meta name="robots" content="index,follow" />
   <meta name="theme-color" content="#07090d" />
+  <link rel="canonical" href="https://highqualityposting.jp/hqp-app.html" />
+
+  <meta property="og:type" content="website" />
+  <meta property="og:site_name" content="HIGH QUALITY POSTING" />
+  <meta property="og:title" content="HQPアプリ｜ポスティング業務管理アプリ" />
+  <meta property="og:description" content="マッピング、ルート作成、投函入力、日報、タイムライン、共有URL、スタッフ招待まで。ポスティング業務を可視化するHQPアプリ。" />
+  <meta property="og:url" content="https://highqualityposting.jp/hqp-app.html" />
+  <meta property="og:image" content="https://highqualityposting.jp/logo.jpg" />
+
+  <meta name="twitter:card" content="summary_large_image" />
+  <meta name="twitter:title" content="HQPアプリ｜ポスティング業務管理アプリ" />
+  <meta name="twitter:description" content="ポスティングの現場入力を、日報・タイムライン・共有報告までつなげる業務管理アプリ。" />
+  <meta name="twitter:image" content="https://highqualityposting.jp/logo.jpg" />
 
   <style>
     :root{
-      --bg:#07090d;
-      --bg2:#0b1018;
-      --panel:rgba(255,255,255,.055);
-      --panel2:rgba(255,255,255,.035);
-      --line:rgba(255,255,255,.11);
+      --bg:#05070b;
+      --bg2:#07090d;
+      --bg3:#0b1018;
+      --panel:rgba(255,255,255,.058);
+      --panel2:rgba(255,255,255,.032);
+      --panel3:rgba(255,255,255,.086);
+      --line:rgba(255,255,255,.12);
       --line2:rgba(255,255,255,.075);
       --text:#eef4ff;
       --muted:#b8c3d9;
@@ -23,60 +49,122 @@
       --gold2:#fff0c8;
       --ice:#8ad4ff;
       --cyan:#4fc3ff;
+      --mint:#44f0d0;
       --green:#82e6b1;
-      --danger:#ff8b8b;
-      --max:1180px;
-      --shadow:0 24px 70px rgba(0,0,0,.38);
+      --pink:#ff4aa0;
+      --shadow:0 24px 80px rgba(0,0,0,.42);
+      --shadow2:0 16px 42px rgba(0,0,0,.28);
       --radius:28px;
+      --max:1180px;
+      --nav-h:76px;
     }
 
     *{box-sizing:border-box}
     html{scroll-behavior:smooth}
     body{
       margin:0;
-      font-family:"Hiragino Sans","Yu Gothic","YuGothic","Noto Sans JP",system-ui,sans-serif;
+      font-family:"Hiragino Sans","Yu Gothic","YuGothic","Noto Sans JP",system-ui,-apple-system,BlinkMacSystemFont,sans-serif;
       color:var(--text);
       background:
-        radial-gradient(circle at 16% 0%, rgba(34,82,135,.24), transparent 34%),
-        radial-gradient(circle at 86% 16%, rgba(138,212,255,.14), transparent 31%),
-        radial-gradient(circle at 55% 52%, rgba(197,168,106,.08), transparent 35%),
-        linear-gradient(180deg, #05070b 0%, #0a0d13 46%, #07090d 100%);
+        radial-gradient(circle at 14% -8%, rgba(38,105,170,.28), transparent 34%),
+        radial-gradient(circle at 88% 10%, rgba(138,212,255,.16), transparent 32%),
+        radial-gradient(circle at 50% 58%, rgba(197,168,106,.09), transparent 38%),
+        linear-gradient(180deg, #05070b 0%, #0a0d13 42%, #07090d 100%);
       line-height:1.8;
-      letter-spacing:.02em;
+      letter-spacing:.018em;
       overflow-x:hidden;
+    }
+
+    body::before{
+      content:"";
+      position:fixed;
+      inset:0;
+      z-index:-3;
+      background:
+        linear-gradient(90deg, rgba(255,255,255,.025) 1px, transparent 1px),
+        linear-gradient(0deg, rgba(255,255,255,.018) 1px, transparent 1px);
+      background-size:54px 54px;
+      mask-image:linear-gradient(180deg, rgba(0,0,0,.72), transparent 72%);
+      pointer-events:none;
+    }
+
+    body::after{
+      content:"";
+      position:fixed;
+      inset:-40%;
+      z-index:-4;
+      background:
+        radial-gradient(circle at 24% 22%, rgba(138,212,255,.16), transparent 24%),
+        radial-gradient(circle at 72% 36%, rgba(197,168,106,.12), transparent 24%),
+        radial-gradient(circle at 54% 76%, rgba(68,240,208,.08), transparent 23%);
+      filter:blur(22px);
+      animation:aurora 18s ease-in-out infinite alternate;
+      pointer-events:none;
+    }
+
+    @keyframes aurora{
+      0%{transform:translate3d(-1.5%, -1%, 0) rotate(0deg) scale(1)}
+      50%{transform:translate3d(1%, 1.5%, 0) rotate(3deg) scale(1.02)}
+      100%{transform:translate3d(2%, -1%, 0) rotate(-2deg) scale(1.04)}
     }
 
     a{color:inherit;text-decoration:none}
     img{max-width:100%;display:block}
+    button,input,textarea,select{font:inherit}
     .container{width:min(var(--max), calc(100% - 32px)); margin-inline:auto}
     .anchor-offset{scroll-margin-top:98px}
+    .skip-link{
+      position:absolute;
+      left:12px;
+      top:-80px;
+      z-index:2000;
+      padding:10px 14px;
+      border-radius:12px;
+      background:#fff;
+      color:#071018;
+      font-weight:900;
+      transition:top .2s ease;
+    }
+    .skip-link:focus{top:12px}
+
+    .scroll-progress{
+      position:fixed;
+      top:0;
+      left:0;
+      width:0;
+      height:3px;
+      z-index:2000;
+      background:linear-gradient(90deg, var(--gold), var(--gold2), var(--ice));
+      box-shadow:0 0 18px rgba(138,212,255,.55);
+      transform-origin:left center;
+    }
 
     .topbar{
       position:sticky;
       top:0;
-      z-index:1000;
+      z-index:1200;
       backdrop-filter:blur(18px);
       -webkit-backdrop-filter:blur(18px);
-      background:rgba(7,9,13,.74);
+      background:rgba(7,9,13,.72);
       border-bottom:1px solid rgba(255,255,255,.08);
     }
 
     .nav{
+      min-height:var(--nav-h);
       display:flex;
       align-items:center;
       justify-content:space-between;
       gap:24px;
-      min-height:76px;
     }
 
     .brand{
       display:flex;
       align-items:center;
       gap:14px;
-      font-weight:900;
+      min-width:0;
+      font-weight:950;
       letter-spacing:.08em;
       line-height:1.25;
-      min-width:0;
     }
 
     .brand-logo{
@@ -86,16 +174,32 @@
       border-radius:15px;
       border:1px solid rgba(255,255,255,.13);
       background:#000;
+      box-shadow:0 12px 30px rgba(0,0,0,.35);
       flex:0 0 auto;
+    }
+
+    .brand-text{
+      display:block;
+      white-space:nowrap;
+      overflow:hidden;
+      text-overflow:ellipsis;
     }
 
     .brand small{
       display:block;
+      margin-top:3px;
       color:var(--gold);
       font-size:11px;
       letter-spacing:.18em;
-      margin-top:2px;
       white-space:nowrap;
+    }
+
+    .nav-actions{
+      display:flex;
+      align-items:center;
+      justify-content:flex-end;
+      gap:16px;
+      min-width:0;
     }
 
     .nav-links{
@@ -109,18 +213,11 @@
     .nav-links a{
       color:var(--muted);
       font-size:14px;
-      transition:color .2s ease;
+      transition:.22s ease;
+      white-space:nowrap;
     }
 
     .nav-links a:hover{color:#fff}
-
-    .nav-actions{
-      display:flex;
-      align-items:center;
-      justify-content:flex-end;
-      gap:16px;
-      min-width:0;
-    }
 
     .nav-home-button{
       display:inline-flex;
@@ -137,7 +234,7 @@
       font-weight:950;
       line-height:1;
       white-space:nowrap;
-      transition:transform .18s ease, filter .18s ease;
+      transition:.22s ease;
     }
 
     .nav-home-button:hover{
@@ -149,95 +246,143 @@
       display:inline-flex;
       align-items:center;
       justify-content:center;
+      gap:8px;
       text-align:center;
-      padding:16px 26px;
-      min-height:58px;
+      padding:17px 28px;
+      min-height:60px;
       border-radius:999px;
-      font-weight:900;
-      line-height:1.25;
+      font-weight:950;
+      line-height:1.2;
       border:1px solid transparent;
-      transition:transform .18s ease, border-color .18s ease, background .18s ease;
-    }
-
-    .btn:hover{transform:translateY(-2px)}
-
-    .btn-primary{
-      color:#0a0d13;
-      background:linear-gradient(135deg, #d8bd85 0%, #fff0c8 36%, #8ad4ff 100%);
-      box-shadow:0 18px 40px rgba(138,212,255,.12);
-    }
-
-    .btn-secondary{
-      background:rgba(255,255,255,.045);
-      border-color:rgba(255,255,255,.14);
-      color:var(--text);
-    }
-
-    .hero{
+      box-sizing:border-box;
+      transition:.24s ease;
+      cursor:pointer;
       position:relative;
       overflow:hidden;
-      padding:96px 0 74px;
     }
 
-    .hero:before{
+    .btn::before{
       content:"";
       position:absolute;
-      inset:auto -120px -220px auto;
-      width:520px;
-      height:520px;
-      border-radius:999px;
-      background:radial-gradient(circle, rgba(138,212,255,.16), transparent 66%);
-      pointer-events:none;
+      inset:0;
+      background:linear-gradient(120deg, transparent, rgba(255,255,255,.35), transparent);
+      transform:translateX(-120%);
+      transition:transform .6s ease;
     }
 
-    .hero-grid{
-      display:grid;
-      grid-template-columns:1.08fr .92fr;
-      gap:38px;
-      align-items:center;
-      position:relative;
-      z-index:1;
+    .btn:hover::before{transform:translateX(120%)}
+    .btn:hover{transform:translateY(-2px)}
+    .btn-primary{
+      color:#0a0d13;
+      background:linear-gradient(135deg, #d8bd85 0%, #fff0c8 34%, #8ad4ff 100%);
+      box-shadow:0 18px 42px rgba(138,212,255,.16);
     }
+    .btn-secondary{
+      color:var(--text);
+      background:rgba(255,255,255,.045);
+      border-color:rgba(255,255,255,.14);
+    }
+    .btn-secondary:hover{background:rgba(255,255,255,.08)}
 
     .eyebrow{
       display:inline-flex;
       align-items:center;
       gap:10px;
+      width:max-content;
+      max-width:100%;
       padding:10px 16px;
       border-radius:999px;
-      border:1px solid rgba(255,255,255,.11);
+      border:1px solid rgba(255,255,255,.12);
       background:rgba(255,255,255,.045);
       color:#d7e6ff;
       font-size:13px;
-      font-weight:800;
+      font-weight:850;
       letter-spacing:.08em;
+      backdrop-filter:blur(10px);
+    }
+
+    .eyebrow::before{
+      content:"";
+      width:8px;
+      height:8px;
+      border-radius:999px;
+      flex:0 0 auto;
+      background:linear-gradient(135deg, var(--gold), var(--ice));
+      box-shadow:0 0 18px rgba(138,212,255,.8);
+    }
+
+    .hero{
+      position:relative;
+      overflow:hidden;
+      isolation:isolate;
+      padding:94px 0 76px;
+    }
+
+    .hero::before{
+      content:"";
+      position:absolute;
+      inset:-14% -8% auto -8%;
+      height:850px;
+      z-index:-2;
+      background:
+        radial-gradient(circle at 14% 14%, rgba(138,212,255,.18), transparent 25%),
+        radial-gradient(circle at 75% 14%, rgba(197,168,106,.12), transparent 18%),
+        linear-gradient(180deg, rgba(255,255,255,.05), transparent 30%),
+        linear-gradient(135deg, #0e1521 0%, #080b10 48%, #10141f 100%);
+      border-bottom:1px solid rgba(255,255,255,.06);
+    }
+
+    .hero::after{
+      content:"";
+      position:absolute;
+      left:0;
+      right:0;
+      bottom:32px;
+      height:260px;
+      z-index:-1;
+      background:
+        linear-gradient(180deg, transparent, rgba(138,212,255,.08)),
+        repeating-linear-gradient(90deg, rgba(255,255,255,.02) 0 12px, transparent 12px 40px);
+      filter:blur(16px);
+      opacity:.58;
+      transform:perspective(1000px) rotateX(72deg);
+      transform-origin:center bottom;
+    }
+
+    .hero-grid{
+      display:grid;
+      grid-template-columns:1.04fr .96fr;
+      gap:36px;
+      align-items:center;
+      position:relative;
+      z-index:1;
     }
 
     h1{
-      margin:18px 0;
-      font-size:clamp(38px, 6vw, 74px);
+      margin:18px 0 18px;
+      font-size:clamp(40px, 5.8vw, 76px);
       line-height:1.04;
       font-weight:950;
-      letter-spacing:-.045em;
+      letter-spacing:-.05em;
     }
 
     .headline-accent{
       display:block;
-      background:linear-gradient(135deg, #f7edd8 0%, #cdb07a 31%, #d7ecff 72%, #8ad4ff 100%);
+      background:linear-gradient(135deg, #f7edd8 0%, #cdb07a 30%, #d7ecff 72%, #8ad4ff 100%);
       -webkit-background-clip:text;
       -webkit-text-fill-color:transparent;
       background-clip:text;
+      text-shadow:0 0 40px rgba(138,212,255,.1);
     }
 
     .hero-copy{
       color:var(--muted);
       font-size:17px;
-      max-width:760px;
+      max-width:770px;
       margin:0;
     }
 
-    .hero-copy strong{color:#fff;font-weight:900}
-
+    .hero-copy strong{color:#fff4d9;font-weight:950}
     .hero-actions{
       display:flex;
       flex-wrap:wrap;
@@ -253,127 +398,222 @@
     }
 
     .chip{
-      padding:14px 16px;
+      position:relative;
+      padding:14px 16px 14px 42px;
       border-radius:18px;
       background:rgba(255,255,255,.045);
-      border:1px solid rgba(255,255,255,.085);
+      border:1px solid rgba(255,255,255,.09);
       color:#dbe7fb;
       font-size:14px;
-      font-weight:750;
+      font-weight:780;
+      overflow:hidden;
+    }
+
+    .chip::before{
+      content:"";
+      position:absolute;
+      left:15px;
+      top:50%;
+      width:15px;
+      height:15px;
+      border-radius:5px;
+      background:linear-gradient(135deg, var(--gold), var(--ice));
+      box-shadow:0 0 18px rgba(138,212,255,.35);
+      transform:translateY(-50%) rotate(45deg);
     }
 
     .chip b{color:var(--gold2)}
 
-    .hero-screen-card{
-      max-width:420px;
-      margin-inline:auto;
-      padding:18px;
-      border-radius:36px;
-      background:linear-gradient(180deg, rgba(255,255,255,.075), rgba(255,255,255,.035));
-      border:1px solid rgba(255,255,255,.13);
-      box-shadow:var(--shadow);
+    .hero-visual{
       position:relative;
+      min-height:650px;
+      border-radius:36px;
+      border:1px solid rgba(255,255,255,.11);
+      background:
+        radial-gradient(circle at 20% 0%, rgba(138,212,255,.18), transparent 33%),
+        linear-gradient(180deg, rgba(255,255,255,.07), rgba(255,255,255,.026));
+      box-shadow:var(--shadow);
+      overflow:hidden;
+      padding:24px;
     }
 
-    .hero-screen-card:after{
-      content:"マンション特化 / 投函管理 / 共有報告";
+    .hero-visual::before{
+      content:"";
       position:absolute;
-      left:24px;
-      right:24px;
-      bottom:-16px;
-      padding:12px 16px;
-      border-radius:999px;
-      text-align:center;
-      background:rgba(8,12,18,.88);
-      border:1px solid rgba(255,255,255,.14);
-      color:#fff4d9;
-      font-weight:900;
-      font-size:13px;
-      backdrop-filter:blur(12px);
+      inset:0;
+      background:
+        linear-gradient(90deg, rgba(138,212,255,.08) 1px, transparent 1px),
+        linear-gradient(0deg, rgba(255,255,255,.05) 1px, transparent 1px);
+      background-size:44px 44px;
+      mask-image:linear-gradient(180deg, rgba(0,0,0,.72), transparent 76%);
+      pointer-events:none;
     }
 
-    .hero-screen-card img{
+    .device-stack{
+      position:relative;
+      height:100%;
+      min-height:602px;
+    }
+
+    .phone{
+      position:absolute;
+      width:48%;
+      min-width:240px;
+      border-radius:34px;
+      padding:10px;
+      background:linear-gradient(180deg, rgba(255,255,255,.17), rgba(255,255,255,.04));
+      border:1px solid rgba(255,255,255,.15);
+      box-shadow:0 30px 72px rgba(0,0,0,.44);
+      backdrop-filter:blur(10px);
+      overflow:hidden;
+      transition:transform .28s ease;
+    }
+
+    .phone:hover{transform:translateY(-6px)}
+    .phone img{
       width:100%;
-      aspect-ratio:9 / 16;
+      aspect-ratio:9/18;
       object-fit:cover;
       object-position:top center;
-      border-radius:27px;
-      border:1px solid rgba(255,255,255,.12);
+      border-radius:26px;
+      border:1px solid rgba(255,255,255,.1);
       background:#05070b;
     }
 
-    section{padding:90px 0}
+    .phone-main{right:6px; top:0; z-index:3}
+    .phone-sub{left:0; bottom:54px; z-index:2; transform:rotate(-4deg)}
+    .phone-sub:hover{transform:rotate(-4deg) translateY(-6px)}
+    .phone-mini{left:36%; top:138px; width:38%; min-width:205px; z-index:1; transform:rotate(5deg); opacity:.88}
+    .phone-mini:hover{transform:rotate(5deg) translateY(-6px)}
+
+    .floating-panel{
+      position:absolute;
+      z-index:5;
+      left:18px;
+      right:18px;
+      bottom:18px;
+      display:grid;
+      grid-template-columns:repeat(3,minmax(0,1fr));
+      gap:10px;
+    }
+
+    .proof{
+      padding:13px 12px;
+      border-radius:18px;
+      background:rgba(6,8,12,.70);
+      border:1px solid rgba(255,255,255,.11);
+      backdrop-filter:blur(14px);
+    }
+    .proof strong{display:block;color:#fff1c7;font-size:17px;line-height:1.2}
+    .proof span{display:block;color:var(--muted);font-size:12px;line-height:1.45;margin-top:4px}
+
+    .launch-badge{
+      display:inline-flex;
+      align-items:center;
+      gap:8px;
+      margin-top:18px;
+      padding:10px 14px;
+      border-radius:999px;
+      background:rgba(68,240,208,.08);
+      border:1px solid rgba(68,240,208,.22);
+      color:#cffcf4;
+      font-size:13px;
+      font-weight:900;
+    }
+
+    section{padding:92px 0}
 
     .section-head{
       margin-bottom:34px;
       display:grid;
-      grid-template-columns:1fr .9fr;
+      grid-template-columns:1fr .92fr;
       gap:28px;
       align-items:end;
     }
 
     .section-head h2{
-      margin:12px 0 0;
-      font-size:clamp(28px, 4vw, 48px);
+      margin:14px 0 0;
+      font-size:clamp(29px, 4.2vw, 50px);
       line-height:1.12;
-      letter-spacing:-.03em;
+      letter-spacing:-.035em;
     }
 
-    .section-head p{color:var(--muted);margin:0}
-
-    .lead{
-      color:var(--muted);
-      font-size:16px;
-      max-width:860px;
-    }
-
-    .grid-2{
-      display:grid;
-      grid-template-columns:repeat(2,minmax(0,1fr));
-      gap:20px;
-    }
-
-    .grid-3{
-      display:grid;
-      grid-template-columns:repeat(3,minmax(0,1fr));
-      gap:20px;
-    }
-
-    .grid-4{
-      display:grid;
-      grid-template-columns:repeat(4,minmax(0,1fr));
-      gap:16px;
-    }
-
-    .card{
-      padding:28px;
-      border-radius:var(--radius);
-      background:linear-gradient(180deg, var(--panel), var(--panel2));
-      border:1px solid var(--line);
-      box-shadow:var(--shadow);
-    }
-
-    .card h3{
-      margin:0 0 10px;
-      font-size:23px;
-      line-height:1.3;
-      letter-spacing:-.02em;
-    }
-
-    .card p{
+    .section-head p{
       margin:0;
       color:var(--muted);
       font-size:15px;
     }
 
+    .lead{color:var(--muted);font-size:16px;max-width:860px}
+
+    .grid-2{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:20px}
+    .grid-3{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:20px}
+    .grid-4{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:16px}
+
+    .card{
+      position:relative;
+      padding:28px;
+      border-radius:var(--radius);
+      background:linear-gradient(180deg, var(--panel), var(--panel2));
+      border:1px solid var(--line);
+      box-shadow:var(--shadow2);
+      overflow:hidden;
+      transition:transform .26s ease, border-color .26s ease, background .26s ease;
+    }
+
+    .card::before{
+      content:"";
+      position:absolute;
+      inset:0;
+      background:
+        linear-gradient(135deg, rgba(138,212,255,.075), transparent 34%),
+        linear-gradient(315deg, rgba(197,168,106,.06), transparent 34%);
+      pointer-events:none;
+      opacity:.85;
+    }
+
+    .card:hover{
+      transform:translateY(-5px);
+      border-color:rgba(255,255,255,.18);
+      background:linear-gradient(180deg, rgba(255,255,255,.078), rgba(255,255,255,.038));
+    }
+
+    .card > *{position:relative;z-index:1}
+    .card h3{
+      margin:0 0 10px;
+      font-size:23px;
+      line-height:1.32;
+      letter-spacing:-.02em;
+    }
+    .card p{
+      margin:0;
+      color:var(--muted);
+      font-size:15px;
+    }
+    .card p + p{margin-top:12px}
     .card ul{
       margin:14px 0 0;
-      padding-left:1.1em;
+      padding:0;
+      list-style:none;
       color:var(--muted);
       font-size:14px;
     }
-
-    .card li{margin:.35em 0}
+    .card li{
+      position:relative;
+      margin:.48em 0;
+      padding-left:18px;
+    }
+    .card li::before{
+      content:"";
+      position:absolute;
+      left:0;
+      top:.82em;
+      width:7px;
+      height:7px;
+      border-radius:999px;
+      transform:translateY(-50%);
+      background:linear-gradient(135deg, var(--gold), var(--ice));
+    }
 
     .icon{
       width:54px;
@@ -385,75 +625,190 @@
       border:1px solid rgba(255,255,255,.1);
       margin-bottom:16px;
       font-size:23px;
-    }
-
-    .problem-card{
-      min-height:100%;
-    }
-
-    .problem-card strong{
-      color:#fff4d9;
+      box-shadow:inset 0 1px 0 rgba(255,255,255,.08);
     }
 
     .metric-card{
-      padding:20px;
-      border-radius:22px;
-      background:rgba(255,255,255,.045);
+      position:relative;
+      min-height:142px;
+      padding:22px 20px;
+      border-radius:24px;
+      background:
+        radial-gradient(circle at 16% 4%, rgba(138,212,255,.13), transparent 44%),
+        rgba(255,255,255,.045);
       border:1px solid var(--line2);
+      overflow:hidden;
+      transition:.24s ease;
     }
 
+    .metric-card:hover{transform:translateY(-4px);border-color:rgba(255,255,255,.15)}
     .metric-card .num{
       display:block;
       color:var(--gold2);
-      font-size:30px;
-      line-height:1.1;
+      font-size:32px;
+      line-height:1.05;
       font-weight:950;
-      letter-spacing:-.04em;
-      margin-bottom:8px;
+      letter-spacing:-.05em;
+      margin-bottom:10px;
+    }
+    .metric-card .label{display:block;color:var(--muted);font-size:13px;font-weight:780}
+    .metric-card .caption{display:block;color:var(--muted2);font-size:12px;line-height:1.55;margin-top:10px}
+
+    .story-panel{
+      display:grid;
+      grid-template-columns:1fr 1fr 1fr;
+      gap:20px;
     }
 
-    .metric-card .label{
-      color:var(--muted);
-      font-size:13px;
-      font-weight:750;
+    .story-card{
+      min-height:250px;
+      display:flex;
+      flex-direction:column;
+      justify-content:space-between;
     }
 
-    .screen-grid{
+    .story-card strong{
+      color:#fff4d9;
+      font-weight:950;
+    }
+
+    .sequence{
       display:grid;
       grid-template-columns:repeat(3,minmax(0,1fr));
-      gap:22px;
+      gap:18px;
     }
 
-    .screen-card{
-      padding:18px;
-      border-radius:28px;
+    .sequence-card{
+      min-height:100%;
+    }
+
+    .sequence-card .step-label{
+      display:inline-flex;
+      margin-bottom:14px;
+      padding:8px 12px;
+      border-radius:999px;
+      background:rgba(138,212,255,.09);
+      border:1px solid rgba(138,212,255,.17);
+      color:#cfeeff;
+      font-size:12px;
+      font-weight:900;
+      letter-spacing:.1em;
+    }
+
+    .screen-showcase{
+      display:grid;
+      grid-template-columns:1.02fr .98fr;
+      gap:22px;
+      align-items:stretch;
+    }
+
+    .screen-feature{
+      min-height:684px;
+      padding:20px;
+      border-radius:32px;
       background:linear-gradient(180deg, var(--panel), var(--panel2));
       border:1px solid var(--line);
       box-shadow:var(--shadow);
+      position:relative;
       overflow:hidden;
     }
 
-    .screen-card img{
+    .screen-feature img{
       width:100%;
-      aspect-ratio:9 / 16;
-      border-radius:21px;
-      border:1px solid rgba(255,255,255,.1);
-      background:#05070b;
+      height:100%;
+      min-height:638px;
+      max-height:760px;
       object-fit:cover;
       object-position:top center;
+      border-radius:24px;
+      border:1px solid rgba(255,255,255,.1);
+      background:#05070b;
     }
 
+    .screen-caption{
+      position:absolute;
+      left:34px;
+      right:34px;
+      bottom:34px;
+      padding:18px;
+      border-radius:20px;
+      background:rgba(5,7,10,.74);
+      border:1px solid rgba(255,255,255,.12);
+      backdrop-filter:blur(16px);
+    }
+    .screen-caption strong{display:block;font-size:22px;line-height:1.35;color:#fff1c7;margin-bottom:6px}
+    .screen-caption span{display:block;color:var(--muted);font-size:13px;line-height:1.55}
+
+    .screen-grid{
+      display:grid;
+      grid-template-columns:repeat(2,minmax(0,1fr));
+      gap:18px;
+    }
+
+    .screen-card{
+      padding:16px;
+      border-radius:26px;
+      background:linear-gradient(180deg, var(--panel), var(--panel2));
+      border:1px solid var(--line);
+      box-shadow:var(--shadow2);
+      overflow:hidden;
+      transition:.26s ease;
+    }
+
+    .screen-card:hover{transform:translateY(-5px);border-color:rgba(255,255,255,.17)}
+    .screen-card img{
+      width:100%;
+      height:294px;
+      object-fit:cover;
+      object-position:top center;
+      border-radius:19px;
+      border:1px solid rgba(255,255,255,.1);
+      background:#05070b;
+    }
     .screen-card h3{
-      margin:16px 0 8px;
-      font-size:22px;
+      margin:15px 0 7px;
+      font-size:20px;
       line-height:1.3;
       letter-spacing:-.02em;
     }
+    .screen-card p{margin:0;color:var(--muted);font-size:13px;line-height:1.65}
 
-    .screen-card p{
-      margin:0;
-      color:var(--muted);
-      font-size:14px;
+    .more-screen-grid{
+      display:grid;
+      grid-template-columns:repeat(4,minmax(0,1fr));
+      gap:16px;
+      margin-top:18px;
+    }
+
+    .mini-screen{
+      padding:14px;
+      border-radius:22px;
+      background:rgba(255,255,255,.04);
+      border:1px solid rgba(255,255,255,.09);
+      overflow:hidden;
+      transition:.24s ease;
+    }
+    .mini-screen:hover{transform:translateY(-4px);border-color:rgba(255,255,255,.16)}
+    .mini-screen img{
+      width:100%;
+      height:260px;
+      object-fit:cover;
+      object-position:top center;
+      border-radius:16px;
+      border:1px solid rgba(255,255,255,.08);
+    }
+    .mini-screen h3{margin:12px 0 5px;font-size:17px;line-height:1.3}
+    .mini-screen p{margin:0;color:var(--muted);font-size:12px;line-height:1.55}
+
+    .workflow-shell{
+      position:relative;
+      padding:26px;
+      border-radius:34px;
+      background:
+        linear-gradient(135deg, rgba(197,168,106,.08), rgba(138,212,255,.06)),
+        rgba(255,255,255,.035);
+      border:1px solid rgba(255,255,255,.10);
+      overflow:hidden;
     }
 
     .flow{
@@ -461,158 +816,214 @@
       grid-template-columns:repeat(6,minmax(0,1fr));
       gap:14px;
       counter-reset:flow;
+      position:relative;
+      z-index:1;
     }
 
     .flow-step{
       position:relative;
       padding:22px 18px;
       border-radius:24px;
-      background:linear-gradient(180deg, rgba(255,255,255,.055), rgba(255,255,255,.028));
+      background:linear-gradient(180deg, rgba(255,255,255,.06), rgba(255,255,255,.028));
       border:1px solid var(--line2);
-      min-height:180px;
+      min-height:194px;
+      overflow:hidden;
     }
 
-    .flow-step:before{
+    .flow-step::before{
       counter-increment:flow;
       content:"0" counter(flow);
       display:inline-flex;
       align-items:center;
       justify-content:center;
-      width:38px;
-      height:38px;
+      width:39px;
+      height:39px;
       border-radius:999px;
       background:linear-gradient(135deg, #d8bd85, #8ad4ff);
       color:#071018;
       font-size:13px;
       font-weight:950;
       margin-bottom:14px;
+      box-shadow:0 10px 24px rgba(138,212,255,.16);
     }
 
-    .flow-step h3{
-      margin:0 0 8px;
-      font-size:17px;
-      line-height:1.35;
+    .flow-step h3{margin:0 0 8px;font-size:17px;line-height:1.35}
+    .flow-step p{margin:0;color:var(--muted);font-size:13px;line-height:1.62}
+
+    .split-panel{
+      display:grid;
+      grid-template-columns:1fr 1fr;
+      gap:20px;
+      align-items:stretch;
     }
 
-    .flow-step p{
-      margin:0;
-      color:var(--muted);
-      font-size:13px;
+    .feature-stack{
+      display:grid;
+      gap:14px;
     }
 
-    .feature-group{
-      margin-top:20px;
-      padding:24px;
-      border-radius:30px;
-      background:rgba(255,255,255,.03);
+    .feature-mini{
+      display:grid;
+      grid-template-columns:auto 1fr;
+      gap:14px;
+      align-items:start;
+      padding:18px;
+      border-radius:22px;
+      background:rgba(255,255,255,.04);
       border:1px solid rgba(255,255,255,.08);
     }
 
-    .feature-group h3{
-      display:flex;
-      align-items:center;
-      gap:10px;
-      margin:0 0 14px;
-      font-size:24px;
-      letter-spacing:-.02em;
-    }
-
-    .feature-line{
+    .feature-mini .small-icon{
+      width:42px;
+      height:42px;
+      border-radius:14px;
       display:grid;
-      grid-template-columns:260px 1fr;
-      gap:18px;
-      padding:20px 0;
-      border-top:1px solid rgba(255,255,255,.08);
+      place-items:center;
+      background:linear-gradient(135deg, rgba(138,212,255,.16), rgba(197,168,106,.12));
+      border:1px solid rgba(255,255,255,.08);
     }
 
-    .feature-line:first-of-type{border-top:0}
+    .feature-mini h3{margin:0 0 4px;font-size:17px;line-height:1.3}
+    .feature-mini p{margin:0;color:var(--muted);font-size:13px;line-height:1.55}
 
-    .feature-line strong{
-      color:#fff3d0;
-      font-size:17px;
-      line-height:1.55;
+    .role-grid{
+      display:grid;
+      grid-template-columns:repeat(4,minmax(0,1fr));
+      gap:16px;
     }
 
-    .feature-line p{
-      margin:0;
-      color:var(--muted);
-      font-size:15px;
+    .role-card{
+      min-height:100%;
     }
 
-    .role-table{
-      width:100%;
-      border-collapse:separate;
-      border-spacing:0;
-      overflow:hidden;
-      border-radius:24px;
-      border:1px solid var(--line);
-      background:rgba(255,255,255,.035);
-      box-shadow:var(--shadow);
-    }
-
-    .role-table th,
-    .role-table td{
-      padding:18px 16px;
-      text-align:left;
-      vertical-align:top;
-      border-bottom:1px solid rgba(255,255,255,.08);
-      color:var(--muted);
-      font-size:14px;
-    }
-
-    .role-table th{
-      color:#fff3d0;
-      background:rgba(255,255,255,.055);
-      font-size:15px;
-      white-space:nowrap;
-    }
-
-    .role-table tr:last-child td{border-bottom:0}
-    .role-table strong{color:#fff}
-
-    .plan-card{
-      position:relative;
-      overflow:hidden;
-    }
-
-    .plan-card:before{
-      content:"";
-      position:absolute;
-      inset:0;
-      background:linear-gradient(135deg, rgba(197,168,106,.11), transparent 42%, rgba(138,212,255,.08));
-      pointer-events:none;
-    }
-
-    .plan-card > *{position:relative;z-index:1}
-
-    .plan-name{
-      color:var(--gold2);
-      font-size:13px;
-      font-weight:950;
-      letter-spacing:.14em;
-      margin-bottom:8px;
-    }
-
-    .plan-card h3{
-      margin-bottom:8px;
-    }
-
-    .badge{
+    .role-tag{
       display:inline-flex;
       align-items:center;
       gap:8px;
+      margin-bottom:12px;
       padding:8px 12px;
       border-radius:999px;
-      border:1px solid rgba(255,255,255,.12);
-      background:rgba(255,255,255,.05);
-      color:#dceaff;
+      background:rgba(255,255,255,.045);
+      border:1px solid rgba(255,255,255,.1);
+      color:#fff3d0;
       font-size:12px;
-      font-weight:850;
-      margin:0 8px 8px 0;
+      font-weight:900;
+      letter-spacing:.1em;
     }
 
+    .plan-card{
+      position:relative;
+      min-height:100%;
+    }
+
+    .plan-card::after{
+      content:"";
+      position:absolute;
+      inset:0;
+      background:linear-gradient(135deg, rgba(197,168,106,.11), transparent 44%, rgba(138,212,255,.085));
+      pointer-events:none;
+      opacity:.75;
+    }
+
+    .plan-card > *{position:relative;z-index:2}
+    .plan-name{
+      display:inline-flex;
+      align-items:center;
+      margin-bottom:12px;
+      padding:8px 12px;
+      border-radius:999px;
+      color:#fff3d0;
+      background:rgba(197,168,106,.10);
+      border:1px solid rgba(197,168,106,.18);
+      font-size:12px;
+      font-weight:950;
+      letter-spacing:.14em;
+    }
+    .plan-note{
+      display:block;
+      margin-top:12px;
+      color:var(--muted2);
+      font-size:12px;
+      line-height:1.5;
+    }
+
+    .feature-group{
+      margin-top:18px;
+      border-radius:30px;
+      background:rgba(255,255,255,.035);
+      border:1px solid rgba(255,255,255,.085);
+      overflow:hidden;
+      box-shadow:var(--shadow2);
+    }
+
+    .feature-group summary{
+      cursor:pointer;
+      list-style:none;
+      padding:24px 28px;
+      font-size:22px;
+      font-weight:950;
+      line-height:1.35;
+      color:#fff3d0;
+      display:flex;
+      align-items:center;
+      justify-content:space-between;
+      gap:16px;
+      background:linear-gradient(135deg, rgba(197,168,106,.08), rgba(138,212,255,.055));
+    }
+    .feature-group summary::-webkit-details-marker{display:none}
+    .feature-group summary::after{
+      content:"+";
+      width:34px;
+      height:34px;
+      border-radius:999px;
+      display:grid;
+      place-items:center;
+      background:rgba(255,255,255,.06);
+      border:1px solid rgba(255,255,255,.12);
+      color:#fff;
+      flex:0 0 auto;
+      transition:.2s ease;
+    }
+    .feature-group[open] summary::after{content:"−";transform:rotate(180deg)}
+    .feature-lines{padding:8px 28px 24px}
+
+    .feature-line{
+      display:grid;
+      grid-template-columns:250px 1fr;
+      gap:18px;
+      padding:19px 0;
+      border-top:1px solid rgba(255,255,255,.08);
+    }
+
+    .feature-line:first-child{border-top:0}
+    .feature-line strong{color:#fff3d0;font-size:16px;line-height:1.55}
+    .feature-line p{margin:0;color:var(--muted);font-size:14px;line-height:1.72}
+
+    .faq-grid{
+      display:grid;
+      grid-template-columns:1fr 1fr;
+      gap:14px;
+    }
+
+    .faq-item{
+      border-radius:22px;
+      background:rgba(255,255,255,.04);
+      border:1px solid rgba(255,255,255,.09);
+      padding:20px 22px;
+    }
+    .faq-item summary{
+      list-style:none;
+      cursor:pointer;
+      font-weight:900;
+      color:#fff3d0;
+      line-height:1.55;
+    }
+    .faq-item summary::-webkit-details-marker{display:none}
+    .faq-item p{margin:12px 0 0;color:var(--muted);font-size:14px}
+
     .cta-panel{
-      padding:34px;
+      position:relative;
+      padding:38px;
       border-radius:34px;
       background:
         linear-gradient(135deg, rgba(197,168,106,.16), rgba(138,212,255,.11)),
@@ -623,29 +1034,37 @@
       grid-template-columns:1.2fr .8fr;
       gap:24px;
       align-items:center;
+      overflow:hidden;
     }
 
+    .cta-panel::after{
+      content:"";
+      position:absolute;
+      width:320px;
+      height:320px;
+      right:-130px;
+      top:-150px;
+      border-radius:999px;
+      background:radial-gradient(circle, rgba(138,212,255,.22), transparent 70%);
+      pointer-events:none;
+    }
+    .cta-panel > *{position:relative;z-index:1}
     .cta-panel h2{
-      margin:0 0 10px;
-      font-size:clamp(28px, 4vw, 44px);
+      margin:14px 0 10px;
+      font-size:clamp(29px, 4.2vw, 48px);
       line-height:1.15;
-      letter-spacing:-.03em;
+      letter-spacing:-.035em;
     }
-
-    .cta-panel p{
-      margin:0;
-      color:var(--muted);
-    }
-
+    .cta-panel p{margin:0;color:var(--muted)}
     .cta-actions{
       display:flex;
       flex-wrap:wrap;
-      gap:12px;
       justify-content:flex-end;
+      gap:12px;
     }
 
     footer{
-      padding:34px 0 64px;
+      padding:34px 0 78px;
       color:var(--muted);
       border-top:1px solid rgba(255,255,255,.07);
     }
@@ -660,46 +1079,237 @@
 
     .small{font-size:13px;color:var(--muted2);margin:0}
 
-    @media (max-width:1080px){
-      .hero-grid{grid-template-columns:1fr}
-      .grid-3,.screen-grid{grid-template-columns:1fr 1fr}
-      .grid-4{grid-template-columns:1fr 1fr}
-      .section-head{grid-template-columns:1fr}
+    .mobile-cta{
+      position:fixed;
+      left:12px;
+      right:12px;
+      bottom:12px;
+      z-index:1300;
+      display:none;
+      grid-template-columns:1fr 1fr;
+      gap:8px;
+      padding:8px;
+      border-radius:22px;
+      background:rgba(7,9,13,.82);
+      border:1px solid rgba(255,255,255,.12);
+      box-shadow:0 18px 60px rgba(0,0,0,.48);
+      backdrop-filter:blur(16px);
+      -webkit-backdrop-filter:blur(16px);
+    }
+
+    .mobile-cta a{
+      min-height:46px;
+      border-radius:16px;
+      display:grid;
+      place-items:center;
+      font-size:12px;
+      font-weight:950;
+      line-height:1.2;
+      text-align:center;
+      padding:8px;
+    }
+    .mobile-cta .primary{
+      color:#071018;
+      background:linear-gradient(135deg, #d8bd85, #fff0c8, #8ad4ff);
+    }
+    .mobile-cta .secondary{
+      background:rgba(255,255,255,.06);
+      border:1px solid rgba(255,255,255,.11);
+      color:#fff;
+    }
+
+    .reveal{
+      opacity:0;
+      transform:translateY(28px);
+      transition:opacity .72s ease, transform .72s ease;
+    }
+    .reveal.in-view{
+      opacity:1;
+      transform:translateY(0);
+    }
+
+    @media (max-width:1120px){
+      .hero-grid,.section-head,.screen-showcase,.split-panel,.cta-panel{grid-template-columns:1fr}
+      .grid-3{grid-template-columns:1fr 1fr}
+      .grid-4,.role-grid,.more-screen-grid{grid-template-columns:1fr 1fr}
+      .story-panel,.sequence{grid-template-columns:1fr}
       .flow{grid-template-columns:repeat(3,minmax(0,1fr))}
-      .cta-panel{grid-template-columns:1fr}
       .cta-actions{justify-content:flex-start}
+      .hero-visual{min-height:610px}
+      .device-stack{min-height:562px}
     }
 
     @media (max-width:760px){
-      .container{width:min(var(--max), calc(100% - 24px))}
-      .nav{min-height:68px}
+      :root{--nav-h:68px}
+      .container{width:min(100% - 24px, var(--max))}
+      .nav{gap:10px}
       .nav-links{display:none}
-      .nav-actions{gap:0; flex:0 0 auto;}
-      .nav-home-button{min-height:40px; padding:10px 13px; font-size:12px;}
-      .brand{font-size:13px;letter-spacing:.04em;max-width:calc(100vw - 150px)}
-      .brand small{font-size:9px;letter-spacing:.12em}
+      .nav-actions{gap:0;flex:0 0 auto}
+      .nav-home-button{min-height:40px;padding:10px 13px;font-size:12px;max-width:100px}
+      .brand{gap:10px;font-size:13px;letter-spacing:.04em;flex:1 1 auto;overflow:hidden}
       .brand-logo{width:46px;height:46px;border-radius:13px}
-      .hero{padding:62px 0 56px}
-      .hero-points,.grid-2,.grid-3,.grid-4,.screen-grid,.flow{grid-template-columns:1fr}
-      .card{padding:24px}
-      .feature-line{grid-template-columns:1fr;gap:6px;padding:18px 0}
-      .btn{width:100%}
-      h1{font-size:clamp(34px, 12vw, 52px)}
-      .hero-screen-card{max-width:360px}
+      .brand-text{min-width:0}
+      .brand small{font-size:9px;letter-spacing:.12em}
+      .hero{padding:58px 0 56px}
+      h1{font-size:clamp(34px, 11.6vw, 52px);line-height:1.11;letter-spacing:-.045em}
+      .hero-copy{font-size:15px}
+      .hero-actions{display:grid;grid-template-columns:1fr;gap:10px}
+      .hero-actions .btn{width:100%;padding-inline:18px}
+      .hero-points,.grid-2,.grid-3,.grid-4,.screen-grid,.more-screen-grid,.flow,.role-grid,.faq-grid{grid-template-columns:1fr}
+      .card,.cta-panel,.workflow-shell{padding:22px;border-radius:24px}
       section{padding:66px 0}
-      .role-table{display:block;overflow-x:auto;white-space:nowrap}
-      .role-table td{white-space:normal;min-width:220px}
-      .cta-panel{padding:26px}
+      .hero-visual{min-height:572px;padding:16px;border-radius:28px}
+      .device-stack{min-height:538px}
+      .phone{width:62%;min-width:0;border-radius:28px;padding:8px}
+      .phone img{border-radius:21px}
+      .phone-main{right:0;top:0}
+      .phone-sub{left:0;bottom:92px}
+      .phone-mini{display:none}
+      .floating-panel{grid-template-columns:1fr;left:12px;right:12px;bottom:12px;gap:8px}
+      .proof{padding:10px 12px;border-radius:14px}
+      .proof strong{font-size:15px}
+      .proof span{font-size:11px}
+      .screen-feature{min-height:520px;padding:16px;border-radius:26px}
+      .screen-feature img{min-height:486px;max-height:590px;border-radius:20px}
+      .screen-caption{left:26px;right:26px;bottom:26px;padding:14px;border-radius:16px}
+      .screen-caption strong{font-size:18px}
+      .screen-card img{height:360px}
+      .mini-screen img{height:350px}
+      .feature-line{grid-template-columns:1fr;gap:6px;padding:17px 0}
+      .feature-group summary{padding:21px 20px;font-size:18px}
+      .feature-lines{padding:6px 20px 20px}
+      .eyebrow{font-size:12px;line-height:1.45;white-space:normal;width:auto}
+      .btn{width:100%}
+      .cta-actions{display:grid;grid-template-columns:1fr;width:100%}
+      .mobile-cta{display:grid}
+      footer{padding-bottom:96px}
+    }
+
+    @media (max-width:420px){
+      h1{font-size:clamp(30px, 10.3vw, 40px);line-height:1.16}
+      .brand-logo{width:42px;height:42px}
+      .brand small{font-size:8px}
+      .brand-text{font-size:12.5px}
+      .hero-visual{min-height:538px}
+      .device-stack{min-height:505px}
+      .screen-card img,.mini-screen img{height:318px}
+    }
+
+    @media (prefers-reduced-motion: reduce){
+      html{scroll-behavior:auto}
+      *,*::before,*::after{
+        animation-duration:.01ms!important;
+        animation-iteration-count:1!important;
+        transition-duration:.01ms!important;
+      }
+      .reveal{opacity:1;transform:none}
     }
   </style>
+
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "SoftwareApplication",
+    "name": "HIGH QUALITY POSTINGアプリ",
+    "alternateName": "HQPアプリ",
+    "applicationCategory": "BusinessApplication",
+    "operatingSystem": "iOS, Android, Web",
+    "url": "https://highqualityposting.jp/hqp-app.html",
+    "image": "https://highqualityposting.jp/logo.jpg",
+    "description": "マンション特化のマッピング、ルート作成、投函入力、未完了ルート管理、配布カレンダー、日報、タイムライン、PDF・Excel出力、共有URL、スタッフ・スポット招待までを一元管理するポスティング業務管理アプリ。",
+    "publisher": {
+      "@type": "Organization",
+      "name": "HIGH QUALITY POSTING",
+      "url": "https://highqualityposting.jp/"
+    },
+    "featureList": [
+      "全体マッピング",
+      "ルート作成",
+      "投函入力",
+      "未完了ルート管理",
+      "配布カレンダー",
+      "日報",
+      "投函タイムライン",
+      "PDF・Excel出力",
+      "共有URL",
+      "スタッフ・スポット招待",
+      "複数管理者運用"
+    ]
+  }
+  </script>
+
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "BreadcrumbList",
+    "itemListElement": [
+      {
+        "@type": "ListItem",
+        "position": 1,
+        "name": "HIGH QUALITY POSTING",
+        "item": "https://highqualityposting.jp/"
+      },
+      {
+        "@type": "ListItem",
+        "position": 2,
+        "name": "HQPアプリ",
+        "item": "https://highqualityposting.jp/hqp-app.html"
+      }
+    ]
+  }
+  </script>
+
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "FAQPage",
+    "mainEntity": [
+      {
+        "@type": "Question",
+        "name": "HQPアプリでは何を管理できますか？",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "全体マッピング、ルート作成、投函入力、未完了ルート管理、配布カレンダー、日報、投函タイムライン、PDF・Excel出力、共有URL、スタッフ・スポット招待などを一元管理できます。"
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "無料で使える機能はありますか？",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "全体マップ閲覧、検索・条件フィルター、お気に入りルート作成、投函機能、なぞり選択、円範囲選択などを無料機能として案内しています。"
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "有料プランでは何が解放されますか？",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "会社単位管理、複数管理者運用、スタッフ・スポット招待、日報出力・共有、タイムライン共有、クライアント別フォルダー共有、配布カレンダー管理などが利用できます。"
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "アプリを入れていないクライアントにも報告できますか？",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "日報、タイムライン、ルートなどを共有URLで発行し、アプリ未導入者にも報告内容を確認してもらえる運用を想定しています。"
+        }
+      }
+    ]
+  }
+  </script>
 </head>
 
 <body>
+  <a class="skip-link" href="#main">本文へ移動</a>
+  <div class="scroll-progress" id="scrollProgress" aria-hidden="true"></div>
+
   <header class="topbar">
     <div class="container nav">
       <a href="index.html" class="brand" aria-label="HIGH QUALITY POSTING ホームへ戻る">
         <img src="logo.jpg" alt="HIGH QUALITY POSTING ロゴ" class="brand-logo">
-        <span>
+        <span class="brand-text">
           HIGH QUALITY POSTING
           <small>POSTING MANAGEMENT APP</small>
         </span>
@@ -709,9 +1319,10 @@
         <nav class="nav-links" aria-label="ページ内ナビゲーション">
           <a href="#overview">概要</a>
           <a href="#screens">画面</a>
-          <a href="#operation">運用の流れ</a>
-          <a href="#free">無料機能</a>
-          <a href="#paid">有料機能</a>
+          <a href="#operation">運用</a>
+          <a href="#free">無料</a>
+          <a href="#paid">有料</a>
+          <a href="#roles">権限</a>
           <a href="#features">全機能</a>
         </nav>
         <a class="nav-home-button" href="index.html" aria-label="HIGH QUALITY POSTINGホームページへ戻る">配布HPへ</a>
@@ -719,10 +1330,10 @@
     </div>
   </header>
 
-  <main>
-    <section class="hero" id="overview">
+  <main id="main">
+    <section class="hero anchor-offset" id="overview">
       <div class="container hero-grid">
-        <div>
+        <div class="reveal">
           <div class="eyebrow">HIGH QUALITY POSTING APP</div>
           <h1>
             ポスティングを、<br>
@@ -734,28 +1345,56 @@
             HIGH QUALITY POSTINGアプリは、<strong>マンション特化のマッピング、ルート作成、投函入力、未完了ルート管理、配布予定・配布済みカレンダー、日報、タイムライン、PDF・Excel出力、共有URL、スタッフ・スポット招待</strong>までを一元管理するポスティング業務専用アプリです。※近日公開予定
           </p>
 
+          <div class="launch-badge">COMING SOON / ポスティング業務管理専用</div>
+
           <div class="hero-actions">
             <a class="btn btn-primary" href="#screens">アプリ画面を見る</a>
+            <a class="btn btn-secondary" href="#features">全機能を見る</a>
             <a class="btn btn-secondary" href="index.html">ホームへ戻る</a>
           </div>
 
           <div class="hero-points" aria-label="主要機能">
-            <div class="chip">✔ <b>全体マッピング</b>で対象建物を可視化</div>
-            <div class="chip">✔ <b>投函入力</b>で現場記録を正確に保存</div>
-            <div class="chip">✔ <b>日報・タイムライン</b>を共有URLで報告</div>
-            <div class="chip">✔ <b>会社単位</b>でスタッフ・案件を管理</div>
+            <div class="chip"><b>全体マッピング</b>で対象建物を可視化</div>
+            <div class="chip"><b>投函入力</b>で現場記録を正確に保存</div>
+            <div class="chip"><b>日報・タイムライン</b>を共有URLで報告</div>
+            <div class="chip"><b>会社単位</b>でスタッフ・案件を管理</div>
           </div>
         </div>
 
-        <div class="hero-screen-card">
-          <img src="app-screen-home.png" alt="HIGH QUALITY POSTINGアプリ ホーム画面">
+        <div class="hero-visual reveal" aria-label="HQPアプリの画面イメージ">
+          <div class="device-stack">
+            <div class="phone phone-main">
+              <img src="app-screen-home.png" alt="HIGH QUALITY POSTINGアプリ ホーム画面">
+            </div>
+            <div class="phone phone-sub">
+              <img src="app-screen-overall-mapping.png" alt="HQPアプリ 全体マッピング画面">
+            </div>
+            <div class="phone phone-mini">
+              <img src="app-screen-daily-report-detail.png" alt="HQPアプリ 日報詳細画面">
+            </div>
+
+            <div class="floating-panel">
+              <div class="proof">
+                <strong>Map</strong>
+                <span>マンションを地図上で管理</span>
+              </div>
+              <div class="proof">
+                <strong>Route</strong>
+                <span>案件ごとにルート化</span>
+              </div>
+              <div class="proof">
+                <strong>Report</strong>
+                <span>日報・共有URLへ反映</span>
+              </div>
+            </div>
+          </div>
         </div>
       </div>
     </section>
 
     <section class="anchor-offset">
       <div class="container">
-        <div class="section-head">
+        <div class="section-head reveal">
           <div>
             <p class="eyebrow">WHY HQP APP</p>
             <h2>現場・管理者・クライアントを<br>同じ情報でつなぐ。</h2>
@@ -766,17 +1405,70 @@
         </div>
 
         <div class="grid-4">
-          <div class="metric-card"><span class="num">Map</span><span class="label">マンションを地図上で管理</span></div>
-          <div class="metric-card"><span class="num">Route</span><span class="label">配布ルートを作成・整理</span></div>
-          <div class="metric-card"><span class="num">Report</span><span class="label">日報・タイムラインを自動集計</span></div>
-          <div class="metric-card"><span class="num">Share</span><span class="label">URL・PDF・Excelで外部共有</span></div>
+          <div class="metric-card reveal">
+            <span class="num">Map</span>
+            <span class="label">マンションを地図上で管理</span>
+            <span class="caption">分譲・賃貸・建物情報を可視化</span>
+          </div>
+          <div class="metric-card reveal">
+            <span class="num">Route</span>
+            <span class="label">配布ルートを作成・整理</span>
+            <span class="caption">案件別・クライアント別に整理</span>
+          </div>
+          <div class="metric-card reveal">
+            <span class="num">Input</span>
+            <span class="label">投函入力を現場で記録</span>
+            <span class="caption">枚数・時刻・位置を履歴化</span>
+          </div>
+          <div class="metric-card reveal">
+            <span class="num">Share</span>
+            <span class="label">URL・PDF・Excelで外部共有</span>
+            <span class="caption">アプリ未導入者にも報告</span>
+          </div>
         </div>
       </div>
     </section>
 
     <section class="anchor-offset">
       <div class="container">
-        <div class="section-head">
+        <div class="section-head reveal">
+          <div>
+            <p class="eyebrow">CONTROL TOWER</p>
+            <h2>配布前・配布中・配布後を<br>一つの業務導線にする。</h2>
+          </div>
+          <p>
+            HQPアプリの価値は、機能が多いことではなく、現場の入力がそのまま管理・報告に変わることです。ポスティングの属人的な運用を、再現性のあるデータ運用へ近づけます。
+          </p>
+        </div>
+
+        <div class="sequence">
+          <article class="card sequence-card reveal">
+            <span class="step-label">BEFORE</span>
+            <div class="icon">🗺️</div>
+            <h3>配布前の設計</h3>
+            <p>全体マップから対象マンションを選び、なぞり選択・円範囲選択・手動選択でルートを作成。クライアント別フォルダーで案件を整理します。</p>
+          </article>
+
+          <article class="card sequence-card reveal">
+            <span class="step-label">DURING</span>
+            <div class="icon">📮</div>
+            <h3>配布中の記録</h3>
+            <p>現場で建物ごとの投函枚数を入力し、投函時刻・入力位置・進捗・未投函状態を確認。注意メモも現場で確認できます。</p>
+          </article>
+
+          <article class="card sequence-card reveal">
+            <span class="step-label">AFTER</span>
+            <div class="icon">📊</div>
+            <h3>配布後の報告</h3>
+            <p>日報、投函タイムライン、配布カレンダー、PDF・Excel、共有URLを使い、クライアントが確認しやすい形で報告できます。</p>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <section class="anchor-offset">
+      <div class="container">
+        <div class="section-head reveal">
           <div>
             <p class="eyebrow">SOLVES</p>
             <h2>ポスティング現場の<br>面倒な管理をまとめて解決。</h2>
@@ -786,23 +1478,29 @@
           </p>
         </div>
 
-        <div class="grid-3">
-          <article class="card problem-card">
-            <div class="icon">🗺️</div>
-            <h3>どこに配るかを可視化</h3>
-            <p><strong>分譲・賃貸マンション、築年月、参考投函枚数</strong>を地図上で確認。なぞり選択や円範囲選択で、配布対象の把握を効率化します。</p>
+        <div class="story-panel">
+          <article class="card story-card reveal">
+            <div>
+              <div class="icon">🗺️</div>
+              <h3>どこに配るかを可視化</h3>
+              <p><strong>分譲・賃貸マンション、築年月、参考投函枚数</strong>を地図上で確認。なぞり選択や円範囲選択で、配布対象の把握を効率化します。</p>
+            </div>
           </article>
 
-          <article class="card problem-card">
-            <div class="icon">📮</div>
-            <h3>現場の投函を記録</h3>
-            <p>建物ごとの投函枚数、入力時刻、入力位置を保存。投函済み・未投函を地図上で確認しながら作業できます。</p>
+          <article class="card story-card reveal">
+            <div>
+              <div class="icon">📮</div>
+              <h3>現場の投函を記録</h3>
+              <p>建物ごとの投函枚数、入力時刻、入力位置を保存。投函済み・未投函を地図上で確認しながら作業できます。</p>
+            </div>
           </article>
 
-          <article class="card problem-card">
-            <div class="icon">📊</div>
-            <h3>報告資料を作成</h3>
-            <p>日報・タイムライン・配布カレンダーを確認し、PDF・Excel・共有URLでクライアントへ報告できます。</p>
+          <article class="card story-card reveal">
+            <div>
+              <div class="icon">📊</div>
+              <h3>報告資料を作成</h3>
+              <p>日報・タイムライン・配布カレンダーを確認し、PDF・Excel・共有URLでクライアントへ報告できます。</p>
+            </div>
           </article>
         </div>
       </div>
@@ -810,87 +1508,99 @@
 
     <section id="screens" class="anchor-offset">
       <div class="container">
-        <div class="section-head">
+        <div class="section-head reveal">
           <div>
             <p class="eyebrow">APP SCREENS</p>
             <h2>アプリ画面</h2>
           </div>
           <p>
-            
+            管理者ページ、全体マッピング、投函、日報、タイムライン、共有、配布カレンダーまで。現場と管理者が迷わず使えるように、業務フローごとに画面を整理しています。
           </p>
         </div>
 
-        <div class="screen-grid">
-          <article class="screen-card">
-            <img src="app-screen-admin.png" alt="管理者ページ">
-            <h3>管理者ページ</h3>
-            <p>仮ピン承認、注意事項追加、日報、タイムライン、招待コード発行、招待アカウント管理を行えます。</p>
-          </article>
+        <div class="screen-showcase">
+          <div class="screen-feature reveal">
+            <img src="app-screen-admin.png" alt="HQPアプリ 管理者ページ">
+            <div class="screen-caption">
+              <strong>管理者ページ</strong>
+              <span>仮ピン承認、注意事項追加、日報、タイムライン、招待コード発行、招待アカウント管理を行えます。</span>
+            </div>
+          </div>
 
-          <article class="screen-card">
-            <img src="app-screen-overall-mapping.png" alt="全体マッピング画面">
-            <h3>全体マッピング</h3>
-            <p>分譲・賃貸マンションを地図上で確認。検索、フィルター、なぞり選択、円範囲選択、ルート作成に対応します。</p>
-          </article>
+          <div class="screen-grid">
+            <article class="screen-card reveal">
+              <img src="app-screen-overall-mapping.png" alt="全体マッピング画面">
+              <h3>全体マッピング</h3>
+              <p>分譲・賃貸マンションを地図上で確認。検索、フィルター、なぞり選択、円範囲選択、ルート作成に対応します。</p>
+            </article>
 
-          <article class="screen-card">
-            <img src="app-screen-active-posting.png" alt="投函画面">
-            <h3>投函画面</h3>
-            <p>配布スタッフは配布中の進捗、投函枚数、ルート上の対象建物、未投函・投函済み状態を確認できます。</p>
-          </article>
+            <article class="screen-card reveal">
+              <img src="app-screen-active-posting.png" alt="投函画面">
+              <h3>投函画面</h3>
+              <p>配布スタッフは配布中の進捗、投函枚数、ルート上の対象建物、未投函・投函済み状態を確認できます。</p>
+            </article>
 
-          <article class="screen-card">
-            <img src="app-screen-delivery-map.png" alt="投函入力画面">
-            <h3>投函入力</h3>
-            <p>現地でマンションごとに投函枚数を入力。入力時刻と位置情報を記録し、日報・タイムラインへ反映します。</p>
-          </article>
+            <article class="screen-card reveal">
+              <img src="app-screen-delivery-map.png" alt="投函入力画面">
+              <h3>投函入力</h3>
+              <p>現地でマンションごとに投函枚数を入力。入力時刻と位置情報を記録し、日報・タイムラインへ反映します。</p>
+            </article>
 
-          <article class="screen-card">
+            <article class="screen-card reveal">
+              <img src="app-screen-posting-map.png" alt="投函タイムラインマップ画面">
+              <h3>投函タイムラインマップ</h3>
+              <p>勤務開始、勤務終了、各マンション投函入力を行った位置を可視化。共有URLで外部にも報告できます。</p>
+            </article>
+          </div>
+        </div>
+
+        <div class="more-screen-grid">
+          <article class="mini-screen reveal">
             <img src="app-screen-delivery-complete.png" alt="勤務完了画面">
             <h3>勤務完了</h3>
-            <p>進捗100%や本日の投函完了状態を視覚的に確認。途中終了・未完了ルートの管理にもつなげられます。</p>
+            <p>進捗100%や本日の投函完了状態を視覚的に確認。</p>
           </article>
 
-          <article class="screen-card">
-            <img src="app-screen-posting-map.png" alt="投函タイムラインマップ画面">
-            <h3>投函タイムラインマップ</h3>
-            <p>勤務開始、勤務終了、各マンション投函入力を行った位置を可視化。共有URLで外部にも報告できます。</p>
-          </article>
-
-          <article class="screen-card">
+          <article class="mini-screen reveal">
             <img src="app-screen-note.png" alt="建物注意メモ登録画面">
             <h3>建物注意メモ</h3>
-            <p>建物ごとの注意事項を登録し、現場スタッフへ共有。配布禁止や投函時の注意確認に活用できます。</p>
+            <p>建物ごとの注意事項を登録し、現場スタッフへ共有。</p>
           </article>
 
-          <article class="screen-card">
+          <article class="mini-screen reveal">
             <img src="app-screen-daily-report-detail.png" alt="日報詳細画面">
             <h3>日報詳細</h3>
-            <p>日別・ルート別・建物別に投函枚数と入力時刻を確認。クライアント別の集計にも対応します。</p>
+            <p>日別・ルート別・建物別に投函枚数と入力時刻を確認。</p>
           </article>
 
-          <article class="screen-card">
+          <article class="mini-screen reveal">
             <img src="app-screen-timeline-detail.png" alt="投函タイムライン詳細画面">
             <h3>投函タイムライン</h3>
-            <p>勤務開始、勤務終了、建物ごとの投函履歴を時系列で確認。ルート別・クライアント別の確認に対応します。</p>
+            <p>勤務開始、勤務終了、建物ごとの投函履歴を時系列で確認。</p>
           </article>
 
-          <article class="screen-card">
+          <article class="mini-screen reveal">
             <img src="app-screen-daily-report-share.png" alt="日報共有画面">
             <h3>日報共有</h3>
-            <p>カテゴリ別の投函結果をPDF、Excel、共有URLで出力。アプリ未導入者にも報告できます。</p>
+            <p>カテゴリ別の投函結果をPDF、Excel、共有URLで出力。</p>
           </article>
 
-          <article class="screen-card">
+          <article class="mini-screen reveal">
             <img src="app-screen-delivery-calendar.png" alt="配布カレンダー画面">
             <h3>配布カレンダー</h3>
-            <p>配布済み・配布予定を月間カレンダーで表示。日別の投函枚数、ルート数、クライアント別状況を確認できます。</p>
+            <p>配布済み・配布予定を月間カレンダーで表示。</p>
           </article>
 
-          <article class="screen-card">
+          <article class="mini-screen reveal">
             <img src="app-screen-favorite-route.png" alt="お気に入りルート画面">
             <h3>お気に入りルート</h3>
-            <p>クライアント別・案件別に配布ルートを整理。単発共有、フォルダー共有、スタッフ・スポット向け共有に対応します。</p>
+            <p>クライアント別・案件別に配布ルートを整理。</p>
+          </article>
+
+          <article class="mini-screen reveal">
+            <img src="app-screen-home.png" alt="HIGH QUALITY POSTINGアプリ ホーム画面">
+            <h3>ホーム</h3>
+            <p>各管理機能・配布機能へ迷わず移動。</p>
           </article>
         </div>
       </div>
@@ -898,7 +1608,7 @@
 
     <section id="operation" class="anchor-offset">
       <div class="container">
-        <div class="section-head">
+        <div class="section-head reveal">
           <div>
             <p class="eyebrow">WORKFLOW</p>
             <h2>ルート作成から報告までの流れ</h2>
@@ -908,38 +1618,40 @@
           </p>
         </div>
 
-        <div class="flow">
-          <article class="flow-step">
-            <h3>建物を探す</h3>
-            <p>全体マップから希望の条件で絞り込みマンションを選別します。</p>
-          </article>
-          <article class="flow-step">
-            <h3>ルートを作る</h3>
-            <p>なぞり選択・円範囲選択・手動選択で配布対象をまとめます。</p>
-          </article>
-          <article class="flow-step">
-            <h3>案件ごとに整理</h3>
-            <p>お気に入りルートをクライアント別フォルダーで管理します。</p>
-          </article>
-          <article class="flow-step">
-            <h3>スタッフへ共有</h3>
-            <p>スタッフ・スポットへ案件単位でルートを共有できます。</p>
-          </article>
-          <article class="flow-step">
-            <h3>現場で投函入力</h3>
-            <p>建物ごとに投函枚数を入力し、進捗と未完了を確認します。</p>
-          </article>
-          <article class="flow-step">
-            <h3>日報を共有</h3>
-            <p>日報・タイムライン・配布カレンダーをPDF、Excel、URLで共有します。</p>
-          </article>
+        <div class="workflow-shell reveal">
+          <div class="flow">
+            <article class="flow-step">
+              <h3>建物を探す</h3>
+              <p>全体マップから希望の条件で絞り込みマンションを選別します。</p>
+            </article>
+            <article class="flow-step">
+              <h3>ルートを作る</h3>
+              <p>なぞり選択・円範囲選択・手動選択で配布対象をまとめます。</p>
+            </article>
+            <article class="flow-step">
+              <h3>案件ごとに整理</h3>
+              <p>お気に入りルートをクライアント別フォルダーで管理します。</p>
+            </article>
+            <article class="flow-step">
+              <h3>スタッフへ共有</h3>
+              <p>スタッフ・スポットへ案件単位でルートを共有できます。</p>
+            </article>
+            <article class="flow-step">
+              <h3>現場で投函入力</h3>
+              <p>建物ごとに投函枚数を入力し、進捗と未完了を確認します。</p>
+            </article>
+            <article class="flow-step">
+              <h3>日報を共有</h3>
+              <p>日報・タイムライン・配布カレンダーをPDF、Excel、URLで共有します。</p>
+            </article>
+          </div>
         </div>
       </div>
     </section>
 
     <section id="free" class="anchor-offset">
       <div class="container">
-        <div class="section-head">
+        <div class="section-head reveal">
           <div>
             <p class="eyebrow">FREE FEATURES</p>
             <h2>無料で使える機能</h2>
@@ -948,22 +1660,22 @@
         </div>
 
         <div class="grid-3">
-          <article class="card"><div class="icon">🗺️</div><h3>全体マップ閲覧</h3><p>登録済みのマンション情報を地図上で確認できます。</p></article>
-          <article class="card"><div class="icon">🔍</div><h3>検索・条件フィルター</h3><p>建物名、住所、分譲・賃貸、築年月などの条件で建物情報を確認できます。</p></article>
-          <article class="card"><div class="icon">⭐</div><h3>お気に入りルート作成</h3><p>配布したい建物を選択し、ルートとして保存できます。</p></article>
-          <article class="card"><div class="icon">📮</div><h3>投函機能</h3><p>作成したルートを使って、建物ごとの投函枚数を入力できます。</p></article>
-          <article class="card"><div class="icon">🔗</div><h3>ルート共有（一部無料）</h3><p>作成したお気に入りルート自体は共有可能です。クライアント別フォルダー共有やスタッフ・スポット向け共有は有料機能です。</p></article>
-          <article class="card"><div class="icon">✍️</div><h3>なぞり選択</h3><p>地図上をなぞって対象ピン数や参考投函枚数を確認できます。</p></article>
-          <article class="card"><div class="icon">⭕</div><h3>円範囲選択</h3><p>指定範囲内のマンションをまとめて確認し、ルート作成に活用できます。</p></article>
-          <article class="card"><div class="icon">📌</div><h3>ルート構成確認</h3><p>選択した建物数や参考投函枚数を確認しながらルートを作れます。</p></article>
-          <article class="card"><div class="icon">🚶</div><h3>個人利用の投函記録</h3><p>まずは自分の配布記録を残し、ルート運用の土台を作れます。</p></article>
+          <article class="card reveal"><div class="icon">🗺️</div><h3>全体マップ閲覧</h3><p>登録済みのマンション情報を地図上で確認できます。</p></article>
+          <article class="card reveal"><div class="icon">🔍</div><h3>検索・条件フィルター</h3><p>建物名、住所、分譲・賃貸、築年月などの条件で建物情報を確認できます。</p></article>
+          <article class="card reveal"><div class="icon">⭐</div><h3>お気に入りルート作成</h3><p>配布したい建物を選択し、ルートとして保存できます。</p></article>
+          <article class="card reveal"><div class="icon">📮</div><h3>投函機能</h3><p>作成したルートを使って、建物ごとの投函枚数を入力できます。</p></article>
+          <article class="card reveal"><div class="icon">🔗</div><h3>ルート共有（一部無料）</h3><p>作成したお気に入りルート自体は共有可能です。クライアント別フォルダー共有やスタッフ・スポット向け共有は有料機能です。</p></article>
+          <article class="card reveal"><div class="icon">✍️</div><h3>なぞり選択</h3><p>地図上をなぞって対象ピン数や参考投函枚数を確認できます。</p></article>
+          <article class="card reveal"><div class="icon">⭕</div><h3>円範囲選択</h3><p>指定範囲内のマンションをまとめて確認し、ルート作成に活用できます。</p></article>
+          <article class="card reveal"><div class="icon">📌</div><h3>ルート構成確認</h3><p>選択した建物数や参考投函枚数を確認しながらルートを作れます。</p></article>
+          <article class="card reveal"><div class="icon">🚶</div><h3>個人利用の投函記録</h3><p>まずは自分の配布記録を残し、ルート運用の土台を作れます。</p></article>
         </div>
       </div>
     </section>
 
     <section id="paid" class="anchor-offset">
       <div class="container">
-        <div class="section-head">
+        <div class="section-head reveal">
           <div>
             <p class="eyebrow">PAID FEATURES</p>
             <h2>有料プランで解放される機能</h2>
@@ -974,73 +1686,73 @@
         </div>
 
         <div class="grid-3">
-          <article class="card">
+          <article class="card reveal">
             <div class="icon">🏢</div>
             <h3>会社単位管理</h3>
             <p>管理者・スタッフ・スポットを会社単位で分けて運用できます。投函記録やルート、日報も会社単位で整理されます。</p>
           </article>
 
-          <article class="card">
+          <article class="card reveal">
             <div class="icon">👑</div>
             <h3>複数管理者運用</h3>
             <p>管理者招待により、1人だけでなく複数管理者でルート・日報・スタッフ管理を分担できます。</p>
           </article>
 
-          <article class="card">
+          <article class="card reveal">
             <div class="icon">📍</div>
             <h3>全体マップ管理</h3>
             <p>全体マップへ新規ピン作成、編集、削除、ピン移動ができます。</p>
           </article>
 
-          <article class="card">
+          <article class="card reveal">
             <div class="icon">📮</div>
             <h3>会社単位の投函管理</h3>
             <p>スタッフやスポットの投函記録を会社単位で集計し、日別・ルート別・クライアント別に確認できます。</p>
           </article>
 
-          <article class="card">
+          <article class="card reveal">
             <div class="icon">📅</div>
             <h3>配布カレンダー管理</h3>
             <p>配布済み・配布予定を月間カレンダーで確認できます。クライアント別フォルダーと連携し、カレンダー上にクライアント名を表示できます。</p>
           </article>
 
-          <article class="card">
+          <article class="card reveal">
             <div class="icon">📄</div>
             <h3>日報出力・共有</h3>
             <p>投函日報をPDF・Excelで出力でき、アプリ未導入者へも共有URLで確認してもらえます。</p>
           </article>
 
-          <article class="card">
+          <article class="card reveal">
             <div class="icon">⏱️</div>
             <h3>タイムライン共有</h3>
             <p>勤務開始・終了、投函入力位置、時刻の流れを共有URLで発行し、クライアントへ報告できます。</p>
           </article>
 
-          <article class="card">
+          <article class="card reveal">
             <div class="icon">🗂️</div>
             <h3>クライアント別フォルダー共有</h3>
             <p>クライアント別フォルダーを作成し、案件単位でルートをまとめて共有・管理できます。</p>
           </article>
 
-          <article class="card">
+          <article class="card reveal">
             <div class="icon">👥</div>
             <h3>スタッフ・スポット招待</h3>
             <p>スタッフや短期・単発のスポットアカウントを招待コードで追加できます。</p>
           </article>
 
-          <article class="card">
+          <article class="card reveal">
             <div class="icon">🛡️</div>
             <h3>招待アカウント管理</h3>
             <p>招待した管理者・スタッフ・スポットの有効状態、権限、ログイン状況を管理できます。</p>
           </article>
 
-          <article class="card">
+          <article class="card reveal">
             <div class="icon">🧭</div>
             <h3>仮ピン申請・承認</h3>
             <p>現場スタッフが建物候補を仮ピンとして作成し、管理者が承認して正式ピン化できます。</p>
           </article>
 
-          <article class="card">
+          <article class="card reveal">
             <div class="icon">🧩</div>
             <h3>未完了ルート管理</h3>
             <p>配布しきれなかったルートを確認し、必要に応じて選択・整理・再運用につなげられます。</p>
@@ -1049,9 +1761,9 @@
       </div>
     </section>
 
-    <section class="anchor-offset">
+    <section id="roles" class="anchor-offset">
       <div class="container">
-        <div class="section-head">
+        <div class="section-head reveal">
           <div>
             <p class="eyebrow">ROLES</p>
             <h2>役割ごとに使える範囲を整理。</h2>
@@ -1061,43 +1773,61 @@
           </p>
         </div>
 
-        <table class="role-table" aria-label="役割ごとの機能一覧">
-          <thead>
-            <tr>
-              <th>役割</th>
-              <th>主な使い方</th>
-              <th>主な機能</th>
-            </tr>
-          </thead>
-          <tbody>
-            <tr>
-              <td><strong>管理者</strong></td>
-              <td>会社全体のルート、スタッフ、日報、共有先を管理。</td>
-              <td>全体マップ管理、仮ピン承認、ルート整理、クライアント別フォルダー、日報・タイムライン確認、招待コード発行、アカウント管理。</td>
-            </tr>
-            <tr>
-              <td><strong>複数管理者</strong></td>
-              <td>管理業務を複数人で分担。</td>
-              <td>管理者招待により、会社内のルート管理・日報確認・スタッフ管理をチームで運用。</td>
-            </tr>
-            <tr>
-              <td><strong>スタッフ</strong></td>
-              <td>継続的に配布作業を行う社内・外部スタッフ向け。</td>
-              <td>共有されたルートの確認、投函入力、進捗確認、建物注意メモ確認、仮ピン作成。</td>
-            </tr>
-            <tr>
-              <td><strong>スポット</strong></td>
-              <td>短期・単発の配布作業者向け。</td>
-              <td>指定された案件・ルートの確認、投函入力、作業完了までの現場運用。</td>
-            </tr>
-          </tbody>
-        </table>
+        <div class="role-grid">
+          <article class="card role-card reveal">
+            <span class="role-tag">ADMIN</span>
+            <h3>管理者</h3>
+            <p>会社全体のルート、スタッフ、日報、共有先を管理。</p>
+            <ul>
+              <li>全体マップ管理</li>
+              <li>仮ピン承認</li>
+              <li>日報・タイムライン確認</li>
+              <li>招待コード発行</li>
+            </ul>
+          </article>
+
+          <article class="card role-card reveal">
+            <span class="role-tag">COPY ADMIN</span>
+            <h3>複数管理者</h3>
+            <p>管理業務を複数人で分担。</p>
+            <ul>
+              <li>会社内ルート管理</li>
+              <li>日報確認</li>
+              <li>スタッフ管理</li>
+              <li>管理者チーム運用</li>
+            </ul>
+          </article>
+
+          <article class="card role-card reveal">
+            <span class="role-tag">STAFF</span>
+            <h3>スタッフ</h3>
+            <p>継続的に配布作業を行う社内・外部スタッフ向け。</p>
+            <ul>
+              <li>共有ルート確認</li>
+              <li>投函入力</li>
+              <li>進捗確認</li>
+              <li>建物注意メモ確認</li>
+            </ul>
+          </article>
+
+          <article class="card role-card reveal">
+            <span class="role-tag">SPOT</span>
+            <h3>スポット</h3>
+            <p>短期・単発の配布作業者向け。</p>
+            <ul>
+              <li>指定案件の確認</li>
+              <li>投函入力</li>
+              <li>作業完了までの現場運用</li>
+              <li>必要範囲のみ操作</li>
+            </ul>
+          </article>
+        </div>
       </div>
     </section>
 
     <section id="plans" class="anchor-offset">
       <div class="container">
-        <div class="section-head">
+        <div class="section-head reveal">
           <div>
             <p class="eyebrow">PLANS</p>
             <h2>運用規模に合わせたプラン構成</h2>
@@ -1108,32 +1838,36 @@
         </div>
 
         <div class="grid-4">
-          <article class="card plan-card">
+          <article class="card plan-card reveal">
             <div class="plan-name">LIGHT</div>
             <h3>1人運用向け</h3>
             <p>管理者1人で、ルート作成・投函管理・日報確認を行う小規模運用向け。</p>
             <ul><li>管理者1人</li><li>個人・小規模運用</li><li>基本管理機能</li></ul>
+            <span class="plan-note">まずは自分の配布業務を見える化。</span>
           </article>
 
-          <article class="card plan-card">
+          <article class="card plan-card reveal">
             <div class="plan-name">STARTER</div>
             <h3>少人数チーム向け</h3>
             <p>スタッフ招待を使い、複数人で配布を始めたい会社向け。</p>
             <ul><li>最大5人想定</li><li>スタッフ招待</li><li>案件共有</li></ul>
+            <span class="plan-note">少人数の現場運用をスムーズに。</span>
           </article>
 
-          <article class="card plan-card">
+          <article class="card plan-card reveal">
             <div class="plan-name">STANDARD</div>
             <h3>本格運用向け</h3>
             <p>複数案件・複数スタッフの配布状況を管理したい会社向け。</p>
             <ul><li>最大20人想定</li><li>クライアント別管理</li><li>日報・共有運用</li></ul>
+            <span class="plan-note">案件数が増えた会社運用に対応。</span>
           </article>
 
-          <article class="card plan-card">
+          <article class="card plan-card reveal">
             <div class="plan-name">PRO</div>
             <h3>大規模運用向け</h3>
             <p>多数のスタッフ・スポットを抱えるポスティング会社向け。</p>
             <ul><li>最大100人想定</li><li>複数管理者運用</li><li>広域案件管理</li></ul>
+            <span class="plan-note">広域・多人数の配布管理へ。</span>
           </article>
         </div>
       </div>
@@ -1141,92 +1875,140 @@
 
     <section id="features" class="anchor-offset">
       <div class="container">
-        <div class="section-head">
+        <div class="section-head reveal">
           <div>
             <p class="eyebrow">ALL FEATURES</p>
             <h2>アプリの機能一覧</h2>
           </div>
           <p>
-            画面作成後に追加された機能も、違和感が出ないように通常の機能一覧へ統合しています。
+            画面作成後に追加された機能も、違和感が出ないように通常の機能一覧へ統合しています。必要な項目だけを開いて確認できます。
           </p>
         </div>
 
-        <div class="feature-group">
-          <h3>🗺️ マッピング・建物管理</h3>
-          <div class="feature-line"><strong>全体マッピング</strong><p>登録済みの分譲・賃貸マンションを地図上に表示。建物名、住所、築年月、参考投函枚数などを確認できます。</p></div>
-          <div class="feature-line"><strong>全体マップ検索</strong><p>建物名、住所、地名などから対象マンションを検索できます。</p></div>
-          <div class="feature-line"><strong>条件フィルター</strong><p>分譲・賃貸、築年月、建物条件などで表示対象を絞り込めます。</p></div>
-          <div class="feature-line"><strong>表示範囲ピン最適化</strong><p>地図表示中の範囲に応じてピン表示を調整し、多数の建物データでも確認しやすい表示を目指します。</p></div>
-          <div class="feature-line"><strong>全体マップ新規ピン作成</strong><p>管理者は全体マップへ新しい建物ピンを作成できます。</p></div>
-          <div class="feature-line"><strong>本ピン編集・削除・移動</strong><p>建物名、住所、参考投函枚数、建物種別などの情報編集、削除、ピン位置調整ができます。</p></div>
-          <div class="feature-line"><strong>仮ピン作成</strong><p>現場で新しい建物候補を仮ピンとして作成できます。</p></div>
-          <div class="feature-line"><strong>仮ピン承認</strong><p>管理者が仮ピンを確認し、正式な全体マップピンとして本ピン承認できます。承認後は全体マップへ表示されます。</p></div>
-          <div class="feature-line"><strong>建物注意メモ登録・共有</strong><p>建物ごとの注意事項を登録でき、投函中に注意書きが表示されます。</p></div>
+        <details class="feature-group reveal" open>
+          <summary>🗺️ マッピング・建物管理</summary>
+          <div class="feature-lines">
+            <div class="feature-line"><strong>全体マッピング</strong><p>登録済みの分譲・賃貸マンションを地図上に表示。建物名、住所、築年月、参考投函枚数などを確認できます。</p></div>
+            <div class="feature-line"><strong>全体マップ検索</strong><p>建物名、住所、地名などから対象マンションを検索できます。</p></div>
+            <div class="feature-line"><strong>条件フィルター</strong><p>分譲・賃貸、築年月、建物条件などで表示対象を絞り込めます。</p></div>
+            <div class="feature-line"><strong>表示範囲ピン最適化</strong><p>地図表示中の範囲に応じてピン表示を調整し、多数の建物データでも確認しやすい表示を目指します。</p></div>
+            <div class="feature-line"><strong>全体マップ新規ピン作成</strong><p>管理者は全体マップへ新しい建物ピンを作成できます。</p></div>
+            <div class="feature-line"><strong>本ピン編集・削除・移動</strong><p>建物名、住所、参考投函枚数、建物種別などの情報編集、削除、ピン位置調整ができます。</p></div>
+            <div class="feature-line"><strong>仮ピン作成</strong><p>現場で新しい建物候補を仮ピンとして作成できます。</p></div>
+            <div class="feature-line"><strong>仮ピン承認</strong><p>管理者が仮ピンを確認し、正式な全体マップピンとして本ピン承認できます。承認後は全体マップへ表示されます。</p></div>
+            <div class="feature-line"><strong>建物注意メモ登録・共有</strong><p>建物ごとの注意事項を登録でき、投函中に注意書きが表示されます。</p></div>
+          </div>
+        </details>
+
+        <details class="feature-group reveal" open>
+          <summary>⭐ ルート作成・案件整理</summary>
+          <div class="feature-lines">
+            <div class="feature-line"><strong>お気に入りルート作成</strong><p>配布対象の建物をまとめてルート化できます。</p></div>
+            <div class="feature-line"><strong>お気に入りルート編集</strong><p>保存したルートの名称、ルート構成、参考投函枚数などを管理できます。</p></div>
+            <div class="feature-line"><strong>お気に入りルート共有</strong><p>作成したお気に入りルート自体は共有できます。クライアント別フォルダーを使った共有やスタッフ・スポット向けの運用共有は有料機能です。</p></div>
+            <div class="feature-line"><strong>クライアント別フォルダー管理</strong><p>クライアントや案件ごとにお気に入りルートを整理できます。</p></div>
+            <div class="feature-line"><strong>クライアント別フォルダー共有</strong><p>作成したクライアント別フォルダーを使って、スタッフ・スポットへ案件単位でルートを共有できます。</p></div>
+            <div class="feature-line"><strong>ルートまとめ表示</strong><p>複数ルートをまとめて確認し、案件全体の配布対象や参考投函枚数を把握できます。</p></div>
+            <div class="feature-line"><strong>なぞり選択</strong><p>地図上を指でなぞって範囲選択し、対象ピン数や参考投函枚数を確認できます。</p></div>
+            <div class="feature-line"><strong>円範囲選択</strong><p>指定地点を中心に範囲を広げ、周辺マンションをまとめて選択できます。</p></div>
+            <div class="feature-line"><strong>参考投函枚数確認</strong><p>ルート作成時やルート一覧で、対象建物数と参考投函枚数を確認できます。</p></div>
+          </div>
+        </details>
+
+        <details class="feature-group reveal" open>
+          <summary>📮 投函・現場作業</summary>
+          <div class="feature-lines">
+            <div class="feature-line"><strong>投函画面</strong><p>勤務開始後、進捗、投函枚数、対象建物、現在地を確認しながら現場作業を進められます。</p></div>
+            <div class="feature-line"><strong>投函入力</strong><p>建物ごとに投函枚数を入力できます。入力内容は日報・タイムライン・配布カレンダーへ反映されます。</p></div>
+            <div class="feature-line"><strong>投函済み・未投函表示</strong><p>投函済み、未投函の状態を地図上で確認できます。</p></div>
+            <div class="feature-line"><strong>途中再開</strong><p>勤務途中でアプリを閉じた場合でも、同じルートを選択して作業再開につなげられます。</p></div>
+            <div class="feature-line"><strong>未完了ルート管理</strong><p>配布しきれていないルートを確認し、選択・整理・再運用できるようにします。</p></div>
+            <div class="feature-line"><strong>Googleマップ案内</strong><p>対象マンションまでの案内をGoogleマップで開けます。</p></div>
+            <div class="feature-line"><strong>進捗管理</strong><p>ルート内の配布進捗、投函枚数、完了状態を確認できます。</p></div>
+          </div>
+        </details>
+
+        <details class="feature-group reveal" open>
+          <summary>📅 カレンダー・日報・タイムライン</summary>
+          <div class="feature-lines">
+            <div class="feature-line"><strong>配布カレンダー</strong><p>配布済み・配布予定を月間カレンダーで表示し、日別の投函枚数、ルート数、配布状況を確認できます。</p></div>
+            <div class="feature-line"><strong>配布予定管理</strong><p>予定している配布ルートをカレンダー上で確認し、配布済みカレンダーと切り替えて確認できます。</p></div>
+            <div class="feature-line"><strong>カレンダーのクライアント名表示</strong><p>有料プランではクライアント別フォルダーと連携し、カレンダー上にクライアント名や案件名を表示できます。</p></div>
+            <div class="feature-line"><strong>日報ページ</strong><p>日別・ルート別・建物別に投函実績を確認できます。</p></div>
+            <div class="feature-line"><strong>クライアント別日報確認</strong><p>クライアント別フォルダーと連携し、案件ごとの投函結果を確認できます。</p></div>
+            <div class="feature-line"><strong>投函タイムライン</strong><p>勤務開始、勤務終了をタップした位置、各建物の投函入力した位置をマップ上で確認できます。</p></div>
+            <div class="feature-line"><strong>投函タイムライン共有</strong><p>投函タイムラインを共有URLで発行し、アプリ未導入者へも共有できます。</p></div>
+            <div class="feature-line"><strong>削除済みルート・フォルダー表示</strong><p>過去の投函データは、ルートやフォルダー削除後も当時の名称で確認しやすい表示を目指します。</p></div>
+          </div>
+        </details>
+
+        <details class="feature-group reveal" open>
+          <summary>📄 出力・共有</summary>
+          <div class="feature-lines">
+            <div class="feature-line"><strong>投函日報PDF・Excel出力</strong><p>投函日報をPDF・Excelとして出力できます。</p></div>
+            <div class="feature-line"><strong>配布カレンダーPDF出力</strong><p>月ごとの配布済み・配布予定カレンダーをPDFとして出力し、共有できます。</p></div>
+            <div class="feature-line"><strong>共有URL発行</strong><p>日報、タイムライン、ルートなどを共有URLで発行できます。</p></div>
+            <div class="feature-line"><strong>アプリ未導入者向け共有</strong><p>クライアントや外部関係者は、アプリを入れていなくても共有ページから報告内容を確認できます。</p></div>
+            <div class="feature-line"><strong>スマホ共有対応</strong><p>スマートフォンでの共有、PDF・Excel確認、ブラウザでの閲覧に配慮した運用を目指します。</p></div>
+            <div class="feature-line"><strong>共有ページ内の展開表示</strong><p>共有先ページでは、ルート名をタップして建物一覧を開くなど、確認しやすい表示に対応します。</p></div>
+          </div>
+        </details>
+
+        <details class="feature-group reveal" open>
+          <summary>👥 会社・権限・招待管理</summary>
+          <div class="feature-lines">
+            <div class="feature-line"><strong>会社単位データ管理</strong><p>会社ごとにルート、投函タイムライン、日報、配布カレンダーを分離して管理できます。</p></div>
+            <div class="feature-line"><strong>管理者招待</strong><p>複数管理者で会社のルート・日報・スタッフ管理を分担できます。</p></div>
+            <div class="feature-line"><strong>スタッフ・スポット招待</strong><p>スタータープラン以上でスタッフや短期・単発スタッフ向けスポットを招待できます。</p></div>
+            <div class="feature-line"><strong>招待コード発行</strong><p>管理者が管理者・スタッフ・スポット用の招待コードを発行できます。</p></div>
+            <div class="feature-line"><strong>招待アカウント管理</strong><p>招待した管理者・スタッフ・スポットの有効・無効、権限、ログイン状況を管理できます。</p></div>
+            <div class="feature-line"><strong>スタッフ・スポット専用ページ</strong><p>スタッフ・スポットは共有されたルートを確認し、現場作業に必要な投函入力へ進めます。</p></div>
+            <div class="feature-line"><strong>プラン別人数制限</strong><p>STARTERは5人、STANDARDは20人、PROは100人までの運用を想定しています。人数制限は管理者を含みます。</p></div>
+            <div class="feature-line"><strong>サブスク機能開放</strong><p>会社単位の本格運用、スタッフ招待、共有、日報出力などをプランに応じて開放します。</p></div>
+          </div>
+        </details>
+      </div>
+    </section>
+
+    <section id="faq" class="anchor-offset">
+      <div class="container">
+        <div class="section-head reveal">
+          <div>
+            <p class="eyebrow">FAQ</p>
+            <h2>よくあるご質問</h2>
+          </div>
+          <p>
+            アプリの利用範囲、無料・有料機能、外部共有について、問い合わせ前に確認しやすい形で整理しています。
+          </p>
         </div>
 
-        <div class="feature-group">
-          <h3>⭐ ルート作成・案件整理</h3>
-          <div class="feature-line"><strong>お気に入りルート作成</strong><p>配布対象の建物をまとめてルート化できます。</p></div>
-          <div class="feature-line"><strong>お気に入りルート編集</strong><p>保存したルートの名称、ルート構成、参考投函枚数などを管理できます。</p></div>
-          <div class="feature-line"><strong>お気に入りルート共有</strong><p>作成したお気に入りルート自体は共有できます。クライアント別フォルダーを使った共有やスタッフ・スポット向けの運用共有は有料機能です。</p></div>
-          <div class="feature-line"><strong>クライアント別フォルダー管理</strong><p>クライアントや案件ごとにお気に入りルートを整理できます。</p></div>
-          <div class="feature-line"><strong>クライアント別フォルダー共有</strong><p>作成したクライアント別フォルダーを使って、スタッフ・スポットへ案件単位でルートを共有できます。</p></div>
-          <div class="feature-line"><strong>ルートまとめ表示</strong><p>複数ルートをまとめて確認し、案件全体の配布対象や参考投函枚数を把握できます。</p></div>
-          <div class="feature-line"><strong>なぞり選択</strong><p>地図上を指でなぞって範囲選択し、対象ピン数や参考投函枚数を確認できます。</p></div>
-          <div class="feature-line"><strong>円範囲選択</strong><p>指定地点を中心に範囲を広げ、周辺マンションをまとめて選択できます。</p></div>
-          <div class="feature-line"><strong>参考投函枚数確認</strong><p>ルート作成時やルート一覧で、対象建物数と参考投函枚数を確認できます。</p></div>
-        </div>
+        <div class="faq-grid">
+          <details class="faq-item reveal" open>
+            <summary>HQPアプリでは何を管理できますか？</summary>
+            <p>全体マッピング、ルート作成、投函入力、未完了ルート管理、配布カレンダー、日報、投函タイムライン、PDF・Excel出力、共有URL、スタッフ・スポット招待などを管理できます。</p>
+          </details>
 
-        <div class="feature-group">
-          <h3>📮 投函・現場作業</h3>
-          <div class="feature-line"><strong>投函画面</strong><p>勤務開始後、進捗、投函枚数、対象建物、現在地を確認しながら現場作業を進められます。</p></div>
-          <div class="feature-line"><strong>投函入力</strong><p>建物ごとに投函枚数を入力できます。入力内容は日報・タイムライン・配布カレンダーへ反映されます。</p></div>
-          <div class="feature-line"><strong>投函済み・未投函表示</strong><p>投函済み、未投函の状態を地図上で確認できます。</p></div>
-          <div class="feature-line"><strong>途中再開</strong><p>勤務途中でアプリを閉じた場合でも、同じルートを選択して作業再開につなげられます。</p></div>
-          <div class="feature-line"><strong>未完了ルート管理</strong><p>配布しきれていないルートを確認し、選択・整理・再運用できるようにします。</p></div>
-          <div class="feature-line"><strong>Googleマップ案内</strong><p>対象マンションまでの案内をGoogleマップで開けます。</p></div>
-          <div class="feature-line"><strong>進捗管理</strong><p>ルート内の配布進捗、投函枚数、完了状態を確認できます。</p></div>
-        </div>
+          <details class="faq-item reveal">
+            <summary>無料で使える機能はありますか？</summary>
+            <p>全体マップ閲覧、検索・条件フィルター、お気に入りルート作成、投函機能、なぞり選択、円範囲選択などを無料機能として案内しています。</p>
+          </details>
 
-        <div class="feature-group">
-          <h3>📅 カレンダー・日報・タイムライン</h3>
-          <div class="feature-line"><strong>配布カレンダー</strong><p>配布済み・配布予定を月間カレンダーで表示し、日別の投函枚数、ルート数、配布状況を確認できます。</p></div>
-          <div class="feature-line"><strong>配布予定管理</strong><p>予定している配布ルートをカレンダー上で確認し、配布済みカレンダーと切り替えて確認できます。</p></div>
-          <div class="feature-line"><strong>カレンダーのクライアント名表示</strong><p>有料プランではクライアント別フォルダーと連携し、カレンダー上にクライアント名や案件名を表示できます。</p></div>
-          <div class="feature-line"><strong>日報ページ</strong><p>日別・ルート別・建物別に投函実績を確認できます。</p></div>
-          <div class="feature-line"><strong>クライアント別日報確認</strong><p>クライアント別フォルダーと連携し、案件ごとの投函結果を確認できます。</p></div>
-          <div class="feature-line"><strong>投函タイムライン</strong><p>勤務開始、勤務終了をタップした位置、各建物の投函入力した位置をマップ上で確認できます。</p></div>
-          <div class="feature-line"><strong>投函タイムライン共有</strong><p>投函タイムラインを共有URLで発行し、アプリ未導入者へも共有できます。</p></div>
-          <div class="feature-line"><strong>削除済みルート・フォルダー表示</strong><p>過去の投函データは、ルートやフォルダー削除後も当時の名称で確認しやすい表示を目指します。</p></div>
-        </div>
+          <details class="faq-item reveal">
+            <summary>有料プランでは何が使えますか？</summary>
+            <p>会社単位管理、複数管理者運用、スタッフ・スポット招待、日報出力・共有、タイムライン共有、クライアント別フォルダー共有、配布カレンダー管理などが利用できます。</p>
+          </details>
 
-        <div class="feature-group">
-          <h3>📄 出力・共有</h3>
-          <div class="feature-line"><strong>投函日報PDF・Excel出力</strong><p>投函日報をPDF・Excelとして出力できます。</p></div>
-          <div class="feature-line"><strong>配布カレンダーPDF出力</strong><p>月ごとの配布済み・配布予定カレンダーをPDFとして出力し、共有できます。</p></div>
-          <div class="feature-line"><strong>共有URL発行</strong><p>日報、タイムライン、ルートなどを共有URLで発行できます。</p></div>
-          <div class="feature-line"><strong>アプリ未導入者向け共有</strong><p>クライアントや外部関係者は、アプリを入れていなくても共有ページから報告内容を確認できます。</p></div>
-          <div class="feature-line"><strong>スマホ共有対応</strong><p>スマートフォンでの共有、PDF・Excel確認、ブラウザでの閲覧に配慮した運用を目指します。</p></div>
-          <div class="feature-line"><strong>共有ページ内の展開表示</strong><p>共有先ページでは、ルート名をタップして建物一覧を開くなど、確認しやすい表示に対応します。</p></div>
-        </div>
-
-        <div class="feature-group">
-          <h3>👥 会社・権限・招待管理</h3>
-          <div class="feature-line"><strong>会社単位データ管理</strong><p>会社ごとにルート、投函タイムライン、日報、配布カレンダーを分離して管理できます。</p></div>
-          <div class="feature-line"><strong>管理者招待</strong><p>複数管理者で会社のルート・日報・スタッフ管理を分担できます。</p></div>
-          <div class="feature-line"><strong>スタッフ・スポット招待</strong><p>スタータープラン以上でスタッフや短期・単発スタッフ向けスポットを招待できます。</p></div>
-          <div class="feature-line"><strong>招待コード発行</strong><p>管理者が管理者・スタッフ・スポット用の招待コードを発行できます。</p></div>
-          <div class="feature-line"><strong>招待アカウント管理</strong><p>招待した管理者・スタッフ・スポットの有効・無効、権限、ログイン状況を管理できます。</p></div>
-          <div class="feature-line"><strong>スタッフ・スポット専用ページ</strong><p>スタッフ・スポットは共有されたルートを確認し、現場作業に必要な投函入力へ進めます。</p></div>
-          <div class="feature-line"><strong>プラン別人数制限</strong><p>STARTERは5人、STANDARDは20人、PROは100人までの運用を想定しています。人数制限は管理者を含みます。</p></div>
-          <div class="feature-line"><strong>サブスク機能開放</strong><p>会社単位の本格運用、スタッフ招待、共有、日報出力などをプランに応じて開放します。</p></div>
+          <details class="faq-item reveal">
+            <summary>アプリ未導入者にも共有できますか？</summary>
+            <p>日報、タイムライン、ルートなどを共有URLで発行し、アプリ未導入者にも報告内容を確認してもらえる運用を想定しています。</p>
+          </details>
         </div>
       </div>
     </section>
 
     <section class="anchor-offset">
       <div class="container">
-        <div class="cta-panel">
+        <div class="cta-panel reveal">
           <div>
             <p class="eyebrow">COMING SOON</p>
             <h2>質の高いポスティングを、<br>すべての基準へ。</h2>
@@ -1237,17 +2019,23 @@
           <div class="cta-actions">
             <a class="btn btn-primary" href="#overview">ページ上部へ戻る</a>
             <a class="btn btn-secondary" href="index.html">ホームへ戻る</a>
+            <a class="btn btn-secondary" href="index.html#contact">配布相談ページへ</a>
           </div>
         </div>
       </div>
     </section>
   </main>
 
+  <nav class="mobile-cta" aria-label="スマートフォン固定ナビゲーション">
+    <a class="primary" href="#screens">アプリ画面</a>
+    <a class="secondary" href="index.html">配布HPへ</a>
+  </nav>
+
   <footer>
     <div class="container footer-grid">
       <div class="brand">
         <img src="logo.jpg" alt="HIGH QUALITY POSTING ロゴ" class="brand-logo">
-        <span>
+        <span class="brand-text">
           HIGH QUALITY POSTING
           <small>POSTING MANAGEMENT APP</small>
         </span>
@@ -1258,6 +2046,36 @@
 
   <script>
     document.getElementById('year').textContent = new Date().getFullYear();
+
+    const progress = document.getElementById('scrollProgress');
+    const updateProgress = () => {
+      const doc = document.documentElement;
+      const scrollTop = doc.scrollTop || document.body.scrollTop;
+      const scrollHeight = doc.scrollHeight - doc.clientHeight;
+      const ratio = scrollHeight > 0 ? (scrollTop / scrollHeight) * 100 : 0;
+      progress.style.width = ratio + '%';
+    };
+    window.addEventListener('scroll', updateProgress, { passive: true });
+    updateProgress();
+
+    const prefersReduced = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+    if (!prefersReduced && 'IntersectionObserver' in window) {
+      const observer = new IntersectionObserver((entries) => {
+        entries.forEach((entry) => {
+          if (entry.isIntersecting) {
+            entry.target.classList.add('in-view');
+            observer.unobserve(entry.target);
+          }
+        });
+      }, { threshold: 0.12, rootMargin: '0px 0px -40px 0px' });
+
+      document.querySelectorAll('.reveal').forEach((el, index) => {
+        el.style.transitionDelay = Math.min(index % 6, 5) * 45 + 'ms';
+        observer.observe(el);
+      });
+    } else {
+      document.querySelectorAll('.reveal').forEach((el) => el.classList.add('in-view'));
+    }
   </script>
 </body>
 </html>
