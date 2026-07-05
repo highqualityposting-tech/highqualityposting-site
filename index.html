@@ -1601,6 +1601,127 @@
       }
     }
 
+
+
+    /* ===== Hero visual size correction v2 =====
+       PCファーストビューでアプリ画像が大きくなりすぎないよう、
+       右側ビジュアルをコンパクトなモックアップ表示に再調整。 */
+    .hero-visual{
+      max-width:620px;
+      margin-inline:auto;
+      padding:20px;
+    }
+
+    .device-stack{
+      grid-template-columns:minmax(0,1fr) minmax(0,1fr);
+      grid-template-areas:
+        "live live"
+        "main sub"
+        "proof proof";
+      gap:12px;
+      align-items:start;
+      justify-items:center;
+    }
+
+    .live-panel{
+      margin-bottom:0;
+    }
+
+    .device{
+      width:min(100%, 205px);
+      max-width:205px;
+      padding:7px;
+      border-radius:26px;
+      box-shadow:0 18px 46px rgba(0,0,0,.40);
+    }
+
+    .device img{
+      aspect-ratio:9 / 19.5;
+      object-fit:contain;
+      object-position:center center;
+      border-radius:20px;
+      max-height:444px;
+    }
+
+    .floating-proof{
+      gap:8px;
+      margin-top:0;
+    }
+
+    .proof-item{
+      padding:10px 10px;
+      border-radius:15px;
+    }
+
+    .proof-item strong{
+      font-size:15px;
+    }
+
+    .proof-item span{
+      font-size:11px;
+    }
+
+    @media (min-width:1081px){
+      .hero-grid{
+        grid-template-columns:1.08fr .92fr;
+        gap:30px;
+      }
+    }
+
+    @media (max-width:1080px){
+      .hero-visual{
+        max-width:640px;
+      }
+
+      .device{
+        width:min(100%, 215px);
+        max-width:215px;
+      }
+    }
+
+    @media (max-width:720px){
+      .hero-visual{
+        max-width:100%;
+        padding:14px;
+      }
+
+      .device-stack{
+        grid-template-columns:1fr;
+        grid-template-areas:
+          "live"
+          "main"
+          "proof";
+        gap:11px;
+      }
+
+      .device{
+        width:min(230px, 100%);
+        max-width:230px;
+        padding:7px;
+        border-radius:25px;
+      }
+
+      .device img{
+        border-radius:19px;
+        max-height:498px;
+      }
+
+      .floating-proof{
+        grid-template-columns:1fr 1fr 1fr;
+      }
+    }
+
+    @media (max-width:420px){
+      .device{
+        width:min(218px, 100%);
+        max-width:218px;
+      }
+
+      .floating-proof{
+        grid-template-columns:1fr;
+      }
+    }
+
     @media (prefers-reduced-motion:reduce){
       *,
       *::before,
