@@ -1722,6 +1722,87 @@
       }
     }
 
+
+    /* ===== Hero progress gauge restore =====
+       画像サイズ調整で非表示になっていた動きのある進捗ゲージを、
+       画像の見やすさを保ったまま上部に復元。 */
+    .device-stack{
+      grid-template-areas:
+        "live live"
+        "hud hud"
+        "main sub"
+        "proof proof";
+    }
+
+    .route-hud{
+      position:relative;
+      left:auto;
+      right:auto;
+      top:auto;
+      bottom:auto;
+      grid-area:hud;
+      display:block;
+      width:min(100%, 430px);
+      max-width:430px;
+      padding:12px 14px;
+      margin:0 auto 2px;
+      border-radius:18px;
+      background:rgba(5,7,10,.72);
+      border:1px solid rgba(255,255,255,.13);
+      backdrop-filter:blur(14px);
+      box-shadow:0 16px 42px rgba(0,0,0,.32);
+      z-index:6;
+    }
+
+    .route-hud strong{
+      font-size:14px;
+      line-height:1.35;
+      margin-bottom:7px;
+    }
+
+    .route-hud .small{
+      font-size:11px;
+      line-height:1.45;
+      margin:7px 0 0;
+    }
+
+    .hud-line{
+      height:6px;
+      margin:7px 0;
+    }
+
+    @media (max-width:720px){
+      .device-stack{
+        grid-template-areas:
+          "live"
+          "hud"
+          "main"
+          "proof";
+      }
+
+      .route-hud{
+        display:block;
+        width:min(100%, 330px);
+        max-width:330px;
+        padding:11px 12px;
+        border-radius:17px;
+      }
+
+      .route-hud strong{
+        font-size:13px;
+      }
+
+      .route-hud .small{
+        font-size:10px;
+      }
+    }
+
+    @media (max-width:420px){
+      .route-hud{
+        width:100%;
+      }
+    }
+
     @media (prefers-reduced-motion:reduce){
       *,
       *::before,
