@@ -12,42 +12,51 @@
 
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>ポスティング｜北九州・福岡市・熊本市・久留米市｜HQP</title>
+
+  <title>北九州・福岡市・熊本市・久留米市のポスティング｜HQP</title>
   <meta name="description" content="北九州・福岡市・熊本市・久留米市でポスティングを検討中の方へ。HIGH QUALITY POSTINGはマンション・集合住宅に特化したチラシ配布に対応。指定マンション配布、投函マップ、GPSログ、日報PDF、投函タイムラインで配布品質を見える化します。基本単価1枚4円。" />
   <meta name="keywords" content="HIGHQUALITYPOSTING,ハイクオリティポスティング,HQP,ポスティング,北九州 ポスティング,北九州市 ポスティング,福岡市 ポスティング,熊本市 ポスティング,久留米市 ポスティング,マンションポスティング,マンション特化ポスティング,集合住宅ポスティング,不動産チラシ配布,チラシ配布,指定マンション配布,GPSログ,日報PDF,投函タイムライン" />
-  <meta name="robots" content="index,follow" />
-  <meta name="theme-color" content="#090b10" />
+  <meta name="robots" content="index,follow,max-image-preview:large" />
+  <meta name="theme-color" content="#07090d" />
+  <meta name="format-detection" content="telephone=no" />
   <link rel="canonical" href="https://highqualityposting.jp/" />
 
   <meta property="og:type" content="website" />
   <meta property="og:site_name" content="HIGH QUALITY POSTING" />
-  <meta property="og:title" content="ポスティング｜北九州・福岡市・熊本市・久留米市｜HIGH QUALITY POSTING" />
-  <meta property="og:description" content="北九州・福岡市・熊本市・久留米市のマンション・集合住宅ポスティングに対応。指定マンション配布、GPSログ、日報PDF、投函タイムラインで配布品質を見える化します。" />
+  <meta property="og:title" content="北九州・福岡市・熊本市・久留米市のポスティング｜HIGH QUALITY POSTING" />
+  <meta property="og:description" content="マンション・集合住宅ポスティングに対応。指定マンション配布、GPSログ、日報PDF、投函タイムラインで配布品質を見える化します。" />
   <meta property="og:url" content="https://highqualityposting.jp/" />
   <meta property="og:image" content="https://highqualityposting.jp/logo.jpg" />
 
   <meta name="twitter:card" content="summary_large_image" />
-  <meta name="twitter:title" content="ポスティング｜北九州・福岡市・熊本市・久留米市｜HIGH QUALITY POSTING" />
-  <meta name="twitter:description" content="北九州・福岡市・熊本市・久留米市のマンション・集合住宅ポスティングに対応。配布品質を見える化します。" />
+  <meta name="twitter:title" content="北九州・福岡市・熊本市・久留米市のポスティング｜HIGH QUALITY POSTING" />
+  <meta name="twitter:description" content="マンション特化ポスティング。配布品質をGPSログ・日報PDF・投函タイムラインで見える化します。" />
   <meta name="twitter:image" content="https://highqualityposting.jp/logo.jpg" />
 
   <style>
     :root{
-      --bg:#07090d;
-      --bg2:#0d1118;
-      --panel:rgba(255,255,255,.05);
-      --panel-strong:rgba(255,255,255,.08);
-      --line:rgba(255,255,255,.12);
+      --bg:#05070b;
+      --bg2:#090d14;
+      --bg3:#0e1420;
+      --panel:rgba(255,255,255,.055);
+      --panel2:rgba(255,255,255,.082);
+      --panel3:rgba(255,255,255,.12);
+      --line:rgba(255,255,255,.115);
+      --line2:rgba(255,255,255,.18);
       --text:#eef4ff;
       --muted:#b8c3d9;
+      --muted2:#8391ad;
       --gold:#c5a86a;
       --gold2:#fff0c8;
       --ice:#8ad4ff;
       --mint:#44f0d0;
       --pink:#ff4aa0;
+      --danger:#ff6868;
       --max:1180px;
-      --shadow:0 20px 60px rgba(0,0,0,.35);
-      --radius:24px;
+      --shadow:0 24px 70px rgba(0,0,0,.42);
+      --shadow2:0 14px 42px rgba(0,0,0,.36);
+      --radius:26px;
+      --progress:0%;
     }
 
     *{box-sizing:border-box}
@@ -57,26 +66,65 @@
       font-family:"Hiragino Sans","Yu Gothic","YuGothic","Noto Sans JP",system-ui,-apple-system,BlinkMacSystemFont,sans-serif;
       color:var(--text);
       background:
-        radial-gradient(circle at 20% 0%, rgba(34,82,135,.18), transparent 35%),
-        radial-gradient(circle at 85% 20%, rgba(138,212,255,.12), transparent 30%),
-        linear-gradient(180deg, #05070b 0%, #0a0d13 45%, #07090d 100%);
+        radial-gradient(circle at 18% -4%, rgba(138,212,255,.18), transparent 30%),
+        radial-gradient(circle at 96% 12%, rgba(197,168,106,.13), transparent 28%),
+        radial-gradient(circle at 50% 55%, rgba(68,240,208,.07), transparent 34%),
+        linear-gradient(180deg, #05070b 0%, #0a0d13 42%, #07090d 100%);
       line-height:1.8;
       letter-spacing:.02em;
       overflow-x:hidden;
+    }
+
+    body::before{
+      content:"";
+      position:fixed;
+      inset:0;
+      z-index:-3;
+      pointer-events:none;
+      background:
+        linear-gradient(90deg, rgba(255,255,255,.022) 1px, transparent 1px),
+        linear-gradient(0deg, rgba(255,255,255,.018) 1px, transparent 1px);
+      background-size:56px 56px;
+      mask-image:linear-gradient(180deg, rgba(0,0,0,.82), transparent 72%);
+    }
+
+    body::after{
+      content:"";
+      position:fixed;
+      inset:0;
+      z-index:-2;
+      pointer-events:none;
+      background:
+        radial-gradient(circle at var(--mouse-x, 50%) var(--mouse-y, 18%), rgba(138,212,255,.12), transparent 20rem),
+        linear-gradient(180deg, transparent, rgba(0,0,0,.16));
+      transition:background .18s ease;
     }
 
     a{color:inherit;text-decoration:none}
     img{max-width:100%;display:block}
     button,input,textarea,select{font:inherit}
     .container{width:min(var(--max), calc(100% - 32px)); margin-inline:auto}
-    .anchor-offset{scroll-margin-top:96px}
+    .anchor-offset{scroll-margin-top:98px}
+    .text-gold{color:#fff1c7}
+    .nowrap{white-space:nowrap}
+
+    .progress-bar{
+      position:fixed;
+      top:0; left:0;
+      width:var(--progress);
+      height:3px;
+      z-index:3000;
+      background:linear-gradient(90deg, var(--gold), var(--gold2), var(--ice));
+      box-shadow:0 0 24px rgba(138,212,255,.55);
+      transform-origin:left center;
+    }
 
     .topbar{
       position:sticky;
       top:0;
       z-index:1000;
-      backdrop-filter:blur(16px);
-      background:rgba(7,9,13,.72);
+      backdrop-filter:blur(18px);
+      background:rgba(7,9,13,.74);
       border-bottom:1px solid rgba(255,255,255,.08);
     }
 
@@ -84,7 +132,7 @@
       display:flex;
       align-items:center;
       justify-content:space-between;
-      gap:24px;
+      gap:20px;
       min-height:76px;
     }
 
@@ -92,8 +140,8 @@
       display:flex;
       align-items:center;
       gap:14px;
-      font-weight:900;
-      letter-spacing:.08em;
+      font-weight:950;
+      letter-spacing:.075em;
       min-width:0;
     }
 
@@ -101,59 +149,68 @@
       width:52px;
       height:52px;
       object-fit:cover;
-      border-radius:14px;
-      border:1px solid rgba(255,255,255,.12);
+      border-radius:15px;
+      border:1px solid rgba(255,255,255,.14);
       background:#000;
-      box-shadow:0 10px 24px rgba(0,0,0,.35);
+      box-shadow:0 12px 30px rgba(0,0,0,.38);
       flex:0 0 auto;
     }
 
-    .brand-text{line-height:1.2; white-space:nowrap; overflow:hidden; text-overflow:ellipsis}
+    .brand-text{line-height:1.16; white-space:nowrap; overflow:hidden; text-overflow:ellipsis}
     .brand small{
       display:block;
       color:var(--gold);
       font-size:11px;
       letter-spacing:.18em;
-      margin-top:4px;
+      margin-top:5px;
       white-space:nowrap;
+    }
+
+    .nav-actions{
+      display:flex;
+      align-items:center;
+      justify-content:flex-end;
+      gap:14px;
+      min-width:0;
     }
 
     .nav-links{
       display:flex;
-      gap:18px;
+      gap:17px;
       flex-wrap:wrap;
       align-items:center;
       justify-content:flex-end;
     }
 
     .nav-links a{
+      position:relative;
       color:var(--muted);
       font-size:14px;
       transition:.25s ease;
       white-space:nowrap;
     }
 
-    .nav-links a:hover{color:var(--text)}
-
-    .nav-actions{
-      display:flex;
-      align-items:center;
-      justify-content:flex-end;
-      gap:16px;
-      min-width:0;
+    .nav-links a::after{
+      content:"";
+      position:absolute;
+      left:0; right:100%; bottom:-9px;
+      height:1px;
+      background:linear-gradient(90deg, var(--gold), var(--ice));
+      transition:.25s ease;
     }
 
-    .nav-app-button{
+    .nav-links a:hover{color:var(--text)}
+    .nav-links a:hover::after{right:0}
+
+    .nav-app-button,
+    .nav-contact-button{
       display:inline-flex;
       align-items:center;
       justify-content:center;
       min-height:44px;
-      padding:11px 18px;
+      padding:11px 17px;
       border-radius:999px;
-      color:#0a0d13;
-      background:linear-gradient(135deg, #d8bd85 0%, #fff0c8 38%, #8ad4ff 100%);
       border:1px solid rgba(255,255,255,.14);
-      box-shadow:0 12px 28px rgba(138,212,255,.14);
       font-size:13px;
       font-weight:950;
       line-height:1;
@@ -161,10 +218,715 @@
       transition:.25s ease;
     }
 
-    .nav-app-button:hover{
-      transform:translateY(-2px);
-      filter:brightness(1.05);
+    .nav-app-button{
+      color:#0a0d13;
+      background:linear-gradient(135deg, #d8bd85 0%, #fff0c8 38%, #8ad4ff 100%);
+      box-shadow:0 12px 28px rgba(138,212,255,.14);
     }
+
+    .nav-contact-button{
+      color:var(--text);
+      background:rgba(255,255,255,.055);
+    }
+
+    .nav-app-button:hover,
+    .nav-contact-button:hover{
+      transform:translateY(-2px);
+      filter:brightness(1.06);
+    }
+
+    .menu-button{
+      display:none;
+      width:42px;
+      height:42px;
+      border:1px solid rgba(255,255,255,.12);
+      border-radius:14px;
+      background:rgba(255,255,255,.045);
+      color:var(--text);
+      align-items:center;
+      justify-content:center;
+      cursor:pointer;
+    }
+
+    .menu-button span{
+      position:relative;
+      width:18px;
+      height:2px;
+      background:var(--text);
+      border-radius:999px;
+      transition:.25s ease;
+    }
+
+    .menu-button span::before,
+    .menu-button span::after{
+      content:"";
+      position:absolute;
+      left:0;
+      width:18px;
+      height:2px;
+      background:var(--text);
+      border-radius:999px;
+      transition:.25s ease;
+    }
+
+    .menu-button span::before{top:-6px}
+    .menu-button span::after{top:6px}
+    body.nav-open .menu-button span{background:transparent}
+    body.nav-open .menu-button span::before{top:0;transform:rotate(45deg)}
+    body.nav-open .menu-button span::after{top:0;transform:rotate(-45deg)}
+
+    .mobile-panel{
+      display:none;
+      padding:0 0 14px;
+      border-top:1px solid rgba(255,255,255,.08);
+    }
+
+    .mobile-panel a{
+      display:flex;
+      align-items:center;
+      justify-content:space-between;
+      padding:13px 0;
+      color:var(--muted);
+      border-bottom:1px solid rgba(255,255,255,.06);
+      font-size:14px;
+    }
+
+    .mobile-panel a::after{
+      content:"→";
+      color:var(--gold2);
+    }
+
+    .hero{
+      position:relative;
+      overflow:hidden;
+      padding:92px 0 74px;
+      isolation:isolate;
+    }
+
+    .hero::before{
+      content:"";
+      position:absolute;
+      inset:-12% -6% auto -6%;
+      height:890px;
+      z-index:-2;
+      background:
+        radial-gradient(circle at 15% 16%, rgba(138,212,255,.20), transparent 23%),
+        radial-gradient(circle at 78% 14%, rgba(197,168,106,.16), transparent 22%),
+        radial-gradient(circle at 50% 70%, rgba(68,240,208,.08), transparent 22%),
+        linear-gradient(180deg, rgba(255,255,255,.058), transparent 30%),
+        linear-gradient(135deg, #0e1521 0%, #080b10 48%, #10141f 100%);
+      border-bottom:1px solid rgba(255,255,255,.06);
+    }
+
+    .hero::after{
+      content:"";
+      position:absolute;
+      left:0; right:0; bottom:10px;
+      height:270px;
+      z-index:-1;
+      background:
+        linear-gradient(180deg, transparent, rgba(138,212,255,.09)),
+        repeating-linear-gradient(90deg, rgba(255,255,255,.027) 0 12px, transparent 12px 40px);
+      filter:blur(14px);
+      opacity:.58;
+      transform:perspective(1000px) rotateX(72deg);
+      transform-origin:center bottom;
+    }
+
+    .orb{
+      position:absolute;
+      border-radius:999px;
+      filter:blur(2px);
+      opacity:.45;
+      pointer-events:none;
+      z-index:-1;
+      animation:floatOrb 10s ease-in-out infinite;
+    }
+
+    .orb.one{
+      width:90px;height:90px;left:6%;top:18%;
+      background:radial-gradient(circle, rgba(138,212,255,.35), transparent 68%);
+    }
+    .orb.two{
+      width:140px;height:140px;right:8%;top:26%;
+      background:radial-gradient(circle, rgba(197,168,106,.34), transparent 70%);
+      animation-duration:13s;
+      animation-delay:-4s;
+    }
+    .orb.three{
+      width:70px;height:70px;left:44%;bottom:15%;
+      background:radial-gradient(circle, rgba(68,240,208,.22), transparent 70%);
+      animation-duration:15s;
+      animation-delay:-8s;
+    }
+
+    @keyframes floatOrb{
+      0%,100%{transform:translate3d(0,0,0) scale(1)}
+      50%{transform:translate3d(18px,-24px,0) scale(1.08)}
+    }
+
+    .hero-grid{
+      display:grid;
+      grid-template-columns:1.02fr .98fr;
+      gap:36px;
+      align-items:center;
+      position:relative;
+      z-index:1;
+    }
+
+    .eyebrow{
+      display:inline-flex;
+      align-items:center;
+      gap:10px;
+      padding:10px 16px;
+      border-radius:999px;
+      border:1px solid rgba(255,255,255,.11);
+      background:rgba(255,255,255,.045);
+      color:#d7e6ff;
+      font-size:13px;
+      backdrop-filter:blur(10px);
+      width:max-content;
+      max-width:100%;
+    }
+
+    .eyebrow::before{
+      content:"";
+      width:8px;height:8px;border-radius:999px;
+      background:linear-gradient(135deg, var(--gold), var(--ice));
+      box-shadow:0 0 20px rgba(138,212,255,.72);
+      flex:0 0 auto;
+      animation:pulseDot 1.8s ease-in-out infinite;
+    }
+
+    @keyframes pulseDot{
+      0%,100%{transform:scale(1);opacity:1}
+      50%{transform:scale(1.45);opacity:.72}
+    }
+
+    h1{
+      margin:18px 0 18px;
+      font-size:clamp(41px, 5.35vw, 72px);
+      line-height:1.08;
+      letter-spacing:.01em;
+      font-weight:950;
+    }
+
+    .headline-main{display:block}
+    .headline-accent{
+      display:block;
+      background:linear-gradient(135deg, #f7edd8 0%, #cdb07a 30%, #d7ecff 72%, #8ad4ff 100%);
+      -webkit-background-clip:text;
+      -webkit-text-fill-color:transparent;
+      background-clip:text;
+      text-shadow:0 0 42px rgba(138,212,255,.12);
+    }
+
+    .hero-copy{
+      color:var(--muted);
+      font-size:17px;
+      max-width:745px;
+    }
+
+    .hero-copy strong{color:#fff1c7}
+    .hero-copy .marker{
+      color:#fff;
+      background:linear-gradient(transparent 62%, rgba(197,168,106,.26) 62%);
+      padding:0 .12em;
+    }
+
+    .hero-actions{
+      display:flex;
+      flex-wrap:wrap;
+      gap:12px;
+      align-items:center;
+      margin-top:28px;
+    }
+
+    .btn{
+      display:inline-flex;
+      align-items:center;
+      justify-content:center;
+      text-align:center;
+      padding:18px 29px;
+      min-height:62px;
+      border-radius:999px;
+      text-decoration:none;
+      font-weight:950;
+      line-height:1.15;
+      border:1px solid transparent;
+      box-sizing:border-box;
+      transition:.25s ease;
+      cursor:pointer;
+      position:relative;
+      overflow:hidden;
+    }
+
+    .btn::before{
+      content:"";
+      position:absolute;
+      inset:0;
+      background:linear-gradient(90deg, transparent, rgba(255,255,255,.34), transparent);
+      transform:translateX(-120%);
+      transition:.7s ease;
+      pointer-events:none;
+    }
+
+    .btn:hover::before{transform:translateX(120%)}
+
+    .btn-primary{
+      color:#0a0d13;
+      background:linear-gradient(135deg, #d8bd85 0%, #fff0c8 35%, #8ad4ff 100%);
+      box-shadow:0 16px 36px rgba(138,212,255,.16);
+    }
+
+    .btn-primary:hover{transform:translateY(-2px); filter:brightness(1.05)}
+    .btn-secondary{
+      background:rgba(255,255,255,.045);
+      border-color:rgba(255,255,255,.13);
+      color:var(--text);
+    }
+    .btn-secondary:hover{transform:translateY(-2px); background:rgba(255,255,255,.082)}
+
+    .micro-note{
+      display:flex;
+      align-items:center;
+      gap:9px;
+      color:var(--muted2);
+      font-size:12px;
+      margin-top:14px;
+    }
+
+    .micro-note::before{
+      content:"";
+      width:7px;height:7px;border-radius:999px;
+      background:var(--mint);
+      box-shadow:0 0 16px rgba(68,240,208,.55);
+      flex:0 0 auto;
+    }
+
+    .hero-points{
+      display:grid;
+      grid-template-columns:repeat(2,minmax(0,1fr));
+      gap:14px;
+      margin-top:28px;
+    }
+
+    .chip{
+      padding:14px 16px;
+      border-radius:18px;
+      background:rgba(255,255,255,.045);
+      border:1px solid rgba(255,255,255,.09);
+      color:#dbe7fb;
+      font-size:14px;
+      transition:.25s ease;
+    }
+
+    .chip:hover{
+      transform:translateY(-2px);
+      border-color:rgba(138,212,255,.28);
+      background:rgba(255,255,255,.068);
+    }
+
+    .hero-proof-row{
+      display:grid;
+      grid-template-columns:repeat(4,minmax(0,1fr));
+      gap:10px;
+      margin-top:22px;
+      max-width:720px;
+    }
+
+    .hero-proof{
+      padding:14px 12px;
+      border-radius:18px;
+      background:rgba(255,255,255,.04);
+      border:1px solid rgba(255,255,255,.08);
+      text-align:center;
+    }
+
+    .hero-proof strong{
+      display:block;
+      color:#fff1c7;
+      font-size:24px;
+      line-height:1.1;
+    }
+
+    .hero-proof span{
+      display:block;
+      color:var(--muted2);
+      font-size:12px;
+      margin-top:5px;
+      line-height:1.45;
+    }
+
+    .hero-visual{
+      position:relative;
+      min-height:650px;
+      border-radius:34px;
+      border:1px solid rgba(255,255,255,.11);
+      background:
+        radial-gradient(circle at 20% 8%, rgba(138,212,255,.20), transparent 30%),
+        radial-gradient(circle at 82% 18%, rgba(197,168,106,.12), transparent 28%),
+        linear-gradient(180deg, rgba(255,255,255,.064), rgba(255,255,255,.026));
+      box-shadow:var(--shadow);
+      overflow:hidden;
+      padding:24px;
+    }
+
+    .hero-visual::before{
+      content:"";
+      position:absolute;
+      inset:0;
+      background:
+        linear-gradient(90deg, rgba(138,212,255,.09) 1px, transparent 1px),
+        linear-gradient(0deg, rgba(255,255,255,.052) 1px, transparent 1px);
+      background-size:44px 44px;
+      mask-image:linear-gradient(180deg, rgba(0,0,0,.67), transparent 72%);
+      pointer-events:none;
+    }
+
+    .hero-visual::after{
+      content:"";
+      position:absolute;
+      inset:-30%;
+      background:conic-gradient(from 120deg, transparent, rgba(138,212,255,.08), transparent, rgba(197,168,106,.08), transparent);
+      animation:spinGlow 18s linear infinite;
+      opacity:.8;
+      pointer-events:none;
+    }
+
+    @keyframes spinGlow{
+      to{transform:rotate(360deg)}
+    }
+
+    .device-stack{
+      position:relative;
+      height:100%;
+      min-height:600px;
+      z-index:1;
+    }
+
+    .device{
+      position:absolute;
+      width:52%;
+      min-width:245px;
+      border-radius:34px;
+      padding:10px;
+      background:linear-gradient(180deg, rgba(255,255,255,.17), rgba(255,255,255,.038));
+      border:1px solid rgba(255,255,255,.15);
+      box-shadow:0 30px 76px rgba(0,0,0,.45);
+      overflow:hidden;
+      backdrop-filter:blur(10px);
+      transition:.35s ease;
+    }
+
+    .device:hover{transform:translateY(-7px) rotate(0deg)}
+    .device img{
+      width:100%;
+      aspect-ratio:9/18;
+      object-fit:cover;
+      object-position:top center;
+      border-radius:26px;
+      border:1px solid rgba(255,255,255,.09);
+    }
+    .device-main{right:0; top:0; z-index:3}
+    .device-sub{left:0; bottom:42px; z-index:2; transform:rotate(-4deg)}
+    .device-sub img{filter:saturate(1.05) contrast(1.02)}
+
+    .live-panel{
+      position:absolute;
+      left:18px;
+      right:18px;
+      top:24px;
+      z-index:5;
+      display:flex;
+      justify-content:space-between;
+      gap:12px;
+      pointer-events:none;
+    }
+
+    .live-pill{
+      display:inline-flex;
+      align-items:center;
+      gap:8px;
+      padding:9px 12px;
+      border-radius:999px;
+      color:#eaf7ff;
+      background:rgba(5,7,10,.58);
+      border:1px solid rgba(255,255,255,.11);
+      backdrop-filter:blur(14px);
+      font-size:12px;
+      font-weight:800;
+    }
+
+    .live-pill::before{
+      content:"";
+      width:7px;height:7px;border-radius:999px;
+      background:var(--mint);
+      box-shadow:0 0 14px rgba(68,240,208,.65);
+    }
+
+    .route-hud{
+      position:absolute;
+      right:18px;
+      top:96px;
+      z-index:4;
+      width:min(255px, 50%);
+      padding:16px;
+      border-radius:22px;
+      background:rgba(5,7,10,.68);
+      border:1px solid rgba(255,255,255,.11);
+      backdrop-filter:blur(14px);
+      box-shadow:0 18px 50px rgba(0,0,0,.34);
+    }
+
+    .route-hud strong{
+      display:block;
+      font-size:15px;
+      line-height:1.35;
+      color:#fff1c7;
+      margin-bottom:10px;
+    }
+
+    .hud-line{
+      height:7px;
+      border-radius:999px;
+      background:rgba(255,255,255,.11);
+      overflow:hidden;
+      margin:10px 0;
+    }
+
+    .hud-line span{
+      display:block;
+      height:100%;
+      border-radius:999px;
+      background:linear-gradient(90deg, var(--gold), var(--ice));
+      animation:loadLine 2.6s ease-in-out infinite;
+    }
+
+    @keyframes loadLine{
+      0%{width:16%}
+      58%{width:86%}
+      100%{width:16%}
+    }
+
+    .floating-proof{
+      position:absolute;
+      left:18px;
+      right:18px;
+      bottom:18px;
+      z-index:5;
+      display:grid;
+      grid-template-columns:repeat(3,minmax(0,1fr));
+      gap:10px;
+    }
+
+    .proof-item{
+      padding:13px 12px;
+      border-radius:18px;
+      background:rgba(6,8,12,.70);
+      border:1px solid rgba(255,255,255,.11);
+      backdrop-filter:blur(14px);
+    }
+
+    .proof-item strong{display:block;color:#fff1c7;font-size:17px;line-height:1.2}
+    .proof-item span{display:block;color:var(--muted);font-size:12px;line-height:1.45;margin-top:4px}
+
+    section{padding:92px 0}
+    .section-head{
+      margin-bottom:34px;
+      display:flex;
+      align-items:end;
+      justify-content:space-between;
+      gap:28px;
+    }
+
+    .section-head h2{
+      margin:14px 0 0;
+      font-size:clamp(28px, 4vw, 47px);
+      line-height:1.12;
+      letter-spacing:.01em;
+    }
+
+    .section-head p{
+      margin:0;
+      max-width:735px;
+      color:var(--muted);
+    }
+
+    .section-lead{
+      color:var(--muted);
+      margin:0;
+      max-width:760px;
+    }
+
+    .grid-3{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:20px}
+    .grid-2{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:20px}
+    .grid-4{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:16px}
+
+    .card{
+      position:relative;
+      padding:28px;
+      border-radius:24px;
+      background:linear-gradient(180deg, rgba(255,255,255,.064), rgba(255,255,255,.032));
+      border:1px solid rgba(255,255,255,.12);
+      box-shadow:var(--shadow2);
+      overflow:hidden;
+    }
+
+    .card::before{
+      content:"";
+      position:absolute;
+      inset:0;
+      background:
+        radial-gradient(circle at 12% 0%, rgba(138,212,255,.12), transparent 38%),
+        linear-gradient(315deg, rgba(197,168,106,.072), transparent 36%);
+      pointer-events:none;
+      opacity:.92;
+    }
+
+    .card::after{
+      content:"";
+      position:absolute;
+      inset:0;
+      border-radius:inherit;
+      padding:1px;
+      background:linear-gradient(135deg, rgba(255,240,200,.2), transparent 34%, rgba(138,212,255,.18));
+      -webkit-mask:linear-gradient(#000 0 0) content-box, linear-gradient(#000 0 0);
+      -webkit-mask-composite:xor;
+      mask-composite:exclude;
+      opacity:.55;
+      pointer-events:none;
+    }
+
+    .card > *{position:relative;z-index:1}
+    .motion-card{
+      transition:transform .28s ease, border-color .28s ease, background .28s ease;
+    }
+    .motion-card:hover{
+      transform:translateY(-7px);
+      border-color:rgba(138,212,255,.24);
+      background:linear-gradient(180deg, rgba(255,255,255,.082), rgba(255,255,255,.04));
+    }
+
+    .icon{
+      width:52px;height:52px;border-radius:16px;
+      display:grid;place-items:center;
+      background:linear-gradient(135deg, rgba(138,212,255,.20), rgba(197,168,106,.18));
+      border:1px solid rgba(255,255,255,.10);
+      margin-bottom:16px;
+      font-size:22px;
+      box-shadow:0 12px 34px rgba(0,0,0,.18);
+    }
+
+    .card h3{margin:0 0 10px;font-size:24px;line-height:1.3}
+    .card p{margin:0;color:var(--muted);font-size:15px}
+    .card p + p{margin-top:14px}
+    .list{margin:16px 0 0;padding:0;list-style:none}
+    .list li{
+      position:relative;
+      padding-left:18px;
+      color:#d9e5fb;
+      margin-top:10px;
+      font-size:15px;
+    }
+    .list li::before{
+      content:"";
+      position:absolute;
+      left:0; top:.8em;
+      width:8px;height:8px;border-radius:999px;
+      background:linear-gradient(135deg, var(--gold), var(--ice));
+      transform:translateY(-50%);
+    }
+
+    .bento{
+      display:grid;
+      grid-template-columns:1.25fr .85fr .9fr;
+      grid-template-rows:auto auto;
+      gap:20px;
+    }
+
+    .bento .wide{
+      grid-row:span 2;
+      min-height:420px;
+    }
+
+    .bento .tall{
+      grid-column:span 2;
+    }
+
+    .metric-strip{
+      display:grid;
+      grid-template-columns:repeat(3,minmax(0,1fr));
+      gap:12px;
+      margin-top:22px;
+    }
+
+    .metric{
+      padding:18px 14px;
+      border-radius:18px;
+      background:rgba(255,255,255,.045);
+      border:1px solid rgba(255,255,255,.082);
+    }
+
+    .metric strong{
+      display:block;
+      color:#fff1c7;
+      font-size:28px;
+      line-height:1.1;
+      margin-bottom:5px;
+    }
+
+    .metric span{
+      display:block;
+      color:var(--muted);
+      font-size:12px;
+      line-height:1.45;
+    }
+
+    .route-visual{
+      position:relative;
+      min-height:202px;
+      margin-top:20px;
+      border-radius:22px;
+      background:
+        radial-gradient(circle at 20% 28%, rgba(138,212,255,.17), transparent 16%),
+        radial-gradient(circle at 78% 64%, rgba(197,168,106,.16), transparent 18%),
+        linear-gradient(135deg, rgba(255,255,255,.05), rgba(255,255,255,.02));
+      border:1px solid rgba(255,255,255,.09);
+      overflow:hidden;
+    }
+
+    .route-visual svg{
+      position:absolute;
+      inset:18px;
+      width:calc(100% - 36px);
+      height:calc(100% - 36px);
+    }
+
+    .route-visual path{
+      fill:none;
+      stroke:url(#routeGradient);
+      stroke-width:3;
+      stroke-linecap:round;
+      stroke-dasharray:10 9;
+      animation:routeMove 1.4s linear infinite;
+    }
+
+    @keyframes routeMove{
+      to{stroke-dashoffset:-38}
+    }
+
+    .map-pin{
+      position:absolute;
+      width:12px;height:12px;border-radius:999px;
+      background:linear-gradient(135deg, var(--gold), var(--ice));
+      box-shadow:0 0 18px rgba(138,212,255,.65);
+    }
+
+    .map-pin:nth-of-type(1){left:17%;top:33%}
+    .map-pin:nth-of-type(2){left:45%;top:54%}
+    .map-pin:nth-of-type(3){left:78%;top:27%}
+    .map-pin:nth-of-type(4){left:68%;top:75%}
 
     .app-detail-cta{
       margin:-10px 0 28px;
@@ -178,7 +940,7 @@
         linear-gradient(135deg, rgba(197,168,106,.12), rgba(138,212,255,.12)),
         rgba(255,255,255,.04);
       border:1px solid rgba(255,255,255,.11);
-      box-shadow:var(--shadow);
+      box-shadow:var(--shadow2);
       overflow:hidden;
       position:relative;
     }
@@ -206,327 +968,64 @@
       line-height:1.7;
     }
 
-    .btn{
-      display:inline-flex;
-      align-items:center;
-      justify-content:center;
-      text-align:center;
-      padding:18px 30px;
-      min-height:62px;
-      border-radius:999px;
-      text-decoration:none;
-      font-weight:900;
-      line-height:1.15;
-      border:1px solid transparent;
-      box-sizing:border-box;
-      transition:.25s ease;
-      cursor:pointer;
-    }
-
-    .btn-primary{
-      color:#0a0d13;
-      background:linear-gradient(135deg, #d8bd85 0%, #fff0c8 35%, #8ad4ff 100%);
-      box-shadow:0 16px 36px rgba(138,212,255,.16);
-    }
-
-    .btn-primary:hover{transform:translateY(-2px); filter:brightness(1.05)}
-    .btn-secondary{
-      background:rgba(255,255,255,.04);
-      border-color:rgba(255,255,255,.12);
-      color:var(--text);
-    }
-    .btn-secondary:hover{transform:translateY(-2px); background:rgba(255,255,255,.08)}
-
-    .hero-actions{
-      display:flex;
-      flex-wrap:wrap;
-      gap:12px;
-      align-items:center;
-      margin-top:28px;
-    }
-
-    .eyebrow{
-      display:inline-flex;
-      align-items:center;
-      gap:10px;
-      padding:10px 16px;
-      border-radius:999px;
-      border:1px solid rgba(255,255,255,.1);
-      background:rgba(255,255,255,.04);
-      color:#d7e6ff;
-      font-size:13px;
-      backdrop-filter:blur(10px);
-      width:max-content;
-      max-width:100%;
-    }
-    .eyebrow::before{
-      content:"";
-      width:8px;height:8px;border-radius:999px;
-      background:linear-gradient(135deg, var(--gold), var(--ice));
-      box-shadow:0 0 20px rgba(138,212,255,.7);
-      flex:0 0 auto;
-    }
-
-    .hero{
-      position:relative;
-      overflow:hidden;
-      padding:92px 0 72px;
-      isolation:isolate;
-    }
-    .hero::before{
-      content:"";
-      position:absolute;
-      inset:-10% -5% auto -5%;
-      height:830px;
-      z-index:-2;
-      background:
-        radial-gradient(circle at 15% 15%, rgba(138,212,255,.18), transparent 24%),
-        radial-gradient(circle at 78% 18%, rgba(197,168,106,.12), transparent 18%),
-        linear-gradient(180deg, rgba(255,255,255,.05), transparent 26%),
-        linear-gradient(135deg, #0e1521 0%, #080b10 48%, #10141f 100%);
-      border-bottom:1px solid rgba(255,255,255,.06);
-    }
-    .hero::after{
-      content:"";
-      position:absolute;
-      left:0; right:0; bottom:38px;
-      height:230px;
-      z-index:-1;
-      background:
-        linear-gradient(180deg, transparent, rgba(138,212,255,.08)),
-        repeating-linear-gradient(90deg, rgba(255,255,255,.02) 0 12px, transparent 12px 40px);
-      filter:blur(16px);
-      opacity:.55;
-      transform:perspective(1000px) rotateX(72deg);
-      transform-origin:center bottom;
-    }
-
-    .hero-grid{
-      display:grid;
-      grid-template-columns:1.02fr .98fr;
-      gap:34px;
-      align-items:center;
-    }
-
-    h1{
-      margin:18px 0 18px;
-      font-size:clamp(42px, 5.2vw, 68px);
-      line-height:1.12;
-      letter-spacing:.018em;
-      font-weight:950;
-    }
-    .headline-main{
-      display:block;
-      white-space:nowrap;
-    }
-    .headline-accent{
-      display:block;
-      background:linear-gradient(135deg, #f7edd8 0%, #cdb07a 30%, #d7ecff 72%, #8ad4ff 100%);
-      -webkit-background-clip:text;
-      -webkit-text-fill-color:transparent;
-      background-clip:text;
-      text-shadow:0 0 40px rgba(138,212,255,.1);
-    }
-    .hero-copy{
-      color:var(--muted);
-      font-size:17px;
-      max-width:720px;
-    }
-    .hero-copy strong{color:#fff1c7}
-
-    .hero-points{
-      display:grid;
-      grid-template-columns:repeat(2,minmax(0,1fr));
-      gap:14px;
-      margin-top:28px;
-    }
-    .chip{
-      padding:14px 16px;
-      border-radius:18px;
-      background:rgba(255,255,255,.04);
-      border:1px solid rgba(255,255,255,.08);
-      color:#dbe7fb;
-      font-size:14px;
-    }
-
-    .hero-visual{
-      position:relative;
-      min-height:640px;
-      border-radius:34px;
-      border:1px solid rgba(255,255,255,.10);
-      background:
-        radial-gradient(circle at 20% 8%, rgba(138,212,255,.18), transparent 30%),
-        linear-gradient(180deg, rgba(255,255,255,.06), rgba(255,255,255,.025));
-      box-shadow:var(--shadow);
-      overflow:hidden;
-      padding:24px;
-    }
-    .hero-visual::before{
-      content:"";
-      position:absolute;
-      inset:0;
-      background:
-        linear-gradient(90deg, rgba(138,212,255,.08) 1px, transparent 1px),
-        linear-gradient(0deg, rgba(255,255,255,.05) 1px, transparent 1px);
-      background-size:44px 44px;
-      mask-image:linear-gradient(180deg, rgba(0,0,0,.6), transparent 72%);
-      pointer-events:none;
-    }
-    .device-stack{
-      position:relative;
-      height:100%;
-      min-height:592px;
-    }
-    .device{
-      position:absolute;
-      width:52%;
-      min-width:245px;
-      border-radius:34px;
-      padding:10px;
-      background:linear-gradient(180deg, rgba(255,255,255,.16), rgba(255,255,255,.035));
-      border:1px solid rgba(255,255,255,.14);
-      box-shadow:0 30px 70px rgba(0,0,0,.42);
-      overflow:hidden;
-      backdrop-filter:blur(10px);
-    }
-    .device img{
-      width:100%;
-      aspect-ratio:9/18;
-      object-fit:cover;
-      object-position:top center;
-      border-radius:26px;
-      border:1px solid rgba(255,255,255,.08);
-    }
-    .device-main{right:0; top:0; z-index:3}
-    .device-sub{left:0; bottom:38px; z-index:2; transform:rotate(-4deg)}
-    .device-sub img{filter:saturate(1.05) contrast(1.02)}
-    .floating-proof{
-      position:absolute;
-      left:18px;
-      right:18px;
-      bottom:18px;
-      z-index:4;
-      display:grid;
-      grid-template-columns:repeat(3,minmax(0,1fr));
-      gap:10px;
-    }
-    .proof-item{
-      padding:13px 12px;
-      border-radius:18px;
-      background:rgba(6,8,12,.68);
-      border:1px solid rgba(255,255,255,.10);
-      backdrop-filter:blur(14px);
-    }
-    .proof-item strong{display:block;color:#fff1c7;font-size:17px;line-height:1.2}
-    .proof-item span{display:block;color:var(--muted);font-size:12px;line-height:1.45;margin-top:4px}
-
-    section{padding:92px 0}
-    .section-head{
-      margin-bottom:34px;
-      display:flex;
-      align-items:end;
-      justify-content:space-between;
-      gap:28px;
-    }
-    .section-head h2{
-      margin:14px 0 0;
-      font-size:clamp(28px, 4vw, 46px);
-      line-height:1.12;
-    }
-    .section-head p{
-      margin:0;
-      max-width:720px;
-      color:var(--muted);
-    }
-
-    .grid-3{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:20px}
-    .grid-2{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:20px}
-    .grid-4{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:16px}
-
-    .card{
-      position:relative;
-      padding:28px;
-      border-radius:24px;
-      background:linear-gradient(180deg, rgba(255,255,255,.06), rgba(255,255,255,.03));
-      border:1px solid rgba(255,255,255,.12);
-      box-shadow:var(--shadow);
-      overflow:hidden;
-    }
-    .card::before{
-      content:"";
-      position:absolute;
-      inset:0;
-      background:
-        linear-gradient(135deg, rgba(138,212,255,.08), transparent 34%),
-        linear-gradient(315deg, rgba(197,168,106,.06), transparent 34%);
-      pointer-events:none;
-    }
-    .card > *{position:relative;z-index:1}
-    .icon{
-      width:52px;height:52px;border-radius:16px;
-      display:grid;place-items:center;
-      background:linear-gradient(135deg, rgba(138,212,255,.18), rgba(197,168,106,.16));
-      border:1px solid rgba(255,255,255,.09);
-      margin-bottom:16px;
-      font-size:22px;
-    }
-    .card h3{margin:0 0 10px;font-size:24px;line-height:1.3}
-    .card p{margin:0;color:var(--muted);font-size:15px}
-    .card p + p{margin-top:14px}
-    .list{margin:16px 0 0;padding:0;list-style:none}
-    .list li{
-      position:relative;
-      padding-left:18px;
-      color:#d9e5fb;
-      margin-top:10px;
-      font-size:15px;
-    }
-    .list li::before{
-      content:"";
-      position:absolute;
-      left:0; top:.8em;
-      width:8px;height:8px;border-radius:999px;
-      background:linear-gradient(135deg, var(--gold), var(--ice));
-      transform:translateY(-50%);
-    }
-
     .app-shot-grid{
       display:grid;
       grid-template-columns:1.05fr .95fr;
       gap:20px;
       align-items:stretch;
     }
-    .shot-feature{
-      min-height:620px;
-    }
+
+    .shot-feature{min-height:620px}
     .shot-card{
       border-radius:28px;
       overflow:hidden;
       border:1px solid rgba(255,255,255,.12);
       background:rgba(255,255,255,.04);
-      box-shadow:var(--shadow);
+      box-shadow:var(--shadow2);
       position:relative;
+      isolation:isolate;
     }
+
+    .shot-card::before{
+      content:"";
+      position:absolute;
+      inset:0;
+      z-index:2;
+      pointer-events:none;
+      background:
+        linear-gradient(180deg, transparent 48%, rgba(0,0,0,.42)),
+        radial-gradient(circle at 20% 0%, rgba(138,212,255,.16), transparent 30%);
+    }
+
     .shot-card img{
       width:100%;
       height:100%;
       max-height:680px;
       object-fit:cover;
       object-position:top center;
-      filter:saturate(1.03) contrast(1.02);
+      filter:saturate(1.05) contrast(1.02);
+      transition:transform 1.2s ease, filter .3s ease;
     }
+
+    .shot-card:hover img{
+      transform:scale(1.035);
+      filter:saturate(1.1) contrast(1.05);
+    }
+
     .shot-feature img{min-height:620px}
     .shot-caption{
       position:absolute;
       left:16px;
       right:16px;
       bottom:16px;
+      z-index:3;
       padding:18px;
       border-radius:20px;
       background:rgba(5,7,10,.72);
       border:1px solid rgba(255,255,255,.1);
       backdrop-filter:blur(14px);
     }
+
     .shot-caption strong{display:block;font-size:21px;line-height:1.35;color:#fff1c7;margin-bottom:6px}
     .shot-caption span{display:block;color:var(--muted);font-size:13px;line-height:1.55}
     .shot-mini-grid{display:grid;grid-template-columns:1fr 1fr;gap:20px}
@@ -540,15 +1039,17 @@
       gap:14px;
       counter-reset:process;
     }
+
     .process-step{
       position:relative;
       padding:24px 20px 22px;
       border-radius:22px;
-      background:rgba(255,255,255,.04);
+      background:rgba(255,255,255,.045);
       border:1px solid rgba(255,255,255,.10);
       min-height:178px;
       overflow:hidden;
     }
+
     .process-step::before{
       counter-increment:process;
       content:counter(process);
@@ -560,6 +1061,7 @@
       background:linear-gradient(135deg, #fff2cc, #8ad4ff);
       margin-bottom:14px;
     }
+
     .process-step h3{margin:0 0 8px;font-size:20px;line-height:1.35}
     .process-step p{margin:0;color:var(--muted);font-size:14px;line-height:1.65}
 
@@ -569,13 +1071,26 @@
       gap:16px;
       margin-top:22px;
     }
+
     .stat{
       padding:22px 18px;
       border-radius:20px;
       text-align:center;
-      background:rgba(255,255,255,.04);
-      border:1px solid rgba(255,255,255,.08);
+      background:rgba(255,255,255,.045);
+      border:1px solid rgba(255,255,255,.085);
+      overflow:hidden;
+      position:relative;
     }
+
+    .stat::before{
+      content:"";
+      position:absolute;
+      inset:auto 20% 0 20%;
+      height:1px;
+      background:linear-gradient(90deg, transparent, rgba(138,212,255,.8), transparent);
+      opacity:.55;
+    }
+
     .stat strong{display:block;font-size:30px;line-height:1.1;margin-bottom:6px;color:#fff3d0}
     .stat span{color:var(--muted);font-size:13px}
 
@@ -585,22 +1100,25 @@
       gap:20px;
       align-items:stretch;
     }
+
     .price-box{
       padding:30px;
       border-radius:26px;
       border:1px solid rgba(255,255,255,.12);
-      background:rgba(255,255,255,.04);
-      box-shadow:var(--shadow);
+      background:rgba(255,255,255,.045);
+      box-shadow:var(--shadow2);
       position:relative;
       overflow:hidden;
     }
+
     .price-box::before{
       content:"";
       position:absolute;
       inset:0;
-      background:radial-gradient(circle at 18% 0%, rgba(197,168,106,.12), transparent 38%);
+      background:radial-gradient(circle at 18% 0%, rgba(197,168,106,.13), transparent 38%);
       pointer-events:none;
     }
+
     .price-box > *{position:relative;z-index:1}
     .price-box h3{margin:0 0 8px;font-size:28px;line-height:1.3}
     .price{
@@ -610,6 +1128,7 @@
       color:#fff1c7;
       margin:10px 0 14px;
     }
+
     .price small{font-size:16px;color:var(--muted);font-weight:700}
     .note{margin-top:14px;font-size:13px;color:var(--muted)}
 
@@ -634,23 +1153,26 @@
       padding:38px;
       border-radius:32px;
       background:
-        linear-gradient(135deg, rgba(197,168,106,.12), rgba(138,212,255,.12)),
-        rgba(255,255,255,.04);
-      border:1px solid rgba(255,255,255,.1);
-      box-shadow:var(--shadow);
+        linear-gradient(135deg, rgba(197,168,106,.13), rgba(138,212,255,.13)),
+        rgba(255,255,255,.045);
+      border:1px solid rgba(255,255,255,.11);
+      box-shadow:var(--shadow2);
       overflow:hidden;
       position:relative;
     }
+
     .cta-band::after{
       content:"";
       position:absolute;
-      width:320px;height:320px;border-radius:999px;
-      right:-120px;top:-150px;
-      background:radial-gradient(circle, rgba(138,212,255,.22), transparent 70%);
+      width:340px;height:340px;border-radius:999px;
+      right:-125px;top:-160px;
+      background:radial-gradient(circle, rgba(138,212,255,.24), transparent 70%);
       pointer-events:none;
+      animation:floatOrb 12s ease-in-out infinite;
     }
-    .cta-band h2{margin:0 0 10px;font-size:clamp(28px, 4vw, 44px);line-height:1.15;position:relative;z-index:1}
-    .cta-band p{margin:0;color:var(--muted);max-width:820px;position:relative;z-index:1}
+
+    .cta-band h2{margin:0 0 10px;font-size:clamp(28px, 4vw, 46px);line-height:1.15;position:relative;z-index:1}
+    .cta-band p{margin:0;color:var(--muted);max-width:830px;position:relative;z-index:1}
     .cta-band .hero-actions{position:relative;z-index:1}
 
     .flow{
@@ -659,6 +1181,7 @@
       grid-template-columns:repeat(4,minmax(0,1fr));
       gap:18px;
     }
+
     .flow .card{padding-top:64px}
     .flow .card::after{
       counter-increment:flow;
@@ -670,80 +1193,223 @@
       color:#0a0d13;
       font-weight:950;
       background:linear-gradient(135deg, #fff2cc, #8ad4ff);
+      -webkit-mask:none;
+      mask:none;
+      opacity:1;
     }
 
     .mapping-lite{
       padding:28px;
       border-radius:28px;
       border:1px solid rgba(255,255,255,.10);
-      background:rgba(255,255,255,.035);
+      background:rgba(255,255,255,.04);
       display:grid;
       grid-template-columns:1.15fr .85fr;
       gap:20px;
       align-items:center;
+      overflow:hidden;
+      position:relative;
     }
+
+    .mapping-lite::before{
+      content:"";
+      position:absolute;
+      inset:0;
+      background:radial-gradient(circle at 82% 0%, rgba(138,212,255,.12), transparent 35%);
+      pointer-events:none;
+    }
+
+    .mapping-lite > *{position:relative; z-index:1}
     .mapping-lite img{
       width:100%;
       max-height:360px;
       object-fit:cover;
       border-radius:22px;
       border:1px solid rgba(255,255,255,.10);
+      box-shadow:var(--shadow2);
     }
 
     details{
       border-radius:20px;
-      background:rgba(255,255,255,.04);
+      background:rgba(255,255,255,.045);
       border:1px solid rgba(255,255,255,.08);
       padding:20px 22px;
+      transition:.25s ease;
     }
+
+    details[open]{
+      background:rgba(255,255,255,.062);
+      border-color:rgba(138,212,255,.18);
+    }
+
     details + details{margin-top:14px}
-    summary{cursor:pointer;list-style:none;font-weight:800;font-size:17px}
+    summary{
+      cursor:pointer;
+      list-style:none;
+      font-weight:850;
+      font-size:17px;
+      display:flex;
+      align-items:center;
+      justify-content:space-between;
+      gap:16px;
+    }
     summary::-webkit-details-marker{display:none}
+    summary::after{
+      content:"+";
+      width:28px;height:28px;border-radius:999px;
+      display:grid;place-items:center;
+      color:#0a0d13;
+      background:linear-gradient(135deg, #fff2cc, #8ad4ff);
+      flex:0 0 auto;
+      font-weight:950;
+    }
+    details[open] summary::after{content:"−"}
     details p{color:var(--muted);margin:14px 0 0}
 
-    footer{padding:30px 0 60px;color:var(--muted)}
+    .contact-grid{
+      display:grid;
+      grid-template-columns:1fr 1fr;
+      gap:20px;
+    }
+
+    .contact-card-highlight{
+      border-color:rgba(255,240,200,.24);
+      background:
+        radial-gradient(circle at 20% 0%, rgba(197,168,106,.12), transparent 36%),
+        rgba(255,255,255,.05);
+    }
+
+    footer{
+      padding:30px 0 104px;
+      color:var(--muted);
+      border-top:1px solid rgba(255,255,255,.08);
+      background:rgba(0,0,0,.12);
+    }
+
     .footer-grid{
       display:grid;
       grid-template-columns:1.2fr .8fr;
       gap:24px;
       align-items:start;
     }
+
+    .footer-links{
+      display:flex;
+      flex-wrap:wrap;
+      gap:12px 18px;
+      margin-top:14px;
+    }
+
+    .footer-links a{
+      color:#dbe7fb;
+      font-size:13px;
+      transition:.2s ease;
+    }
+    .footer-links a:hover{color:#fff1c7}
+
     .small{font-size:13px;color:var(--muted)}
 
+    .sticky-cta{
+      position:fixed;
+      left:50%;
+      bottom:16px;
+      transform:translateX(-50%);
+      width:min(680px, calc(100% - 24px));
+      z-index:1300;
+      display:grid;
+      grid-template-columns:1fr 1fr;
+      gap:8px;
+      padding:8px;
+      border-radius:999px;
+      background:rgba(5,7,10,.78);
+      border:1px solid rgba(255,255,255,.12);
+      backdrop-filter:blur(18px);
+      box-shadow:0 14px 44px rgba(0,0,0,.38);
+    }
+
+    .sticky-cta a{
+      min-height:46px;
+      display:flex;
+      align-items:center;
+      justify-content:center;
+      border-radius:999px;
+      font-size:13px;
+      font-weight:950;
+      text-align:center;
+      transition:.25s ease;
+    }
+
+    .sticky-cta a:first-child{
+      color:#0a0d13;
+      background:linear-gradient(135deg, #d8bd85 0%, #fff0c8 38%, #8ad4ff 100%);
+    }
+
+    .sticky-cta a:last-child{
+      color:#eef4ff;
+      background:rgba(255,255,255,.07);
+      border:1px solid rgba(255,255,255,.08);
+    }
+
+    .sticky-cta a:hover{transform:translateY(-2px)}
+
+    .reveal{
+      opacity:0;
+      transform:translateY(22px);
+      transition:opacity .75s ease, transform .75s ease;
+    }
+
+    .reveal.is-visible{
+      opacity:1;
+      transform:translateY(0);
+    }
+
+    .reveal.delay-1{transition-delay:.08s}
+    .reveal.delay-2{transition-delay:.16s}
+    .reveal.delay-3{transition-delay:.24s}
+
     @media (max-width:1080px){
-      .hero-grid,.section-head,.app-shot-grid,.price-grid,.mapping-lite,.footer-grid{grid-template-columns:1fr}
+      .hero-grid,.section-head,.app-shot-grid,.price-grid,.mapping-lite,.footer-grid,.contact-grid{grid-template-columns:1fr}
       .section-head{display:grid;align-items:start}
-      .grid-3,.grid-4,.process-line,.flow,.stats{grid-template-columns:1fr 1fr}
+      .grid-3,.grid-4,.process-line,.flow,.stats,.hero-proof-row{grid-template-columns:1fr 1fr}
+      .bento{grid-template-columns:1fr 1fr}
+      .bento .wide,.bento .tall{grid-column:auto;grid-row:auto}
       .hero-visual{min-height:620px}
       .shot-feature{min-height:520px}
       .shot-feature img{min-height:520px}
+      .nav-links{display:none}
+      .menu-button{display:flex}
+      body.nav-open .mobile-panel{display:block}
     }
 
     @media (max-width:720px){
       .container{width:min(100% - 24px, var(--max))}
-      .nav{padding:12px 0;min-height:70px}
-      .nav-links{display:none}
-      .nav-actions{gap:0; flex:0 0 auto;}
+      .nav{padding:12px 0;min-height:70px;gap:10px}
+      .nav-contact-button{display:none}
       .nav-app-button{min-height:40px; padding:10px 13px; font-size:12px;}
+      .brand{flex:1 1 auto;min-width:0;overflow:hidden;gap:10px}
       .brand-logo{width:46px;height:46px}
-      .brand-text{font-size:14px;max-width:calc(100vw - 150px)}
+      .brand-text{font-size:14px;min-width:0;max-width:none;overflow:hidden;text-overflow:ellipsis}
       .brand small{font-size:9px;letter-spacing:.12em}
-      .hero{padding:62px 0 58px}
-      h1{font-size:clamp(36px, 10.4vw, 48px); letter-spacing:.012em; line-height:1.12;}
+      .hero{padding:58px 0 58px}
+      h1{font-size:clamp(33px, 9.8vw, 46px); letter-spacing:.006em; line-height:1.15; max-width:100%; overflow-wrap:break-word; word-break:keep-all;}
       .hero-copy{font-size:15px}
       .hero-actions{display:grid;grid-template-columns:1fr;gap:10px}
       .hero-actions .btn{width:100%;padding-inline:18px}
-      .app-detail-cta{grid-template-columns:1fr; padding:18px; margin:0 0 22px;}
-      .app-detail-cta .btn{width:100%;}
-      .hero-points,.grid-2,.grid-3,.grid-4,.process-line,.flow,.stats,.shot-mini-grid{grid-template-columns:1fr}
+      .hero-points,.grid-2,.grid-3,.grid-4,.process-line,.flow,.stats,.shot-mini-grid,.hero-proof-row,.bento,.metric-strip{grid-template-columns:1fr}
       section{padding:66px 0}
       .card,.cta-band,.price-box,.mapping-lite{padding:22px;border-radius:22px}
-      .hero-visual{min-height:560px;padding:16px;border-radius:26px}
-      .device-stack{min-height:528px}
+      .section-head h2{font-size:clamp(27px, 8.2vw, 38px)}
+      .eyebrow{font-size:12px;line-height:1.5;white-space:normal;width:auto;display:flex;align-items:flex-start;overflow-wrap:anywhere;word-break:break-word}
+      .eyebrow::before{margin-top:.62em}
+      .hero-visual{min-height:568px;padding:16px;border-radius:26px}
+      .device-stack{min-height:536px}
       .device{width:62%;min-width:0;border-radius:28px;padding:8px}
       .device img{border-radius:21px}
-      .device-main{right:0;top:0}
-      .device-sub{left:0;bottom:86px}
+      .device-main{right:0;top:18px}
+      .device-sub{left:0;bottom:90px}
+      .live-panel{left:12px;right:12px;top:12px}
+      .live-pill{font-size:11px;padding:8px 10px}
+      .route-hud{display:none}
       .floating-proof{grid-template-columns:1fr;left:12px;right:12px;bottom:12px;gap:8px}
       .proof-item{padding:10px 12px;border-radius:14px}
       .proof-item strong{font-size:15px}
@@ -757,144 +1423,37 @@
       .shot-caption strong{font-size:17px}
       .price{font-size:38px}
       .stat strong{font-size:28px}
-      .eyebrow{font-size:12px;line-height:1.5;white-space:normal;width:auto}
-    }
-
-    /* ===== Mobile first-view width fix: content unchanged, layout only ===== */
-    @media (max-width:720px){
-      body{
-        overflow-x:hidden;
-      }
-
-      .topbar,
-      main,
-      section,
-      footer,
-      .hero,
-      .container{
-        max-width:100%;
-      }
-
-      .container{
-        width:calc(100% - 24px);
-      }
-
-      .nav{
-        gap:10px;
-        width:100%;
-        min-width:0;
-      }
-
-      .brand{
-        flex:1 1 auto;
-        min-width:0;
-        overflow:hidden;
-        gap:10px;
-      }
-
-      .brand-text{
-        min-width:0;
-        max-width:none;
-        overflow:hidden;
-        text-overflow:ellipsis;
-      }
-
-      .nav-actions{
-        flex:0 0 auto;
-      }
-
-      .nav-app-button{
-        max-width:96px;
-        padding-inline:12px;
-      }
-
-      .hero-grid,
-      .hero-grid > div,
-      .section-head,
-      .section-head > div,
-      .app-detail-cta,
-      .card,
-      .cta-band,
-      .price-box{
-        min-width:0;
-      }
-
-      h1{
-        font-size:clamp(31px, 9.2vw, 42px);
-        line-height:1.18;
-        letter-spacing:.006em;
-        max-width:100%;
-        overflow-wrap:break-word;
-        word-break:keep-all;
-        text-wrap:balance;
-      }
-
-      .headline-main{
-        white-space:normal;
-      }
-
-      .headline-accent{
-        display:block;
-        max-width:100%;
-        overflow-wrap:break-word;
-        word-break:keep-all;
-        text-wrap:balance;
-      }
-
-      .eyebrow{
-        display:flex;
-        width:100%;
-        max-width:100%;
-        min-width:0;
-        align-items:flex-start;
-        overflow-wrap:anywhere;
-        word-break:break-word;
-      }
-
-      .eyebrow::before{
-        margin-top:.62em;
-      }
-
-      .hero-copy,
-      .chip,
-      .card p,
-      .section-head p,
-      .app-detail-cta span{
-        max-width:100%;
-        overflow-wrap:break-word;
-        word-break:normal;
-      }
-
-      .btn{
-        max-width:100%;
-        white-space:normal;
-      }
+      .app-detail-cta{grid-template-columns:1fr; padding:18px; margin:0 0 22px;}
+      .app-detail-cta .btn{width:100%;}
+      .btn{max-width:100%;white-space:normal}
+      .sticky-cta{grid-template-columns:1fr 1fr;bottom:10px;border-radius:22px}
+      .sticky-cta a{border-radius:16px;font-size:12px;min-height:44px}
+      footer{padding-bottom:96px}
     }
 
     @media (max-width:420px){
-      h1{
-        font-size:clamp(29px, 8.9vw, 36px);
-        line-height:1.2;
-      }
-
-      .hero{
-        padding-top:52px;
-      }
-
-      .brand-logo{
-        width:42px;
-        height:42px;
-      }
-
-      .brand-text{
-        font-size:13px;
-      }
-
-      .brand small{
-        font-size:8px;
-      }
+      h1{font-size:clamp(30px, 9.1vw, 38px);line-height:1.19}
+      .hero{padding-top:50px}
+      .brand-logo{width:42px;height:42px}
+      .brand-text{font-size:13px}
+      .brand small{font-size:8px}
+      .nav-app-button{max-width:98px;overflow:hidden;text-overflow:ellipsis}
+      .hero-visual{min-height:540px}
+      .device-stack{min-height:508px}
+      .hero-proof strong{font-size:22px}
     }
 
+    @media (prefers-reduced-motion:reduce){
+      *,
+      *::before,
+      *::after{
+        animation-duration:.01ms !important;
+        animation-iteration-count:1 !important;
+        scroll-behavior:auto !important;
+        transition-duration:.01ms !important;
+      }
+      .reveal{opacity:1;transform:none}
+    }
   </style>
 
   <script type="application/ld+json">
@@ -902,34 +1461,17 @@
     "@context": "https://schema.org",
     "@type": "ProfessionalService",
     "name": "HIGH QUALITY POSTING",
+    "alternateName": ["HQP", "ハイクオリティポスティング"],
     "url": "https://highqualityposting.jp/",
     "image": "https://highqualityposting.jp/logo.jpg",
     "description": "北九州・福岡市・熊本市・久留米市で、マンション・集合住宅を中心に配布するポスティングサービス。HQPアプリで投函枚数、投函時刻、GPSログ、日報PDF、投函タイムラインを管理します。",
     "areaServed": [
-      {
-        "@type": "City",
-        "name": "北九州市"
-      },
-      {
-        "@type": "City",
-        "name": "福岡市"
-      },
-      {
-        "@type": "City",
-        "name": "熊本市"
-      },
-      {
-        "@type": "City",
-        "name": "久留米市"
-      },
-      {
-        "@type": "City",
-        "name": "古賀市"
-      },
-      {
-        "@type": "City",
-        "name": "福津市"
-      }
+      {"@type": "City", "name": "北九州市"},
+      {"@type": "City", "name": "福岡市"},
+      {"@type": "City", "name": "熊本市"},
+      {"@type": "City", "name": "久留米市"},
+      {"@type": "City", "name": "古賀市"},
+      {"@type": "City", "name": "福津市"}
     ],
     "serviceType": [
       "ポスティング",
@@ -940,11 +1482,37 @@
       "不動産チラシ配布",
       "指定マンション配布"
     ],
+    "priceRange": "基本単価 1枚4円〜",
     "sameAs": [
       "https://www.instagram.com/highquality.posting?igsh=dGZuZDF0djJ5dndr&utm_source=qr",
       "https://lin.ee/vsdXP7a",
       "https://advertising.base.shop/"
     ]
+  }
+  </script>
+
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "Service",
+    "name": "マンション特化ポスティング",
+    "provider": {
+      "@type": "ProfessionalService",
+      "name": "HIGH QUALITY POSTING",
+      "url": "https://highqualityposting.jp/"
+    },
+    "areaServed": ["北九州市", "福岡市", "熊本市", "久留米市", "古賀市", "福津市"],
+    "serviceType": "ポスティング",
+    "description": "マンション・集合住宅を中心に、指定マンション配布、GPSログ、日報PDF、投函タイムライン共有に対応したチラシ配布サービスです。",
+    "offers": {
+      "@type": "Offer",
+      "priceSpecification": {
+        "@type": "UnitPriceSpecification",
+        "price": "4",
+        "priceCurrency": "JPY",
+        "unitText": "1枚"
+      }
+    }
   }
   </script>
 
@@ -1013,11 +1581,14 @@
   }
   </script>
 </head>
+
 <body>
+  <div class="progress-bar" aria-hidden="true"></div>
+
   <header class="topbar">
     <div class="container nav">
       <a href="#top" class="brand" aria-label="HIGH QUALITY POSTING ホームへ">
-        <img src="logo.jpg" alt="HIGH QUALITY POSTING ロゴ" class="brand-logo">
+        <img src="logo.jpg" alt="HIGH QUALITY POSTING ロゴ" class="brand-logo" width="52" height="52">
         <span class="brand-text">
           HIGH QUALITY POSTING
           <small>APP DRIVEN POSTING</small>
@@ -1026,32 +1597,51 @@
 
       <div class="nav-actions">
         <nav class="nav-links" aria-label="グローバルナビゲーション">
+          <a href="#value">選ばれる理由</a>
           <a href="#app">HQPアプリ</a>
           <a href="#quality">配布品質</a>
           <a href="#target">指定マンション</a>
           <a href="#pricing">料金</a>
           <a href="#areas">対応エリア</a>
           <a href="#flow">ご依頼の流れ</a>
-          <a href="#contact">お問い合わせ</a>
         </nav>
+        <a class="nav-contact-button" href="#contact">相談する</a>
         <a class="nav-app-button" href="hqp-app.html" aria-label="HQPアプリ紹介ページへ移動">HQPアプリ</a>
+        <button class="menu-button" type="button" aria-label="メニューを開閉" aria-expanded="false">
+          <span aria-hidden="true"></span>
+        </button>
       </div>
+    </div>
+
+    <div class="container mobile-panel" aria-label="スマートフォンナビゲーション">
+      <a href="#value">選ばれる理由</a>
+      <a href="#app">HQPアプリ</a>
+      <a href="#quality">配布品質</a>
+      <a href="#target">指定マンション</a>
+      <a href="#pricing">料金</a>
+      <a href="#areas">対応エリア</a>
+      <a href="#flow">ご依頼の流れ</a>
+      <a href="#contact">お問い合わせ</a>
     </div>
   </header>
 
   <main id="top">
     <section class="hero">
+      <span class="orb one" aria-hidden="true"></span>
+      <span class="orb two" aria-hidden="true"></span>
+      <span class="orb three" aria-hidden="true"></span>
+
       <div class="container hero-grid">
-        <div>
+        <div class="reveal is-visible">
           <div class="eyebrow">北九州・福岡市・熊本市・久留米市対応 × 年間100万枚以上の配布実績 × マンション特化</div>
           <h1>
-            <span class="headline-main">配った証拠まで見える</span>
-            <span class="headline-accent">次世代ポスティング。</span>
+            <span class="headline-main">マンション特化の<br>ポスティングを、</span>
+            <span class="headline-accent">証拠まで見える配布へ。</span>
           </h1>
           <p class="hero-copy">
             HIGH QUALITY POSTINGは、北九州・福岡市・熊本市・久留米市で、マンション・集合住宅を中心としたポスティングに対応します。<br>
             配布管理には<strong>HQPアプリ</strong>を活用し、投函マップ、投函枚数、投函時刻、GPSログ、日報PDF、共有タイムラインまで可視化。
-            「どこに配ったか分からない」「報告が曖昧」という従来の不安を減らします。
+            <span class="marker">「どこに配ったか分からない」「報告が曖昧」</span>という従来の不安を減らします。
           </p>
 
           <div class="hero-actions">
@@ -1065,6 +1655,26 @@
               アプリ詳細ページへ
             </a>
           </div>
+          <div class="micro-note">エリア・枚数・配布目的が未確定でも相談可能です。</div>
+
+          <div class="hero-proof-row">
+            <div class="hero-proof">
+              <strong data-counter="100">0</strong>
+              <span>万枚以上<br>年間配布実績</span>
+            </div>
+            <div class="hero-proof">
+              <strong>4円</strong>
+              <span>基本単価<br>1枚あたり</span>
+            </div>
+            <div class="hero-proof">
+              <strong>GPS</strong>
+              <span>投函地点<br>ログ対応</span>
+            </div>
+            <div class="hero-proof">
+              <strong>PDF</strong>
+              <span>日報共有<br>対応</span>
+            </div>
+          </div>
 
           <div class="hero-points">
             <div class="chip">✔ 投函地点・時刻をアプリで記録</div>
@@ -1074,13 +1684,24 @@
           </div>
         </div>
 
-        <div class="hero-visual" aria-label="HQPアプリ運用イメージ">
+        <div class="hero-visual reveal delay-1" aria-label="HQPアプリ運用イメージ">
           <div class="device-stack">
+            <div class="live-panel">
+              <div class="live-pill">POSTING LIVE</div>
+              <div class="live-pill">GPS LOG</div>
+            </div>
+
+            <div class="route-hud" aria-hidden="true">
+              <strong>配布進捗をリアルタイム管理</strong>
+              <div class="hud-line"><span></span></div>
+              <p class="small">投函入力・日報・タイムラインを一連の流れで管理。</p>
+            </div>
+
             <div class="device device-main">
-              <img src="app-screen-active-posting.png" alt="HQPアプリ 投函中マップ画面">
+              <img src="app-screen-active-posting.png" alt="HQPアプリ 投函中マップ画面" width="540" height="1080" fetchpriority="high">
             </div>
             <div class="device device-sub">
-              <img src="app-screen-daily-report-detail.png" alt="HQPアプリ 日報ページ画面">
+              <img src="app-screen-daily-report-detail.png" alt="HQPアプリ 日報ページ画面" width="540" height="1080" loading="lazy">
             </div>
             <div class="floating-proof">
               <div class="proof-item">
@@ -1093,7 +1714,7 @@
               </div>
               <div class="proof-item">
                 <strong>GPSログ</strong>
-                <span>投函入力地点の位置情報をを可視化</span>
+                <span>投函入力地点の位置情報を可視化</span>
               </div>
             </div>
           </div>
@@ -1101,9 +1722,92 @@
       </div>
     </section>
 
+    <section id="value" class="anchor-offset">
+      <div class="container">
+        <div class="section-head reveal">
+          <div>
+            <p class="eyebrow">WHY HQP</p>
+            <h2>反響を狙うなら、配布前の設計と配布後の証拠まで必要です。</h2>
+          </div>
+          <p>
+            HQPは、ただ人手でチラシを配るだけのポスティングではありません。
+            マンション特化の対象設計、現場でのアプリ記録、クライアントが確認しやすい報告までを一つのサービスとして提供します。
+          </p>
+        </div>
+
+        <div class="bento">
+          <article class="card motion-card wide reveal">
+            <div class="icon">🏢</div>
+            <h3>マンション・集合住宅に特化</h3>
+            <p>
+              戸建てを広く回るのではなく、分譲マンション・賃貸マンション・指定マンションなど、集合住宅への配布を中心に設計します。
+              不動産チラシ、売却査定、店舗・サービス告知など、商材に合わせて狙う建物を整理します。
+            </p>
+            <div class="route-visual" aria-hidden="true">
+              <svg viewBox="0 0 400 160" preserveAspectRatio="none">
+                <defs>
+                  <linearGradient id="routeGradient" x1="0" x2="1" y1="0" y2="0">
+                    <stop offset="0%" stop-color="#c5a86a"/>
+                    <stop offset="55%" stop-color="#fff0c8"/>
+                    <stop offset="100%" stop-color="#8ad4ff"/>
+                  </linearGradient>
+                </defs>
+                <path d="M20 112 C85 18, 142 46, 190 85 S290 150, 380 46"></path>
+              </svg>
+              <span class="map-pin"></span>
+              <span class="map-pin"></span>
+              <span class="map-pin"></span>
+              <span class="map-pin"></span>
+            </div>
+            <div class="metric-strip">
+              <div class="metric">
+                <strong>集中</strong>
+                <span>集合住宅中心</span>
+              </div>
+              <div class="metric">
+                <strong>設計</strong>
+                <span>配布対象を整理</span>
+              </div>
+              <div class="metric">
+                <strong>確認</strong>
+                <span>配布後に見える化</span>
+              </div>
+            </div>
+          </article>
+
+          <article class="card motion-card reveal delay-1">
+            <div class="icon">📱</div>
+            <h3>HQPアプリで現場を管理</h3>
+            <p>
+              投函マップ、投函枚数、投函時刻、GPSログをアプリで記録。
+              現場の感覚だけに頼らず、配布状況をデータとして残します。
+            </p>
+          </article>
+
+          <article class="card motion-card reveal delay-2">
+            <div class="icon">🧾</div>
+            <h3>報告が分かりやすい</h3>
+            <p>
+              日報PDFや投函タイムラインで、配布後の確認がしやすい形に整理します。
+              クライアントが後から見ても分かる報告を重視します。
+            </p>
+          </article>
+
+          <article class="card motion-card tall reveal delay-3">
+            <div class="icon">🎯</div>
+            <h3>指定マンション配布にも対応</h3>
+            <p>
+              「この建物に届けたい」「このエリアの集合住宅を優先したい」という要望にも対応。
+              配布目的に合わせて、対象マンション・配布順・報告方法まで組み立てます。
+            </p>
+          </article>
+        </div>
+      </div>
+    </section>
+
     <section id="quality" class="anchor-offset">
       <div class="container">
-        <div class="section-head">
+        <div class="section-head reveal">
           <div>
             <p class="eyebrow">QUALITY CONTROL</p>
             <h2>ポスティングの価値は、配った後の見え方で変わる。</h2>
@@ -1115,7 +1819,7 @@
         </div>
 
         <div class="grid-3">
-          <article class="card">
+          <article class="card motion-card reveal">
             <div class="icon">📍</div>
             <h3>投函マップ</h3>
             <p>
@@ -1124,7 +1828,7 @@
             </p>
           </article>
 
-          <article class="card">
+          <article class="card motion-card reveal delay-1">
             <div class="icon">🧾</div>
             <h3>日報PDF</h3>
             <p>
@@ -1133,7 +1837,7 @@
             </p>
           </article>
 
-          <article class="card">
+          <article class="card motion-card reveal delay-2">
             <div class="icon">🕒</div>
             <h3>投函タイムライン</h3>
             <p>
@@ -1142,12 +1846,35 @@
             </p>
           </article>
         </div>
+
+        <div class="process-line" style="margin-top:20px;">
+          <div class="process-step reveal">
+            <h3>対象設計</h3>
+            <p>商材とエリアに合わせて、狙う集合住宅を整理します。</p>
+          </div>
+          <div class="process-step reveal delay-1">
+            <h3>ルート作成</h3>
+            <p>配布効率と対象建物を見ながら、現場ルートを組みます。</p>
+          </div>
+          <div class="process-step reveal delay-2">
+            <h3>アプリ配布</h3>
+            <p>投函地点・枚数・時刻を記録しながら配布します。</p>
+          </div>
+          <div class="process-step reveal delay-3">
+            <h3>日報化</h3>
+            <p>配布結果をPDFやタイムラインで確認しやすく整理します。</p>
+          </div>
+          <div class="process-step reveal delay-3">
+            <h3>改善材料</h3>
+            <p>次回配布のエリア選定や配布設計にも活用できます。</p>
+          </div>
+        </div>
       </div>
     </section>
 
     <section id="app" class="anchor-offset">
       <div class="container">
-        <div class="section-head">
+        <div class="section-head reveal">
           <div>
             <p class="eyebrow">HQP APP OPERATION</p>
             <h2>HQPアプリを利用した配布管理</h2>
@@ -1158,7 +1885,7 @@
           </p>
         </div>
 
-        <div class="app-detail-cta" aria-label="HQPアプリ詳細ページへの導線">
+        <div class="app-detail-cta reveal" aria-label="HQPアプリ詳細ページへの導線">
           <div>
             <strong>アプリの機能・画面・運用イメージを詳しく確認できます。</strong>
             <span>全体マッピング、投函入力、日報、タイムライン、共有URL、スタッフ管理まで、HQPアプリの詳細ページで確認できます。</span>
@@ -1167,8 +1894,8 @@
         </div>
 
         <div class="app-shot-grid">
-          <div class="shot-card shot-feature">
-            <img src="app-screen-overall-mapping.png" alt="HQPアプリ 全体マッピング画面">
+          <div class="shot-card shot-feature reveal">
+            <img src="app-screen-overall-mapping.png" alt="HQPアプリ 全体マッピング画面" width="900" height="1280" loading="lazy">
             <div class="shot-caption">
               <strong>配布対象を地図上で管理</strong>
               <span>建物名・住所・地名で検索し、配布先やルート設計に活用します。</span>
@@ -1176,32 +1903,32 @@
           </div>
 
           <div class="shot-mini-grid">
-            <div class="shot-card posting-map-focus">
-              <img src="app-screen-posting-map.png" alt="HQPアプリ 投函マップ画面">
+            <div class="shot-card posting-map-focus reveal delay-1">
+              <img src="app-screen-posting-map.png" alt="HQPアプリ 投函マップ画面" width="540" height="1080" loading="lazy">
               <div class="shot-caption">
                 <strong>投函マップ</strong>
                 <span>配布対象マンションを地図上で確認。</span>
               </div>
             </div>
 
-            <div class="shot-card">
-              <img src="app-screen-timeline-detail.png" alt="HQPアプリ 投函タイムライン画面">
+            <div class="shot-card reveal delay-2">
+              <img src="app-screen-timeline-detail.png" alt="HQPアプリ 投函タイムライン画面" width="540" height="1080" loading="lazy">
               <div class="shot-caption">
                 <strong>タイムライン</strong>
                 <span>投函地点と時刻を時系列で共有。</span>
               </div>
             </div>
 
-            <div class="shot-card">
-              <img src="app-screen-active-posting.png" alt="HQPアプリ 投函中の進捗管理画面">
+            <div class="shot-card reveal delay-2">
+              <img src="app-screen-active-posting.png" alt="HQPアプリ 投函中の進捗管理画面" width="540" height="1080" loading="lazy">
               <div class="shot-caption">
                 <strong>進捗管理</strong>
                 <span>配布中の進捗と投函枚数を記録。</span>
               </div>
             </div>
 
-            <div class="shot-card">
-              <img src="app-screen-daily-report-detail.png" alt="HQPアプリ 日報ページ詳細画面">
+            <div class="shot-card reveal delay-3">
+              <img src="app-screen-daily-report-detail.png" alt="HQPアプリ 日報ページ詳細画面" width="540" height="1080" loading="lazy">
               <div class="shot-caption">
                 <strong>日報ページ</strong>
                 <span>配布枚数・時刻・建物別内訳を確認。</span>
@@ -1211,19 +1938,19 @@
         </div>
 
         <div class="stats">
-          <div class="stat">
-            <strong>100万枚+</strong>
-            <span>年間配布実績</span>
+          <div class="stat reveal">
+            <strong data-counter="100">0</strong>
+            <span>万枚以上 年間配布実績</span>
           </div>
-          <div class="stat">
+          <div class="stat reveal delay-1">
             <strong>4円</strong>
             <span>基本単価</span>
           </div>
-          <div class="stat">
+          <div class="stat reveal delay-2">
             <strong>GPS</strong>
             <span>ログ管理対応</span>
           </div>
-          <div class="stat">
+          <div class="stat reveal delay-3">
             <strong>PDF</strong>
             <span>日報共有対応</span>
           </div>
@@ -1233,7 +1960,7 @@
 
     <section id="target" class="anchor-offset">
       <div class="container">
-        <div class="section-head">
+        <div class="section-head reveal">
           <div>
             <p class="eyebrow">TARGETED POSTING</p>
             <h2>指定マンションへの配布も可能です。</h2>
@@ -1245,7 +1972,7 @@
         </div>
 
         <div class="grid-3">
-          <article class="card">
+          <article class="card motion-card reveal">
             <div class="icon">🏢</div>
             <h3>指定マンション配布</h3>
             <p>
@@ -1259,7 +1986,7 @@
             </ul>
           </article>
 
-          <article class="card">
+          <article class="card motion-card reveal delay-1">
             <div class="icon">🎯</div>
             <h3>狙う順番まで設計</h3>
             <p>
@@ -1273,7 +2000,7 @@
             </ul>
           </article>
 
-          <article class="card">
+          <article class="card motion-card reveal delay-2">
             <div class="icon">🔎</div>
             <h3>配布前に対象を確認</h3>
             <p>
@@ -1292,7 +2019,7 @@
 
     <section id="pricing" class="anchor-offset">
       <div class="container">
-        <div class="section-head">
+        <div class="section-head reveal">
           <div>
             <p class="eyebrow">PRICING</p>
             <h2>料金案内</h2>
@@ -1303,7 +2030,7 @@
         </div>
 
         <div class="price-grid">
-          <article class="price-box">
+          <article class="price-box reveal">
             <h3>マンション特化ポスティング</h3>
             <div class="price">1枚 4円 <small>（基本単価）</small></div>
             <ul class="list">
@@ -1318,7 +2045,7 @@
             </p>
           </article>
 
-          <article class="price-box">
+          <article class="price-box reveal delay-1">
             <h3>おすすめの相談内容</h3>
             <p>
               具体的な配布先が決まっていなくても相談可能です。
@@ -1342,7 +2069,7 @@
 
     <section id="regional-posting" class="anchor-offset">
       <div class="container">
-        <div class="section-head">
+        <div class="section-head reveal">
           <div>
             <p class="eyebrow">REGIONAL POSTING</p>
             <h2>北九州・福岡市・熊本市・久留米市のポスティングに対応</h2>
@@ -1354,25 +2081,25 @@
         </div>
 
         <div class="grid-4">
-          <article class="card area-card">
+          <article class="card area-card motion-card reveal">
             <span class="tag">KITAKYUSHU</span>
             <h3>北九州のポスティング</h3>
             <p>小倉北区・八幡西区・八幡東区など、マンション・集合住宅を中心に、指定エリアや指定マンションへのチラシ配布に対応します。</p>
           </article>
 
-          <article class="card area-card">
+          <article class="card area-card motion-card reveal delay-1">
             <span class="tag">FUKUOKA CITY</span>
             <h3>福岡市のポスティング</h3>
             <p>マンション密度の高いエリアを中心に、認知拡大・反響獲得を狙ったポスティング計画を相談できます。</p>
           </article>
 
-          <article class="card area-card">
+          <article class="card area-card motion-card reveal delay-2">
             <span class="tag">KUMAMOTO CITY</span>
             <h3>熊本市のポスティング</h3>
             <p>分譲マンション・賃貸マンションを含め、配布目的に合わせて対象建物を整理しながらチラシ配布を行います。</p>
           </article>
 
-          <article class="card area-card">
+          <article class="card area-card motion-card reveal delay-3">
             <span class="tag">KURUME CITY</span>
             <h3>久留米市のポスティング</h3>
             <p>久留米市内の集合住宅配布、指定マンション配布、不動産チラシ配布など、案件内容に応じて個別に相談できます。</p>
@@ -1383,7 +2110,7 @@
 
     <section id="areas" class="anchor-offset">
       <div class="container">
-        <div class="section-head">
+        <div class="section-head reveal">
           <div>
             <p class="eyebrow">AREA</p>
             <h2>重点対応エリア</h2>
@@ -1395,43 +2122,43 @@
         </div>
 
         <div class="grid-3">
-          <article class="card area-card">
+          <article class="card area-card motion-card reveal">
             <span class="tag">KITAKYUSHU CITY</span>
             <h3>北九州市のポスティング</h3>
             <p>小倉北区・八幡西区・八幡東区など、マンション・集合住宅を中心としたポスティングに対応します。</p>
           </article>
 
-          <article class="card area-card">
+          <article class="card area-card motion-card reveal delay-1">
             <span class="tag">FUKUOKA CITY</span>
             <h3>福岡市のポスティング</h3>
             <p>マンション密度の高いエリアを中心に、チラシ配布の目的に合わせたポスティングを行います。</p>
           </article>
 
-          <article class="card area-card">
+          <article class="card area-card motion-card reveal delay-2">
             <span class="tag">KUMAMOTO CITY</span>
             <h3>熊本市のポスティング</h3>
             <p>分譲・賃貸マンションの配布対象を整理し、反響を狙ったポスティング導線を組みます。</p>
           </article>
 
-          <article class="card area-card">
+          <article class="card area-card motion-card reveal">
             <span class="tag">KURUME CITY</span>
             <h3>久留米市のポスティング</h3>
             <p>不動産チラシ、店舗告知、指定マンション配布など、集合住宅を中心とした配布相談に対応します。</p>
           </article>
 
-          <article class="card area-card">
+          <article class="card area-card motion-card reveal delay-1">
             <span class="tag">KOGA CITY</span>
             <h3>古賀市のポスティング</h3>
             <p>集合住宅への配布を中心に、無駄を抑えた配布計画を提案します。</p>
           </article>
 
-          <article class="card area-card">
+          <article class="card area-card motion-card reveal delay-2">
             <span class="tag">FUKUTSU CITY</span>
             <h3>福津市のポスティング</h3>
             <p>指定エリアや指定マンションを軸にした配布相談にも対応します。</p>
           </article>
 
-          <article class="card area-card">
+          <article class="card area-card motion-card reveal delay-3">
             <span class="tag">OTHER AREA</span>
             <h3>その他エリア</h3>
             <p>配布枚数、配布時期、建物条件により個別に対応可否を確認します。</p>
@@ -1442,7 +2169,7 @@
 
     <section>
       <div class="container">
-        <div class="cta-band">
+        <div class="cta-band reveal">
           <h2>ポスティングを“見える仕事”に。</h2>
           <p>
             配布結果を曖昧にしない。HQPアプリで投函状況を記録し、クライアントが確認しやすい形で報告します。
@@ -1462,7 +2189,7 @@
 
     <section id="flow" class="anchor-offset">
       <div class="container">
-        <div class="section-head">
+        <div class="section-head reveal">
           <div>
             <p class="eyebrow">FLOW</p>
             <h2>ご依頼の流れ</h2>
@@ -1473,19 +2200,19 @@
         </div>
 
         <div class="flow">
-          <article class="card">
+          <article class="card motion-card reveal">
             <h3>お問い合わせ</h3>
             <p>エリア・枚数・配布希望時期・商材内容をお知らせください。</p>
           </article>
-          <article class="card">
+          <article class="card motion-card reveal delay-1">
             <h3>配布設計</h3>
             <p>マンション特化、指定マンション、エリア配布など目的に合わせて設計します。</p>
           </article>
-          <article class="card">
+          <article class="card motion-card reveal delay-2">
             <h3>アプリで配布</h3>
             <p>HQPアプリで投函マップ、投函枚数、投函時刻を記録しながら配布します。</p>
           </article>
-          <article class="card">
+          <article class="card motion-card reveal delay-3">
             <h3>報告共有</h3>
             <p>日報PDF・投函タイムライン・必要に応じた共有データをお渡しします。</p>
           </article>
@@ -1495,14 +2222,14 @@
 
     <section id="profile" class="anchor-offset">
       <div class="container">
-        <div class="section-head">
+        <div class="section-head reveal">
           <div>
             <p class="eyebrow">PROFILE</p>
             <h2>代表紹介</h2>
           </div>
         </div>
 
-        <div class="card">
+        <div class="card reveal">
           <h3>内堀 瑚白</h3>
           <p>
             はじめまして。HIGH QUALITY POSTING（ハイクオリティポスティング）代表の内堀 瑚白(うちぼりこはく)です。
@@ -1516,7 +2243,7 @@
           <p>
             そこで当店は、“配って終わり”ではなく、配布前の設計、配布中の記録、配布後の報告までを一つの品質として考えています。
           </p>
-          <p style="color:#fff1c7;font-weight:800;">
+          <p style="color:#fff1c7;font-weight:850;">
             狙うべきマンションに、狙うべき順番で、確実に届ける。
           </p>
           <p>
@@ -1528,7 +2255,7 @@
 
     <section id="mapping" class="anchor-offset">
       <div class="container">
-        <div class="section-head">
+        <div class="section-head reveal">
           <div>
             <p class="eyebrow">MAPPING / DATA</p>
             <h2>マッピング販売・個別オーダーについて</h2>
@@ -1539,7 +2266,7 @@
           </p>
         </div>
 
-        <div class="mapping-lite">
+        <div class="mapping-lite reveal">
           <div>
             <h3>配布設計用のマッピング相談にも対応</h3>
             <p style="color:var(--muted);margin:0;">
@@ -1560,83 +2287,85 @@
               </a>
             </div>
           </div>
-          <img src="map-overview.jpg" alt="マッピング参考画像">
+          <img src="map-overview.jpg" alt="マッピング参考画像" width="900" height="540" loading="lazy">
         </div>
       </div>
     </section>
 
     <section id="faq" class="anchor-offset">
       <div class="container">
-        <div class="section-head">
+        <div class="section-head reveal">
           <div>
             <p class="eyebrow">FAQ</p>
             <h2>よくあるご質問</h2>
           </div>
         </div>
 
-        <details>
-          <summary>北九州・福岡市・熊本市・久留米市でポスティングを依頼できますか？</summary>
-          <p>
-            北九州市、福岡市、熊本市、久留米市を重点対応エリアとして、マンション・集合住宅を中心としたポスティングに対応しています。
-            配布枚数、時期、建物条件により個別に実施可否を確認します。
-          </p>
-        </details>
+        <div class="reveal">
+          <details>
+            <summary>北九州・福岡市・熊本市・久留米市でポスティングを依頼できますか？</summary>
+            <p>
+              北九州市、福岡市、熊本市、久留米市を重点対応エリアとして、マンション・集合住宅を中心としたポスティングに対応しています。
+              配布枚数、時期、建物条件により個別に実施可否を確認します。
+            </p>
+          </details>
 
-        <details>
-          <summary>マンションや集合住宅だけを狙ったポスティングはできますか？</summary>
-          <p>
-            可能です。分譲マンション、賃貸マンション、指定マンション、指定エリア内の集合住宅など、目的に合わせて配布対象を設計します。
-          </p>
-        </details>
+          <details>
+            <summary>マンションや集合住宅だけを狙ったポスティングはできますか？</summary>
+            <p>
+              可能です。分譲マンション、賃貸マンション、指定マンション、指定エリア内の集合住宅など、目的に合わせて配布対象を設計します。
+            </p>
+          </details>
 
-        <details>
-          <summary>不動産チラシや売却査定チラシの配布に対応していますか？</summary>
-          <p>
-            対応しています。売却査定、賃貸募集、店舗・サービス告知など、商材に合わせてマンション密度や対象エリアを考慮した配布設計を行います。
-          </p>
-        </details>
+          <details>
+            <summary>不動産チラシや売却査定チラシの配布に対応していますか？</summary>
+            <p>
+              対応しています。売却査定、賃貸募集、店舗・サービス告知など、商材に合わせてマンション密度や対象エリアを考慮した配布設計を行います。
+            </p>
+          </details>
 
-        <details open>
-          <summary>ポスティング単価はいくらですか？</summary>
-          <p>
-            基本単価は1枚4円です。エリア、配布枚数、建物条件、配布方法により個別にお見積りします。
-          </p>
-        </details>
+          <details open>
+            <summary>ポスティング単価はいくらですか？</summary>
+            <p>
+              基本単価は1枚4円です。エリア、配布枚数、建物条件、配布方法により個別にお見積りします。
+            </p>
+          </details>
 
-        <details>
-          <summary>HQPアプリでは何を確認できますか？</summary>
-          <p>
-            投函マップ、投函枚数、投函時刻、日報PDF、投函タイムラインなどを確認できます。
-            配布後に、どこで何枚投函したのかを分かりやすく共有します。
-          </p>
-        </details>
+          <details>
+            <summary>HQPアプリでは何を確認できますか？</summary>
+            <p>
+              投函マップ、投函枚数、投函時刻、日報PDF、投函タイムラインなどを確認できます。
+              配布後に、どこで何枚投函したのかを分かりやすく共有します。
+            </p>
+          </details>
 
-        <details>
-          <summary>指定マンションへの配布はできますか？</summary>
-          <p>
-            可能です。指定されたマンション、指定エリア、優先して配布したい建物をもとに配布ルートを組み、HQPアプリで投函状況を管理します。
-          </p>
-        </details>
+          <details>
+            <summary>指定マンションへの配布はできますか？</summary>
+            <p>
+              可能です。指定されたマンション、指定エリア、優先して配布したい建物をもとに配布ルートを組み、HQPアプリで投函状況を管理します。
+            </p>
+          </details>
 
-        <details>
-          <summary>分譲マンションだけ、または賃貸マンションも含めた配布はできますか？</summary>
-          <p>
-            可能です。分譲中心、賃貸を含めたミックス配布、指定マンション配布など、目的に合わせて調整します。
-          </p>
-        </details>
+          <details>
+            <summary>分譲マンションだけ、または賃貸マンションも含めた配布はできますか？</summary>
+            <p>
+              可能です。分譲中心、賃貸を含めたミックス配布、指定マンション配布など、目的に合わせて調整します。
+            </p>
+          </details>
 
-        <details>
-          <summary>マッピングデータだけの相談も可能ですか？</summary>
-          <p>
-            可能です。ページ下部のマッピングオーダー、またはBASEからご確認ください。
-          </p>
-        </details>
+          <details>
+            <summary>マッピングデータだけの相談も可能ですか？</summary>
+            <p>
+              可能です。ページ下部のマッピングオーダー、またはBASEからご確認ください。
+            </p>
+          </details>
+        </div>
       </div>
     </section>
 
     <section id="contact" class="anchor-offset">
       <div class="container">
-        <div class="section-head">
+        <div class="section-head reveal">
           <div>
             <p class="eyebrow">CONTACT</p>
             <h2>配布依頼・ご相談はこちら</h2>
@@ -1647,12 +2376,18 @@
           </p>
         </div>
 
-        <div class="grid-2">
-          <article class="card">
+        <div class="contact-grid">
+          <article class="card contact-card-highlight reveal">
             <h3>お問い合わせフォーム</h3>
             <p>
               無料お見積り、配布相談、指定マンション配布、マッピング相談に対応しています。
             </p>
+            <ul class="list">
+              <li>配布予定エリア</li>
+              <li>配布予定枚数</li>
+              <li>配布希望時期</li>
+              <li>指定マンションの有無</li>
+            </ul>
             <div class="hero-actions">
               <a class="btn btn-primary" href="https://docs.google.com/forms/d/e/1FAIpQLSdzo8jbToiiif2oPkjOyi8aSiLxAwg5Sdrera3GPpOSqJmPLw/viewform?usp=header" target="_blank" rel="noopener noreferrer">
                 配布を相談する
@@ -1663,7 +2398,7 @@
             </div>
           </article>
 
-          <article class="card">
+          <article class="card reveal delay-1">
             <h3>各種リンク</h3>
             <p>
               Instagram・公式LINE・BASEからも確認できます。
@@ -1679,6 +2414,13 @@
                 BASE
               </a>
             </div>
+            <div class="app-detail-cta" style="margin:22px 0 0;">
+              <div>
+                <strong>HQPアプリの詳細も確認できます。</strong>
+                <span>アプリを活用した配布管理の強みを、専用ページで確認できます。</span>
+              </div>
+              <a class="btn btn-secondary" href="hqp-app.html">アプリ詳細</a>
+            </div>
           </article>
         </div>
       </div>
@@ -1689,7 +2431,7 @@
     <div class="container footer-grid">
       <div>
         <div class="brand" style="margin-bottom:12px;">
-          <img src="logo.jpg" alt="HIGH QUALITY POSTING ロゴ" class="brand-logo">
+          <img src="logo.jpg" alt="HIGH QUALITY POSTING ロゴ" class="brand-logo" width="52" height="52" loading="lazy">
           <span class="brand-text">
             HIGH QUALITY POSTING
             <small>APP DRIVEN POSTING</small>
@@ -1698,6 +2440,13 @@
         <p class="small">
           HQPアプリを利用したマンション特化配布・GPSログ管理・日報PDF・投函タイムライン共有に対応。
         </p>
+        <div class="footer-links">
+          <a href="#app">HQPアプリ</a>
+          <a href="#pricing">料金</a>
+          <a href="#areas">対応エリア</a>
+          <a href="#faq">FAQ</a>
+          <a href="#contact">お問い合わせ</a>
+        </div>
       </div>
 
       <div class="small">
@@ -1708,8 +2457,105 @@
     </div>
   </footer>
 
+  <div class="sticky-cta" aria-label="固定お問い合わせ導線">
+    <a href="https://docs.google.com/forms/d/e/1FAIpQLSdzo8jbToiiif2oPkjOyi8aSiLxAwg5Sdrera3GPpOSqJmPLw/viewform?usp=header" target="_blank" rel="noopener noreferrer">配布を相談</a>
+    <a href="https://lin.ee/vsdXP7a" target="_blank" rel="noopener noreferrer">LINEで相談</a>
+  </div>
+
   <script>
-    document.getElementById('year').textContent = new Date().getFullYear();
+    (() => {
+      const year = document.getElementById('year');
+      if (year) year.textContent = new Date().getFullYear();
+
+      const body = document.body;
+      const menuButton = document.querySelector('.menu-button');
+      const mobilePanel = document.querySelector('.mobile-panel');
+      const progress = document.querySelector('.progress-bar');
+
+      if (menuButton) {
+        menuButton.addEventListener('click', () => {
+          const opened = body.classList.toggle('nav-open');
+          menuButton.setAttribute('aria-expanded', opened ? 'true' : 'false');
+        });
+      }
+
+      if (mobilePanel) {
+        mobilePanel.addEventListener('click', (event) => {
+          if (event.target.closest('a')) {
+            body.classList.remove('nav-open');
+            if (menuButton) menuButton.setAttribute('aria-expanded', 'false');
+          }
+        });
+      }
+
+      const updateProgress = () => {
+        const scrollTop = window.scrollY || document.documentElement.scrollTop;
+        const docHeight = document.documentElement.scrollHeight - window.innerHeight;
+        const ratio = docHeight > 0 ? Math.min(100, Math.max(0, (scrollTop / docHeight) * 100)) : 0;
+        document.documentElement.style.setProperty('--progress', ratio + '%');
+      };
+      updateProgress();
+      window.addEventListener('scroll', updateProgress, { passive:true });
+
+      const prefersReduced = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+
+      if (!prefersReduced && window.matchMedia('(pointer:fine)').matches) {
+        window.addEventListener('pointermove', (event) => {
+          document.documentElement.style.setProperty('--mouse-x', event.clientX + 'px');
+          document.documentElement.style.setProperty('--mouse-y', event.clientY + 'px');
+        }, { passive:true });
+      }
+
+      const revealItems = document.querySelectorAll('.reveal');
+      if ('IntersectionObserver' in window && !prefersReduced) {
+        const revealObserver = new IntersectionObserver((entries) => {
+          entries.forEach((entry) => {
+            if (entry.isIntersecting) {
+              entry.target.classList.add('is-visible');
+              revealObserver.unobserve(entry.target);
+            }
+          });
+        }, { threshold:.14, rootMargin:'0px 0px -48px 0px' });
+
+        revealItems.forEach((item) => revealObserver.observe(item));
+      } else {
+        revealItems.forEach((item) => item.classList.add('is-visible'));
+      }
+
+      const counters = document.querySelectorAll('[data-counter]');
+      const runCounter = (el) => {
+        const target = Number(el.getAttribute('data-counter') || 0);
+        const suffix = el.textContent.includes('万') ? '万' : '';
+        const start = performance.now();
+        const duration = 900;
+
+        const tick = (now) => {
+          const progress = Math.min(1, (now - start) / duration);
+          const eased = 1 - Math.pow(1 - progress, 3);
+          const value = Math.round(target * eased);
+          el.textContent = value + suffix;
+          if (progress < 1) requestAnimationFrame(tick);
+        };
+        requestAnimationFrame(tick);
+      };
+
+      if ('IntersectionObserver' in window && !prefersReduced) {
+        const counterObserver = new IntersectionObserver((entries) => {
+          entries.forEach((entry) => {
+            if (entry.isIntersecting) {
+              runCounter(entry.target);
+              counterObserver.unobserve(entry.target);
+            }
+          });
+        }, { threshold:.5 });
+
+        counters.forEach((counter) => counterObserver.observe(counter));
+      } else {
+        counters.forEach((counter) => {
+          counter.textContent = counter.getAttribute('data-counter') + '万';
+        });
+      }
+    })();
   </script>
 </body>
 </html>
