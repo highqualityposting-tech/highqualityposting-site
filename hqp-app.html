@@ -1710,6 +1710,57 @@
       }
     }
 
+
+
+    /* ===== PC hero back phone visibility fix =====
+       PC表示のファーストビューで、背面の3枚目画像が前面2枚に隠れすぎないように調整。
+       前面2枚の印象は維持しつつ、中央の隙間から背面画像が見える配置に変更。 */
+    @media (min-width:1121px){
+      .hero-visual{
+        padding:28px 30px;
+      }
+
+      .device-stack{
+        min-height:602px;
+      }
+
+      .phone-main{
+        right:2px;
+        top:18px;
+        width:45%;
+        min-width:230px;
+        z-index:4;
+      }
+
+      .phone-sub{
+        left:0;
+        bottom:62px;
+        width:45%;
+        min-width:230px;
+        z-index:3;
+        transform:rotate(-4deg);
+      }
+
+      .phone-sub:hover{
+        transform:rotate(-4deg) translateY(-6px);
+      }
+
+      .phone-mini{
+        left:50%;
+        top:84px;
+        width:42%;
+        min-width:220px;
+        z-index:2;
+        opacity:.96;
+        transform:translateX(-50%) rotate(2deg);
+        box-shadow:0 24px 68px rgba(0,0,0,.42), 0 0 0 1px rgba(138,212,255,.10);
+      }
+
+      .phone-mini:hover{
+        transform:translateX(-50%) rotate(2deg) translateY(-6px);
+      }
+    }
+
     @media (prefers-reduced-motion: reduce){
       html{scroll-behavior:auto}
       *,*::before,*::after{
