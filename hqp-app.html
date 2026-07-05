@@ -1719,6 +1719,49 @@
       }
       .reveal{opacity:1;transform:none}
     }
+  
+
+    /* ===== App screen feature blank-space fix =====
+       PCの「管理者ページ」カードが右側カード列に引き伸ばされて大きな空白を作らないよう、
+       画像とキャプションの実寸に合わせてカード高さを自然に戻す。 */
+    .screen-showcase{
+      align-items:start;
+    }
+
+    .screen-feature{
+      align-self:start;
+      min-height:0 !important;
+      height:auto !important;
+    }
+
+    .screen-feature img{
+      display:block;
+      width:auto;
+      max-width:100%;
+      height:auto !important;
+      min-height:0 !important;
+      max-height:560px !important;
+      object-fit:contain;
+      object-position:center top;
+      margin-inline:auto;
+    }
+
+    .screen-feature .screen-caption,
+    .screen-caption{
+      position:relative;
+      left:auto;
+      right:auto;
+      bottom:auto;
+      margin-top:14px;
+    }
+
+    @media (max-width:760px){
+      .screen-feature img{
+        width:100%;
+        max-height:none !important;
+      }
+    }
+
   </style>
 
   <script type="application/ld+json">
