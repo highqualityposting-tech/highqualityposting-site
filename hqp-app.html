@@ -1762,6 +1762,31 @@
       }
     }
 
+
+    /* ===== Mobile hero background overlap fix =====
+       スマホ表示で装飾背景の境界線が「ホームへ戻る」ボタンの途中にかからないよう、
+       ヒーロー下部の黒い背景デザインをボタン全体の背面まで拡張。 */
+    @media (max-width:760px){
+      .hero::after{
+        bottom:-8px;
+        height:430px;
+        opacity:.64;
+        background:
+          linear-gradient(180deg, rgba(7,11,17,0) 0%, rgba(13,31,46,.42) 18%, rgba(13,31,46,.58) 100%),
+          repeating-linear-gradient(90deg, rgba(255,255,255,.022) 0 12px, transparent 12px 40px);
+        filter:blur(14px);
+        transform:perspective(1000px) rotateX(72deg);
+        transform-origin:center bottom;
+      }
+    }
+
+    @media (max-width:420px){
+      .hero::after{
+        height:455px;
+        bottom:-10px;
+      }
+    }
+
   </style>
 
   <script type="application/ld+json">
@@ -2072,7 +2097,7 @@
             <h2>アプリ画面</h2>
           </div>
           <p>
-            
+            管理者ページ、全体マッピング、投函、日報、タイムライン、共有、配布カレンダーまで。現場と管理者が迷わず使えるように、業務フローごとに画面を整理しています。
           </p>
         </div>
 
@@ -2327,7 +2352,7 @@
             <h2>役割ごとに使える範囲を整理。</h2>
           </div>
           <p>
-            
+            管理者、スタッフ、スポットを分けることで、現場に必要な操作だけを渡し、会社側はルート・日報・共有を管理できます。
           </p>
         </div>
 
@@ -2439,7 +2464,7 @@
             <h2>アプリの機能一覧</h2>
           </div>
           <p>
-            
+            画面作成後に追加された機能も、違和感が出ないように通常の機能一覧へ統合しています。必要な項目だけを開いて確認できます。
           </p>
         </div>
 
@@ -2536,7 +2561,7 @@
             <h2>よくあるご質問</h2>
           </div>
           <p>
-            
+            アプリの利用範囲、無料・有料機能、外部共有について、問い合わせ前に確認しやすい形で整理しています。
           </p>
         </div>
 
