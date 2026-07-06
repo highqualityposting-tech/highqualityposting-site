@@ -1307,6 +1307,43 @@
     }
     .footer-links a:hover{color:#fff1c7}
 
+
+    .postingnavi-link{
+      display:flex;
+      align-items:center;
+      justify-content:center;
+      gap:10px;
+      margin-top:22px;
+      padding-top:18px;
+      border-top:1px solid rgba(255,255,255,.07);
+      color:var(--muted2);
+      font-size:12px;
+    }
+
+    .postingnavi-link a{
+      display:inline-flex;
+      align-items:center;
+      justify-content:center;
+      padding:7px 9px;
+      border-radius:10px;
+      background:rgba(255,255,255,.045);
+      border:1px solid rgba(255,255,255,.08);
+      opacity:.78;
+      transition:.2s ease;
+    }
+
+    .postingnavi-link a:hover{
+      opacity:1;
+      transform:translateY(-1px);
+      border-color:rgba(138,212,255,.18);
+    }
+
+    .postingnavi-link img{
+      width:140px;
+      height:auto;
+      display:block;
+    }
+
     .small{font-size:13px;color:var(--muted)}
 
     .sticky-cta{
@@ -3341,6 +3378,14 @@
         <div id="yearLine" style="margin-top:8px;">© <span id="year"></span> HIGH QUALITY POSTING</div>
       </div>
     </div>
+
+    <div class="container postingnavi-link" aria-label="ポスティングナビ掲載リンク">
+      <span>掲載サイト</span>
+      <a href="http://www.postingnavi.jp/" target="_blank">
+        <img src="http://www.postingnavi.jp/link/pn2.jpg" alt="全国のポスティング会社の検索・一斉お見積り請求が出来るサイト『ポスティングナビ』" title="ポスティングナビ" loading="lazy" width="140" height="32">
+      </a>
+    </div>
+
   </footer>
 
   <div class="sticky-cta" aria-label="固定お問い合わせ・アプリ詳細導線">
