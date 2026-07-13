@@ -14,22 +14,23 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 
   <title>HQPアプリ｜ポスティング業務管理アプリ｜HIGH QUALITY POSTING</title>
-  <meta name="description" content="HIGH QUALITY POSTINGアプリの詳細ページ。マンション特化の全体マッピング、ルート作成、投函入力、未完了ルート管理、配布カレンダー、日報、タイムライン、PDF・Excel出力、共有URL、スタッフ・スポット招待、複数管理者運用までを一元管理するポスティング業務管理アプリです。" />
+  <meta name="description" content="HIGH QUALITY POSTINGアプリの詳細ページ。iOS版をApp Storeで公開中。マンション特化の全体マッピング、ルート作成、投函入力、未完了ルート管理、配布カレンダー、日報、タイムライン、PDF・Excel出力、共有URL、スタッフ・スポット招待、複数管理者運用までを一元管理するポスティング業務管理アプリです。" />
   <meta name="keywords" content="HQPアプリ,HIGH QUALITY POSTINGアプリ,ポスティング管理アプリ,ポスティング業務管理,投函管理アプリ,配布管理アプリ,マンションマッピング,投函入力,日報PDF,投函タイムライン,共有URL,スタッフ管理,スポット管理,未完了ルート管理,配布カレンダー" />
   <meta name="robots" content="index,follow" />
   <meta name="theme-color" content="#07090d" />
   <link rel="canonical" href="https://highqualityposting.jp/hqp-app.html" />
+  <meta name="apple-itunes-app" content="app-id=6761987110" />
 
   <meta property="og:type" content="website" />
   <meta property="og:site_name" content="HIGH QUALITY POSTING" />
   <meta property="og:title" content="HQPアプリ｜ポスティング業務管理アプリ" />
-  <meta property="og:description" content="マッピング、ルート作成、投函入力、日報、タイムライン、共有URL、スタッフ招待まで。ポスティング業務を可視化するHQPアプリ。" />
+  <meta property="og:description" content="iOS版をApp Storeで公開中。マッピング、ルート作成、投函入力、日報、タイムライン、共有URL、スタッフ招待まで。ポスティング業務を可視化するHQPアプリ。" />
   <meta property="og:url" content="https://highqualityposting.jp/hqp-app.html" />
   <meta property="og:image" content="https://highqualityposting.jp/logo.jpg" />
 
   <meta name="twitter:card" content="summary_large_image" />
   <meta name="twitter:title" content="HQPアプリ｜ポスティング業務管理アプリ" />
-  <meta name="twitter:description" content="ポスティングの現場入力を、日報・タイムライン・共有報告までつなげる業務管理アプリ。" />
+  <meta name="twitter:description" content="iOS版をApp Storeで公開中。ポスティングの現場入力を、日報・タイムライン・共有報告までつなげる業務管理アプリ。" />
   <meta name="twitter:image" content="https://highqualityposting.jp/logo.jpg" />
 
   <style>
@@ -507,18 +508,72 @@
     .proof strong{display:block;color:#fff1c7;font-size:17px;line-height:1.2}
     .proof span{display:block;color:var(--muted);font-size:12px;line-height:1.45;margin-top:4px}
 
+    .platform-statuses{
+      display:flex;
+      flex-wrap:wrap;
+      gap:10px;
+      margin-top:18px;
+    }
+
     .launch-badge{
       display:inline-flex;
       align-items:center;
       gap:8px;
-      margin-top:18px;
+      margin-top:0;
       padding:10px 14px;
       border-radius:999px;
+      font-size:13px;
+      font-weight:900;
+    }
+
+    .launch-badge::before{
+      content:"";
+      width:8px;
+      height:8px;
+      border-radius:999px;
+      flex:0 0 auto;
+    }
+
+    .launch-badge.launch-live{
       background:rgba(68,240,208,.08);
       border:1px solid rgba(68,240,208,.22);
       color:#cffcf4;
-      font-size:13px;
+    }
+
+    .launch-badge.launch-live::before{
+      background:var(--mint);
+      box-shadow:0 0 14px rgba(68,240,208,.8);
+    }
+
+    .launch-badge.launch-soon{
+      background:rgba(138,212,255,.07);
+      border:1px solid rgba(138,212,255,.18);
+      color:#d9f1ff;
+    }
+
+    .launch-badge.launch-soon::before{
+      background:var(--ice);
+      box-shadow:0 0 14px rgba(138,212,255,.65);
+    }
+
+    .btn-store{
+      flex-direction:column;
+      gap:3px;
+      min-width:250px;
+      padding-block:13px;
+    }
+
+    .btn-store .store-kicker{
+      font-size:10px;
       font-weight:900;
+      line-height:1;
+      letter-spacing:.12em;
+      opacity:.72;
+    }
+
+    .btn-store .store-label{
+      font-size:15px;
+      line-height:1.2;
     }
 
     section{padding:92px 0}
@@ -1118,6 +1173,13 @@
       color:#fff;
     }
 
+    .mobile-cta .app-store-mobile{
+      grid-column:1 / -1;
+      min-height:50px;
+      font-size:13px;
+      letter-spacing:.02em;
+    }
+
     .reveal{
       opacity:0;
       transform:translateY(28px);
@@ -1431,6 +1493,14 @@
         padding:15px 16px;
         font-size:14px;
         white-space:normal;
+      }
+
+      .btn-store{
+        min-width:0;
+      }
+
+      .platform-statuses{
+        gap:8px;
       }
 
       .launch-badge{
@@ -1903,6 +1973,78 @@
       }
     }
 
+
+    /* ===== PC / Smartphone persistent download CTA =====
+       App Storeと配布ページへの導線を、すべての画面幅で下部に常時表示。 */
+    .mobile-cta{
+      display:grid;
+      grid-template-columns:repeat(2, minmax(0, 1fr));
+      width:min(760px, calc(100% - 32px));
+      left:50%;
+      right:auto;
+      bottom:16px;
+      transform:translateX(-50%);
+      gap:10px;
+      padding:9px;
+      border-radius:22px;
+    }
+
+    .mobile-cta a{
+      min-width:0;
+      min-height:52px;
+      padding:10px 14px;
+      font-size:14px;
+      transition:transform .2s ease, filter .2s ease, background .2s ease;
+    }
+
+    .mobile-cta a:hover{
+      transform:translateY(-2px);
+      filter:brightness(1.05);
+    }
+
+    .mobile-cta .app-store-mobile{
+      grid-column:auto;
+      min-height:52px;
+      font-size:14px;
+      letter-spacing:.01em;
+    }
+
+    footer{
+      padding-bottom:122px;
+    }
+
+    @media (max-width:760px){
+      .mobile-cta{
+        width:auto;
+        left:10px;
+        right:10px;
+        bottom:10px;
+        transform:none;
+        gap:8px;
+        padding:8px;
+        border-radius:20px;
+      }
+
+      .mobile-cta a,
+      .mobile-cta .app-store-mobile{
+        min-height:48px;
+        padding:8px 10px;
+        font-size:12px;
+      }
+
+      footer{
+        padding-bottom:108px;
+      }
+    }
+
+    @media (max-width:420px){
+      .mobile-cta{
+        left:8px;
+        right:8px;
+        bottom:8px;
+      }
+    }
+
   </style>
 
   <script type="application/ld+json">
@@ -1912,7 +2054,8 @@
     "name": "HIGH QUALITY POSTINGアプリ",
     "alternateName": "HQPアプリ",
     "applicationCategory": "BusinessApplication",
-    "operatingSystem": "iOS, Android, Web",
+    "operatingSystem": "iOS",
+    "installUrl": "https://apps.apple.com/jp/app/high-quality-posting/id6761987110",
     "url": "https://highqualityposting.jp/hqp-app.html",
     "image": "https://highqualityposting.jp/logo.jpg",
     "description": "マンション特化のマッピング、ルート作成、投函入力、未完了ルート管理、配布カレンダー、日報、タイムライン、PDF・Excel出力、共有URL、スタッフ・スポット招待までを一元管理するポスティング業務管理アプリ。",
@@ -2041,13 +2184,20 @@
           </h1>
 
           <p class="hero-copy">
-            HIGH QUALITY POSTINGアプリは、<strong>マンション特化のマッピング、ルート作成、投函入力、未完了ルート管理、配布予定・配布済みカレンダー、日報、タイムライン、PDF・Excel出力、共有URL、スタッフ・スポット招待</strong>までを一元管理するポスティング業務専用アプリです。※近日公開予定
+            HIGH QUALITY POSTINGアプリは、<strong>マンション特化のマッピング、ルート作成、投函入力、未完了ルート管理、配布予定・配布済みカレンダー、日報、タイムライン、PDF・Excel出力、共有URL、スタッフ・スポット招待</strong>までを一元管理するポスティング業務専用アプリです。iOS版はApp Storeで公開中です。
           </p>
 
-          <div class="launch-badge">COMING SOON / ポスティング業務管理専用</div>
+          <div class="platform-statuses" aria-label="対応プラットフォームの公開状況">
+            <span class="launch-badge launch-live">iOS版 App Storeで公開中</span>
+            <span class="launch-badge launch-soon">Android版 COMING SOON</span>
+          </div>
 
           <div class="hero-actions">
-            <a class="btn btn-primary" href="#screens">アプリ画面を見る</a>
+            <a class="btn btn-primary btn-store" href="https://apps.apple.com/jp/app/high-quality-posting/id6761987110" target="_blank" rel="noopener noreferrer" data-app-store-link data-location="hero" aria-label="HQPアプリをApp Storeでダウンロード">
+              <span class="store-kicker">iOS版公開中</span>
+              <span class="store-label">App Storeからダウンロード</span>
+            </a>
+            <a class="btn btn-secondary" href="#screens">アプリ画面を見る</a>
             <a class="btn btn-secondary" href="#features">全機能を見る</a>
             <a class="btn btn-secondary" href="index.html">ホームへ戻る</a>
           </div>
@@ -2706,14 +2856,18 @@
       <div class="container">
         <div class="cta-panel reveal">
           <div>
-            <p class="eyebrow">COMING SOON</p>
+            <p class="eyebrow">iOS APP AVAILABLE NOW</p>
             <h2>質の高いポスティングを、<br>すべての基準へ。</h2>
             <p>
-              HIGH QUALITY POSTINGアプリは、現場の投函記録をそのまま管理・報告へつなげるためのポスティング専用アプリです。
+              HIGH QUALITY POSTINGアプリは、現場の投函記録をそのまま管理・報告へつなげるためのポスティング専用アプリです。iOS版はApp Storeで公開中、Android版は近日公開予定です。
             </p>
           </div>
           <div class="cta-actions">
-            <a class="btn btn-primary" href="#overview">ページ上部へ戻る</a>
+            <a class="btn btn-primary btn-store" href="https://apps.apple.com/jp/app/high-quality-posting/id6761987110" target="_blank" rel="noopener noreferrer" data-app-store-link data-location="bottom_cta" aria-label="HQPアプリをApp Storeでダウンロード">
+              <span class="store-kicker">iOS版公開中</span>
+              <span class="store-label">App Storeからダウンロード</span>
+            </a>
+            <a class="btn btn-secondary" href="#overview">ページ上部へ戻る</a>
             <a class="btn btn-secondary" href="index.html">ホームへ戻る</a>
             <a class="btn btn-secondary" href="index.html#contact">配布相談ページへ</a>
           </div>
@@ -2722,9 +2876,9 @@
     </section>
   </main>
 
-  <nav class="mobile-cta" aria-label="スマートフォン固定ナビゲーション">
-    <a class="primary" href="#screens">アプリ画面</a>
-    <a class="secondary" href="index.html">配布HPへ</a>
+  <nav class="mobile-cta" aria-label="固定ダウンロードナビゲーション">
+    <a class="primary app-store-mobile" href="https://apps.apple.com/jp/app/high-quality-posting/id6761987110" target="_blank" rel="noopener noreferrer" data-app-store-link data-location="fixed_cta" aria-label="HQPアプリのiOS版をApp Storeでダウンロード">iOS版をダウンロード</a>
+    <a class="secondary" href="index.html" aria-label="HIGH QUALITY POSTINGの配布ページへ移動">配布ページへ</a>
   </nav>
 
   <footer>
@@ -2742,6 +2896,17 @@
 
   <script>
     document.getElementById('year').textContent = new Date().getFullYear();
+
+    document.querySelectorAll('[data-app-store-link]').forEach((link) => {
+      link.addEventListener('click', () => {
+        if (typeof gtag === 'function') {
+          gtag('event', 'app_store_click', {
+            link_location: link.dataset.location || 'unknown',
+            transport_type: 'beacon'
+          });
+        }
+      });
+    });
 
     const progress = document.getElementById('scrollProgress');
     const updateProgress = () => {
