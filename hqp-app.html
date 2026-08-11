@@ -1,3 +1,100 @@
+
+今日 17:12
+アプリ詳細ページのios版ダウンロードのボタンが効かない。長押しするとリンクへ飛べる
+
+その症状なら、リンクURL自体は正しいけれど、通常タップのクリックイベントだけが何かに阻害されている可能性が高いです。
+
+「長押し → リンクを開く」では遷移できるので、href は生きています。特にiPhone/Safariでは、次のどれかが有力です。
+
+ボタンの上に透明な要素が被っていて、通常タップを奪っている
+
+touchstart / touchend / click 側で preventDefault() が走っている
+
+アニメーション用レイヤーに pointer-events が設定されている
+
+<a> の中に別のクリック要素を入れていてタップ判定が競合している
+
+スクロール・スワイプ系のJavaScriptがタップをジェスチャーとして処理している
+
+特に今回のHPは「動きのあるデザイン」にしているので、装飾レイヤーやアニメーション要素がボタンのタップ領域に被っているケースを最初に疑います。
+
+修正方針としては、iOSダウンロードボタン自体をシンプルな<a>リンクにして、
+
+<a
+  href="App StoreのURL"
+  target="_blank"
+  rel="noopener noreferrer"
+  class="ios-download-button"
+>
+  iOS版をダウンロード
+</a>
+CSS側で、
+
+.ios-download-button {
+  position: relative;
+  z-index: 20;
+  pointer-events: auto;
+  touch-action: manipulation;
+  -webkit-tap-highlight-color: transparent;
+}
+
+.ios-download-button * {
+  pointer-events: none;
+}
+としておくのが安全です。
+
+さらに、ボタン周辺の背景・光・アニメーションなどの装飾要素には、
+
+pointer-events: none;
+を付けます。
+
+長押しなら開けるという症状から見ると、App Store側ではなくHP側の実装問題と見てほぼ間違いないです。
+
+サイトの最新HTML/CSS/JSファイルを送ってもらえれば、iOS版ダウンロードボタン部分だけでなく、同じタップ不具合が他のボタンにも潜んでいないか含めて修正箇所を特定できます。
+
+
+今日 20:36
+
+貼り付けられたテキスト（1 点）(20260811-113543).txt
+ドキュメント
+これが現在のホームページのコードです
+ダウンロードボタンが効かない
+長押ししてリンクに飛ぶことは一応できる
+
+18s考えました
+原因になり得る箇所を修正したHTMLを作成しました。
+
+現在のコードでは、App Storeボタン3か所すべてが target="_blank" で新規タブを開く指定になっています。iPhone/Safariでは外部アプリへの遷移と新規タブ処理が競合して、通常タップでは反応せず、長押しからなら開ける挙動になることがあります。実際、上部のダウンロードボタンもこの指定です。
+
+ 下部CTAと固定ボタンも同じ構成です。
+
+
+一方、Google Analyticsのクリック計測部分には preventDefault() がなく、リンク遷移を明示的に停止するコードにはなっていません。
+
+
+修正版では、App Storeリンクの target="_blank" を削除して通常遷移に変更し、さらにiOS Safari向けに touch-action: manipulation、pointer-events、タップ領域の z-index を調整しています。デザイン・文章・SEO・画像指定・その他の機能は維持しています。
+
+
+まず現在の hqp-app.html をこのファイルに差し替えて、iPhoneで「App Storeからダウンロード」と画面下部の「iOS版をダウンロード」を普通に1回タップして確認してください。今回の修正は3か所すべてのApp Storeボタンに適用済みです。 
+
+
+
+
+ライブラリ
+/
+hqp-app-ios-download-fixed.html
+
+
+
+
+
+ライブラリ
+/
+hqp-app-ios-download-fixed.html
+
+
+
+
 <!DOCTYPE html>
 <html lang="ja">
 <head>
@@ -426,6 +523,18 @@
     .btn-store{min-width:250px;flex-direction:column;gap:2px;padding-block:12px}
     .btn-store small{font-size:10px;letter-spacing:.12em;line-height:1;opacity:.72}
     .btn-store span{font-size:15px;line-height:1.25}
+
+    /* iOS / Safari: App Store CTA tap reliability */
+    [data-app-store-link]{
+      position:relative;
+      z-index:2;
+      pointer-events:auto;
+      touch-action:manipulation;
+      -webkit-tap-highlight-color:rgba(0,0,0,0);
+    }
+    [data-app-store-link] > *{
+      pointer-events:none;
+    }
 
     .hero-proof-grid{
       display:grid;
@@ -1108,7 +1217,7 @@
           </div>
 
           <div class="hero-actions">
-            <a class="btn btn-primary btn-store" href="https://apps.apple.com/jp/app/high-quality-posting/id6761987110" target="_blank" rel="noopener noreferrer" data-app-store-link data-location="hero" aria-label="HQPアプリをApp Storeでダウンロード">
+            <a class="btn btn-primary btn-store" href="https://apps.apple.com/jp/app/high-quality-posting/id6761987110" rel="noopener noreferrer" data-app-store-link data-location="hero" aria-label="HQPアプリをApp Storeでダウンロード">
               <small>無料機能から試せる</small>
               <span>App Storeからダウンロード</span>
             </a>
@@ -1615,7 +1724,7 @@
             <p>まずは無料機能から、マッピング・ルート作成・投函記録を体験できます。iOS版はApp Storeで公開中です。</p>
           </div>
           <div class="final-actions">
-            <a class="btn btn-primary btn-store" href="https://apps.apple.com/jp/app/high-quality-posting/id6761987110" target="_blank" rel="noopener noreferrer" data-app-store-link data-location="bottom_cta" aria-label="HQPアプリをApp Storeでダウンロード"><small>iOS版公開中</small><span>App Storeからダウンロード</span></a>
+            <a class="btn btn-primary btn-store" href="https://apps.apple.com/jp/app/high-quality-posting/id6761987110" rel="noopener noreferrer" data-app-store-link data-location="bottom_cta" aria-label="HQPアプリをApp Storeでダウンロード"><small>iOS版公開中</small><span>App Storeからダウンロード</span></a>
             <a class="btn btn-secondary" href="#overview">ページ上部へ戻る</a>
             <a class="btn btn-secondary" href="index.html">ホームへ戻る</a>
             <a class="btn btn-secondary" href="index.html#contact">配布相談ページへ</a>
@@ -1626,7 +1735,7 @@
   </main>
 
   <nav class="fixed-cta" aria-label="固定ダウンロードナビゲーション">
-    <a class="download" href="https://apps.apple.com/jp/app/high-quality-posting/id6761987110" target="_blank" rel="noopener noreferrer" data-app-store-link data-location="fixed_cta" aria-label="HQPアプリのiOS版をApp Storeでダウンロード">iOS版をダウンロード</a>
+    <a class="download" href="https://apps.apple.com/jp/app/high-quality-posting/id6761987110" rel="noopener noreferrer" data-app-store-link data-location="fixed_cta" aria-label="HQPアプリのiOS版をApp Storeでダウンロード">iOS版をダウンロード</a>
     <a class="posting" href="index.html" aria-label="HIGH QUALITY POSTINGのポスティングサービスページへ移動">ポスティングHPへ</a>
   </nav>
 
