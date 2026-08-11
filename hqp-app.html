@@ -427,18 +427,6 @@
     .btn-store small{font-size:10px;letter-spacing:.12em;line-height:1;opacity:.72}
     .btn-store span{font-size:15px;line-height:1.25}
 
-    /* iOS / in-app browser tap reliability */
-    [data-app-store-link]{
-      position:relative;
-      z-index:20;
-      pointer-events:auto;
-      touch-action:manipulation;
-      -webkit-tap-highlight-color:transparent;
-    }
-    [data-app-store-link] > *{
-      pointer-events:none;
-    }
-
     .hero-proof-grid{
       display:grid;
       grid-template-columns:repeat(3,minmax(0,1fr));
@@ -899,6 +887,37 @@
     .fixed-cta a:hover{transform:translateY(-2px);filter:brightness(1.05)}
     .fixed-cta .download{color:#071018;background:linear-gradient(135deg,#d9bd84,#fff1cc,#8ed7ff)}
     .fixed-cta .posting{color:#fff;background:rgba(255,255,255,.058);border:1px solid rgba(255,255,255,.11)}
+
+    /* Instagram in-app browser helper */
+    .ig-browser-note{
+      position:fixed;
+      left:50%;
+      bottom:92px;
+      z-index:1900;
+      width:min(620px,calc(100% - 28px));
+      transform:translate(-50%,18px);
+      padding:14px 16px;
+      border-radius:18px;
+      color:#f1f5ff;
+      background:rgba(6,8,12,.96);
+      border:1px solid rgba(255,255,255,.14);
+      box-shadow:0 18px 60px rgba(0,0,0,.48);
+      -webkit-backdrop-filter:blur(18px);
+      backdrop-filter:blur(18px);
+      font-size:13px;
+      line-height:1.65;
+      text-align:center;
+      opacity:0;
+      visibility:hidden;
+      pointer-events:none;
+      transition:opacity .2s ease,transform .2s ease,visibility .2s ease;
+    }
+    .ig-browser-note.is-visible{
+      opacity:1;
+      visibility:visible;
+      transform:translate(-50%,0);
+    }
+    .ig-browser-note strong{color:#fff0c8}
 
     .reveal{opacity:0;transform:translateY(28px);transition:opacity .72s var(--ease),transform .72s var(--ease)}
     .reveal.is-visible{opacity:1;transform:translateY(0)}
@@ -1642,6 +1661,11 @@
     <a class="posting" href="index.html" aria-label="HIGH QUALITY POSTINGのポスティングサービスページへ移動">ポスティングHPへ</a>
   </nav>
 
+  <div class="ig-browser-note" id="igBrowserNote" role="status" aria-live="polite">
+    <strong>Instagram内ではApp Storeを直接開けない場合があります。</strong><br>
+    右上の「…」から「外部ブラウザで開く」を選び、Safariで開いてからダウンロードしてください。
+  </div>
+
   <footer>
     <div class="container footer-inner">
       <a class="brand" href="index.html" aria-label="HIGH QUALITY POSTINGホームへ戻る">
@@ -1657,9 +1681,21 @@
       const year = document.getElementById('year');
       if (year) year.textContent = new Date().getFullYear();
 
-      const APP_STORE_URL = 'https://apps.apple.com/jp/app/high-quality-posting/id6761987110';
-      const APP_STORE_SCHEME = 'itms-apps://itunes.apple.com/app/id6761987110';
       const isInstagramBrowser = /Instagram/i.test(navigator.userAgent);
+      const igBrowserNote = document.getElementById('igBrowserNote');
+      let igNoteTimer = null;
+
+      if (isInstagramBrowser) {
+        document.querySelectorAll('[data-app-store-link]').forEach((link) => {
+          const label = link.querySelector('span');
+          if (label) {
+            label.textContent = 'Safariで開いてダウンロード';
+          } else {
+            link.textContent = 'Safariで開いてダウンロード';
+          }
+          link.setAttribute('aria-label', 'Safariで開いてHQPアプリをダウンロード');
+        });
+      }
 
       document.querySelectorAll('[data-app-store-link]').forEach((link) => {
         link.addEventListener('click', (event) => {
@@ -1674,18 +1710,13 @@
 
           event.preventDefault();
 
-          /*
-           * Instagram's in-app browser may suppress a normal apps.apple.com
-           * navigation. Try the App Store URL scheme from the user's tap.
-           * If the handoff does not occur, fall back to the normal HTTPS URL.
-           */
-          window.location.href = APP_STORE_SCHEME;
-
-          window.setTimeout(() => {
-            if (document.visibilityState === 'visible') {
-              window.location.href = APP_STORE_URL;
-            }
-          }, 900);
+          if (igBrowserNote) {
+            igBrowserNote.classList.add('is-visible');
+            if (igNoteTimer) window.clearTimeout(igNoteTimer);
+            igNoteTimer = window.setTimeout(() => {
+              igBrowserNote.classList.remove('is-visible');
+            }, 7000);
+          }
         });
       });
 
