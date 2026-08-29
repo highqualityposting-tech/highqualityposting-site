@@ -427,6 +427,26 @@
     .btn-store small{font-size:10px;letter-spacing:.12em;line-height:1;opacity:.72}
     .btn-store span{font-size:15px;line-height:1.25}
 
+    .trial-panel{
+      margin-top:28px;
+      padding:20px 22px;
+      border-radius:23px;
+      background:
+        radial-gradient(circle at 8% 0%,rgba(142,215,255,.14),transparent 34%),
+        linear-gradient(135deg,rgba(199,170,107,.11),rgba(142,215,255,.07)),
+        rgba(255,255,255,.035);
+      border:1px solid rgba(255,255,255,.12);
+      box-shadow:inset 0 1px 0 rgba(255,255,255,.045),0 18px 50px rgba(0,0,0,.22);
+    }
+    .trial-panel-kicker{display:inline-flex;align-items:center;gap:8px;color:var(--gold-light);font-size:10px;font-weight:950;letter-spacing:.16em;line-height:1.4}
+    .trial-panel-kicker::before{content:"";width:7px;height:7px;flex:0 0 auto;border-radius:50%;background:linear-gradient(135deg,var(--gold),var(--ice));box-shadow:0 0 14px rgba(142,215,255,.58)}
+    .trial-panel strong{display:block;margin-top:8px;color:#fff;font-size:20px;line-height:1.45;letter-spacing:-.02em}
+    .trial-panel p{margin:8px 0 0;color:var(--muted);font-size:13px;line-height:1.75}
+    .trial-terms{margin-top:11px!important;color:var(--muted-2)!important;font-size:11px!important;line-height:1.65!important}
+    .trial-terms b{color:#eaf2ff;font-weight:850}
+    .trial-standard-note{margin-top:7px!important;color:#9eabc0!important;font-size:11px!important}
+    .btn-trial{box-shadow:0 18px 44px rgba(142,215,255,.18),0 0 0 1px rgba(255,255,255,.025) inset}
+
     .hero-proof-grid{
       display:grid;
       grid-template-columns:repeat(3,minmax(0,1fr));
@@ -964,6 +984,9 @@
       .hero-actions{display:grid;grid-template-columns:1fr;gap:9px;margin-top:23px;padding:9px;border-radius:23px;background:rgba(5,7,10,.66);border:1px solid rgba(255,255,255,.105);-webkit-backdrop-filter:blur(14px);backdrop-filter:blur(14px)}
       .btn,.hero-actions .btn{width:100%;min-height:53px;padding:14px 16px;font-size:13px;white-space:normal}
       .btn-store{min-width:0}
+      .trial-panel{margin-top:19px;padding:17px 16px;border-radius:19px}
+      .trial-panel strong{font-size:17px}
+      .trial-panel p{font-size:12px}
       .hero-proof-grid{grid-template-columns:1fr;gap:8px;margin-top:19px}
       .hero-proof{padding:12px 14px;border-radius:15px}
 
@@ -1138,8 +1161,20 @@
             <span class="status-badge soon">Android版 COMING SOON</span>
           </div>
 
+          <div class="trial-panel" id="trialOfferPanel">
+            <span class="trial-panel-kicker" data-trial-kicker>14-DAY FREE TRIAL</span>
+            <strong data-trial-title>HQP Starterを14日間無料で体験。</strong>
+            <p data-trial-description>スタッフ共有・日報・タイムライン・配布カレンダーなど、Starterプランの対象機能を実際の業務でお試しいただけます。</p>
+            <p class="trial-terms"><b>14日間無料。</b>無料期間終了後は月額9,800円で自動更新されます。期間中にキャンセルできます。</p>
+            <p class="trial-standard-note">無料機能のみ利用したい場合は、通常のApp Storeダウンロードをご利用ください。</p>
+          </div>
+
           <div class="hero-actions">
-            <a class="btn btn-primary btn-store" href="https://apps.apple.com/jp/app/high-quality-posting/id6761987110" rel="noopener noreferrer" data-app-store-link data-location="hero" aria-label="HQPアプリをApp Storeでダウンロード">
+            <a class="btn btn-primary btn-store btn-trial" href="https://apps.apple.com/redeem?ctx=offercodes&amp;id=6761987110&amp;code=HQP14FREE" rel="noopener noreferrer" data-trial-link data-location="hero_trial" aria-label="HQP Starterを14日間無料で試す">
+              <small data-trial-button-kicker>14日間無料</small>
+              <span data-trial-button-label>HQP Starterを無料体験</span>
+            </a>
+            <a class="btn btn-secondary btn-store" href="https://apps.apple.com/jp/app/high-quality-posting/id6761987110" rel="noopener noreferrer" data-app-store-link data-location="hero" aria-label="HQPアプリをApp Storeでダウンロード">
               <small>無料機能から試せる</small>
               <span>App Storeからダウンロード</span>
             </a>
@@ -1641,12 +1676,14 @@
       <div class="container">
         <div class="final-cta reveal">
           <div>
-            <span class="eyebrow">iOS APP AVAILABLE NOW</span>
+            <span class="eyebrow" data-trial-final-kicker>14-DAY FREE TRIAL</span>
             <h2>配布品質を、<br>会社の競争力へ。</h2>
-            <p>まずは無料機能から、マッピング・ルート作成・投函記録を体験できます。iOS版はApp Storeで公開中です。</p>
+            <p data-trial-final-copy>HQP Starterの対象機能を14日間無料で体験できます。無料機能のみ利用したい場合は、通常のApp Storeダウンロードも選べます。</p>
+            <p class="trial-terms"><b>14日間無料。</b>無料期間終了後は月額9,800円で自動更新されます。期間中にキャンセルできます。</p>
           </div>
           <div class="final-actions">
-            <a class="btn btn-primary btn-store" href="https://apps.apple.com/jp/app/high-quality-posting/id6761987110" rel="noopener noreferrer" data-app-store-link data-location="bottom_cta" aria-label="HQPアプリをApp Storeでダウンロード"><small>iOS版公開中</small><span>App Storeからダウンロード</span></a>
+            <a class="btn btn-primary btn-store btn-trial" href="https://apps.apple.com/redeem?ctx=offercodes&amp;id=6761987110&amp;code=HQP14FREE" rel="noopener noreferrer" data-trial-link data-location="bottom_trial" aria-label="HQP Starterを14日間無料で試す"><small data-trial-button-kicker>14日間無料</small><span data-trial-button-label>HQP Starterを無料体験</span></a>
+            <a class="btn btn-secondary btn-store" href="https://apps.apple.com/jp/app/high-quality-posting/id6761987110" rel="noopener noreferrer" data-app-store-link data-location="bottom_cta" aria-label="HQPアプリをApp Storeでダウンロード"><small>無料機能から試せる</small><span>App Storeからダウンロード</span></a>
             <a class="btn btn-secondary" href="#overview">ページ上部へ戻る</a>
             <a class="btn btn-secondary" href="index.html">ホームへ戻る</a>
             <a class="btn btn-secondary" href="index.html#contact">配布相談ページへ</a>
@@ -1662,8 +1699,8 @@
   </nav>
 
   <div class="ig-browser-note" id="igBrowserNote" role="status" aria-live="polite">
-    <strong>Instagram内ではApp Storeを直接開けない場合があります。</strong><br>
-    右上の「…」から「外部ブラウザで開く」を選び、Safariで開いてからダウンロードしてください。
+    <strong>Instagram内ではApp Storeやオファー画面を直接開けない場合があります。</strong><br>
+    右上の「…」から「外部ブラウザで開く」を選び、Safariで開いてからお進みください。
   </div>
 
   <footer>
@@ -1685,38 +1722,90 @@
       const igBrowserNote = document.getElementById('igBrowserNote');
       let igNoteTimer = null;
 
+      const trackingKeys = ['utm_source','utm_medium','utm_campaign','utm_content'];
+      const params = new URLSearchParams(window.location.search);
+      const tracking = {};
+
+      trackingKeys.forEach((key) => {
+        const currentValue = params.get(key);
+        if (currentValue) {
+          tracking[key] = currentValue;
+          try { sessionStorage.setItem(`hqp_${key}`, currentValue); } catch (_) {}
+          return;
+        }
+        try { tracking[key] = sessionStorage.getItem(`hqp_${key}`) || ''; } catch (_) { tracking[key] = ''; }
+      });
+
+      const isInfluencerReferral = tracking.utm_medium === 'influencer' && Boolean(tracking.utm_content);
+      document.documentElement.dataset.referralType = isInfluencerReferral ? 'influencer' : 'standard';
+
+      if (isInfluencerReferral) {
+        document.querySelectorAll('[data-trial-kicker]').forEach((el) => { el.textContent = 'SPECIAL OFFER'; });
+        document.querySelectorAll('[data-trial-title]').forEach((el) => { el.textContent = 'この紹介からアクセスされた方へ、HQP Starterを14日間無料で。'; });
+        document.querySelectorAll('[data-trial-description]').forEach((el) => {
+          el.textContent = 'スタッフ共有・日報・タイムライン・配布カレンダーなど、Starterプランの対象機能を実際の配布業務でお試しいただけます。';
+        });
+        document.querySelectorAll('[data-trial-button-kicker]').forEach((el) => { el.textContent = 'SPECIAL OFFER'; });
+        document.querySelectorAll('[data-trial-button-label]').forEach((el) => { el.textContent = '14日間無料で試す'; });
+        document.querySelectorAll('[data-trial-final-kicker]').forEach((el) => { el.textContent = 'SPECIAL OFFER'; });
+        document.querySelectorAll('[data-trial-final-copy]').forEach((el) => {
+          el.textContent = 'この紹介からアクセスされた方は、HQP Starterの対象機能を14日間無料で体験できます。無料機能のみ利用したい場合は、通常のApp Storeダウンロードも選べます。';
+        });
+      }
+
+      const analyticsPayload = (link) => ({
+        link_location: link.dataset.location || 'unknown',
+        visitor_type: isInfluencerReferral ? 'influencer' : 'standard',
+        creator_id: tracking.utm_content || 'none',
+        campaign: tracking.utm_campaign || 'none',
+        source: tracking.utm_source || 'direct',
+        medium: tracking.utm_medium || 'none',
+        transport_type: 'beacon'
+      });
+
+      const showInstagramNote = (event) => {
+        if (!isInstagramBrowser) return;
+        event.preventDefault();
+        if (igBrowserNote) {
+          igBrowserNote.classList.add('is-visible');
+          if (igNoteTimer) window.clearTimeout(igNoteTimer);
+          igNoteTimer = window.setTimeout(() => {
+            igBrowserNote.classList.remove('is-visible');
+          }, 7000);
+        }
+      };
+
       if (isInstagramBrowser) {
         document.querySelectorAll('[data-app-store-link]').forEach((link) => {
           const label = link.querySelector('span');
-          if (label) {
-            label.textContent = 'Safariで開いてダウンロード';
-          } else {
-            link.textContent = 'Safariで開いてダウンロード';
-          }
+          if (label) label.textContent = 'Safariで開いてダウンロード';
+          else link.textContent = 'Safariで開いてダウンロード';
           link.setAttribute('aria-label', 'Safariで開いてHQPアプリをダウンロード');
+        });
+
+        document.querySelectorAll('[data-trial-link]').forEach((link) => {
+          const label = link.querySelector('span');
+          if (label) label.textContent = 'Safariで開いて14日無料を利用';
+          else link.textContent = 'Safariで開いて14日無料を利用';
+          link.setAttribute('aria-label', 'Safariで開いてHQP Starterの14日無料トライアルを利用');
         });
       }
 
       document.querySelectorAll('[data-app-store-link]').forEach((link) => {
         link.addEventListener('click', (event) => {
           if (typeof gtag === 'function') {
-            gtag('event', 'app_store_click', {
-              link_location: link.dataset.location || 'unknown',
-              transport_type: 'beacon'
-            });
+            gtag('event', 'app_store_click', analyticsPayload(link));
           }
+          showInstagramNote(event);
+        });
+      });
 
-          if (!isInstagramBrowser) return;
-
-          event.preventDefault();
-
-          if (igBrowserNote) {
-            igBrowserNote.classList.add('is-visible');
-            if (igNoteTimer) window.clearTimeout(igNoteTimer);
-            igNoteTimer = window.setTimeout(() => {
-              igBrowserNote.classList.remove('is-visible');
-            }, 7000);
+      document.querySelectorAll('[data-trial-link]').forEach((link) => {
+        link.addEventListener('click', (event) => {
+          if (typeof gtag === 'function') {
+            gtag('event', 'hqp_free_trial_click', analyticsPayload(link));
           }
+          showInstagramNote(event);
         });
       });
 
