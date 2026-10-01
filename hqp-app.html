@@ -1662,56 +1662,88 @@
       }
 
       .visual-shell{
-        min-height:540px;
-        padding:14px;
+        min-height:auto;
+        padding:14px 12px 12px;
         border-radius:22px;
       }
 
       .device-stage{
-        min-height:510px;
+        position:relative;
+        display:block;
+        min-height:0;
+        height:clamp(470px,122vw,506px);
+        margin-top:24px;
+        transform-style:flat;
       }
 
       .device-stage::before{
-        inset:18px 12px 86px;
+        inset:10px 8px 18px;
         border-radius:16px;
       }
 
       .phone-frame{
+        position:absolute;
         min-width:0;
-        padding:7px;
+        padding:8px;
         border-radius:22px;
+        animation:none;
       }
 
       .phone-frame img{
+        display:block;
+        width:100%;
+        height:auto;
+        aspect-ratio:auto;
+        object-fit:contain;
+        object-position:center top;
         border-radius:17px;
       }
 
       .phone-frame.main{
-        width:60%;
-        top:52px;
-        right:0;
+        position:absolute;
+        width:min(60%,226px);
+        top:12px;
+        left:50%;
+        right:auto;
+        bottom:auto;
+        z-index:5;
+        transform:translateX(-50%);
       }
 
       .phone-frame.map{
-        width:56%;
-        bottom:72px;
+        position:absolute;
+        width:min(45%,162px);
+        left:4px;
+        top:86px;
+        right:auto;
+        bottom:auto;
+        z-index:3;
+        transform:rotate(-5deg);
       }
 
       .phone-frame.report{
-        width:49%;
-        top:116px;
-        left:53%;
+        position:absolute;
+        width:min(43%,154px);
+        top:108px;
+        left:auto;
+        right:4px;
+        bottom:auto;
+        z-index:4;
+        transform:rotate(4deg);
       }
 
       .visual-facts{
-        grid-template-columns:1fr;
-        left:12px;
-        right:12px;
-        bottom:12px;
+        position:relative;
+        left:auto;
+        right:auto;
+        bottom:auto;
+        margin-top:10px;
+        grid-template-columns:repeat(3,minmax(0,1fr));
+        gap:6px;
       }
 
       .visual-fact{
-        padding:10px 11px;
+        padding:9px 7px;
       }
 
       .section{
@@ -1790,15 +1822,15 @@
 
     @media (max-width:390px){
       .phone-frame.main{
-        width:64%;
+        width:min(61%,214px);
       }
 
       .phone-frame.map{
-        width:60%;
+        width:min(43%,154px);
       }
 
       .phone-frame.report{
-        width:52%;
+        width:min(42%,148px);
       }
     }
 
