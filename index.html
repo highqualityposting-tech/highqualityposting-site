@@ -3777,7 +3777,7 @@
       overscroll-behavior-x:contain;
       -webkit-overflow-scrolling:touch;
       scrollbar-width:none;
-      touch-action:pan-y;
+      touch-action:pan-x pan-y;
       cursor:grab;
     }
 
@@ -4849,18 +4849,9 @@
       }
 
       const carouselMotion = window.matchMedia('(max-width: 1080px)');
-      const focusable = 'a, button, input, select, textarea, [tabindex]';
       const carouselInstances = new Map();
-
-      const cloneCarouselNode = (node) => {
-        const clone = node.cloneNode(true);
-        clone.dataset.carouselClone = 'true';
-        clone.setAttribute('aria-hidden', 'true');
-        clone.classList.add('is-visible');
-        clone.querySelectorAll('.reveal').forEach((item) => item.classList.add('is-visible'));
-        clone.querySelectorAll(focusable).forEach((item) => item.setAttribute('tabindex', '-1'));
-        return clone;
-      };
+      const carouselSpeed = .085;
+      const carouselResumeDelay = 3400;
 
       const setupCarousel = (track, label) => {
         if (!track || carouselInstances.has(track) || track.children.length < 2) return;
@@ -4870,20 +4861,16 @@
           child.classList.add('is-visible');
           child.querySelectorAll('.reveal').forEach((item) => item.classList.add('is-visible'));
         });
-        const before = originalChildren.map(cloneCarouselNode);
-        const after = originalChildren.map(cloneCarouselNode);
+
         const controller = new AbortController();
         const signal = controller.signal;
         const previousTabIndex = track.getAttribute('tabindex');
         const previousRole = track.getAttribute('role');
         const previousDescription = track.getAttribute('aria-roledescription');
         const previousLabel = track.getAttribute('aria-label');
-        let groupWidth = 0;
         let rafId = 0;
-        let loopFrame = 0;
         let lastTime = 0;
-        let active = false;
-        let dragging = false;
+        let mouseDragging = false;
         let userPaused = false;
         let resumeTimer = 0;
         let pointerStart = 0;
@@ -4891,43 +4878,11 @@
         let imagesRequested = false;
         let autoRemainder = 0;
 
-        before.reverse().forEach((clone) => track.insertBefore(clone, track.firstChild));
-        after.forEach((clone) => track.appendChild(clone));
-
         track.classList.add('hqp-carousel-track');
         track.setAttribute('role', 'region');
         track.setAttribute('aria-roledescription', 'carousel');
         track.setAttribute('aria-label', previousLabel || label);
         if (!track.hasAttribute('tabindex')) track.setAttribute('tabindex', '0');
-
-        const renderedItems = () => originalChildren.flatMap((child) => {
-          if (window.getComputedStyle(child).display === 'contents') return Array.from(child.children);
-          return [child];
-        });
-
-        const measureGroup = () => {
-          const items = renderedItems();
-          const first = items[0];
-          const last = items[items.length - 1];
-          if (!first || !last) return track.scrollWidth / 3;
-          const styles = window.getComputedStyle(track);
-          const gap = parseFloat(styles.columnGap || styles.gap || '0') || 0;
-          return Math.max(track.clientWidth, (last.getBoundingClientRect().right - first.getBoundingClientRect().left) + gap);
-        };
-
-        const refresh = (keepPosition = false) => {
-          groupWidth = measureGroup();
-          if (!keepPosition) track.scrollLeft = groupWidth;
-        };
-
-        const keepInLoop = () => {
-          if (!groupWidth) return;
-          if (track.scrollLeft < groupWidth * .5) {
-            track.scrollLeft += groupWidth;
-          } else if (track.scrollLeft > groupWidth * 1.5) {
-            track.scrollLeft -= groupWidth;
-          }
-        };
 
         const requestTrackImages = () => {
           if (imagesRequested) return;
@@ -4944,13 +4899,7 @@
         };
 
         const updateActive = () => {
-          active = isTrackVisible();
-          if (active) requestTrackImages();
-        };
-
-        const scheduleLoopCheck = () => {
-          if (loopFrame) window.cancelAnimationFrame(loopFrame);
-          loopFrame = window.requestAnimationFrame(keepInLoop);
+          if (isTrackVisible()) requestTrackImages();
         };
 
         const pause = () => {
@@ -4970,30 +4919,44 @@
         };
 
         const stepSize = () => {
-          const item = Array.from(track.children).find((child) => child.dataset.carouselClone !== 'true');
+          const item = Array.from(track.children).find((child) => child.getBoundingClientRect().width > 0);
           return item ? Math.max(220, item.getBoundingClientRect().width + 14) : Math.max(220, track.clientWidth * .78);
+        };
+
+        const maxScroll = () => Math.max(0, track.scrollWidth - track.clientWidth);
+
+        const resetLoopIfNeeded = () => {
+          const max = maxScroll();
+          if (max <= 1 || track.scrollLeft < max - 1) return false;
+          track.scrollLeft = 0;
+          autoRemainder = 0;
+          return true;
         };
 
         const tick = (time) => {
           if (!lastTime) lastTime = time;
           const delta = Math.min(48, time - lastTime);
           lastTime = time;
-          const autoPlaying = !prefersReduced && isTrackVisible() && !dragging && !userPaused && !document.hidden;
+          const autoPlaying = !prefersReduced && isTrackVisible() && !mouseDragging && !userPaused && !document.hidden;
           track.classList.toggle('is-auto-playing', autoPlaying);
           if (autoPlaying) {
-            autoRemainder += delta * .026;
-            const move = Math.trunc(autoRemainder);
-            if (move > 0) {
-              track.scrollLeft += move;
-              autoRemainder -= move;
-              keepInLoop();
+            requestTrackImages();
+            if (!resetLoopIfNeeded()) {
+              autoRemainder += delta * carouselSpeed;
+              const move = Math.trunc(autoRemainder);
+              if (move > 0) {
+                track.scrollLeft = Math.min(track.scrollLeft + move, maxScroll());
+                autoRemainder -= move;
+              }
             }
           }
           rafId = window.requestAnimationFrame(tick);
         };
 
-        track.addEventListener('scroll', scheduleLoopCheck, { passive:true, signal });
         track.addEventListener('wheel', () => { pause(); resumeLater(); }, { passive:true, signal });
+        track.addEventListener('touchstart', pause, { passive:true, signal });
+        track.addEventListener('touchend', () => resumeLater(carouselResumeDelay), { passive:true, signal });
+        track.addEventListener('touchcancel', () => resumeLater(carouselResumeDelay), { passive:true, signal });
         track.addEventListener('focusin', pause, { signal });
         track.addEventListener('focusout', () => resumeLater(), { signal });
         track.addEventListener('keydown', (event) => {
@@ -5008,58 +4971,52 @@
         }, { signal });
         track.addEventListener('pointerdown', (event) => {
           if (event.button !== undefined && event.button !== 0) return;
-          dragging = true;
+          pause();
+          if (event.pointerType && event.pointerType !== 'mouse') return;
+          mouseDragging = true;
           pointerStart = event.clientX;
           scrollStart = track.scrollLeft;
           track.classList.add('is-dragging');
-          pause();
           try { track.setPointerCapture?.(event.pointerId); } catch (_) {}
         }, { signal });
         track.addEventListener('pointermove', (event) => {
-          if (!dragging) return;
+          if (!mouseDragging) return;
           track.scrollLeft = scrollStart - (event.clientX - pointerStart);
           event.preventDefault();
         }, { signal });
 
         const endDrag = (event) => {
-          if (!dragging) return;
-            dragging = false;
-            track.classList.remove('is-dragging');
-            try { track.releasePointerCapture?.(event.pointerId); } catch (_) {}
-            keepInLoop();
-          resumeLater();
+          if (!mouseDragging) {
+            resumeLater(carouselResumeDelay);
+            return;
+          }
+          mouseDragging = false;
+          track.classList.remove('is-dragging');
+          try { track.releasePointerCapture?.(event.pointerId); } catch (_) {}
+          resumeLater(carouselResumeDelay);
         };
         track.addEventListener('pointerup', endDrag, { signal });
         track.addEventListener('pointercancel', endDrag, { signal });
         track.addEventListener('pointerleave', endDrag, { signal });
 
-        const observer = 'IntersectionObserver' in window
-          ? new IntersectionObserver((entries) => {
-            active = entries.some((entry) => entry.isIntersecting);
-          }, { threshold:.12 })
-          : null;
-        if (observer) observer.observe(track);
-        else active = true;
-
         window.addEventListener('scroll', updateActive, { passive:true, signal });
-        window.addEventListener('resize', () => { refresh(true); updateActive(); }, { passive:true, signal });
+        window.addEventListener('resize', () => {
+          track.scrollLeft = Math.min(track.scrollLeft, maxScroll());
+          updateActive();
+        }, { passive:true, signal });
         document.addEventListener('visibilitychange', () => {
           if (document.hidden) track.classList.remove('is-auto-playing');
           if (!document.hidden) lastTime = 0;
         }, { signal });
 
         updateActive();
-        window.requestAnimationFrame(() => refresh(false));
         if (!prefersReduced) rafId = window.requestAnimationFrame(tick);
 
         carouselInstances.set(track, {
           destroy:() => {
             controller.abort();
-            if (observer) observer.disconnect();
             if (rafId) window.cancelAnimationFrame(rafId);
-            if (loopFrame) window.cancelAnimationFrame(loopFrame);
             if (resumeTimer) window.clearTimeout(resumeTimer);
-            track.querySelectorAll('[data-carousel-clone="true"]').forEach((clone) => clone.remove());
             track.classList.remove('hqp-carousel-track', 'is-dragging', 'is-auto-playing');
             if (previousTabIndex === null) track.removeAttribute('tabindex');
             else track.setAttribute('tabindex', previousTabIndex);
