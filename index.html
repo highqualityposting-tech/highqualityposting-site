@@ -3762,7 +3762,114 @@
     }
   }
 
+  /* Mobile evidence carousel: keep app screens accessible without a long vertical image stack. */
+  @media (max-width:1080px){
+    .app-shot-grid.hqp-carousel-track{
+      display:flex;
+      grid-template-columns:none;
+      align-items:stretch;
+      gap:14px;
+      overflow-x:auto;
+      overflow-y:visible;
+      padding:4px 18px 18px 0;
+      scroll-snap-type:x mandatory;
+      scroll-padding-left:0;
+      overscroll-behavior-x:contain;
+      -webkit-overflow-scrolling:touch;
+      scrollbar-width:none;
+      touch-action:pan-y;
+      cursor:grab;
+    }
+
+    .app-shot-grid.hqp-carousel-track::-webkit-scrollbar{
+      display:none;
+    }
+
+    .app-shot-grid.hqp-carousel-track.is-dragging{
+      cursor:grabbing;
+      scroll-snap-type:none;
+      user-select:none;
+    }
+
+    .app-shot-grid.hqp-carousel-track.is-auto-playing{
+      scroll-snap-type:none;
+    }
+
+    .app-shot-grid.hqp-carousel-track::after{
+      content:"";
+      flex:0 0 4px;
+    }
+
+    .app-shot-grid.hqp-carousel-track:focus-visible{
+      outline:2px solid rgba(142,215,255,.72);
+      outline-offset:5px;
+      border-radius:20px;
+    }
+
+    .app-shot-grid.hqp-carousel-track .shot-mini-grid{
+      display:contents;
+    }
+
+    .app-shot-grid.hqp-carousel-track > .shot-card,
+    .app-shot-grid.hqp-carousel-track .shot-mini-grid > .shot-card{
+      flex:0 0 clamp(286px, 78vw, 390px);
+      min-height:0;
+      scroll-snap-align:start;
+      scroll-snap-stop:always;
+    }
+
+    .app-shot-grid.hqp-carousel-track > .shot-feature{
+      flex-basis:clamp(300px, 82vw, 420px);
+    }
+
+    .app-shot-grid.hqp-carousel-track .shot-card{
+      display:flex;
+      flex-direction:column;
+    }
+
+    .app-shot-grid.hqp-carousel-track .shot-card img,
+    .app-shot-grid.hqp-carousel-track .shot-feature img,
+    .app-shot-grid.hqp-carousel-track .shot-mini-grid .shot-card img{
+      width:100%;
+      height:auto;
+      min-height:0;
+      max-height:min(620px, 118vw);
+      object-fit:contain;
+      object-position:center top;
+      flex:0 0 auto;
+    }
+
+    .app-shot-grid.hqp-carousel-track .shot-caption{
+      position:relative;
+      left:auto;
+      right:auto;
+      bottom:auto;
+      margin:0 12px 12px;
+      flex:1 1 auto;
+    }
+  }
+
+  @media (max-width:480px){
+    .app-shot-grid.hqp-carousel-track{
+      gap:12px;
+      padding-right:16px;
+    }
+
+    .app-shot-grid.hqp-carousel-track > .shot-card,
+    .app-shot-grid.hqp-carousel-track .shot-mini-grid > .shot-card{
+      flex-basis:82vw;
+    }
+
+    .app-shot-grid.hqp-carousel-track > .shot-feature{
+      flex-basis:86vw;
+    }
+  }
+
   @media (prefers-reduced-motion:reduce){
+    .app-shot-grid.hqp-carousel-track{
+      scroll-behavior:auto;
+    }
+
     main::before,
     .hero-grid::before,
     .hero-visual::after,
@@ -4740,6 +4847,248 @@
           counter.textContent = counter.getAttribute('data-counter') + '万';
         });
       }
+
+      const carouselMotion = window.matchMedia('(max-width: 1080px)');
+      const focusable = 'a, button, input, select, textarea, [tabindex]';
+      const carouselInstances = new Map();
+
+      const cloneCarouselNode = (node) => {
+        const clone = node.cloneNode(true);
+        clone.dataset.carouselClone = 'true';
+        clone.setAttribute('aria-hidden', 'true');
+        clone.classList.add('is-visible');
+        clone.querySelectorAll('.reveal').forEach((item) => item.classList.add('is-visible'));
+        clone.querySelectorAll(focusable).forEach((item) => item.setAttribute('tabindex', '-1'));
+        return clone;
+      };
+
+      const setupCarousel = (track, label) => {
+        if (!track || carouselInstances.has(track) || track.children.length < 2) return;
+
+        const originalChildren = Array.from(track.children);
+        originalChildren.forEach((child) => {
+          child.classList.add('is-visible');
+          child.querySelectorAll('.reveal').forEach((item) => item.classList.add('is-visible'));
+        });
+        const before = originalChildren.map(cloneCarouselNode);
+        const after = originalChildren.map(cloneCarouselNode);
+        const controller = new AbortController();
+        const signal = controller.signal;
+        const previousTabIndex = track.getAttribute('tabindex');
+        const previousRole = track.getAttribute('role');
+        const previousDescription = track.getAttribute('aria-roledescription');
+        const previousLabel = track.getAttribute('aria-label');
+        let groupWidth = 0;
+        let rafId = 0;
+        let loopFrame = 0;
+        let lastTime = 0;
+        let active = false;
+        let dragging = false;
+        let userPaused = false;
+        let resumeTimer = 0;
+        let pointerStart = 0;
+        let scrollStart = 0;
+        let imagesRequested = false;
+        let autoRemainder = 0;
+
+        before.reverse().forEach((clone) => track.insertBefore(clone, track.firstChild));
+        after.forEach((clone) => track.appendChild(clone));
+
+        track.classList.add('hqp-carousel-track');
+        track.setAttribute('role', 'region');
+        track.setAttribute('aria-roledescription', 'carousel');
+        track.setAttribute('aria-label', previousLabel || label);
+        if (!track.hasAttribute('tabindex')) track.setAttribute('tabindex', '0');
+
+        const renderedItems = () => originalChildren.flatMap((child) => {
+          if (window.getComputedStyle(child).display === 'contents') return Array.from(child.children);
+          return [child];
+        });
+
+        const measureGroup = () => {
+          const items = renderedItems();
+          const first = items[0];
+          const last = items[items.length - 1];
+          if (!first || !last) return track.scrollWidth / 3;
+          const styles = window.getComputedStyle(track);
+          const gap = parseFloat(styles.columnGap || styles.gap || '0') || 0;
+          return Math.max(track.clientWidth, (last.getBoundingClientRect().right - first.getBoundingClientRect().left) + gap);
+        };
+
+        const refresh = (keepPosition = false) => {
+          groupWidth = measureGroup();
+          if (!keepPosition) track.scrollLeft = groupWidth;
+        };
+
+        const keepInLoop = () => {
+          if (!groupWidth) return;
+          if (track.scrollLeft < groupWidth * .5) {
+            track.scrollLeft += groupWidth;
+          } else if (track.scrollLeft > groupWidth * 1.5) {
+            track.scrollLeft -= groupWidth;
+          }
+        };
+
+        const requestTrackImages = () => {
+          if (imagesRequested) return;
+          imagesRequested = true;
+          track.querySelectorAll('img').forEach((image) => {
+            image.loading = 'eager';
+            image.decoding = 'async';
+          });
+        };
+
+        const isTrackVisible = () => {
+          const rect = track.getBoundingClientRect();
+          return rect.bottom > 0 && rect.top < window.innerHeight;
+        };
+
+        const updateActive = () => {
+          active = isTrackVisible();
+          if (active) requestTrackImages();
+        };
+
+        const scheduleLoopCheck = () => {
+          if (loopFrame) window.cancelAnimationFrame(loopFrame);
+          loopFrame = window.requestAnimationFrame(keepInLoop);
+        };
+
+        const pause = () => {
+          userPaused = true;
+          autoRemainder = 0;
+          track.classList.remove('is-auto-playing');
+          if (resumeTimer) window.clearTimeout(resumeTimer);
+        };
+
+        const resumeLater = (delay = 2600) => {
+          if (prefersReduced) return;
+          if (resumeTimer) window.clearTimeout(resumeTimer);
+          resumeTimer = window.setTimeout(() => {
+            userPaused = false;
+            lastTime = 0;
+          }, delay);
+        };
+
+        const stepSize = () => {
+          const item = Array.from(track.children).find((child) => child.dataset.carouselClone !== 'true');
+          return item ? Math.max(220, item.getBoundingClientRect().width + 14) : Math.max(220, track.clientWidth * .78);
+        };
+
+        const tick = (time) => {
+          if (!lastTime) lastTime = time;
+          const delta = Math.min(48, time - lastTime);
+          lastTime = time;
+          const autoPlaying = !prefersReduced && isTrackVisible() && !dragging && !userPaused && !document.hidden;
+          track.classList.toggle('is-auto-playing', autoPlaying);
+          if (autoPlaying) {
+            autoRemainder += delta * .026;
+            const move = Math.trunc(autoRemainder);
+            if (move > 0) {
+              track.scrollLeft += move;
+              autoRemainder -= move;
+              keepInLoop();
+            }
+          }
+          rafId = window.requestAnimationFrame(tick);
+        };
+
+        track.addEventListener('scroll', scheduleLoopCheck, { passive:true, signal });
+        track.addEventListener('wheel', () => { pause(); resumeLater(); }, { passive:true, signal });
+        track.addEventListener('focusin', pause, { signal });
+        track.addEventListener('focusout', () => resumeLater(), { signal });
+        track.addEventListener('keydown', (event) => {
+          if (event.key !== 'ArrowRight' && event.key !== 'ArrowLeft') return;
+          event.preventDefault();
+          pause();
+          track.scrollBy({
+            left:event.key === 'ArrowRight' ? stepSize() : -stepSize(),
+            behavior:prefersReduced ? 'auto' : 'smooth'
+          });
+          resumeLater();
+        }, { signal });
+        track.addEventListener('pointerdown', (event) => {
+          if (event.button !== undefined && event.button !== 0) return;
+          dragging = true;
+          pointerStart = event.clientX;
+          scrollStart = track.scrollLeft;
+          track.classList.add('is-dragging');
+          pause();
+          try { track.setPointerCapture?.(event.pointerId); } catch (_) {}
+        }, { signal });
+        track.addEventListener('pointermove', (event) => {
+          if (!dragging) return;
+          track.scrollLeft = scrollStart - (event.clientX - pointerStart);
+          event.preventDefault();
+        }, { signal });
+
+        const endDrag = (event) => {
+          if (!dragging) return;
+            dragging = false;
+            track.classList.remove('is-dragging');
+            try { track.releasePointerCapture?.(event.pointerId); } catch (_) {}
+            keepInLoop();
+          resumeLater();
+        };
+        track.addEventListener('pointerup', endDrag, { signal });
+        track.addEventListener('pointercancel', endDrag, { signal });
+        track.addEventListener('pointerleave', endDrag, { signal });
+
+        const observer = 'IntersectionObserver' in window
+          ? new IntersectionObserver((entries) => {
+            active = entries.some((entry) => entry.isIntersecting);
+          }, { threshold:.12 })
+          : null;
+        if (observer) observer.observe(track);
+        else active = true;
+
+        window.addEventListener('scroll', updateActive, { passive:true, signal });
+        window.addEventListener('resize', () => { refresh(true); updateActive(); }, { passive:true, signal });
+        document.addEventListener('visibilitychange', () => {
+          if (document.hidden) track.classList.remove('is-auto-playing');
+          if (!document.hidden) lastTime = 0;
+        }, { signal });
+
+        updateActive();
+        window.requestAnimationFrame(() => refresh(false));
+        if (!prefersReduced) rafId = window.requestAnimationFrame(tick);
+
+        carouselInstances.set(track, {
+          destroy:() => {
+            controller.abort();
+            if (observer) observer.disconnect();
+            if (rafId) window.cancelAnimationFrame(rafId);
+            if (loopFrame) window.cancelAnimationFrame(loopFrame);
+            if (resumeTimer) window.clearTimeout(resumeTimer);
+            track.querySelectorAll('[data-carousel-clone="true"]').forEach((clone) => clone.remove());
+            track.classList.remove('hqp-carousel-track', 'is-dragging', 'is-auto-playing');
+            if (previousTabIndex === null) track.removeAttribute('tabindex');
+            else track.setAttribute('tabindex', previousTabIndex);
+            if (previousRole === null) track.removeAttribute('role');
+            else track.setAttribute('role', previousRole);
+            if (previousDescription === null) track.removeAttribute('aria-roledescription');
+            else track.setAttribute('aria-roledescription', previousDescription);
+            if (previousLabel === null) track.removeAttribute('aria-label');
+            else track.setAttribute('aria-label', previousLabel);
+          }
+        });
+      };
+
+      const teardownCarousels = () => {
+        carouselInstances.forEach((instance) => instance.destroy());
+        carouselInstances.clear();
+      };
+
+      const syncCarousels = () => {
+        if (carouselMotion.matches) {
+          setupCarousel(document.querySelector('.app-shot-grid'), 'HQPアプリ画面の横スクロール表示');
+        } else {
+          teardownCarousels();
+        }
+      };
+
+      if (carouselMotion.addEventListener) carouselMotion.addEventListener('change', syncCarousels);
+      else if (carouselMotion.addListener) carouselMotion.addListener(syncCarousels);
+      syncCarousels();
     })();
   </script>
 <script id="hqp-estimator">

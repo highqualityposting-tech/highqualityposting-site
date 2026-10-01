@@ -1834,7 +1834,184 @@
       }
     }
 
+    /* Mobile product carousels: keep evidence dense while preserving every screen and feature. */
+    @media (max-width:900px){
+      .screen-layout.hqp-carousel-track,
+      .screen-more.hqp-carousel-track,
+      .workflow-grid.hqp-carousel-track,
+      .feature-grid.hqp-carousel-track{
+        display:flex;
+        grid-template-columns:none;
+        align-items:stretch;
+        gap:14px;
+        overflow-x:auto;
+        overflow-y:visible;
+        padding:4px 18px 18px 0;
+        scroll-snap-type:x mandatory;
+        scroll-padding-left:0;
+        overscroll-behavior-x:contain;
+        -webkit-overflow-scrolling:touch;
+        scrollbar-width:none;
+        touch-action:pan-y;
+        cursor:grab;
+      }
+
+      .screen-layout.hqp-carousel-track::-webkit-scrollbar,
+      .screen-more.hqp-carousel-track::-webkit-scrollbar,
+      .workflow-grid.hqp-carousel-track::-webkit-scrollbar,
+      .feature-grid.hqp-carousel-track::-webkit-scrollbar{
+        display:none;
+      }
+
+      .screen-layout.hqp-carousel-track.is-dragging,
+      .screen-more.hqp-carousel-track.is-dragging,
+      .workflow-grid.hqp-carousel-track.is-dragging,
+      .feature-grid.hqp-carousel-track.is-dragging{
+        cursor:grabbing;
+        scroll-snap-type:none;
+        user-select:none;
+      }
+
+      .screen-layout.hqp-carousel-track.is-auto-playing,
+      .screen-more.hqp-carousel-track.is-auto-playing,
+      .workflow-grid.hqp-carousel-track.is-auto-playing,
+      .feature-grid.hqp-carousel-track.is-auto-playing{
+        scroll-snap-type:none;
+      }
+
+      .screen-layout.hqp-carousel-track::after,
+      .screen-more.hqp-carousel-track::after,
+      .workflow-grid.hqp-carousel-track::after,
+      .feature-grid.hqp-carousel-track::after{
+        content:"";
+        flex:0 0 4px;
+      }
+
+      .screen-layout.hqp-carousel-track:focus-visible,
+      .screen-more.hqp-carousel-track:focus-visible,
+      .workflow-grid.hqp-carousel-track:focus-visible,
+      .feature-grid.hqp-carousel-track:focus-visible{
+        outline:2px solid rgba(142,215,255,.72);
+        outline-offset:5px;
+        border-radius:20px;
+      }
+
+      .screen-layout.hqp-carousel-track .screen-grid{
+        display:contents;
+      }
+
+      .screen-layout.hqp-carousel-track > .screen-feature,
+      .screen-layout.hqp-carousel-track .screen-grid > .screen-card,
+      .screen-more.hqp-carousel-track > .mini-screen,
+      .workflow-grid.hqp-carousel-track > .workflow-step,
+      .feature-grid.hqp-carousel-track > .feature-card{
+        min-height:0;
+        scroll-snap-align:start;
+        scroll-snap-stop:always;
+      }
+
+      .screen-layout.hqp-carousel-track > .screen-feature{
+        flex:0 0 clamp(292px, 80vw, 380px);
+      }
+
+      .screen-layout.hqp-carousel-track .screen-grid > .screen-card{
+        flex:0 0 clamp(258px, 72vw, 320px);
+      }
+
+      .screen-more.hqp-carousel-track > .mini-screen{
+        flex:0 0 clamp(230px, 68vw, 292px);
+      }
+
+      .workflow-grid.hqp-carousel-track > .workflow-step{
+        flex:0 0 clamp(235px, 70vw, 300px);
+      }
+
+      .feature-grid.hqp-carousel-track > .feature-card{
+        flex:0 0 clamp(250px, 74vw, 318px);
+      }
+
+      .screen-layout.hqp-carousel-track .screen-feature,
+      .screen-layout.hqp-carousel-track .screen-card,
+      .screen-more.hqp-carousel-track .mini-screen,
+      .workflow-grid.hqp-carousel-track .workflow-step,
+      .feature-grid.hqp-carousel-track .feature-card{
+        display:flex;
+        flex-direction:column;
+      }
+
+      .screen-layout.hqp-carousel-track .screen-feature img{
+        width:100%;
+        height:auto;
+        max-height:min(540px, 116vw);
+        object-fit:contain;
+        object-position:center top;
+      }
+
+      .screen-layout.hqp-carousel-track .screen-media{
+        aspect-ratio:auto;
+        height:min(430px, 104vw);
+      }
+
+      .screen-more.hqp-carousel-track .screen-media{
+        aspect-ratio:auto;
+        height:min(360px, 94vw);
+      }
+
+      .screen-layout.hqp-carousel-track .screen-media img,
+      .screen-more.hqp-carousel-track .screen-media img{
+        width:100%;
+        height:100%;
+        object-fit:contain;
+        object-position:center top;
+      }
+
+      .screen-layout.hqp-carousel-track .screen-copy,
+      .screen-layout.hqp-carousel-track .screen-card p,
+      .screen-more.hqp-carousel-track .mini-screen p,
+      .workflow-grid.hqp-carousel-track .workflow-step p,
+      .feature-grid.hqp-carousel-track .feature-card p{
+        flex:1 1 auto;
+      }
+    }
+
+    @media (max-width:480px){
+      .screen-layout.hqp-carousel-track,
+      .screen-more.hqp-carousel-track,
+      .workflow-grid.hqp-carousel-track,
+      .feature-grid.hqp-carousel-track{
+        gap:12px;
+        padding-right:16px;
+      }
+
+      .screen-layout.hqp-carousel-track > .screen-feature{
+        flex-basis:82vw;
+      }
+
+      .screen-layout.hqp-carousel-track .screen-grid > .screen-card{
+        flex-basis:74vw;
+      }
+
+      .screen-more.hqp-carousel-track > .mini-screen{
+        flex-basis:69vw;
+      }
+
+      .workflow-grid.hqp-carousel-track > .workflow-step{
+        flex-basis:72vw;
+      }
+
+      .feature-grid.hqp-carousel-track > .feature-card{
+        flex-basis:76vw;
+      }
+    }
+
     @media (prefers-reduced-motion:reduce){
+      .screen-layout.hqp-carousel-track,
+      .screen-more.hqp-carousel-track,
+      .workflow-grid.hqp-carousel-track,
+      .feature-grid.hqp-carousel-track{
+        scroll-behavior:auto;
+      }
+
       .hero-grid::before,
       .device-stage::before,
       .statement-panel::after,
@@ -2160,7 +2337,7 @@
         <div class="screen-layout">
           <article class="screen-feature reveal">
             <div class="screen-feature-media">
-              <img src="app-screen-admin.png" alt="HQPアプリの管理者ページ">
+              <img src="app-screen-admin.png" alt="HQPアプリの管理者ページ" width="850" height="1850" loading="lazy" decoding="async">
             </div>
             <div class="screen-copy">
               <strong>管理者ページ</strong>
@@ -2170,22 +2347,22 @@
 
           <div class="screen-grid">
             <article class="screen-card reveal">
-              <div class="screen-media"><img src="app-screen-overall-mapping.png" alt="HQPアプリの全体マッピング画面"></div>
+              <div class="screen-media"><img src="app-screen-overall-mapping.png" alt="HQPアプリの全体マッピング画面" width="1206" height="2474" loading="lazy" decoding="async"></div>
               <h3>全体マッピング</h3>
               <p>分譲・賃貸マンションを地図上で確認。検索、フィルター、なぞり選択、円範囲選択、ルート作成に対応。</p>
             </article>
             <article class="screen-card reveal">
-              <div class="screen-media"><img src="app-screen-active-posting.png" alt="HQPアプリの投函画面"></div>
+              <div class="screen-media"><img src="app-screen-active-posting.png" alt="HQPアプリの投函画面" width="1242" height="2688" loading="lazy" decoding="async"></div>
               <h3>投函画面</h3>
               <p>配布中の進捗、投函枚数、対象建物、未投函・投函済み状態を確認。</p>
             </article>
             <article class="screen-card reveal">
-              <div class="screen-media"><img src="app-screen-delivery-map.png" alt="HQPアプリの投函入力画面"></div>
+              <div class="screen-media"><img src="app-screen-delivery-map.png" alt="HQPアプリの投函入力画面" width="878" height="1791" loading="lazy" decoding="async"></div>
               <h3>投函入力</h3>
               <p>現地でマンションごとの投函枚数を入力。入力時刻と位置情報を日報・タイムラインへ反映。</p>
             </article>
             <article class="screen-card reveal">
-              <div class="screen-media"><img src="app-screen-posting-map.png" alt="HQPアプリの投函タイムラインマップ画面"></div>
+              <div class="screen-media"><img src="app-screen-posting-map.png" alt="HQPアプリの投函タイムラインマップ画面" width="1206" height="2452" loading="lazy" decoding="async"></div>
               <h3>タイムラインマップ</h3>
               <p>勤務開始・終了と各マンションの投函入力位置を可視化し、共有URLで外部報告。</p>
             </article>
@@ -2194,35 +2371,35 @@
 
         <div class="screen-more">
           <article class="mini-screen reveal">
-            <div class="screen-media"><img src="app-screen-delivery-complete.png" alt="HQPアプリの勤務完了画面"></div>
+            <div class="screen-media"><img src="app-screen-delivery-complete.png" alt="HQPアプリの勤務完了画面" width="874" height="1799" loading="lazy" decoding="async"></div>
             <h3>勤務完了</h3><p>進捗と本日の投函完了状態を視覚的に確認。</p>
           </article>
           <article class="mini-screen reveal">
-            <div class="screen-media"><img src="app-screen-note.png" alt="HQPアプリの建物注意メモ画面"></div>
+            <div class="screen-media"><img src="app-screen-note.png" alt="HQPアプリの建物注意メモ画面" width="1206" height="2476" loading="lazy" decoding="async"></div>
             <h3>建物注意メモ</h3><p>建物ごとの注意事項を登録し、現場へ共有。</p>
           </article>
           <article class="mini-screen reveal">
-            <div class="screen-media"><img src="app-screen-daily-report-detail.png" alt="HQPアプリの日報詳細画面"></div>
+            <div class="screen-media"><img src="app-screen-daily-report-detail.png" alt="HQPアプリの日報詳細画面" width="878" height="1791" loading="lazy" decoding="async"></div>
             <h3>日報詳細</h3><p>日別・ルート別・建物別に投函枚数と入力時刻を確認。</p>
           </article>
           <article class="mini-screen reveal">
-            <div class="screen-media"><img src="app-screen-timeline-detail.png" alt="HQPアプリの投函タイムライン詳細画面"></div>
+            <div class="screen-media"><img src="app-screen-timeline-detail.png" alt="HQPアプリの投函タイムライン詳細画面" width="878" height="1791" loading="lazy" decoding="async"></div>
             <h3>投函タイムライン</h3><p>勤務開始、勤務終了、建物ごとの投函履歴を時系列表示。</p>
           </article>
           <article class="mini-screen reveal">
-            <div class="screen-media"><img src="app-screen-daily-report-share.png" alt="HQPアプリの日報共有画面"></div>
+            <div class="screen-media"><img src="app-screen-daily-report-share.png" alt="HQPアプリの日報共有画面" width="880" height="1788" loading="lazy" decoding="async"></div>
             <h3>日報共有</h3><p>投函結果をPDF、Excel、共有URLで出力。</p>
           </article>
           <article class="mini-screen reveal">
-            <div class="screen-media"><img src="app-screen-delivery-calendar.png" alt="HQPアプリの配布カレンダー画面"></div>
+            <div class="screen-media"><img src="app-screen-delivery-calendar.png" alt="HQPアプリの配布カレンダー画面" width="1242" height="2688" loading="lazy" decoding="async"></div>
             <h3>配布カレンダー</h3><p>配布済み・配布予定を月間カレンダーで表示。</p>
           </article>
           <article class="mini-screen reveal">
-            <div class="screen-media"><img src="app-screen-favorite-route.png" alt="HQPアプリのお気に入りルート画面"></div>
+            <div class="screen-media"><img src="app-screen-favorite-route.png" alt="HQPアプリのお気に入りルート画面" width="878" height="1790" loading="lazy" decoding="async"></div>
             <h3>お気に入りルート</h3><p>クライアント別・案件別に配布ルートを整理。</p>
           </article>
           <article class="mini-screen reveal">
-            <div class="screen-media"><img src="app-screen-home.png" alt="HQPアプリのホーム画面"></div>
+            <div class="screen-media"><img src="app-screen-home.png" alt="HQPアプリのホーム画面" width="850" height="1850" loading="lazy" decoding="async"></div>
             <h3>ホーム</h3><p>管理機能・配布機能へ迷わず移動。</p>
           </article>
         </div>
@@ -2634,6 +2811,254 @@
           heroVisual.style.transform = 'perspective(1100px) rotateX(0deg) rotateY(0deg)';
         });
       }
+
+      const carouselMotion = window.matchMedia('(max-width: 900px)');
+      const focusable = 'a, button, input, select, textarea, [tabindex]';
+      const carouselInstances = new Map();
+
+      const cloneCarouselNode = (node) => {
+        const clone = node.cloneNode(true);
+        clone.dataset.carouselClone = 'true';
+        clone.setAttribute('aria-hidden', 'true');
+        clone.classList.add('is-visible');
+        clone.querySelectorAll('.reveal').forEach((item) => item.classList.add('is-visible'));
+        clone.querySelectorAll(focusable).forEach((item) => item.setAttribute('tabindex', '-1'));
+        return clone;
+      };
+
+      const setupCarousel = (track, label) => {
+        if (!track || carouselInstances.has(track) || track.children.length < 2) return;
+
+        const originalChildren = Array.from(track.children);
+        originalChildren.forEach((child) => {
+          child.classList.add('is-visible');
+          child.querySelectorAll('.reveal').forEach((item) => item.classList.add('is-visible'));
+        });
+        const before = originalChildren.map(cloneCarouselNode);
+        const after = originalChildren.map(cloneCarouselNode);
+        const controller = new AbortController();
+        const signal = controller.signal;
+        const previousTabIndex = track.getAttribute('tabindex');
+        const previousRole = track.getAttribute('role');
+        const previousDescription = track.getAttribute('aria-roledescription');
+        const previousLabel = track.getAttribute('aria-label');
+        let groupWidth = 0;
+        let rafId = 0;
+        let loopFrame = 0;
+        let lastTime = 0;
+        let active = false;
+        let dragging = false;
+        let userPaused = false;
+        let resumeTimer = 0;
+        let pointerStart = 0;
+        let scrollStart = 0;
+        let imagesRequested = false;
+        let autoRemainder = 0;
+
+        before.reverse().forEach((clone) => track.insertBefore(clone, track.firstChild));
+        after.forEach((clone) => track.appendChild(clone));
+
+        track.classList.add('hqp-carousel-track');
+        track.setAttribute('role', 'region');
+        track.setAttribute('aria-roledescription', 'carousel');
+        track.setAttribute('aria-label', previousLabel || label);
+        if (!track.hasAttribute('tabindex')) track.setAttribute('tabindex', '0');
+
+        const renderedItems = () => originalChildren.flatMap((child) => {
+          if (window.getComputedStyle(child).display === 'contents') return Array.from(child.children);
+          return [child];
+        });
+
+        const measureGroup = () => {
+          const items = renderedItems();
+          const first = items[0];
+          const last = items[items.length - 1];
+          if (!first || !last) return track.scrollWidth / 3;
+          const styles = window.getComputedStyle(track);
+          const gap = parseFloat(styles.columnGap || styles.gap || '0') || 0;
+          return Math.max(track.clientWidth, (last.getBoundingClientRect().right - first.getBoundingClientRect().left) + gap);
+        };
+
+        const refresh = (keepPosition = false) => {
+          groupWidth = measureGroup();
+          if (!keepPosition) track.scrollLeft = groupWidth;
+        };
+
+        const keepInLoop = () => {
+          if (!groupWidth) return;
+          if (track.scrollLeft < groupWidth * .5) {
+            track.scrollLeft += groupWidth;
+          } else if (track.scrollLeft > groupWidth * 1.5) {
+            track.scrollLeft -= groupWidth;
+          }
+        };
+
+        const requestTrackImages = () => {
+          if (imagesRequested) return;
+          imagesRequested = true;
+          track.querySelectorAll('img').forEach((image) => {
+            image.loading = 'eager';
+            image.decoding = 'async';
+          });
+        };
+
+        const isTrackVisible = () => {
+          const rect = track.getBoundingClientRect();
+          return rect.bottom > 0 && rect.top < window.innerHeight;
+        };
+
+        const updateActive = () => {
+          active = isTrackVisible();
+          if (active) requestTrackImages();
+        };
+
+        const scheduleLoopCheck = () => {
+          if (loopFrame) window.cancelAnimationFrame(loopFrame);
+          loopFrame = window.requestAnimationFrame(keepInLoop);
+        };
+
+        const pause = () => {
+          userPaused = true;
+          autoRemainder = 0;
+          track.classList.remove('is-auto-playing');
+          if (resumeTimer) window.clearTimeout(resumeTimer);
+        };
+
+        const resumeLater = (delay = 2600) => {
+          if (reducedMotion) return;
+          if (resumeTimer) window.clearTimeout(resumeTimer);
+          resumeTimer = window.setTimeout(() => {
+            userPaused = false;
+            lastTime = 0;
+          }, delay);
+        };
+
+        const stepSize = () => {
+          const item = Array.from(track.children).find((child) => child.dataset.carouselClone !== 'true');
+          return item ? Math.max(220, item.getBoundingClientRect().width + 14) : Math.max(220, track.clientWidth * .74);
+        };
+
+        const tick = (time) => {
+          if (!lastTime) lastTime = time;
+          const delta = Math.min(48, time - lastTime);
+          lastTime = time;
+          const autoPlaying = !reducedMotion && isTrackVisible() && !dragging && !userPaused && !document.hidden;
+          track.classList.toggle('is-auto-playing', autoPlaying);
+          if (autoPlaying) {
+            autoRemainder += delta * .026;
+            const move = Math.trunc(autoRemainder);
+            if (move > 0) {
+              track.scrollLeft += move;
+              autoRemainder -= move;
+              keepInLoop();
+            }
+          }
+          rafId = window.requestAnimationFrame(tick);
+        };
+
+        track.addEventListener('scroll', scheduleLoopCheck, { passive:true, signal });
+        track.addEventListener('wheel', () => { pause(); resumeLater(); }, { passive:true, signal });
+        track.addEventListener('focusin', pause, { signal });
+        track.addEventListener('focusout', () => resumeLater(), { signal });
+        track.addEventListener('keydown', (event) => {
+          if (event.key !== 'ArrowRight' && event.key !== 'ArrowLeft') return;
+          event.preventDefault();
+          pause();
+          track.scrollBy({
+            left:event.key === 'ArrowRight' ? stepSize() : -stepSize(),
+            behavior:reducedMotion ? 'auto' : 'smooth'
+          });
+          resumeLater();
+        }, { signal });
+        track.addEventListener('pointerdown', (event) => {
+          if (event.button !== undefined && event.button !== 0) return;
+          dragging = true;
+          pointerStart = event.clientX;
+          scrollStart = track.scrollLeft;
+          track.classList.add('is-dragging');
+          pause();
+          try { track.setPointerCapture?.(event.pointerId); } catch (_) {}
+        }, { signal });
+        track.addEventListener('pointermove', (event) => {
+          if (!dragging) return;
+          track.scrollLeft = scrollStart - (event.clientX - pointerStart);
+          event.preventDefault();
+        }, { signal });
+
+        const endDrag = (event) => {
+          if (!dragging) return;
+            dragging = false;
+            track.classList.remove('is-dragging');
+            try { track.releasePointerCapture?.(event.pointerId); } catch (_) {}
+            keepInLoop();
+          resumeLater();
+        };
+        track.addEventListener('pointerup', endDrag, { signal });
+        track.addEventListener('pointercancel', endDrag, { signal });
+        track.addEventListener('pointerleave', endDrag, { signal });
+
+        const observer = 'IntersectionObserver' in window
+          ? new IntersectionObserver((entries) => {
+            active = entries.some((entry) => entry.isIntersecting);
+          }, { threshold:.12 })
+          : null;
+        if (observer) observer.observe(track);
+        else active = true;
+
+        window.addEventListener('scroll', updateActive, { passive:true, signal });
+        window.addEventListener('resize', () => { refresh(true); updateActive(); }, { passive:true, signal });
+        document.addEventListener('visibilitychange', () => {
+          if (document.hidden) track.classList.remove('is-auto-playing');
+          if (!document.hidden) lastTime = 0;
+        }, { signal });
+
+        updateActive();
+        window.requestAnimationFrame(() => refresh(false));
+        if (!reducedMotion) rafId = window.requestAnimationFrame(tick);
+
+        carouselInstances.set(track, {
+          destroy:() => {
+            controller.abort();
+            if (observer) observer.disconnect();
+            if (rafId) window.cancelAnimationFrame(rafId);
+            if (loopFrame) window.cancelAnimationFrame(loopFrame);
+            if (resumeTimer) window.clearTimeout(resumeTimer);
+            track.querySelectorAll('[data-carousel-clone="true"]').forEach((clone) => clone.remove());
+            track.classList.remove('hqp-carousel-track', 'is-dragging', 'is-auto-playing');
+            if (previousTabIndex === null) track.removeAttribute('tabindex');
+            else track.setAttribute('tabindex', previousTabIndex);
+            if (previousRole === null) track.removeAttribute('role');
+            else track.setAttribute('role', previousRole);
+            if (previousDescription === null) track.removeAttribute('aria-roledescription');
+            else track.setAttribute('aria-roledescription', previousDescription);
+            if (previousLabel === null) track.removeAttribute('aria-label');
+            else track.setAttribute('aria-label', previousLabel);
+          }
+        });
+      };
+
+      const teardownCarousels = () => {
+        carouselInstances.forEach((instance) => instance.destroy());
+        carouselInstances.clear();
+      };
+
+      const syncCarousels = () => {
+        if (carouselMotion.matches) {
+          [
+            ['.screen-layout', 'HQPアプリ主要画面の横スクロール表示'],
+            ['.screen-more', 'HQPアプリ追加画面の横スクロール表示'],
+            ['#workflow .workflow-grid', 'HQPアプリ運用フローの横スクロール表示'],
+            ['#free .feature-grid', 'HQPアプリ無料機能の横スクロール表示'],
+            ['#paid .feature-grid', 'HQPアプリ有料機能の横スクロール表示']
+          ].forEach(([selector, label]) => setupCarousel(document.querySelector(selector), label));
+        } else {
+          teardownCarousels();
+        }
+      };
+
+      if (carouselMotion.addEventListener) carouselMotion.addEventListener('change', syncCarousels);
+      else if (carouselMotion.addListener) carouselMotion.addListener(syncCarousels);
+      syncCarousels();
     })();
   </script>
 </body>
