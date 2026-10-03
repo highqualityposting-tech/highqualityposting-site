@@ -981,6 +981,74 @@
       line-height:1.7;
     }
 
+    .homepage-production-spotlight{
+      display:grid;
+      grid-template-columns:minmax(0,1.05fr) minmax(280px,.95fr);
+      gap:22px;
+      align-items:stretch;
+    }
+
+    .homepage-production-spotlight .card{
+      min-height:100%;
+    }
+
+    .homepage-production-spotlight h2{
+      margin:8px 0 12px;
+      max-width:860px;
+    }
+
+    #homepage-production-service .section-head{
+      display:grid;
+      grid-template-columns:1fr;
+      align-items:start;
+      gap:18px;
+    }
+
+    #homepage-production-service .section-head h2,
+    #homepage-production-service .homepage-production-spotlight h3{
+      word-break:keep-all;
+      overflow-wrap:normal;
+    }
+
+    #homepage-production-service .section-head h2{
+      max-width:1080px;
+    }
+
+    #homepage-production-service .section-head h2::after{
+      display:none;
+    }
+
+    #homepage-production-service .phrase{
+      display:inline-block;
+    }
+
+    .homepage-production-points{
+      display:grid;
+      gap:12px;
+      margin:18px 0 0;
+      padding:0;
+      list-style:none;
+    }
+
+    .homepage-production-points li{
+      display:flex;
+      gap:10px;
+      align-items:flex-start;
+      color:var(--muted);
+      line-height:1.7;
+    }
+
+    .homepage-production-points li::before{
+      content:"";
+      flex:0 0 8px;
+      width:8px;
+      height:8px;
+      margin-top:.72em;
+      border-radius:999px;
+      background:linear-gradient(135deg,var(--gold),var(--ice));
+      box-shadow:0 0 16px rgba(138,212,255,.4);
+    }
+
     .app-shot-grid{
       display:grid;
       grid-template-columns:1.05fr .95fr;
@@ -1418,7 +1486,7 @@
     .reveal.delay-3{transition-delay:.24s}
 
     @media (max-width:1080px){
-      .hero-grid,.section-head,.app-shot-grid,.price-grid,.mapping-lite,.footer-grid,.contact-grid{grid-template-columns:1fr}
+      .hero-grid,.section-head,.app-shot-grid,.price-grid,.mapping-lite,.footer-grid,.contact-grid,.homepage-production-spotlight,#homepage-production-service .section-head{grid-template-columns:1fr}
       .section-head{display:grid;align-items:start}
       .grid-3,.grid-4,.process-line,.flow,.stats,.hero-proof-row{grid-template-columns:1fr 1fr}
       .bento{grid-template-columns:1fr 1fr}
@@ -1449,6 +1517,8 @@
       section{padding:66px 0}
       .card,.cta-band,.price-box,.mapping-lite{padding:22px;border-radius:22px}
       .section-head h2{font-size:clamp(27px, 8.2vw, 38px)}
+      #homepage-production-service .phrase{display:block}
+      #homepage-production-service{padding-bottom:170px}
     .eyebrow{font-size:12px;line-height:1.5;white-space:normal;width:auto;display:flex;align-items:flex-start;overflow-wrap:anywhere;word-break:break-word}
       .eyebrow::before{margin-top:.62em}
       .hero-visual{min-height:568px;padding:16px;border-radius:26px}
@@ -3913,7 +3983,7 @@
           <a href="#pricing">料金</a>
           <a href="#areas">対応エリア</a>
           <a href="#flow">ご依頼の流れ</a>
-          <a href="https://hqp-onepage-production-system.vercel.app/homepage-production">ホームページ制作</a>
+          <a href="#homepage-production-service">ホームページ制作</a>
         </nav>
         <a class="nav-contact-button" href="#contact">相談する</a>
         <a class="nav-app-button" href="hqp-app.html" aria-label="HQPアプリ紹介ページへ移動">HQPアプリ</a>
@@ -3931,7 +4001,7 @@
       <a href="#pricing">料金</a>
       <a href="#areas">対応エリア</a>
       <a href="#flow">ご依頼の流れ</a>
-      <a href="https://hqp-onepage-production-system.vercel.app/homepage-production">ホームページ制作</a>
+      <a href="#homepage-production-service">ホームページ制作</a>
       <a href="#contact">お問い合わせ</a>
     </div>
   </header>
@@ -4643,6 +4713,53 @@
       </div>
     </section>
 
+    <section id="homepage-production-service" class="anchor-offset">
+      <div class="container">
+        <div class="section-head reveal">
+          <div>
+            <p class="eyebrow">WEB PRODUCTION</p>
+            <h2><span class="phrase">配布後の受け皿になる、</span><span class="phrase">ホームページ制作も</span><span class="phrase">相談できます。</span></h2>
+          </div>
+          <p>
+            チラシやポスティングで興味を持った人が、次に確認できる場所を用意したい方向けのサービスです。
+            本来の配布相談を邪魔しない範囲で、必要な方だけ確認できます。
+          </p>
+        </div>
+
+        <div class="homepage-production-spotlight">
+          <article class="card reveal">
+            <p class="eyebrow">1 PAGE HOMEPAGE</p>
+            <h3><span class="phrase">事業のホームページを、</span><span class="phrase">もっと手軽に。</span></h3>
+            <p>
+              個人事業主・小規模事業者向けに、名刺代わりになる1ページを制作します。
+              申込み後は専用ページで、前金、素材提出、初稿確認、修正、最終承認、公開まで順番に進められます。
+            </p>
+            <ul class="homepage-production-points">
+              <li>制作費は税込88,000円。前金44,000円、最終承認後に残金44,000円です。</li>
+              <li>写真・ロゴ・文章・ドメインなど、必要なものを案内に沿って提出できます。</li>
+              <li>公開後はHQPにおまかせ管理、または自主管理を選択できます。</li>
+            </ul>
+          </article>
+
+          <article class="card contact-card-highlight reveal delay-1">
+            <h3>ホームページ制作ページへ</h3>
+            <p>
+              まずは内容を確認し、必要な場合だけ制作申込みへ進めます。
+              ポスティングの見積り相談とは別窓口です。
+            </p>
+            <div class="hero-actions">
+              <a class="btn btn-primary" href="#homepage-production-service" data-service-url="homepageProduction" target="_blank" rel="noopener noreferrer">
+                ホームページ制作を見る
+              </a>
+              <a class="btn btn-secondary" href="#contact">
+                配布相談を続ける
+              </a>
+            </div>
+          </article>
+        </div>
+      </div>
+    </section>
+
     <section id="contact" class="anchor-offset">
       <div class="container">
         <div class="section-head reveal">
@@ -4706,7 +4823,7 @@
                 <strong>事業のホームページ制作も相談できます。</strong>
                 <span>名刺代わりの1ページから、公開後の運用まで。小さく始めやすい制作窓口を用意しています。</span>
               </div>
-              <a class="btn btn-secondary" href="https://hqp-onepage-production-system.vercel.app/homepage-production">ホームページ制作</a>
+              <a class="btn btn-secondary" href="#homepage-production-service" data-service-url="homepageProduction" target="_blank" rel="noopener noreferrer">ホームページ制作</a>
             </div>
           </article>
         </div>
@@ -4732,7 +4849,7 @@
           <a href="#pricing">料金</a>
           <a href="#areas">対応エリア</a>
           <a href="#faq">FAQ</a>
-          <a href="https://hqp-onepage-production-system.vercel.app/homepage-production">ホームページ制作</a>
+          <a href="#homepage-production-service">ホームページ制作</a>
           <a href="#contact">お問い合わせ</a>
         </div>
       </div>
@@ -4766,6 +4883,14 @@
 
   <script>
     (() => {
+      const serviceLinks = {
+        homepageProduction: 'https://hqp-onepage-production-system-v2-preview.vercel.app/homepage-production'
+      };
+      document.querySelectorAll('[data-service-url]').forEach((link) => {
+        const key = link.getAttribute('data-service-url');
+        if (key && serviceLinks[key]) link.setAttribute('href', serviceLinks[key]);
+      });
+
       const year = document.getElementById('year');
       if (year) year.textContent = new Date().getFullYear();
 
