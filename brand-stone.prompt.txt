@@ -1,0 +1,6 @@
+Generated with the built-in image_gen tool for the HQP cinematic Preview.
+Optimized for delivery as brand-stone.webp (1280 x 853, quality 74).
+Existing images were not modified.
+
+Prompt:
+Use case: photorealistic-natural. Asset type: material texture for a premium cinematic website animation. Generate a full frame front-facing close-up of a massive dark charcoal black basalt/concrete rock slab. Very tactile fractured mineral surfaces, fine pores, layered shale-like subtle ridges and natural uneven relief, softly grazing cold white light from above-left. Mostly extremely dark anthracite but enough subtle detail to read as real heavy rock. Evenly distributed texture, no central object, no perspective distortion, no environment. The entire frame is stone. No glowing cracks, no blue lines, no neon, no logo, no text, no particles or explosions. The animation engine adds cracks and light later. Understated Japanese luxury, realistic cinema material photography. Landscape 1536x1024.
