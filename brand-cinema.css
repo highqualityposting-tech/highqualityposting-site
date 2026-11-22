@@ -13,5 +13,6 @@
 .cinema-skip:focus-visible,.cinema-replay:focus-visible{outline:2px solid #c1e9ff;outline-offset:5px}
 .cinema-index{position:absolute;left:clamp(20px,4vw,64px);bottom:36px;z-index:1;color:#8197ad;font:10px/1.5 monospace;letter-spacing:.15em}
 .cinema-replay{display:block;position:relative;z-index:2;margin:24px auto;background:none;border:0;border-bottom:1px solid #b2d3ed44;color:#b9cbdc;padding:12px 4px;font:11px/1.5 system-ui;letter-spacing:.1em;cursor:pointer}
+.cinema-replay[hidden]{display:none}
 @media(max-width:600px){.cinema-caption strong{font-size:30px;letter-spacing:.04em}.cinema-caption span{font-size:9px;letter-spacing:.2em}.cinema-caption img{width:60px;height:60px}.cinema-index{font-size:8px;max-width:100px}}
 @media(prefers-reduced-motion:reduce){.hqp-cinema,.cinema-caption{transition:none}}
