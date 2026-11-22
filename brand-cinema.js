@@ -1,186 +1,38 @@
-/* Short, finite Canvas sequences. No video, WebGL dependency or background render loop. */
+/* Shared finite opening: native-resolution photographs, SVG and real app UI. */
 (() => {
   'use strict';
-  const script = document.currentScript;
-  const mode = script?.dataset.story || 'break';
-  const host = document.querySelector(mode === 'creation' ? '.homepage-page' : 'body');
-  if (!host || document.querySelector('.hqp-cinema')) return;
-  const reduced = matchMedia('(prefers-reduced-motion: reduce)');
-  const key = `hqp-cinema-v1-${mode}`;
-  const title = mode === 'break' ? 'BREAK THE STANDARD' : 'FROM CHAOS TO CREATION';
-  const layer = document.createElement('div');
-  layer.className = 'hqp-cinema';
-  layer.hidden = true;
-  layer.setAttribute('role', 'dialog');
-  layer.setAttribute('aria-modal', 'true');
-  layer.setAttribute('aria-label', title);
-  layer.innerHTML = '<canvas aria-hidden="true"></canvas><div class="cinema-caption"><strong></strong><span>HIGH QUALITY POSTING</span></div><span class="cinema-index" aria-hidden="true">HQP / ' + (mode === 'break' ? '01 — BREAKTHROUGH' : '02 — CREATION') + '</span><button class="cinema-skip" type="button">演出をスキップ ↗</button>';
-  layer.querySelector('strong').textContent = title;
-  if (mode === 'break') {
-    const logo = document.createElement('img');
-    logo.src = 'logo.jpg'; logo.alt = 'HQP'; logo.width = 76; logo.height = 76;
-    layer.querySelector('.cinema-caption').prepend(logo);
-  }
+  const mode=document.currentScript?.dataset.story||'break';
+  const media=matchMedia('(prefers-reduced-motion: reduce)');
+  const title=mode==='field'?'CONTROL THE FIELD':'BREAK THE STANDARD';
+  const layer=document.createElement('div');layer.className='hqp-cinema cinema-mode-'+mode;layer.hidden=true;
+  layer.setAttribute('role','dialog');layer.setAttribute('aria-modal','true');layer.setAttribute('aria-label',title);
+  const map='<svg class="cinema-map" viewBox="0 0 1000 620" aria-hidden="true"><g class="city-blocks" fill="none" stroke="currentColor" stroke-width=".7"><path d="M40 40H220V160H40ZM260 40H440V160H260ZM480 40H680V160H480ZM720 40H960V160H720ZM40 200H220V390H40ZM260 200H440V390H260ZM480 200H680V390H480ZM720 200H960V390H720ZM40 430H220V580H40ZM260 430H440V580H260ZM480 430H680V580H480ZM720 430H960V580H720Z"/></g><path class="cinema-route" pathLength="1" d="M80 530L240 530L240 180L460 180L460 410L700 410L700 95L910 95"/><g class="cinema-pins" fill="currentColor"><circle cx="80" cy="530" r="5"/><circle cx="240" cy="340" r="5"/><circle cx="380" cy="180" r="5"/><circle cx="460" cy="300" r="5"/><circle cx="610" cy="410" r="5"/><circle cx="700" cy="220" r="5"/><circle cx="910" cy="95" r="5"/></g></svg>';
+  const scene=mode==='field'
+    ?'<div class="cinema-field">'+map+'<div class="cinema-device"><img loading="lazy" src="app-screen-overall-mapping.png" width="1206" height="2474" alt="HQPアプリの実際の全体マッピング画面"></div><span class="cinema-scene-note">実際のアプリ画面 / 背景は運用のイメージ</span></div>'
+    :'<div class="cinema-world"><img loading="lazy" src="brand-city.webp" width="1536" height="1024" alt="" />'+map+'<span class="cinema-scene-note">都市・ルートの表現イメージ（生成素材）</span></div><div class="cinema-rock" aria-hidden="true"><span class="slab slab-a"></span><span class="slab slab-b"></span><span class="slab slab-c"></span><svg viewBox="0 0 1000 700" preserveAspectRatio="none"><path class="crack-main" pathLength="1" d="M506 0L497 75L519 126L483 184L508 223L478 282L513 348L488 404L522 473L500 528L520 592L489 650L510 700"/><path class="crack-branch" pathLength="1" d="M483 184L386 214L323 202L239 260L168 244L83 287L0 270M513 348L610 313L667 342L755 295L814 319L891 280L1000 298M500 528L406 484L340 506L282 474L204 503L115 467L0 489"/></svg></div>';
+  layer.innerHTML=scene+'<div class="cinema-caption"><span>HIGH QUALITY POSTING / '+(mode==='field'?'02':'01')+'</span><strong>'+title.replace(' THE ','<br><em>THE ')+'</em></strong><small>BEYOND THE ORDINARY</small></div><span class="cinema-index">HQP / '+(mode==='field'?'FIELD CONTROL':'BREAKTHROUGH')+'</span><button class="cinema-skip" type="button">演出をスキップ ↗</button>';
   document.body.append(layer);
-  const replay = document.createElement('button');
-  replay.className = 'cinema-replay'; replay.type = 'button';
-  replay.textContent = 'ブランドストーリーを再生 ↗';
-  (host.querySelector('footer') || host).append(replay);
-  const canvas = layer.querySelector('canvas');
-  const ctx = canvas.getContext('2d', {alpha:false});
-  const skip = layer.querySelector('.cinema-skip');
-  let raf = 0, deadline = 0, closing = 0, active = false, previousFocus, started = 0;
-  let w = 0, h = 0, texture, stone, oldOverflow = '', siblings = [];
-  const sample = mode === 'creation' ? host.querySelector('.homepage-browser-frame img') : null;
-  const clamp = (x) => Math.max(0, Math.min(1, x));
-  const ease = (x) => { x = clamp(x); return x*x*(3-2*x); };
-  let seed = 72831;
-  const random = () => { seed = (seed * 16807) % 2147483647; return (seed-1)/2147483646; };
-  const rays = Array.from({length:14}, (_, i) => {
-    const angle = i / 14 * Math.PI * 2 + (random()-.5)*.17;
-    return Array.from({length:25}, (_, j) => {
-      const r = j / 24;
-      const a = angle + (random()-.5)*.34;
-      return [Math.cos(a)*r, Math.sin(a)*r];
-    });
-  });
-  const particles = Array.from({length:95}, () => [random(),random(),random(),random()]);
-  function resize() {
-    w = innerWidth; h = innerHeight;
-    const dpr = Math.min(devicePixelRatio || 1, w < 600 ? 1.25 : 1.5);
-    canvas.width = w*dpr; canvas.height = h*dpr;
-    ctx?.setTransform(dpr,0,0,dpr,0,0);
-    texture = document.createElement('canvas'); texture.width=640; texture.height=640;
-    const tc = texture.getContext('2d'); const data = tc.createImageData(640,640);
-    seed = 1249;
-    for(let y=0;y<640;y++) for(let x=0;x<640;x++) {
-      const p=(y*640+x)*4;
-      const ridge = Math.sin(x*.035 + Math.sin(y*.021)*3)*Math.cos(y*.018+x*.009);
-      const grain = Math.sin(x*.12 + Math.sin(y*.09)*2)*Math.cos(y*.13+x*.07);
-      const strata = Math.abs(Math.sin(x*.008+y*.019+ridge*.8));
-      const v = 9 + ridge*10 + grain*5 + strata*16 + random()*9;
-      data.data[p]=v*.83;data.data[p+1]=v*.91;data.data[p+2]=v;data.data[p+3]=255;
-    }
-    tc.putImageData(data,0,0);
-    // Fine mineral seams, cached once rather than recalculated each frame.
-    for(let i=0;i<1600;i++) {
-      const x=random()*640,y=random()*640;
-      tc.strokeStyle=`rgba(170,190,210,${random()*.06})`;tc.lineWidth=.5;
-      tc.beginPath();tc.moveTo(x,y);tc.lineTo(x+random()*25,y-random()*9);tc.stroke();
-    }
-    if(stone?.complete && stone.naturalWidth) texture=stone;
+  const replay=document.createElement('button');replay.className='cinema-replay';replay.type='button';replay.textContent='ブランドストーリーを再生 ↗';
+  const actions=document.querySelector('.hero-actions');(actions?.parentElement||document.querySelector('footer')).append(replay);
+  const skip=layer.querySelector('.cinema-skip');const key='hqp-brand-v4-'+mode+'-seen';
+  let pending=false;let timer=0,fade=0,active=false,returnFocus=null,oldOverflow='',siblings=[];
+  function restore(){clearTimeout(timer);clearTimeout(fade);layer.hidden=true;layer.classList.remove('is-playing','is-leaving');document.body.style.overflow=oldOverflow;siblings.forEach(([el,value])=>el.inert=value);siblings=[];active=false;if(returnFocus?.isConnected)returnFocus.focus({preventScroll:true});}
+  function finish(){if(!active)return;clearTimeout(timer);layer.classList.add('is-leaving');fade=setTimeout(restore,550);}
+  async function play(manual=false){
+    if(active||pending||media.matches)return;pending=true;
+    try{layer.querySelectorAll('img').forEach(i=>i.loading='eager');const texture=new Image();texture.src='brand-basalt.webp';await Promise.all([...layer.querySelectorAll('img'),...(mode==='break'?[texture]:[])].map(i=>i.decode()));}catch{pending=false;return;}pending=false;
+    if(document.hidden||media.matches||(!manual&&scrollY>120))return;
+    active=true;returnFocus=document.activeElement;oldOverflow=document.body.style.overflow;
+    siblings=[...document.body.children].filter(el=>el!==layer&&el instanceof HTMLElement).map(el=>[el,el.inert]);siblings.forEach(([el])=>el.inert=true);
+    document.body.style.overflow='hidden';layer.hidden=false;layer.classList.remove('is-leaving');void layer.offsetWidth;layer.classList.add('is-playing');skip.focus({preventScroll:true});
+    try{localStorage.setItem(key,'1')}catch{}
+    timer=setTimeout(finish,mode==='field'?8700:9800);
   }
-  function rock(t) {
-    const cx=w*.5,cy=h*.49,r=Math.hypot(w,h)*.64;
-    const split=ease((t-4.2)/2.1), visible=ease(t/1.4);
-    ctx.globalAlpha=visible;
-    for(let i=0;i<rays.length;i++) {
-      const next=rays[(i+1)%rays.length], ray=rays[i],a=(i+.5)/14*Math.PI*2;
-      const dx=Math.cos(a)*split*w*.48,dy=Math.sin(a)*split*h*.55;
-      ctx.save();ctx.translate(cx+dx,cy+dy);ctx.rotate(split*(i%2 ? 1 : -1)*.07);
-      ctx.beginPath();ray.forEach(([x,y],j)=>j?ctx.lineTo(x*r,y*r):ctx.moveTo(x*r,y*r));
-      [...next].reverse().forEach(([x,y])=>ctx.lineTo(x*r,y*r));ctx.closePath();ctx.clip();
-      const cover=Math.max(w*1.6/texture.width,h*1.6/texture.height);
-      ctx.drawImage(texture,-texture.width*cover/2,-texture.height*cover/2,texture.width*cover,texture.height*cover);
-      const light=ctx.createRadialGradient(-w*.15,-h*.2,0,0,0,r);
-      light.addColorStop(0,'#7e90a51a');light.addColorStop(.6,'#02030566');light.addColorStop(1,'#000c');
-      ctx.fillStyle=light;ctx.fillRect(-r,-r,r*2,r*2);ctx.restore();
-    }
-    const growth=ease((t-1.1)/3.0),pulse=.35+.65*Math.pow(Math.sin((t-1.1)*Math.PI*.85),2);
-    if(growth>0) {
-      ctx.save();ctx.globalAlpha=(1-split)*pulse;
-      for(let i=0;i<rays.length;i++) {
-        const length=clamp(growth*1.4-(i%4)*.19);
-        if(length<=0)continue;
-        ctx.beginPath();
-        rays[i].forEach(([x,y],j)=>{const f=j/24;if(f<=length){if(j===0)ctx.moveTo(cx,cy);else ctx.lineTo(cx+x*r,cy+y*r);}});
-        ctx.strokeStyle='#487fcf';ctx.lineWidth=1.8;ctx.shadowColor='#488fff';ctx.shadowBlur=14;ctx.stroke();
-        ctx.strokeStyle='#d7f4ff';ctx.lineWidth=.55;ctx.shadowBlur=3;ctx.stroke();
-      }
-      ctx.restore();
-    }
-    ctx.globalAlpha=1;
-  }
-  function creation(t) {
-    const form=ease((t-.7)/2.8), depart=ease((t-4.8)/1.4);
-    const sw=Math.min(w*.79,920),sh=Math.min(h*.55,490),left=(w-sw)/2,top=(h-sh)/2;
-    ctx.save();ctx.globalAlpha=1-depart;
-    const g=ctx.createRadialGradient(w/2,h/2,0,w/2,h/2,sw*.75);
-    g.addColorStop(0,'#1479e91b');g.addColorStop(1,'#0000');ctx.fillStyle=g;ctx.fillRect(0,0,w,h);
-    particles.forEach(([x,y,z,v],i)=>{
-      const tx=left+(i%12)/11*sw,ty=top+Math.floor(i/12)/7*sh;
-      const px=x*w+(tx-x*w)*form,py=y*h+(ty-y*h)*form;
-      ctx.fillStyle=`rgba(183,224,255,${.3+z*.6})`;ctx.beginPath();ctx.arc(px,py,.7+v*1.1,0,Math.PI*2);ctx.fill();
-    });
-    const blocks=[[0,0,1,1],[0,.12,1,0],[.055,.22,.49,.41],[.59,.22,.35,.41],[.055,.72,.27,.19],[.365,.72,.27,.19],[.675,.72,.27,.19]];
-    blocks.forEach(([x,y,bw,bh],i)=>{
-      const p=ease((t-1.5-i*.16)/1.2);if(!p)return;
-      ctx.save();ctx.translate(0,(1-p)*(i%2 ? -35 : 55));ctx.globalAlpha=p*(1-depart);
-      ctx.strokeStyle=i===0?'#b8dfff99':'#87b7e455';ctx.lineWidth=1;
-      ctx.strokeRect(left+x*sw,top+y*sh,bw*sw*p,bh*sh);
-      if(i>1){ctx.fillStyle='#8dcaff08';ctx.fillRect(left+x*sw,top+y*sh,bw*sw,bh*sh);}
-      if(i===2) {ctx.fillStyle='#d9edff';ctx.fillRect(left+.08*sw,top+.29*sh,sw*.28*p,3);ctx.fillRect(left+.08*sw,top+.35*sh,sw*.21*p,3);ctx.fillStyle='#287aff';ctx.fillRect(left+.08*sw,top+.49*sh,sw*.15*p,sh*.06);}
-      if(i===3){const grad=ctx.createLinearGradient(left+.59*sw,top,left+.94*sw,top+sh);grad.addColorStop(0,'#1b4871');grad.addColorStop(1,'#080b10');ctx.fillStyle=grad;ctx.fillRect(left+.61*sw,top+.25*sh,sw*.31,sh*.35);}
-      ctx.restore();
-    });
-    if(sample?.complete && sample.naturalWidth && t>3.3) {
-      const alpha=ease((t-3.3)/.8)*(1-depart);
-      const scale=1+ease((t-3.3)/1.8)*.04;
-      const dw=sw*scale,dh=sh*scale,dx=(w-dw)/2,dy=(h-dh)/2;
-      ctx.globalAlpha=alpha;
-      ctx.fillStyle='#121922';ctx.fillRect(dx,dy,dw,dh);
-      const ratio=dw/sample.naturalWidth;
-      const sourceHeight=Math.min(sample.naturalHeight,(dh-20)/ratio);
-      ctx.drawImage(sample,0,0,sample.naturalWidth,sourceHeight,dx,dy+20,dw,sourceHeight*ratio);
-      ctx.fillStyle='#9fbcd8';for(let i=0;i<3;i++){ctx.beginPath();ctx.arc(dx+12+i*10,dy+10,2,0,Math.PI*2);ctx.fill();}
-    }
-    ctx.restore();
-  }
-  function frame(now) {
-    if(!active)return;
-    const t=(now-started)/1000;
-    ctx.fillStyle='#020305';ctx.fillRect(0,0,w,h);
-    if(mode==='break')rock(t);else creation(t);
-    layer.classList.toggle('is-revealed',t>(mode==='break'?4.55:5.0));
-    if(t>7.5){finish();return;}
-    raf=requestAnimationFrame(frame);
-  }
-  function finish() {
-    if(!active)return;active=false;cancelAnimationFrame(raf);clearTimeout(deadline);
-    layer.classList.add('is-leaving');
-    document.body.style.overflow=oldOverflow;
-    siblings.forEach(([el,value])=>{el.inert=value;});siblings=[];
-    previousFocus?.focus({preventScroll:true});
-    closing=setTimeout(()=>{layer.hidden=true;layer.classList.remove('is-leaving','is-revealed');},850);
-  }
-  function start(manual=false) {
-    if(active||!ctx)return;
-    clearTimeout(closing);
-    let seen=false;try{seen=localStorage.getItem(key)==='1';}catch{}
-    if(!manual&&(seen||reduced.matches||navigator.connection?.saveData||navigator.deviceMemory<=2||navigator.hardwareConcurrency<=2||location.hash))return;
-    if(reduced.matches)return;
-    try{localStorage.setItem(key,'1');}catch{}
-    if(mode==='break'&&!stone){
-      stone=new Image();stone.decoding='async';
-      stone.onload=()=>{if(active&&performance.now()-started<1200)texture=stone;};
-      stone.src=new URL('brand-stone.webp',script.src).href;
-    }
-    previousFocus=document.activeElement;oldOverflow=document.body.style.overflow;
-    resize();layer.hidden=false;layer.classList.remove('is-leaving','is-revealed');active=true;
-    siblings=Array.from(document.body.children).filter(el=>el!==layer&&el instanceof HTMLElement).map(el=>[el,el.inert]);
-    siblings.forEach(([el])=>{el.inert=true;});document.body.style.overflow='hidden';skip.focus({preventScroll:true});
-    started=performance.now();raf=requestAnimationFrame(frame);deadline=setTimeout(finish,9000);
-  }
-  const lifecycle = new AbortController();
-  const options = {signal:lifecycle.signal};
-  skip.addEventListener('click',finish,options);
-  replay.addEventListener('click',()=>start(true),options);
-  replay.hidden=reduced.matches;
-  layer.addEventListener('keydown',e=>{if(e.key==='Escape'){finish();}if(e.key==='Tab'){e.preventDefault();skip.focus();}},options);
-  document.addEventListener('visibilitychange',()=>{if(document.hidden)finish();},options);
-  reduced.addEventListener('change',()=>{replay.hidden=reduced.matches;if(reduced.matches)finish();},options);
-  window.addEventListener('resize',()=>{if(active)resize();},{...options,passive:true});
-  window.addEventListener('pagehide',finish,options);
-  document.addEventListener('hqp-cinema-dispose',()=>{finish();clearTimeout(closing);lifecycle.abort();layer.remove();replay.remove();},{...options,once:true});
-  start();
+  skip.addEventListener('click',finish);replay.addEventListener('click',()=>play(true));
+  layer.addEventListener('keydown',e=>{if(e.key==='Escape')finish();if(e.key==='Tab'){e.preventDefault();skip.focus()}});
+  document.addEventListener('visibilitychange',()=>{if(document.hidden&&active)restore()});
+  addEventListener('pagehide',()=>{if(active)restore()});
+  media.addEventListener('change',()=>{replay.hidden=media.matches;if(media.matches&&active)restore()});replay.hidden=media.matches;
+  let seen=false;try{seen=localStorage.getItem(key)==='1'}catch{}
+  if(!seen&&!media.matches&&!navigator.connection?.saveData&&!location.hash&&!new URLSearchParams(location.search).has('hqp-entry'))play();
 })();
