@@ -24,7 +24,7 @@ body.hqp-brand{background:#030609;color:#ecf3f7;font-family:HQPText,'Hiragino Ka
 .hqp-brand .value-card strong{font:400 clamp(36px,4.6vw,70px)/1.2 Georgia,serif;color:#a0c5e4}
 .hqp-brand .process-wrap{border:0;border-radius:0;background:none}
 .hqp-brand .process-card{background:none;border:0;border-left:1px solid #9abbd34d;padding:36px 30px}
-.hqp-brand .process-card .step{font:400 50px/1 Georgia,serif;color:#a5cdec;background:none;border:0}
+.hqp-brand .process-card .step{display:block;width:auto;height:auto;min-height:1.1em;white-space:nowrap;overflow-wrap:normal;word-break:normal;font:400 50px/1.1 Georgia,serif;font-variant-numeric:tabular-nums;color:#a5cdec;background:none;border:0;border-radius:0;box-shadow:none;margin:0 0 24px}
 .hqp-brand .workflow-step{border-radius:0;box-shadow:none;background:none;border:0;border-top:1px solid #adcde54d;padding:30px 12px}
 .hqp-brand .plan-card{background:#0c1825;border:0;border-top:2px solid #91b8d6;padding:36px 28px}
 .hqp-brand .plan-name{color:#b3ddff}.hqp-brand .feature-table{background:#09121b;border-color:#89adc833}.hqp-brand .feature-table th{background:#142232}
@@ -91,3 +91,14 @@ body.hqp-brand{background:#030609;color:#ecf3f7;font-family:HQPText,'Hiragino Ka
 /* The administration overview scrolls away before the feature-led sticky display. */
 .brand-app .screen-feature{position:relative;top:auto}
 @media(min-width:901px){.brand-app .screen-grid{grid-column:1/-1;grid-template-columns:repeat(2,minmax(0,1fr))}.brand-app.field-enhanced .screen-grid{grid-column:2;grid-template-columns:1fr}.brand-app.field-enhanced .field-stage{grid-row:2}.brand-app.field-enhanced .screen-grid{grid-row:2}}
+
+/* Natural-flow numerals: no fixed badge box, no overlapping decorative connector. */
+.brand-app .process-wrap::before,.brand-app .process-wrap::after{display:none}
+.brand-app .process-grid{gap:0;align-items:stretch;border-top:1px solid #9abbd34d}
+.brand-app .process-card{display:flex;flex-direction:column;padding:34px 28px;border-left:1px solid #9abbd34d}
+.brand-app .process-card:first-child{border-left:0}
+.brand-app .process-card h3{line-height:1.6;word-break:normal;overflow-wrap:normal;text-wrap:balance;margin:0 0 14px}
+.brand-app .process-card h3 span{display:inline-block;white-space:nowrap}
+.brand-app .process-card p{line-height:1.9}
+.brand-app .process-card ul{margin-top:auto;padding-top:22px;line-height:1.8}
+@media(max-width:980px){.brand-app .process-card,.brand-app .process-card:first-child{border-left:0;border-bottom:1px solid #9abbd34d;padding:30px 8px}.brand-app .process-card .step{font-size:42px;margin-bottom:18px}.brand-app .process-card ul{margin-top:0;padding-top:16px}}
