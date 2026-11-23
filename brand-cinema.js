@@ -4,7 +4,7 @@
   const mode=document.currentScript?.dataset.story||'break';
   const media=matchMedia('(prefers-reduced-motion: reduce)');
   const title=mode==='field'?'CONTROL THE FIELD':'BREAK THE STANDARD';
-  const layer=document.createElement('div');layer.className='hqp-cinema cinema-mode-'+mode;layer.hidden=true;
+  const layer=document.createElement('div');layer.className='hqp-cinema cinema-mode-'+mode;layer.hidden=true;layer.setAttribute('data-hqp-opening-overlay','');
   layer.setAttribute('role','dialog');layer.setAttribute('aria-modal','true');layer.setAttribute('aria-label',title);
   const map='<svg class="cinema-map" viewBox="0 0 1000 620" aria-hidden="true"><g class="city-blocks" fill="none" stroke="currentColor" stroke-width=".7"><path d="M40 40H220V160H40ZM260 40H440V160H260ZM480 40H680V160H480ZM720 40H960V160H720ZM40 200H220V390H40ZM260 200H440V390H260ZM480 200H680V390H480ZM720 200H960V390H720ZM40 430H220V580H40ZM260 430H440V580H260ZM480 430H680V580H480ZM720 430H960V580H720Z"/></g><path class="cinema-route" pathLength="1" d="M80 530L240 530L240 180L460 180L460 410L700 410L700 95L910 95"/><g class="cinema-pins" fill="currentColor"><circle cx="80" cy="530" r="5"/><circle cx="240" cy="340" r="5"/><circle cx="380" cy="180" r="5"/><circle cx="460" cy="300" r="5"/><circle cx="610" cy="410" r="5"/><circle cx="700" cy="220" r="5"/><circle cx="910" cy="95" r="5"/></g></svg>';
   const scene=mode==='field'
@@ -15,21 +15,31 @@
   const replay=document.createElement('button');replay.className='cinema-replay';replay.type='button';replay.textContent='ブランドストーリーを再生 ↗';
   const actions=document.querySelector('.hero-actions');(actions?.parentElement||document.querySelector('footer')).append(replay);
   const skip=layer.querySelector('.cinema-skip');
-  let pending=false,request=0,attempted=false;let timer=0,fade=0,active=false,returnFocus=null,oldOverflow='',siblings=[];
-  function restore(){clearTimeout(timer);clearTimeout(fade);layer.hidden=true;layer.classList.remove('is-playing','is-leaving');document.body.style.overflow=oldOverflow;siblings.forEach(([el,value])=>el.inert=value);siblings=[];active=false;if(returnFocus?.isConnected)returnFocus.focus({preventScroll:true});}
-  function finish(){if(!active)return;clearTimeout(timer);layer.classList.add('is-leaving');fade=setTimeout(restore,550);}
-  async function play(){
-    if(active||pending||media.matches)return;pending=true;const id=++request;
-    try{layer.querySelectorAll('img').forEach(i=>i.loading='eager');const texture=new Image();texture.src='brand-basalt.webp';await Promise.all([...layer.querySelectorAll('img'),...(mode==='break'?[texture]:[])].map(i=>i.decode()));}catch{if(id===request)pending=false;return;}if(id!==request)return;pending=false;
-    if(document.hidden||media.matches)return;
-    active=true;returnFocus=document.activeElement;oldOverflow=document.body.style.overflow;
-    siblings=[...document.body.children].filter(el=>el!==layer&&el instanceof HTMLElement).map(el=>[el,el.inert]);siblings.forEach(([el])=>el.inert=true);
-    document.body.style.overflow='hidden';layer.hidden=false;layer.classList.remove('is-leaving');void layer.offsetWidth;layer.classList.add('is-playing');skip.focus({preventScroll:true});
+  let pending=false,request=0,attempted=false;let timer=0,fade=0,active=false;
+  function restore(){++request;pending=false;clearTimeout(timer);clearTimeout(fade);layer.hidden=true;layer.classList.remove('is-playing','is-leaving');active=false;window.hqpOpening?.close();}
+  function finish(){if(!active){window.hqpOpening?.cancel();return;}clearTimeout(timer);layer.classList.add('is-leaving');fade=setTimeout(restore,550);}
+  async function play(manual=false){
+    const gate=window.hqpOpening;
+    if(active||pending||media.matches||!gate)return;
+    if(manual)gate.begin();
+    if(gate.state!=='pending')return;
+    pending=true;const id=++request;
+    try{
+      layer.querySelectorAll('img').forEach(i=>i.loading='eager');
+      const texture=new Image();texture.src='brand-basalt.webp';
+      await Promise.all([...layer.querySelectorAll('img'),...(mode==='break'?[texture]:[])].map(i=>i.decode()).concat(document.fonts.ready));
+      if(document.hidden)await new Promise(resolve=>{const visible=()=>{if(!document.hidden){document.removeEventListener('visibilitychange',visible);resolve()}};document.addEventListener('visibilitychange',visible)});
+    }catch{if(id===request)gate.cancel();return;}
+    if(id!==request)return;pending=false;
+    if(media.matches||gate.state!=='pending')return;
+    layer.hidden=false;layer.classList.remove('is-leaving');void layer.offsetWidth;layer.classList.add('is-playing');
+    if(getComputedStyle(layer).position!=='fixed'||!gate.ready()){restore();return;}active=true;skip.focus({preventScroll:true});
     timer=setTimeout(finish,mode==='field'?8700:9800);
   }
-  skip.addEventListener('click',finish);replay.addEventListener('click',()=>play());
+  addEventListener('hqp-opening-cancel',restore);
+  skip.addEventListener('click',finish);replay.addEventListener('click',()=>play(true));
   layer.addEventListener('keydown',e=>{if(e.key==='Escape')finish();if(e.key==='Tab'){e.preventDefault();skip.focus()}});
-  function attempt(){if(attempted||document.hidden)return;attempted=true;play();}
+  function attempt(){if(attempted||document.hidden)return;attempted=true;if(window.hqpOpening?.state==='pending')play();}
   document.addEventListener('visibilitychange',()=>{if(document.hidden&&active)restore();else attempt()});
   addEventListener('pagehide',()=>{++request;pending=false;if(active)restore()});
   addEventListener('pageshow',e=>{if(e.persisted){attempted=false;attempt()}});

@@ -1,6 +1,58 @@
 <!DOCTYPE html>
 <html lang="ja">
 <head>
+  <meta charset="UTF-8">
+  <!-- First-paint opening gate; intentionally inline and independent of deferred scripts. -->
+  <style>#hqp-opening-shell{display:none}html[data-hqp-opening]{overflow:hidden!important}html[data-hqp-opening] body{overflow:hidden!important}html[data-hqp-opening="pending"]::before{content:"";position:fixed;inset:0;background:#000;z-index:2147483000}html[data-hqp-opening="pending"] #hqp-opening-shell{display:block;position:fixed;inset:0;background:#000;color:#eaf4ff;z-index:2147483001}#hqp-opening-shell button{position:absolute;right:24px;bottom:max(24px,env(safe-area-inset-bottom));padding:16px 24px;border:1px solid #a9d9ef;background:#000;color:#eaf4ff;font:500 12px/1.5 sans-serif;cursor:pointer}#hqp-opening-shell button:focus-visible{outline:2px solid #fff;outline-offset:4px}@media(prefers-reduced-motion:reduce){html[data-hqp-opening="pending"]::before,html[data-hqp-opening="pending"] #hqp-opening-shell{display:none}}</style>
+  <script>(() => {
+  if (window.hqpOpening) return;
+  const root=document.documentElement, media=matchMedia('(prefers-reduced-motion: reduce)');
+  let state='closed', timer=0, savedFocus=null, observer=null;
+  const locked=new Map();
+  const shell=()=>document.getElementById('hqp-opening-shell');
+  const button=()=>shell()?.querySelector('button');
+  function lock(){
+    if(state==='closed'||!document.body)return;
+    for(const node of document.body.children){
+      if(!(node instanceof HTMLElement)||node.id==='hqp-opening-shell'||node.hasAttribute('data-hqp-opening-overlay')||['SCRIPT','STYLE','LINK'].includes(node.tagName)||node.contains(shell()))continue;
+      if(!locked.has(node))locked.set(node,node.inert);
+      node.inert=true;
+    }
+  }
+  function close(notify=false){
+    const wasOpen=state!=='closed';state='closed';clearTimeout(timer);observer?.disconnect();
+    root.removeAttribute('data-hqp-opening');
+    locked.forEach((value,node)=>{node.inert=value});locked.clear();
+    if(savedFocus?.isConnected)savedFocus.focus({preventScroll:true});savedFocus=null;
+    if(notify&&wasOpen)dispatchEvent(new Event('hqp-opening-cancel'));
+  }
+  function deadline(){clearTimeout(timer);if(!document.hidden&&state!=='closed')timer=setTimeout(()=>close(true),state==='pending'?12000:22000);}
+  function begin(){
+    if(media.matches){close(true);return false;}
+    if(state!=='closed')close(false);
+    savedFocus=document.activeElement instanceof HTMLElement?document.activeElement:null;
+    state='pending';root.setAttribute('data-hqp-opening','pending');deadline();
+    observer=new MutationObserver(lock);observer.observe(document.documentElement,{childList:true,subtree:true});lock();return true;
+  }
+  window.hqpOpening={get state(){return state},begin,close:()=>close(false),cancel:()=>close(true),ready:()=>{
+    if(state!=='pending')return false;
+    state='playing';root.setAttribute('data-hqp-opening','playing');lock();deadline();return true;
+  }};
+  document.addEventListener('click',event=>{if(state==='pending'&&event.target instanceof Element&&event.target.closest('[data-hqp-opening-skip]')){event.preventDefault();close(true)}},true);
+  document.addEventListener('keydown',event=>{
+    if(state!=='pending')return;
+    if(event.key==='Escape'){event.preventDefault();event.stopImmediatePropagation();close(true)}
+    else if(event.key==='Tab'){event.preventDefault();event.stopImmediatePropagation();button()?.focus({preventScroll:true})}
+    else if(!shell()?.contains(event.target)){event.preventDefault();event.stopImmediatePropagation()}
+  },true);
+  document.addEventListener('focusin',event=>{if(state==='pending'&&!shell()?.contains(event.target))button()?.focus({preventScroll:true})});
+  document.addEventListener('visibilitychange',deadline);
+  addEventListener('pageshow',event=>{if(event.persisted)begin()});
+  // Prepare the cached document before its next restored paint. Renderer cleanup runs first.
+  addEventListener('pagehide',()=>queueMicrotask(()=>begin()));
+  media.addEventListener('change',()=>{if(media.matches)close(true)});
+  begin();
+})();</script>
   <!-- Google tag (gtag.js) -->
   <script async src="https://www.googletagmanager.com/gtag/js?id=G-QN91EZMQR8"></script>
   <script>
@@ -9,8 +61,6 @@
     gtag('js', new Date());
     gtag('config', 'G-QN91EZMQR8');
   </script>
-
-  <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
   <meta name="format-detection" content="telephone=no">
 
@@ -2070,6 +2120,7 @@
 </head>
 
 <body class="hqp-brand brand-app">
+<div id="hqp-opening-shell" role="dialog" aria-modal="true" aria-label="オープニング準備中"><button type="button" data-hqp-opening-skip>スキップ ↗</button></div>
   <a class="skip-link" href="#main">本文へ移動</a>
   <div class="scroll-progress" id="scrollProgress" aria-hidden="true"></div>
   <div class="cursor-glow" id="cursorGlow" aria-hidden="true"></div>
