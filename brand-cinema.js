@@ -14,25 +14,25 @@
   document.body.append(layer);
   const replay=document.createElement('button');replay.className='cinema-replay';replay.type='button';replay.textContent='ブランドストーリーを再生 ↗';
   const actions=document.querySelector('.hero-actions');(actions?.parentElement||document.querySelector('footer')).append(replay);
-  const skip=layer.querySelector('.cinema-skip');const key='hqp-brand-v4-'+mode+'-seen';
-  let pending=false;let timer=0,fade=0,active=false,returnFocus=null,oldOverflow='',siblings=[];
+  const skip=layer.querySelector('.cinema-skip');
+  let pending=false,request=0,attempted=false;let timer=0,fade=0,active=false,returnFocus=null,oldOverflow='',siblings=[];
   function restore(){clearTimeout(timer);clearTimeout(fade);layer.hidden=true;layer.classList.remove('is-playing','is-leaving');document.body.style.overflow=oldOverflow;siblings.forEach(([el,value])=>el.inert=value);siblings=[];active=false;if(returnFocus?.isConnected)returnFocus.focus({preventScroll:true});}
   function finish(){if(!active)return;clearTimeout(timer);layer.classList.add('is-leaving');fade=setTimeout(restore,550);}
-  async function play(manual=false){
-    if(active||pending||media.matches)return;pending=true;
-    try{layer.querySelectorAll('img').forEach(i=>i.loading='eager');const texture=new Image();texture.src='brand-basalt.webp';await Promise.all([...layer.querySelectorAll('img'),...(mode==='break'?[texture]:[])].map(i=>i.decode()));}catch{pending=false;return;}pending=false;
-    if(document.hidden||media.matches||(!manual&&scrollY>120))return;
+  async function play(){
+    if(active||pending||media.matches)return;pending=true;const id=++request;
+    try{layer.querySelectorAll('img').forEach(i=>i.loading='eager');const texture=new Image();texture.src='brand-basalt.webp';await Promise.all([...layer.querySelectorAll('img'),...(mode==='break'?[texture]:[])].map(i=>i.decode()));}catch{if(id===request)pending=false;return;}if(id!==request)return;pending=false;
+    if(document.hidden||media.matches)return;
     active=true;returnFocus=document.activeElement;oldOverflow=document.body.style.overflow;
     siblings=[...document.body.children].filter(el=>el!==layer&&el instanceof HTMLElement).map(el=>[el,el.inert]);siblings.forEach(([el])=>el.inert=true);
     document.body.style.overflow='hidden';layer.hidden=false;layer.classList.remove('is-leaving');void layer.offsetWidth;layer.classList.add('is-playing');skip.focus({preventScroll:true});
-    try{localStorage.setItem(key,'1')}catch{}
     timer=setTimeout(finish,mode==='field'?8700:9800);
   }
-  skip.addEventListener('click',finish);replay.addEventListener('click',()=>play(true));
+  skip.addEventListener('click',finish);replay.addEventListener('click',()=>play());
   layer.addEventListener('keydown',e=>{if(e.key==='Escape')finish();if(e.key==='Tab'){e.preventDefault();skip.focus()}});
-  document.addEventListener('visibilitychange',()=>{if(document.hidden&&active)restore()});
-  addEventListener('pagehide',()=>{if(active)restore()});
+  function attempt(){if(attempted||document.hidden)return;attempted=true;play();}
+  document.addEventListener('visibilitychange',()=>{if(document.hidden&&active)restore();else attempt()});
+  addEventListener('pagehide',()=>{++request;pending=false;if(active)restore()});
+  addEventListener('pageshow',e=>{if(e.persisted){attempted=false;attempt()}});
   media.addEventListener('change',()=>{replay.hidden=media.matches;if(media.matches&&active)restore()});replay.hidden=media.matches;
-  let seen=false;try{seen=localStorage.getItem(key)==='1'}catch{}
-  if(!seen&&!media.matches&&!navigator.connection?.saveData&&!location.hash&&!new URLSearchParams(location.search).has('hqp-entry'))play();
+  attempt();
 })();

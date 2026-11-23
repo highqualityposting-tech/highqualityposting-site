@@ -1,5 +1,5 @@
 # HQP — BEYOND THE ORDINARY
-## Shared design contract (Preview v5)
+## Shared design contract (Preview v6)
 - Chapter 01: BREAK THE STANDARD / posting. City, routes and verified distribution information.
 - Chapter 02: CONTROL THE FIELD / app. Actual screenshots, large readable devices, workflow-led presentation.
 - Chapter 03: CREATE THE EXPERIENCE / studio. Its design demo and opening now use THE ART OF IMPACT: NOCT, a fictional collectible-lighting brand, with interactive FORM / MATERIAL / SPACE views and an extended editorial website.
@@ -8,8 +8,8 @@
 - Japanese headings 600, body 400, labels 500, CTA 600. Static OFL Noto instances avoid WebKit variable-weight bugs. Font subsets cover all three pages; rebuild with scripts/build-service-fonts.py SOURCE_TTF_DIR POSTING_REPO after copy changes.
 - Layout: max 1440px, gutter clamp(24px,6vw,100px), restrained 1px rules, section spacing 75px mobile / 110–120px desktop. Pricing remains directly visible.
 - Motion: finite 8.7–11.8s openings plus 550–650ms fade, skip/Escape, keyboard focus trap and original inert/overflow restored. Native image/SVG rendering; no Canvas/WebGL or new animation library.
-- First visit per chapter can auto-play; localStorage remembers playback. Reduced motion, Save-Data, anchor navigation and hqp-entry=chapter suppress automatic playback. Manual replay remains available except under reduced motion. Storage-disabled users cannot persist the seen flag.
-- New chapter links use hqp-entry=chapter, so users are never forced through three long openings. Existing navigation/store/contact links are preserved.
+- Every document presentation auto-plays its chapter, including reload, revisit, new tabs and history restoration. No seen storage or chapter-query suppression. Reduced motion and failed asset decoding leave the ordinary page usable. Background tabs wait until visible; skip never restarts automatically within that presentation.
+- Chapter links use clean URLs. Openings preserve the current scroll position, including anchor and history restoration; focus returns with preventScroll. BFCache pageshow starts one new presentation. Pending decode cancellation and a busy guard prevent duplicate starts.
 - Scroll effects run only on scroll/resize in requestAnimationFrame for visible scenes. No scrolling interception. App desktop sticky display follows real feature panels; mobile retains native horizontal galleries and touch/keyboard operation.
 - Preview aliases: hqp-posting-brand-preview.vercel.app and hqp-studio-brand-preview.vercel.app. These are Preview-only aliases; Vercel Authentication stays enabled. Authorized Vercel login is required; no public protection-bypass token is published.
 ## Asset provenance
@@ -26,5 +26,5 @@ Design Preview verification is separate from the repository Reality Gate for pro
 ## v5 specifics
 - App process numerals retain a 50px font but replace the obsolete 44px badge with an auto-sized block, nowrap and a reserved 1.1em line. Grid cells align through normal document flow, not z-index. Japanese heading phrases stay intact; mobile stacks the three steps.
 - NOCT is native HTML/React/CSS, not a flattened site screenshot. Accessible buttons switch actual photograph, caption and Japanese concept text. Keyboard interaction and reduced motion are supported. The same component serves opening, Hero and expanded body; the body adds material and spatial chapters.
-- Opening: structure from 0.45s, layers from 0.8s, complete at 3.4s, held until 8.5s, title at 9s, exit at 11.8s. The opening demo is inert; skip remains the only focus target. Replay uses the v5 seen key. Short screens use a compact composition.
+- Opening: structure from 0.45s, layers from 0.8s, complete at 3.4s, held until 8.5s, title at 9s, exit at 11.8s. The opening demo is inert; skip remains the only focus target. Replay is available independently of visit history. Short screens use a compact composition.
 - Asset prompts, dimensions, rights context and output paths: NOCT_DEMO_ASSETS.json in the studio repository. No photo or proprietary design was copied from the research reference.

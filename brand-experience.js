@@ -2,7 +2,7 @@
  'use strict';
  const root=document.body, reduced=matchMedia('(prefers-reduced-motion: reduce)');
  const preview=location.hostname.endsWith('.vercel.app')||['localhost','127.0.0.1'].includes(location.hostname);
- root.querySelectorAll('[data-chapter="studio"]').forEach(a=>{if(preview)a.href='https://hqp-studio-brand-preview.vercel.app/homepage-production?hqp-entry=chapter'});
+ root.querySelectorAll('[data-chapter="studio"]').forEach(a=>{if(preview)a.href='https://hqp-studio-brand-preview.vercel.app/homepage-production'});
  const scenes=[...document.querySelectorAll('[data-scene],#flow')],active=new Set();let frame=0;
  const update=()=>{frame=0;if(document.hidden||reduced.matches)return;const values=[...active].map(el=>[el,el.getBoundingClientRect()]);values.forEach(([el,r])=>el.style.setProperty('--scene-progress',Math.max(0,Math.min(1,(innerHeight-r.top)/(innerHeight+r.height))).toFixed(4)))};
  const schedule=()=>{if(!frame&&!document.hidden&&!reduced.matches)frame=requestAnimationFrame(update)};
