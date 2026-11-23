@@ -6,8 +6,8 @@
 /* Posting-only fracture: an ice core, uneven blue energy and reflected light on stone. */
 .cinema-rock .cinema-fracture{position:absolute;inset:0;width:100%;height:100%;fill:none;stroke-linejoin:round;stroke-linecap:round}
 .cinema-fracture .crack-main,.cinema-fracture .crack-branch{stroke-dasharray:1;stroke-dashoffset:1}
-.fracture-halo{stroke:#126aff;stroke-width:22;opacity:.62;filter:url(#crack-halo)}
-.fracture-reflection{stroke:url(#crack-energy);stroke-width:10;opacity:.85;filter:url(#crack-edge);mix-blend-mode:screen}
+.fracture-halo{stroke:#126aff;stroke-width:22;opacity:.62;filter:blur(5px)}
+.fracture-reflection{stroke:url(#crack-energy);stroke-width:10;opacity:.85;filter:blur(1.2px);mix-blend-mode:screen}
 .fracture-energy{stroke:url(#crack-energy);stroke-width:4.4}
 .fracture-splinters{fill:url(#crack-ice);opacity:0}.is-playing .fracture-splinters{animation:world-in .6s ease 2.2s forwards,world-out .5s ease 4s forwards}
 .fracture-core{stroke:url(#crack-ice);stroke-width:1.1}
@@ -20,6 +20,11 @@
 @keyframes fracture-pulse{0%,100%{opacity:.62}45%{opacity:1}}
 @keyframes fracture-release{0%{opacity:.72}45%{opacity:1}100%{opacity:0}}
 @keyframes fracture-open{0%{opacity:0;transform:scale(.65)}24%{opacity:.9}100%{opacity:0;transform:scale(1.12)}}
+
+/* Cache broad light as a static surface; only the narrow fissure traces are redrawn. */
+.cinema-fracture .fracture-halo path,.cinema-fracture .fracture-reflection path{stroke-dasharray:none;stroke-dashoffset:0;opacity:0}
+.is-playing .fracture-halo .crack-main,.is-playing .fracture-reflection .crack-main{animation:world-in .6s ease 1.8s forwards,world-out .5s ease 4s forwards}
+.is-playing .fracture-halo .crack-branch,.is-playing .fracture-reflection .crack-branch{animation:world-in .6s ease 3.1s forwards,world-out .6s ease 4s forwards}
 
 .cinema-map{position:absolute;inset:0;width:100%;height:100%;color:#b6e2ff}.city-blocks{opacity:.22}.cinema-route{fill:none;stroke:currentColor;stroke-width:2;stroke-dasharray:1;stroke-dashoffset:1}.cinema-pins{opacity:0}.cinema-mode-break.is-playing .cinema-route{animation:trace 1.7s ease 4.6s forwards}.cinema-mode-break.is-playing .cinema-pins{animation:world-in 1s ease 5.6s both}
 .cinema-field{background:radial-gradient(ellipse,#112d4266,transparent 65%)}.cinema-field .cinema-map{opacity:0}.cinema-mode-field.is-playing{opacity:1}.cinema-field .cinema-device{position:absolute;left:50%;top:50%;width:min(300px,62vw,31svh);transform:translate(-50%,-50%);border:5px solid #233440;border-radius:30px;overflow:hidden;box-shadow:0 20px 60px #000b;opacity:0}.cinema-device img{width:100%;height:auto;display:block}
