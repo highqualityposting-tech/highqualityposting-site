@@ -1,6 +1,58 @@
 <!DOCTYPE html>
 <html lang="ja">
 <head>
+  <meta charset="UTF-8">
+  <!-- First-paint opening gate; intentionally inline and independent of deferred scripts. -->
+  <style>#hqp-opening-shell{display:none}html[data-hqp-opening]{overflow:hidden!important}html[data-hqp-opening] body{overflow:hidden!important}html[data-hqp-opening="pending"]::before{content:"";position:fixed;inset:0;background:#000;z-index:2147483000}html[data-hqp-opening="pending"] #hqp-opening-shell{display:block;position:fixed;inset:0;background:#000;color:#eaf4ff;z-index:2147483001}#hqp-opening-shell button{position:absolute;right:24px;bottom:max(24px,env(safe-area-inset-bottom));padding:16px 24px;border:1px solid #a9d9ef;background:#000;color:#eaf4ff;font:500 12px/1.5 sans-serif;cursor:pointer}#hqp-opening-shell button:focus-visible{outline:2px solid #fff;outline-offset:4px}@media(prefers-reduced-motion:reduce){html[data-hqp-opening="pending"]::before,html[data-hqp-opening="pending"] #hqp-opening-shell{display:none}}</style>
+  <script>(() => {
+  if (window.hqpOpening) return;
+  const root=document.documentElement, media=matchMedia('(prefers-reduced-motion: reduce)');
+  let state='closed', timer=0, savedFocus=null, observer=null;
+  const locked=new Map();
+  const shell=()=>document.getElementById('hqp-opening-shell');
+  const button=()=>shell()?.querySelector('button');
+  function lock(){
+    if(state==='closed'||!document.body)return;
+    for(const node of document.body.children){
+      if(!(node instanceof HTMLElement)||node.id==='hqp-opening-shell'||node.hasAttribute('data-hqp-opening-overlay')||['SCRIPT','STYLE','LINK'].includes(node.tagName)||node.contains(shell()))continue;
+      if(!locked.has(node))locked.set(node,node.inert);
+      node.inert=true;
+    }
+  }
+  function close(notify=false){
+    const wasOpen=state!=='closed';state='closed';clearTimeout(timer);observer?.disconnect();
+    root.removeAttribute('data-hqp-opening');
+    locked.forEach((value,node)=>{node.inert=value});locked.clear();
+    if(savedFocus?.isConnected)savedFocus.focus({preventScroll:true});savedFocus=null;
+    if(notify&&wasOpen)dispatchEvent(new Event('hqp-opening-cancel'));
+  }
+  function deadline(){clearTimeout(timer);if(!document.hidden&&state!=='closed')timer=setTimeout(()=>close(true),state==='pending'?12000:22000);}
+  function begin(){
+    if(media.matches){close(true);return false;}
+    if(state!=='closed')close(false);
+    savedFocus=document.activeElement instanceof HTMLElement?document.activeElement:null;
+    state='pending';root.setAttribute('data-hqp-opening','pending');deadline();
+    observer=new MutationObserver(lock);observer.observe(document.documentElement,{childList:true,subtree:true});lock();return true;
+  }
+  window.hqpOpening={get state(){return state},begin,close:()=>close(false),cancel:()=>close(true),ready:()=>{
+    if(state!=='pending')return false;
+    state='playing';root.setAttribute('data-hqp-opening','playing');lock();deadline();return true;
+  }};
+  document.addEventListener('click',event=>{if(state==='pending'&&event.target instanceof Element&&event.target.closest('[data-hqp-opening-skip]')){event.preventDefault();close(true)}},true);
+  document.addEventListener('keydown',event=>{
+    if(state!=='pending')return;
+    if(event.key==='Escape'){event.preventDefault();event.stopImmediatePropagation();close(true)}
+    else if(event.key==='Tab'){event.preventDefault();event.stopImmediatePropagation();button()?.focus({preventScroll:true})}
+    else if(!shell()?.contains(event.target)){event.preventDefault();event.stopImmediatePropagation()}
+  },true);
+  document.addEventListener('focusin',event=>{if(state==='pending'&&!shell()?.contains(event.target))button()?.focus({preventScroll:true})});
+  document.addEventListener('visibilitychange',deadline);
+  addEventListener('pageshow',event=>{if(event.persisted)begin()});
+  // Prepare the cached document before its next restored paint. Renderer cleanup runs first.
+  addEventListener('pagehide',()=>queueMicrotask(()=>begin()));
+  media.addEventListener('change',()=>{if(media.matches)close(true)});
+  begin();
+})();</script>
   <!-- Google tag (gtag.js) -->
   <script async src="https://www.googletagmanager.com/gtag/js?id=G-QN91EZMQR8"></script>
   <script>
@@ -9,8 +61,6 @@
     gtag('js', new Date());
     gtag('config', 'G-QN91EZMQR8');
   </script>
-
-  <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
   <meta name="format-detection" content="telephone=no">
 
@@ -2061,9 +2111,16 @@
     ]
   }
   </script>
+<link rel="stylesheet" href="brand-system.css">
+<link rel="stylesheet" href="brand-experience.css">
+<script defer src="brand-experience.js"></script>
+<link rel="stylesheet" href="brand-cinema.css">
+<script defer src="brand-cinema.js" data-story="field"></script>
+  <link rel="icon" type="image/jpeg" href="logo.jpg">
 </head>
 
-<body>
+<body class="hqp-brand brand-app">
+<div id="hqp-opening-shell" role="dialog" aria-modal="true" aria-label="オープニング準備中"><button type="button" data-hqp-opening-skip>スキップ ↗</button></div>
   <a class="skip-link" href="#main">本文へ移動</a>
   <div class="scroll-progress" id="scrollProgress" aria-hidden="true"></div>
   <div class="cursor-glow" id="cursorGlow" aria-hidden="true"></div>
@@ -2091,6 +2148,7 @@
       </div>
     </div>
   </header>
+<nav class="brand-chapters" aria-label="HQPブランドの3つのページ"><a href="index.html" data-chapter="posting"><small>01</small><strong>ポスティング<em>BREAK THE STANDARD</em></strong><b aria-hidden="true">↗</b></a><a href="hqp-app.html" data-chapter="app" aria-current="page"><small>02</small><strong>HQPアプリ<em>CONTROL THE FIELD</em></strong><b aria-hidden="true">↗</b></a><a href="https://hqp-onepage-production-system.vercel.app/homepage-production" data-chapter="studio"><small>03</small><strong>ホームページ制作<em>CREATE THE EXPERIENCE</em></strong><b aria-hidden="true">↗</b></a></nav>
 
   <main id="main">
     <section class="hero anchor" id="overview">
@@ -2100,7 +2158,7 @@
           <h1>
             <span class="line"><span class="phrase">配るだけの</span><span class="phrase">業務から、</span></span>
             <span class="line accent"><span class="phrase">配布品質が見える</span><br class="mobile-break"><span class="phrase">運用へ。</span></span>
-          </h1>
+          </h1><figure class="app-mobile-lead"><img src="app-screen-overall-mapping.png" alt="HQPアプリの全体マッピング画面" width="1206" height="2474" fetchpriority="high"><figcaption>02 / CONTROL THE FIELD</figcaption></figure>
 
           <p class="hero-lead">
             HQPアプリは、<strong>マンションの選定、ルート作成、投函入力、進捗管理、日報、タイムライン、外部共有</strong>を一つにつなぐポスティング業務管理アプリです。現場で入力した情報が、そのまま管理とクライアント報告へ変わります。
@@ -2170,6 +2228,88 @@
       </div>
     </section>
 
+    <section class="section anchor" id="screens">
+      <div class="container">
+        <div class="section-head reveal">
+          <div>
+            <span class="eyebrow">PRODUCT EXPERIENCE</span>
+            <h2>実際のアプリ画面</h2>
+          </div>
+          <p>管理者ページ、全体マッピング、投函、日報、タイムライン、共有、配布カレンダーまで。業務の順番に沿って画面を整理しています。</p>
+        </div>
+
+        <div class="screen-layout">
+          <article class="screen-feature reveal">
+            <div class="screen-feature-media">
+              <img src="app-screen-admin.png" alt="HQPアプリの管理者ページ" width="850" height="1850" loading="lazy" decoding="async">
+            </div>
+            <div class="screen-copy">
+              <strong>管理者ページ</strong>
+              <span>仮ピン承認、注意事項追加、日報、タイムライン、招待コード発行、招待アカウント管理を一つの管理画面から操作できます。</span>
+            </div>
+          </article>
+
+<aside class="field-stage" aria-label="機能説明に対応するアプリ画面"><div class="field-screen"><img src="app-screen-overall-mapping.png" width="1206" height="2474" alt="全体マッピング"></div><p class="field-screen-label">全体マッピング</p><div class="field-controls" aria-label="紹介する機能"></div><small>HQP / ACTUAL APP SCREEN</small></aside>
+          <div class="screen-grid">
+            <article class="screen-card reveal">
+              <div class="screen-media"><img src="app-screen-overall-mapping.png" alt="HQPアプリの全体マッピング画面" width="1206" height="2474" loading="lazy" decoding="async"></div>
+              <h3>全体マッピング</h3>
+              <p>分譲・賃貸マンションを地図上で確認。検索、フィルター、なぞり選択、円範囲選択、ルート作成に対応。</p>
+            </article>
+            <article class="screen-card reveal">
+              <div class="screen-media"><img src="app-screen-active-posting.png" alt="HQPアプリの投函画面" width="1242" height="2688" loading="lazy" decoding="async"></div>
+              <h3>投函画面</h3>
+              <p>配布中の進捗、投函枚数、対象建物、未投函・投函済み状態を確認。</p>
+            </article>
+            <article class="screen-card reveal">
+              <div class="screen-media"><img src="app-screen-delivery-map.png" alt="HQPアプリの投函入力画面" width="878" height="1791" loading="lazy" decoding="async"></div>
+              <h3>投函入力</h3>
+              <p>現地でマンションごとの投函枚数を入力。入力時刻と位置情報を日報・タイムラインへ反映。</p>
+            </article>
+            <article class="screen-card reveal">
+              <div class="screen-media"><img src="app-screen-posting-map.png" alt="HQPアプリの投函タイムラインマップ画面" width="1206" height="2452" loading="lazy" decoding="async"></div>
+              <h3>タイムラインマップ</h3>
+              <p>勤務開始・終了と各マンションの投函入力位置を可視化し、共有URLで外部報告。</p>
+            </article>
+          </div>
+        </div>
+
+        <div class="screen-more">
+          <article class="mini-screen reveal">
+            <div class="screen-media"><img src="app-screen-delivery-complete.png" alt="HQPアプリの勤務完了画面" width="874" height="1799" loading="lazy" decoding="async"></div>
+            <h3>勤務完了</h3><p>進捗と本日の投函完了状態を視覚的に確認。</p>
+          </article>
+          <article class="mini-screen reveal">
+            <div class="screen-media"><img src="app-screen-note.png" alt="HQPアプリの建物注意メモ画面" width="1206" height="2476" loading="lazy" decoding="async"></div>
+            <h3>建物注意メモ</h3><p>建物ごとの注意事項を登録し、現場へ共有。</p>
+          </article>
+          <article class="mini-screen reveal">
+            <div class="screen-media"><img src="app-screen-daily-report-detail.png" alt="HQPアプリの日報詳細画面" width="878" height="1791" loading="lazy" decoding="async"></div>
+            <h3>日報詳細</h3><p>日別・ルート別・建物別に投函枚数と入力時刻を確認。</p>
+          </article>
+          <article class="mini-screen reveal">
+            <div class="screen-media"><img src="app-screen-timeline-detail.png" alt="HQPアプリの投函タイムライン詳細画面" width="878" height="1791" loading="lazy" decoding="async"></div>
+            <h3>投函タイムライン</h3><p>勤務開始、勤務終了、建物ごとの投函履歴を時系列表示。</p>
+          </article>
+          <article class="mini-screen reveal">
+            <div class="screen-media"><img src="app-screen-daily-report-share.png" alt="HQPアプリの日報共有画面" width="880" height="1788" loading="lazy" decoding="async"></div>
+            <h3>日報共有</h3><p>投函結果をPDF、Excel、共有URLで出力。</p>
+          </article>
+          <article class="mini-screen reveal">
+            <div class="screen-media"><img src="app-screen-delivery-calendar.png" alt="HQPアプリの配布カレンダー画面" width="1242" height="2688" loading="lazy" decoding="async"></div>
+            <h3>配布カレンダー</h3><p>配布済み・配布予定を月間カレンダーで表示。</p>
+          </article>
+          <article class="mini-screen reveal">
+            <div class="screen-media"><img src="app-screen-favorite-route.png" alt="HQPアプリのお気に入りルート画面" width="878" height="1790" loading="lazy" decoding="async"></div>
+            <h3>お気に入りルート</h3><p>クライアント別・案件別に配布ルートを整理。</p>
+          </article>
+          <article class="mini-screen reveal">
+            <div class="screen-media"><img src="app-screen-home.png" alt="HQPアプリのホーム画面" width="850" height="1850" loading="lazy" decoding="async"></div>
+            <h3>ホーム</h3><p>管理機能・配布機能へ迷わず移動。</p>
+          </article>
+        </div>
+      </div>
+    </section>
     <div class="marquee-band" aria-hidden="true">
       <div class="marquee-track">
         <div class="marquee-item">MAPPING</div><div class="marquee-item">ROUTE DESIGN</div><div class="marquee-item">POSTING INPUT</div><div class="marquee-item">PROGRESS</div><div class="marquee-item">DAILY REPORT</div><div class="marquee-item">TIMELINE</div><div class="marquee-item">SHARE URL</div><div class="marquee-item">TEAM MANAGEMENT</div>
@@ -2244,7 +2384,7 @@
           <div class="process-grid">
             <article class="process-card">
               <span class="step">01</span>
-              <h3>配布前を設計する</h3>
+              <h3><span>配布前を</span><span>設計する</span></h3>
               <p>全体マップから対象マンションを選び、案件別のルートを作成します。</p>
               <ul>
                 <li>検索・条件フィルター</li>
@@ -2254,7 +2394,7 @@
             </article>
             <article class="process-card">
               <span class="step">02</span>
-              <h3>配布中を記録する</h3>
+              <h3><span>配布中を</span><span>記録する</span></h3>
               <p>建物ごとの投函枚数を入力し、進捗と未完了を確認しながら配布します。</p>
               <ul>
                 <li>投函枚数・時刻・位置の保存</li>
@@ -2264,7 +2404,7 @@
             </article>
             <article class="process-card">
               <span class="step">03</span>
-              <h3>配布後を報告する</h3>
+              <h3><span>配布後を</span><span>報告する</span></h3>
               <p>日報、タイムライン、カレンダーへ反映し、クライアントへ共有します。</p>
               <ul>
                 <li>PDF・Excel出力</li>
@@ -2324,87 +2464,7 @@
       </div>
     </section>
 
-    <section class="section anchor" id="screens">
-      <div class="container">
-        <div class="section-head reveal">
-          <div>
-            <span class="eyebrow">PRODUCT EXPERIENCE</span>
-            <h2>実際のアプリ画面</h2>
-          </div>
-          <p>管理者ページ、全体マッピング、投函、日報、タイムライン、共有、配布カレンダーまで。業務の順番に沿って画面を整理しています。</p>
-        </div>
 
-        <div class="screen-layout">
-          <article class="screen-feature reveal">
-            <div class="screen-feature-media">
-              <img src="app-screen-admin.png" alt="HQPアプリの管理者ページ" width="850" height="1850" loading="lazy" decoding="async">
-            </div>
-            <div class="screen-copy">
-              <strong>管理者ページ</strong>
-              <span>仮ピン承認、注意事項追加、日報、タイムライン、招待コード発行、招待アカウント管理を一つの管理画面から操作できます。</span>
-            </div>
-          </article>
-
-          <div class="screen-grid">
-            <article class="screen-card reveal">
-              <div class="screen-media"><img src="app-screen-overall-mapping.png" alt="HQPアプリの全体マッピング画面" width="1206" height="2474" loading="lazy" decoding="async"></div>
-              <h3>全体マッピング</h3>
-              <p>分譲・賃貸マンションを地図上で確認。検索、フィルター、なぞり選択、円範囲選択、ルート作成に対応。</p>
-            </article>
-            <article class="screen-card reveal">
-              <div class="screen-media"><img src="app-screen-active-posting.png" alt="HQPアプリの投函画面" width="1242" height="2688" loading="lazy" decoding="async"></div>
-              <h3>投函画面</h3>
-              <p>配布中の進捗、投函枚数、対象建物、未投函・投函済み状態を確認。</p>
-            </article>
-            <article class="screen-card reveal">
-              <div class="screen-media"><img src="app-screen-delivery-map.png" alt="HQPアプリの投函入力画面" width="878" height="1791" loading="lazy" decoding="async"></div>
-              <h3>投函入力</h3>
-              <p>現地でマンションごとの投函枚数を入力。入力時刻と位置情報を日報・タイムラインへ反映。</p>
-            </article>
-            <article class="screen-card reveal">
-              <div class="screen-media"><img src="app-screen-posting-map.png" alt="HQPアプリの投函タイムラインマップ画面" width="1206" height="2452" loading="lazy" decoding="async"></div>
-              <h3>タイムラインマップ</h3>
-              <p>勤務開始・終了と各マンションの投函入力位置を可視化し、共有URLで外部報告。</p>
-            </article>
-          </div>
-        </div>
-
-        <div class="screen-more">
-          <article class="mini-screen reveal">
-            <div class="screen-media"><img src="app-screen-delivery-complete.png" alt="HQPアプリの勤務完了画面" width="874" height="1799" loading="lazy" decoding="async"></div>
-            <h3>勤務完了</h3><p>進捗と本日の投函完了状態を視覚的に確認。</p>
-          </article>
-          <article class="mini-screen reveal">
-            <div class="screen-media"><img src="app-screen-note.png" alt="HQPアプリの建物注意メモ画面" width="1206" height="2476" loading="lazy" decoding="async"></div>
-            <h3>建物注意メモ</h3><p>建物ごとの注意事項を登録し、現場へ共有。</p>
-          </article>
-          <article class="mini-screen reveal">
-            <div class="screen-media"><img src="app-screen-daily-report-detail.png" alt="HQPアプリの日報詳細画面" width="878" height="1791" loading="lazy" decoding="async"></div>
-            <h3>日報詳細</h3><p>日別・ルート別・建物別に投函枚数と入力時刻を確認。</p>
-          </article>
-          <article class="mini-screen reveal">
-            <div class="screen-media"><img src="app-screen-timeline-detail.png" alt="HQPアプリの投函タイムライン詳細画面" width="878" height="1791" loading="lazy" decoding="async"></div>
-            <h3>投函タイムライン</h3><p>勤務開始、勤務終了、建物ごとの投函履歴を時系列表示。</p>
-          </article>
-          <article class="mini-screen reveal">
-            <div class="screen-media"><img src="app-screen-daily-report-share.png" alt="HQPアプリの日報共有画面" width="880" height="1788" loading="lazy" decoding="async"></div>
-            <h3>日報共有</h3><p>投函結果をPDF、Excel、共有URLで出力。</p>
-          </article>
-          <article class="mini-screen reveal">
-            <div class="screen-media"><img src="app-screen-delivery-calendar.png" alt="HQPアプリの配布カレンダー画面" width="1242" height="2688" loading="lazy" decoding="async"></div>
-            <h3>配布カレンダー</h3><p>配布済み・配布予定を月間カレンダーで表示。</p>
-          </article>
-          <article class="mini-screen reveal">
-            <div class="screen-media"><img src="app-screen-favorite-route.png" alt="HQPアプリのお気に入りルート画面" width="878" height="1790" loading="lazy" decoding="async"></div>
-            <h3>お気に入りルート</h3><p>クライアント別・案件別に配布ルートを整理。</p>
-          </article>
-          <article class="mini-screen reveal">
-            <div class="screen-media"><img src="app-screen-home.png" alt="HQPアプリのホーム画面" width="850" height="1850" loading="lazy" decoding="async"></div>
-            <h3>ホーム</h3><p>管理機能・配布機能へ迷わず移動。</p>
-          </article>
-        </div>
-      </div>
-    </section>
 
     <section class="section anchor" id="workflow">
       <div class="container">
@@ -2653,6 +2713,7 @@
     右上の「…」から「外部ブラウザで開く」を選び、Safariで開いてからお進みください。
   </div>
 
+  <nav class="brand-chapters" aria-label="HQPブランドの3つのページ"><a href="index.html" data-chapter="posting"><small>01</small><strong>ポスティング<em>BREAK THE STANDARD</em></strong><b aria-hidden="true">↗</b></a><a href="hqp-app.html" data-chapter="app" aria-current="page"><small>02</small><strong>HQPアプリ<em>CONTROL THE FIELD</em></strong><b aria-hidden="true">↗</b></a><a href="https://hqp-onepage-production-system.vercel.app/homepage-production" data-chapter="studio"><small>03</small><strong>ホームページ制作<em>CREATE THE EXPERIENCE</em></strong><b aria-hidden="true">↗</b></a></nav>
   <footer>
     <div class="container footer-inner">
       <a class="brand" href="index.html" aria-label="HIGH QUALITY POSTINGホームへ戻る">

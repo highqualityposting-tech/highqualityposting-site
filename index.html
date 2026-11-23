@@ -1,6 +1,58 @@
 <!DOCTYPE html>
 <html lang="ja">
 <head>
+  <meta charset="UTF-8">
+  <!-- First-paint opening gate; intentionally inline and independent of deferred scripts. -->
+  <style>#hqp-opening-shell{display:none}html[data-hqp-opening]{overflow:hidden!important}html[data-hqp-opening] body{overflow:hidden!important}html[data-hqp-opening="pending"]::before{content:"";position:fixed;inset:0;background:#000;z-index:2147483000}html[data-hqp-opening="pending"] #hqp-opening-shell{display:block;position:fixed;inset:0;background:#000;color:#eaf4ff;z-index:2147483001}#hqp-opening-shell button{position:absolute;right:24px;bottom:max(24px,env(safe-area-inset-bottom));padding:16px 24px;border:1px solid #a9d9ef;background:#000;color:#eaf4ff;font:500 12px/1.5 sans-serif;cursor:pointer}#hqp-opening-shell button:focus-visible{outline:2px solid #fff;outline-offset:4px}@media(prefers-reduced-motion:reduce){html[data-hqp-opening="pending"]::before,html[data-hqp-opening="pending"] #hqp-opening-shell{display:none}}</style>
+  <script>(() => {
+  if (window.hqpOpening) return;
+  const root=document.documentElement, media=matchMedia('(prefers-reduced-motion: reduce)');
+  let state='closed', timer=0, savedFocus=null, observer=null;
+  const locked=new Map();
+  const shell=()=>document.getElementById('hqp-opening-shell');
+  const button=()=>shell()?.querySelector('button');
+  function lock(){
+    if(state==='closed'||!document.body)return;
+    for(const node of document.body.children){
+      if(!(node instanceof HTMLElement)||node.id==='hqp-opening-shell'||node.hasAttribute('data-hqp-opening-overlay')||['SCRIPT','STYLE','LINK'].includes(node.tagName)||node.contains(shell()))continue;
+      if(!locked.has(node))locked.set(node,node.inert);
+      node.inert=true;
+    }
+  }
+  function close(notify=false){
+    const wasOpen=state!=='closed';state='closed';clearTimeout(timer);observer?.disconnect();
+    root.removeAttribute('data-hqp-opening');
+    locked.forEach((value,node)=>{node.inert=value});locked.clear();
+    if(savedFocus?.isConnected)savedFocus.focus({preventScroll:true});savedFocus=null;
+    if(notify&&wasOpen)dispatchEvent(new Event('hqp-opening-cancel'));
+  }
+  function deadline(){clearTimeout(timer);if(!document.hidden&&state!=='closed')timer=setTimeout(()=>close(true),state==='pending'?12000:22000);}
+  function begin(){
+    if(media.matches){close(true);return false;}
+    if(state!=='closed')close(false);
+    savedFocus=document.activeElement instanceof HTMLElement?document.activeElement:null;
+    state='pending';root.setAttribute('data-hqp-opening','pending');deadline();
+    observer=new MutationObserver(lock);observer.observe(document.documentElement,{childList:true,subtree:true});lock();return true;
+  }
+  window.hqpOpening={get state(){return state},begin,close:()=>close(false),cancel:()=>close(true),ready:()=>{
+    if(state!=='pending')return false;
+    state='playing';root.setAttribute('data-hqp-opening','playing');lock();deadline();return true;
+  }};
+  document.addEventListener('click',event=>{if(state==='pending'&&event.target instanceof Element&&event.target.closest('[data-hqp-opening-skip]')){event.preventDefault();close(true)}},true);
+  document.addEventListener('keydown',event=>{
+    if(state!=='pending')return;
+    if(event.key==='Escape'){event.preventDefault();event.stopImmediatePropagation();close(true)}
+    else if(event.key==='Tab'){event.preventDefault();event.stopImmediatePropagation();button()?.focus({preventScroll:true})}
+    else if(!shell()?.contains(event.target)){event.preventDefault();event.stopImmediatePropagation()}
+  },true);
+  document.addEventListener('focusin',event=>{if(state==='pending'&&!shell()?.contains(event.target))button()?.focus({preventScroll:true})});
+  document.addEventListener('visibilitychange',deadline);
+  addEventListener('pageshow',event=>{if(event.persisted)begin()});
+  // Prepare the cached document before its next restored paint. Renderer cleanup runs first.
+  addEventListener('pagehide',()=>queueMicrotask(()=>begin()));
+  media.addEventListener('change',()=>{if(media.matches)close(true)});
+  begin();
+})();</script>
   <!-- Google tag (gtag.js) -->
   <script async src="https://www.googletagmanager.com/gtag/js?id=G-QN91EZMQR8"></script>
   <script>
@@ -9,8 +61,6 @@
     gtag('js', new Date());
     gtag('config', 'G-QN91EZMQR8');
   </script>
-
-  <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 
   <title>北九州・福岡・熊本・久留米のマンション・集合住宅ポスティング｜HQP</title>
@@ -4199,9 +4249,17 @@
     }
   }
 </style>
+  <link rel="stylesheet" href="brand-cinema.css" />
+  <link rel="stylesheet" href="brand-posting.css" />
+  <script defer src="brand-cinema.js" data-story="break"></script>
+<link rel="stylesheet" href="brand-system.css">
+<link rel="stylesheet" href="brand-experience.css">
+<script defer src="brand-experience.js"></script>
+  <link rel="icon" type="image/jpeg" href="logo.jpg">
 </head>
 
-<body>
+<body class="hqp-brand brand-posting">
+<div id="hqp-opening-shell" role="dialog" aria-modal="true" aria-label="オープニング準備中"><button type="button" data-hqp-opening-skip>スキップ ↗</button></div>
   <div class="progress-bar" aria-hidden="true"></div>
 
   <header class="topbar">
@@ -4245,6 +4303,7 @@
       <a href="#contact">お問い合わせ</a>
     </div>
   </header>
+<nav class="brand-chapters" aria-label="HQPブランドの3つのページ"><a href="index.html" data-chapter="posting" aria-current="page"><small>01</small><strong>ポスティング<em>BREAK THE STANDARD</em></strong><b aria-hidden="true">↗</b></a><a href="hqp-app.html" data-chapter="app"><small>02</small><strong>HQPアプリ<em>CONTROL THE FIELD</em></strong><b aria-hidden="true">↗</b></a><a href="https://hqp-onepage-production-system.vercel.app/homepage-production" data-chapter="studio"><small>03</small><strong>ホームページ制作<em>CREATE THE EXPERIENCE</em></strong><b aria-hidden="true">↗</b></a></nav>
 
   <main id="top">
     <section class="hero">
@@ -4356,6 +4415,7 @@
           </p>
         </div>
 
+<figure class="brand-scene city-scene" data-scene><img class="scene-image" src="brand-city.webp" width="1536" height="1024" loading="lazy" decoding="async" alt="集合住宅が広がる都市の表現イメージ。生成素材であり実際の配布エリア・実績ではありません"><svg class="city-route" viewBox="0 0 1536 1024" aria-hidden="true"><path pathLength="1" d="M180 870L475 740L640 570L880 620L1060 510L1290 470"/><circle cx="475" cy="740" r="7"/><circle cx="640" cy="570" r="7"/><circle cx="880" cy="620" r="7"/><circle cx="1060" cy="510" r="7"/></svg><figcaption class="scene-caption"><strong>01 / THE FIELD BECOMES DATA</strong><span>都市・ルートの表現イメージ（生成素材）</span></figcaption></figure>
         <div class="bento">
           <article class="card motion-card wide reveal">
             <div class="icon">🏢</div>
@@ -5120,6 +5180,7 @@
     </section>
   </main>
 
+  <nav class="brand-chapters" aria-label="HQPブランドの3つのページ"><a href="index.html" data-chapter="posting" aria-current="page"><small>01</small><strong>ポスティング<em>BREAK THE STANDARD</em></strong><b aria-hidden="true">↗</b></a><a href="hqp-app.html" data-chapter="app"><small>02</small><strong>HQPアプリ<em>CONTROL THE FIELD</em></strong><b aria-hidden="true">↗</b></a><a href="https://hqp-onepage-production-system.vercel.app/homepage-production" data-chapter="studio"><small>03</small><strong>ホームページ制作<em>CREATE THE EXPERIENCE</em></strong><b aria-hidden="true">↗</b></a></nav>
   <footer>
     <div class="container footer-grid">
       <div>
