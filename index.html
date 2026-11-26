@@ -4339,7 +4339,7 @@
 
           <div class="hero-proof-row">
             <div class="hero-proof">
-              <strong data-counter="100">0</strong>
+              <strong data-counter="100">100</strong>
               <span>万枚以上<br>年間配布実績</span>
             </div>
             <div class="hero-proof">
@@ -4620,12 +4620,12 @@
 
         <div class="stats">
           <div class="stat reveal">
-            <strong data-counter="100">0</strong>
+            <strong data-counter="100">100</strong>
             <span>万枚以上 年間配布実績</span>
           </div>
           <div class="stat reveal delay-1">
             <strong>5円</strong>
-            <span>基本単価</span>
+            <span>分譲マンション限定・1枚あたり</span>
           </div>
           <div class="stat reveal delay-2">
             <strong>GPS</strong>
@@ -4647,6 +4647,7 @@
             <h2>指定マンションへの配布も可能です。</h2>
           </div>
           <p>
+            最低1,000枚からご相談いただけます。熊本市中央区・東区では、両区合計29,362枚の配布実績があります。<br>
             「このマンションに届けたい」「このエリアの集合住宅だけ狙いたい」など、
             建物単位・エリア単位の配布設計に対応します。
           </p>
@@ -5091,7 +5092,7 @@
           </article>
 
           <article class="card contact-card-highlight reveal delay-1">
-            <h3>ホームページ制作ページへ</h3>
+            <h3>店舗・教室・個人事業主向けの1ページホームページ制作</h3>
             <p>
               まずは内容を確認し、必要な場合だけ制作申込みへ進めます。
               ポスティングの見積り相談とは別窓口です。
@@ -5329,7 +5330,7 @@
         counters.forEach((counter) => counterObserver.observe(counter));
       } else {
         counters.forEach((counter) => {
-          counter.textContent = counter.getAttribute('data-counter') + '万';
+          counter.textContent = counter.getAttribute('data-counter');
         });
       }
 
